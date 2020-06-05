@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLyQuanCoffee"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Order" Height="700" Width="1200" WindowStartupLocation="CenterScreen" MinWidth="1200" MinHeight="700">
+    <StackPanel>
+        <Button x:Name="gd_QuanLyNhanVien" Click="gd_QuanLyNhanVien_Click" Content="Admin"/>
+    </StackPanel>
 </Window>

@@ -1,0 +1,54 @@
+﻿<Window x:Class="QuanLyQuanCoffee.Views.frmAdmin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
+        mc:Ignorable="d"
+        Title="Admin" Height="700" Width="1200" WindowState="Maximized">
+    <StackPanel>
+        <Menu Height="30" 
+              Name="Menu" VerticalAlignment="Top">
+            <MenuItem Header="Order"/>
+            <MenuItem Header="Nhân Sự" Height="30">
+                <MenuItem Header="Quản Lý Nhân Viên"
+                          Name="gd_QuanLyNhanVien" Click="gd_QuanLyNhanVien_Click"></MenuItem>
+                <MenuItem Header="Quản Lý Chấm Công"
+                          Name="gd_QuanLyChamCong"></MenuItem>
+                <MenuItem Header="Quản Lý Lương"
+                          Name="gd_QuanLyLuong"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Nguyên Liệu">
+                <MenuItem Header="Quản Lý Nguyên Liệu"
+                          Name="gd_QuanLyNguyenLieu"></MenuItem>
+                <MenuItem Header="Quản Lý Nhập Nguyên Liệu"
+                          Name="gd_QuanLyNhapNguyenLieu"></MenuItem>
+                <MenuItem Header="Quản Lý Xuất Nguyên Liệu"
+                          Name="gd_QuanLyXuatNguyenLieu"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Sản Phẩm">
+                <MenuItem Header="Quản Lý Sản Phẩm"
+                          Name="gd_QuanLySanPham"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Hóa Đơn">
+                <MenuItem Header="Quản Lý Hóa Đơn"
+                          Name="gd_QuanLyHoaDon"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Thống kê">
+                <MenuItem Header="Thống Kê Doanh Thu">
+                    <MenuItem Header="Theo Ngày"
+                              Name="gd_ThongKeDoanhThuTheoNgay"></MenuItem>
+                    <MenuItem Header="Theo Tuần"
+                              Name="gd_ThongKeDoanhThuTheoTuan"></MenuItem>
+                    <MenuItem Header="Theo Tháng"
+                              Name="gd_ThongKeDoanhThuTheoThang"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Thống Kê Chi Tiêu">
+                    <MenuItem Header="Nguyên Liệu"
+                              Name="gd_ThongKeChiTieuNguyenLieu"></MenuItem>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <Frame x:Name="Main" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" ScrollViewer.VerticalScrollBarVisibility="Auto" NavigationUIVisibility="Hidden" Navigated="Main_Navigated"/>
+    </StackPanel>
+</Window>
