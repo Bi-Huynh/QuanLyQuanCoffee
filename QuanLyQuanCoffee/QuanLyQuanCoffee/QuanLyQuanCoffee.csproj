@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BUS\CNhanVien_BUS.cs" />
     <Compile Include="ChiTietChamCong.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
@@ -76,6 +77,8 @@
     <Compile Include="ChiTietXuatNhapNguyenLieu.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
+    <Compile Include="DAO\CLoaiNhanVien_DAO.cs" />
+    <Compile Include="DAO\CNhanVien_DAO.cs" />
     <Compile Include="HoaDon.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
@@ -193,10 +196,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BUS\" />
-    <Folder Include="DAO\" />
     <Folder Include="DTO\" />
-    <Folder Include="Picture\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="QuanLyQuanCoffee.Context.tt">

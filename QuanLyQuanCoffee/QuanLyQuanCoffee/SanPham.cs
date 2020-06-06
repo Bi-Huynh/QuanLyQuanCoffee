@@ -22,6 +22,7 @@ namespace QuanLyQuanCoffee
     
         public string maSanPham { get; set; }
         public string tenSanPham { get; set; }
+        public double donGia { get; set; }
         public string donViTinh { get; set; }
         public string maLoaiSanPham { get; set; }
     

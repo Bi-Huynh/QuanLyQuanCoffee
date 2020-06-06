@@ -28,24 +28,27 @@
             <Button x:Name="btnTimKiem" Grid.Row="1" Grid.Column="4" Content="Tìm kiếm" FontFamily="Arial" FontSize="13"/>
             <Button x:Name="btnXemThongTinChiTiet" Grid.Row="1" Grid.Column="6" Content="Xem thông tin chi tiết" FontFamily="Arial" FontSize="13" Click="btnXemThongTinChiTiet_Click"/>
         </Grid>
-        <DataGrid MinHeight="565" Margin="10,0" AutoGenerateColumns="False" SelectedValuePath="" HorizontalContentAlignment="Center" Background="White" FontFamily="Arial">
+        <DataGrid x:Name="dgDSNhanVien" MinHeight="565" Margin="10,0" AutoGenerateColumns="False" 
+                  SelectedValuePath="maNhanVien" HorizontalContentAlignment="Center" 
+                  Background="White" FontFamily="Arial"
+                  SelectionChanged="dgDSNhanVien_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Mã nhân viên" MinWidth="139"/>
-                <DataGridTextColumn Header="Họ" MinWidth="210"/>
-                <DataGridTextColumn Header="Tên" MinWidth="110"/>
-                <DataGridTextColumn Header="Loại nhân viên" MinWidth="114"/>
-                <DataGridTextColumn Header="Giới tính" MinWidth="70"/>
-                <DataGridTextColumn Header="Tuổi" MinWidth="60"/>
-                <DataGridTextColumn Header="Số điện thoại" MinWidth="160"/>
-                <DataGridTextColumn Header="Ngày vào làm" MinWidth="132"/>
-                <DataGridTextColumn Header="Lương" MinWidth="185"/>
+                <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}" Width="1*"/>
+                <DataGridTextColumn Header="Họ" Binding="{Binding hoNhanVien}" Width="1.5*"/>
+                <DataGridTextColumn Header="Tên" Binding="{Binding tenNhanVien}" Width="1*"/>
+                <DataGridTextColumn Header="Loại nhân viên" Binding="{Binding tenLoai}" Width="1.5*"/>
+                <DataGridTextColumn Header="Giới tính" Binding="{Binding phai}" Width="1*"/>
+                <DataGridTextColumn Header="Số điện thoại" Binding="{Binding soDienThoai}" Width="1*"/>
+                <DataGridTextColumn Header="Ngày vào làm" Binding="{Binding ngayVaoLam}" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="51*"/>
+                <ColumnDefinition Width="35*"/>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="15*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="15*"/>
@@ -59,9 +62,10 @@
                 <RowDefinition Height="15"/>
             </Grid.RowDefinitions>
             <Button x:Name="btnQuanLyLoaiNhanvien" Grid.Row="1" Grid.Column="1" Content="Quan Ly Loai Nhan Vien" FontFamily="Arial"/>
-            <Button x:Name="btnSua" Grid.Row="1" Grid.Column="3" Content="Sửa" FontFamily="Arial" Click="btnSua_Click"/>
-            <Button x:Name="btnXoa" Grid.Row="1" Grid.Column="5" Content="Xóa" FontFamily="Arial" Click="btnXoa_Click"/>
-            <Button x:Name="btnThem" Grid.Row="1" Grid.Column="7" Content="Thêm" FontFamily="Arial" Height="30" VerticalAlignment="Bottom" Click="btnThem_Click"/>
+            <Button x:Name="btnRefesh" Grid.Row="1" Grid.Column="3" Content="Refect" FontFamily="Arial" Click="btnRefesh_Click"/>
+            <Button x:Name="btnSua" Grid.Row="1" Grid.Column="5" Content="Sửa" FontFamily="Arial" Click="btnSua_Click"/>
+            <Button x:Name="btnXoa" Grid.Row="1" Grid.Column="7" Content="Xóa" FontFamily="Arial" Click="btnXoa_Click"/>
+            <Button x:Name="btnThem" Grid.Row="1" Grid.Column="9" Content="Thêm" FontFamily="Arial" Height="30" VerticalAlignment="Bottom" Click="btnThem_Click"/>
         </Grid>
     </StackPanel>
 </Page>

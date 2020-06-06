@@ -20,14 +20,35 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmQuanLyNhanVien : Page
     {
+        private QuanLyQuanCoffeeEntities quanLyQuanCoffee = new QuanLyQuanCoffeeEntities();
+        private NhanVien nhanVienSelect;
+
+        private void hienThiDSNhanVien()
+        {
+            dgDSNhanVien.ItemsSource = quanLyQuanCoffee.NhanViens.Select(x => new
+            {
+                maNhanVien = x.maNhanVien,
+                hoNhanVien = x.hoNhanVien,
+                tenNhanVien = x.tenNhanVien,
+                tenLoai = x.LoaiNhanVien.tenLoai,
+                phai = x.phai == true ? "Nam" : "Nữ",
+                soDienThoai = x.soDienThoai,
+                ngayVaoLam = x.ngayVaoLam
+            }).ToList();
+        }
+
         public frmQuanLyNhanVien()
         {
             InitializeComponent();
+            nhanVienSelect = new NhanVien();
+
+            hienThiDSNhanVien();
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
             new frmThongTinNhanVien().Show();
+
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
@@ -42,7 +63,22 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnXemThongTinChiTiet_Click(object sender, RoutedEventArgs e)
         {
-            new frmThongTinNhanVien().Show();
+            new frmThongTinNhanVien(nhanVienSelect).Show();
+        }
+
+        private void dgDSNhanVien_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgDSNhanVien.SelectedItem == null)
+            {
+                return;
+            }
+            var maNhanVien = dgDSNhanVien.SelectedItem.ToString().Substring(15, 10);
+            nhanVienSelect = quanLyQuanCoffee.NhanViens.Find(maNhanVien);
+        }
+
+        private void btnRefesh_Click(object sender, RoutedEventArgs e)
+        {
+            hienThiDSNhanVien();
         }
     }
 }

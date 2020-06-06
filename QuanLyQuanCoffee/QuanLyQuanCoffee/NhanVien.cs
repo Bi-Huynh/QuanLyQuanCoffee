@@ -9,9 +9,12 @@
 
 namespace QuanLyQuanCoffee
 {
+    using QuanLyQuanCoffee.BUS;
+    using QuanLyQuanCoffee.DAO;
     using System;
     using System.Collections.Generic;
-    
+    using System.Threading;
+
     public partial class NhanVien
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +26,34 @@ namespace QuanLyQuanCoffee
             this.PhieuNhapNguyenLieux = new HashSet<PhieuNhapNguyenLieu>();
             this.PhieuXuatNguyenLieux = new HashSet<PhieuXuatNguyenLieu>();
         }
-    
+
+        public NhanVien(
+            string maNhanVien,
+            string hoNhanVien,
+            string tenNhanVien,
+            string soDienThoai,
+            DateTime ngaySinh,
+            bool phai,
+            string CMND,
+            string thuongTru,
+            string tamTru,
+            DateTime ngayVaoLam,
+            string maLoaiNhanVien)
+        {
+            this.maNhanVien = maNhanVien;
+            this.hoNhanVien = CNhanVien_BUS.chuanChuoi(hoNhanVien);
+            this.tenNhanVien = CNhanVien_BUS.chuanChuoi(tenNhanVien);
+            this.soDienThoai = soDienThoai.Trim();
+            this.ngaySinh = ngaySinh;
+            this.phai = phai;
+            this.cMND = CMND.Trim();
+            this.thuongTru = CNhanVien_BUS.chuanChuoi(thuongTru);
+            this.tamTru = CNhanVien_BUS.chuanChuoi(tamTru);
+            this.ngayVaoLam = ngayVaoLam;
+            this.maLoaiNhanVien = maLoaiNhanVien;
+            this.LoaiNhanVien = CLoaiNhanVien_DAO.find(maLoaiNhanVien);
+        }
+
         public string maNhanVien { get; set; }
         public string hoNhanVien { get; set; }
         public string tenNhanVien { get; set; }
@@ -35,7 +65,7 @@ namespace QuanLyQuanCoffee
         public string tamTru { get; set; }
         public System.DateTime ngayVaoLam { get; set; }
         public string maLoaiNhanVien { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietChamCong> ChiTietChamCongs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
