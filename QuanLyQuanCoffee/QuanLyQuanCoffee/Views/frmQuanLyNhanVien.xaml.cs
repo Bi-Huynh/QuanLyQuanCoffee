@@ -48,7 +48,6 @@ namespace QuanLyQuanCoffee.Views
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
             new frmThongTinNhanVien(null, 1).Show();
-
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
@@ -68,12 +67,28 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-            new frmThongTinNhanVien(nhanVienSelect, 2).Show();
+            if (nhanVienSelect != null)
+            {
+                new frmThongTinNhanVien(nhanVienSelect, 2).Show();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn nhân viên");
+            }
+
         }
 
         private void btnXemThongTinChiTiet_Click(object sender, RoutedEventArgs e)
         {
-            new frmThongTinNhanVien(nhanVienSelect).Show();
+            if (nhanVienSelect != null)
+            {
+                new frmThongTinNhanVien(nhanVienSelect).Show();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn nhân viên");
+            }
+
         }
 
         private void dgDSNhanVien_SelectionChanged(object sender, SelectionChangedEventArgs e)
