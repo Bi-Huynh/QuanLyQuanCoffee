@@ -23,9 +23,9 @@ namespace QuanLyQuanCoffee.Views
     {
         private NhanVien nhanVienSelect;
 
-        private void hienThiDSNhanVien()
+        private void hienThiDSNhanVien(List<NhanVien> list)
         {
-            dgDSNhanVien.ItemsSource = CNhanVien_BUS.toList().Select(x => new
+            dgDSNhanVien.ItemsSource = list.Select(x => new
             {
                 maNhanVien = x.maNhanVien,
                 hoNhanVien = x.hoNhanVien,
@@ -42,7 +42,7 @@ namespace QuanLyQuanCoffee.Views
             InitializeComponent();
             nhanVienSelect = new NhanVien();
 
-            hienThiDSNhanVien();
+            hienThiDSNhanVien(CNhanVien_BUS.toList());
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
@@ -103,7 +103,19 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnRefesh_Click(object sender, RoutedEventArgs e)
         {
-            hienThiDSNhanVien();
+            hienThiDSNhanVien(CNhanVien_BUS.toList());
+        }
+
+        private void txtTimKiem_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (txtTimKiem.Text == "")
+            {
+                hienThiDSNhanVien(CNhanVien_BUS.toList());
+            }
+            else
+            {
+                hienThiDSNhanVien(CNhanVien_BUS.findTen(txtTimKiem.Text));
+            }
         }
     }
 }

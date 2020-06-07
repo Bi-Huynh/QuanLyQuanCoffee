@@ -28,6 +28,18 @@ namespace QuanLyQuanCoffee.BUS
             return quanLyQuanCoffee.NhanViens.Find(maNhanVien);
         }
 
+        // tìm kiếm nhân viên theo tên nhân viên
+        public static List<NhanVien> findTen(string tenNhanVien)
+        {
+            tenNhanVien = formatChuoi(tenNhanVien);
+            List<NhanVien> list = toList().Where(x => x.tenNhanVien == tenNhanVien).ToList();
+            if (list == null)
+            {
+                return new List<NhanVien>();
+            }
+            return list;
+        }
+
         // chưa viết hàm này
         public static Boolean kiemTraThongTin(NhanVien nhanVien)
         {
@@ -49,6 +61,10 @@ namespace QuanLyQuanCoffee.BUS
         // định dạng lại chuỗi được truyền vào thành chuỗi chuẩn
         public static string formatChuoi (string strInput)
         {
+            if (strInput == "")
+            {
+                return "";
+            }
             string result = "";
             result = strInput.Trim();
             while(result.Contains("  ") == true)
