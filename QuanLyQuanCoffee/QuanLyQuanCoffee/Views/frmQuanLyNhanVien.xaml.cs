@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyQuanCoffee.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,12 +21,11 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmQuanLyNhanVien : Page
     {
-        private QuanLyQuanCoffeeEntities quanLyQuanCoffee = new QuanLyQuanCoffeeEntities();
         private NhanVien nhanVienSelect;
 
         private void hienThiDSNhanVien()
         {
-            dgDSNhanVien.ItemsSource = quanLyQuanCoffee.NhanViens.Select(x => new
+            dgDSNhanVien.ItemsSource = CNhanVien_BUS.toList().Select(x => new
             {
                 maNhanVien = x.maNhanVien,
                 hoNhanVien = x.hoNhanVien,
@@ -34,7 +34,7 @@ namespace QuanLyQuanCoffee.Views
                 phai = x.phai == true ? "Nam" : "Nữ",
                 soDienThoai = x.soDienThoai,
                 ngayVaoLam = x.ngayVaoLam
-            }).ToList();
+            });
         }
 
         public frmQuanLyNhanVien()
@@ -47,18 +47,28 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            new frmThongTinNhanVien().Show();
+            new frmThongTinNhanVien(null, 1).Show();
 
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
-
+            if (nhanVienSelect != null)
+            {
+                if (CNhanVien_BUS.remove(nhanVienSelect))
+                {
+                    MessageBox.Show("Xóa thành công");
+                }
+                else
+                {
+                    MessageBox.Show("Xóa không thành công");
+                }
+            }
         }
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-            new frmThongTinNhanVien().Show();
+            new frmThongTinNhanVien(nhanVienSelect, 2).Show();
         }
 
         private void btnXemThongTinChiTiet_Click(object sender, RoutedEventArgs e)
@@ -72,8 +82,8 @@ namespace QuanLyQuanCoffee.Views
             {
                 return;
             }
-            var maNhanVien = dgDSNhanVien.SelectedItem.ToString().Substring(15, 10);
-            nhanVienSelect = quanLyQuanCoffee.NhanViens.Find(maNhanVien);
+            var maNhanVien = dgDSNhanVien.SelectedValue.ToString();
+            nhanVienSelect = CNhanVien_BUS.find(maNhanVien);
         }
 
         private void btnRefesh_Click(object sender, RoutedEventArgs e)

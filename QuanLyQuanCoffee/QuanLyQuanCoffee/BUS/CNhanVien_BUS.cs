@@ -8,11 +8,33 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CNhanVien_BUS
     {
+        private static QuanLyQuanCoffeeEntities quanLyQuanCoffee = new QuanLyQuanCoffeeEntities();
+
+        // Trả về toàn bộ danh sách nhân viên
+        public static List<NhanVien> toList()
+        {
+            return quanLyQuanCoffee.NhanViens.ToList();
+        }
+
+        // Trả về những nhân viên có mã loại được truyền vào
+        public static List<NhanVien> toListByLoai(string maLoaiNhanVien)
+        {
+            return quanLyQuanCoffee.NhanViens.Where(x => x.maLoaiNhanVien == maLoaiNhanVien).ToList();
+        }
+
+        // tìm kiếm nhân viên theo mã nhân viên
+        public static NhanVien find(string maNhanVien)
+        {
+            return quanLyQuanCoffee.NhanViens.Find(maNhanVien);
+        }
+
+        // chưa viết hàm này
         public static Boolean kiemTraThongTin(NhanVien nhanVien)
         {
             return true;
         }
 
+        // khởi tạo mã tự động cho nhân viên
         public static string randomMaNhanVien()
         {
             Random random = new Random();
@@ -24,7 +46,8 @@ namespace QuanLyQuanCoffee.BUS
             return ma;
         }
 
-        public static string chuanChuoi (string strInput)
+        // định dạng lại chuỗi được truyền vào thành chuỗi chuẩn
+        public static string formatChuoi (string strInput)
         {
             string result = "";
             result = strInput.Trim();
@@ -56,6 +79,41 @@ namespace QuanLyQuanCoffee.BUS
         public static int tinhTuoi(NhanVien nhanVien)
         {
             return tinhTuoi(nhanVien.ngaySinh);
+        }
+
+        public static bool add(NhanVien nhanVien)
+        {
+            if (kiemTraThongTin(nhanVien))
+            {
+                quanLyQuanCoffee.NhanViens.Add(nhanVien);
+                quanLyQuanCoffee.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public static bool edit(NhanVien nhanVien)
+        {
+            NhanVien temp = find(nhanVien.maNhanVien);
+            if (temp == null || !kiemTraThongTin(nhanVien))
+            {
+                return false;
+            }
+            temp.copyData(nhanVien);
+            quanLyQuanCoffee.SaveChanges();
+            return true;
+        }
+
+        public static bool remove(NhanVien nhanVien)
+        {
+            NhanVien temp = find(nhanVien.maNhanVien);
+            if (temp == null)
+            {
+                return false;
+            }
+            quanLyQuanCoffee.NhanViens.Remove(temp);
+            quanLyQuanCoffee.SaveChanges();
+            return true;
         }
     }
 }

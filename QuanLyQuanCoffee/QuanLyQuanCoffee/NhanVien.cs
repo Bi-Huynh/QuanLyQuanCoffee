@@ -10,7 +10,6 @@
 namespace QuanLyQuanCoffee
 {
     using QuanLyQuanCoffee.BUS;
-    using QuanLyQuanCoffee.DAO;
     using System;
     using System.Collections.Generic;
     using System.Threading;
@@ -41,17 +40,30 @@ namespace QuanLyQuanCoffee
             string maLoaiNhanVien)
         {
             this.maNhanVien = maNhanVien;
-            this.hoNhanVien = CNhanVien_BUS.chuanChuoi(hoNhanVien);
-            this.tenNhanVien = CNhanVien_BUS.chuanChuoi(tenNhanVien);
+            this.hoNhanVien = CNhanVien_BUS.formatChuoi(hoNhanVien);
+            this.tenNhanVien = CNhanVien_BUS.formatChuoi(tenNhanVien);
             this.soDienThoai = soDienThoai.Trim();
             this.ngaySinh = ngaySinh;
             this.phai = phai;
             this.cMND = CMND.Trim();
-            this.thuongTru = CNhanVien_BUS.chuanChuoi(thuongTru);
-            this.tamTru = CNhanVien_BUS.chuanChuoi(tamTru);
+            this.thuongTru = CNhanVien_BUS.formatChuoi(thuongTru);
+            this.tamTru = CNhanVien_BUS.formatChuoi(tamTru);
             this.ngayVaoLam = ngayVaoLam;
             this.maLoaiNhanVien = maLoaiNhanVien;
-            this.LoaiNhanVien = CLoaiNhanVien_DAO.find(maLoaiNhanVien);
+        }
+
+        public void copyData(NhanVien nhanVien)
+        {
+            this.hoNhanVien = CNhanVien_BUS.formatChuoi(nhanVien.hoNhanVien);
+            this.tenNhanVien = CNhanVien_BUS.formatChuoi(nhanVien.tenNhanVien);
+            this.soDienThoai = nhanVien.soDienThoai.Trim();
+            this.ngaySinh = nhanVien.ngaySinh;
+            this.phai = nhanVien.phai;
+            this.cMND = nhanVien.cMND;
+            this.thuongTru = CNhanVien_BUS.formatChuoi(nhanVien.thuongTru);
+            this.tamTru = CNhanVien_BUS.formatChuoi(nhanVien.tamTru);
+            this.ngayVaoLam = nhanVien.ngayVaoLam;
+            this.maLoaiNhanVien = nhanVien.maLoaiNhanVien;
         }
 
         public string maNhanVien { get; set; }
