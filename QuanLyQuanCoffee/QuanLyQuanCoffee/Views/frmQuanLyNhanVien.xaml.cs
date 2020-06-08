@@ -131,5 +131,10 @@ namespace QuanLyQuanCoffee.Views
                 hienThiDSNhanVien(CNhanVien_BUS.findTenLoai(txtTimKiem.Text)); ;
             }
         }
+
+        private void btnQuanLyLoaiNhanvien_Click(object sender, RoutedEventArgs e)
+        {
+            new frmQuanLyLoaiNhanVien().Show();
+        }
     }
 }
