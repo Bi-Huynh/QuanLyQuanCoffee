@@ -48,8 +48,8 @@ namespace QuanLyQuanCoffee.Views
             }
             if (nhanVien != null)
             {
-                nhanVienSelect = nhanVien;  // không chắc chỗ này có copy được hk hay là bị trỏ chung địa chỉ
-                hienThiThongTin(nhanVien);
+                nhanVienSelect = nhanVien;
+                hienThiThongTin(nhanVienSelect);
             }
             cmbLoaiNhanVien.ItemsSource = CLoaiNhanVien_BUS.toListTenLoai();
             dateNgayVaoLam.SelectedDate = DateTime.Now;

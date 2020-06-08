@@ -25,7 +25,8 @@ namespace QuanLyQuanCoffee.BUS
         // tìm kiếm nhân viên theo mã nhân viên
         public static NhanVien find(string maNhanVien)
         {
-            return quanLyQuanCoffee.NhanViens.Find(maNhanVien);
+            NhanVien nhanVien = quanLyQuanCoffee.NhanViens.Find(maNhanVien);
+            return nhanVien == null ? new NhanVien() : nhanVien;
         }
 
         // tìm kiếm nhân viên theo tên nhân viên
@@ -33,11 +34,15 @@ namespace QuanLyQuanCoffee.BUS
         {
             tenNhanVien = formatChuoi(tenNhanVien);
             List<NhanVien> list = toList().Where(x => x.tenNhanVien == tenNhanVien).ToList();
-            if (list == null)
-            {
-                return new List<NhanVien>();
-            }
-            return list;
+            return list == null ? new List<NhanVien>() : list;
+        }
+
+        // tìm kiếm nhân viên theo tên nhân viên
+        public static List<NhanVien> findTenLoai(string tenLoaiNhanVien)
+        {
+            tenLoaiNhanVien = formatChuoi(tenLoaiNhanVien);
+            List<NhanVien> list = toList().Where(x => x.LoaiNhanVien.tenLoai == tenLoaiNhanVien).ToList();
+            return list == null ? new List<NhanVien>() : list;
         }
 
         // chưa viết hàm này

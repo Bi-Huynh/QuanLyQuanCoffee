@@ -23,6 +23,13 @@ namespace QuanLyQuanCoffee.Views
     {
         private NhanVien nhanVienSelect;
 
+        public frmQuanLyNhanVien()
+        {
+            InitializeComponent();
+
+            hienThiDSNhanVien(CNhanVien_BUS.toList());
+        }
+
         private void hienThiDSNhanVien(List<NhanVien> list)
         {
             dgDSNhanVien.ItemsSource = list.Select(x => new
@@ -37,14 +44,6 @@ namespace QuanLyQuanCoffee.Views
             });
         }
 
-        public frmQuanLyNhanVien()
-        {
-            InitializeComponent();
-            nhanVienSelect = new NhanVien();
-
-            hienThiDSNhanVien(CNhanVien_BUS.toList());
-        }
-
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
             new frmThongTinNhanVien(null, 1).Show();
@@ -57,6 +56,7 @@ namespace QuanLyQuanCoffee.Views
                 if (CNhanVien_BUS.remove(nhanVienSelect))
                 {
                     MessageBox.Show("Xóa thành công");
+                    hienThiDSNhanVien(CNhanVien_BUS.toList());
                 }
                 else
                 {
@@ -111,10 +111,24 @@ namespace QuanLyQuanCoffee.Views
             if (txtTimKiem.Text == "")
             {
                 hienThiDSNhanVien(CNhanVien_BUS.toList());
+                return;
+            }
+
+            // nếu combox tìm kiếm là 0 tức là tìm theo tên nhân viên
+            if (cmbTimKiem.SelectedIndex == 0)
+            {
+                hienThiDSNhanVien(CNhanVien_BUS.findTen(txtTimKiem.Text));
+            }
+            //nếu combox tìm kiếm là 1 tức là tìm theo mã nhân viên
+            else if (cmbTimKiem.SelectedIndex == 1)
+            {
+                List<NhanVien> list = new List<NhanVien>();
+                list.Add(CNhanVien_BUS.find(txtTimKiem.Text));
+                hienThiDSNhanVien(list);
             }
             else
             {
-                hienThiDSNhanVien(CNhanVien_BUS.findTen(txtTimKiem.Text));
+                hienThiDSNhanVien(CNhanVien_BUS.findTenLoai(txtTimKiem.Text)); ;
             }
         }
     }
