@@ -13,13 +13,15 @@ namespace QuanLyQuanCoffee.BUS
         // Trả về toàn bộ danh sách nhân viên
         public static List<NhanVien> toList()
         {
-            return quanLyQuanCoffee.NhanViens.ToList();
+            List<NhanVien> list = quanLyQuanCoffee.NhanViens.ToList();
+            return list == null ? new List<NhanVien>() : list;
         }
 
         // Trả về những nhân viên có mã loại được truyền vào
         public static List<NhanVien> toListByLoai(string maLoaiNhanVien)
         {
-            return quanLyQuanCoffee.NhanViens.Where(x => x.maLoaiNhanVien == maLoaiNhanVien).ToList();
+            List<NhanVien> list = quanLyQuanCoffee.NhanViens.Where(x => x.maLoaiNhanVien == maLoaiNhanVien).ToList();
+            return list == null ? new List<NhanVien>() : list;
         }
 
         // tìm kiếm nhân viên theo mã nhân viên
@@ -133,6 +135,21 @@ namespace QuanLyQuanCoffee.BUS
                 return false;
             }
             quanLyQuanCoffee.NhanViens.Remove(temp);
+            quanLyQuanCoffee.SaveChanges();
+            return true;
+        }
+        
+        public static bool removeLoaiNhanVien(string maLoaiNhanVien)
+        {
+            List<NhanVien> nhanViens = toListByLoai(maLoaiNhanVien);
+            if (nhanViens.Count <= 0)
+            {
+                return false;
+            }
+            LoaiNhanVien loaiNhanVien = CLoaiNhanVien_BUS.find("          ");
+            nhanViens.ForEach(x => {
+                    x.maLoaiNhanVien = loaiNhanVien.maLoaiNhanvien;
+                });
             quanLyQuanCoffee.SaveChanges();
             return true;
         }

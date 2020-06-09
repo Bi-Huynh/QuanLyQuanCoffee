@@ -40,6 +40,7 @@ namespace QuanLyQuanCoffee.BUS
 
         public static bool kiemTraThongTin(LoaiNhanVien loaiNhanVien)
         {
+            loaiNhanVien.tenLoai = CNhanVien_BUS.formatChuoi(loaiNhanVien.tenLoai);
             return true;
         }
 
@@ -53,7 +54,7 @@ namespace QuanLyQuanCoffee.BUS
             }
             return false;
         }
-        
+
         public static bool edit(LoaiNhanVien loaiNhanVien)
         {
             LoaiNhanVien temp = find(loaiNhanVien.maLoaiNhanvien);
@@ -69,10 +70,14 @@ namespace QuanLyQuanCoffee.BUS
         public static bool remove(LoaiNhanVien loaiNhanVien)
         {
             LoaiNhanVien temp = find(loaiNhanVien.maLoaiNhanvien);
-            if (temp == null)
+
+            if (temp == null || 
+                !CNhanVien_BUS.removeLoaiNhanVien(loaiNhanVien.maLoaiNhanvien))
             {
                 return false;
             }
+            loaiNhanVien.NhanViens.Clear();
+
             quanLyQuanCoffee.LoaiNhanViens.Remove(temp);
             quanLyQuanCoffee.SaveChanges();
             return true;

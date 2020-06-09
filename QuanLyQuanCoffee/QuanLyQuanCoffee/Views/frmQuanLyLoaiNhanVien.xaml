@@ -29,11 +29,11 @@
             <TextBox x:Name="txtLuong" Grid.Column="5" Grid.Row="1" VerticalContentAlignment="Center" Height="30" Margin="0,0,10,10"/>
         </Grid>
         <DataGrid x:Name="dgDSLoaiNhanVien" MinHeight="200" Margin="10,0" AutoGenerateColumns="False" 
-                  SelectedValuePath="maLoaiNhanVien" HorizontalContentAlignment="Center" 
+                  SelectedValuePath="maLoaiNhanvien" HorizontalContentAlignment="Center" 
                   Background="White" FontFamily="Arial"
-                  SelectionChanged="dgDSLoaiNhanVien_SelectionChanged">
+                  SelectionChanged="dgDSLoaiNhanVien_SelectionChanged" VerticalContentAlignment="Center">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Mã loại nhân viên" Binding="{Binding maLoaiNhanVien}" Width="1*"/>
+                <DataGridTextColumn Header="Mã loại nhân viên" Binding="{Binding maLoaiNhanvien}" Width="1*"/>
                 <DataGridTextColumn Header="Tên loại" Binding="{Binding tenLoai}" Width="1.5*"/>
                 <DataGridTextColumn Header="Luong" Binding="{Binding luongCoBan}" Width="1*"/>
             </DataGrid.Columns>
@@ -53,7 +53,7 @@
             <Button x:Name="btnThem" Grid.Column="5" Grid.Row="0" Content="Thêm" Height="30" Margin="10,10,10,0" Click="btnThem_Click"/>
             <Button x:Name="btnXoa" Grid.Column="4" Grid.Row="0" Content="Xóa" Height="30" Margin="10,10,10,0" Click="btnXoa_Click"/>
             <Button x:Name="btnSua" Grid.Column="3" Grid.Row="0" Content="Sửa" Height="30" Margin="10,10,10,0" Click="btnSua_Click"/>
-            <Button x:Name="btnLuu" Grid.Column="2" Grid.Row="0" Content="Lưu" Height="30" Margin="10,10,10,0" Click="btnLuu_Click"/>
+            <Button x:Name="btnBoChon" Grid.Column="0" Grid.Row="0" Content="Bỏ chọn" Height="30" Margin="10,10,10,0" Click="btnBoChon_Click"/>
         </Grid>
     </StackPanel>
 </Window>

@@ -27,6 +27,7 @@ namespace QuanLyQuanCoffee.Views
             InitializeComponent();
             loaiNhanVienSelect = new LoaiNhanVien();
             hienThiDSLoaiNhanVien(CLoaiNhanVien_BUS.toList());
+            isEnabledThongTin(false);
         }
 
         private void hienThiDSLoaiNhanVien(List<LoaiNhanVien> list)
@@ -34,13 +35,35 @@ namespace QuanLyQuanCoffee.Views
             dgDSLoaiNhanVien.ItemsSource = list;
         }
 
+        private void hienThiThongTin(LoaiNhanVien loaiNhanVien)
+        {
+            txtMaLoaiNhanVien.Text = loaiNhanVien.maLoaiNhanvien;
+            txtTenLoai.Text = loaiNhanVien.tenLoai;
+            txtLuong.Text = loaiNhanVien.luongCoBan.ToString();
+        }
+
+        private void isEnabledThongTin(bool value)
+        {
+            btnBoChon.IsEnabled = value;
+            btnSua.IsEnabled = value;
+            btnXoa.IsEnabled = value;
+        }
+
         private void dgDSLoaiNhanVien_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dgDSLoaiNhanVien.SelectedItem == null)
+            if (dgDSLoaiNhanVien.SelectedValue == null || dgDSLoaiNhanVien.SelectedValue.ToString() == "")
             {
                 return;
             }
-            loaiNhanVienSelect = dgDSLoaiNhanVien.SelectedValue as LoaiNhanVien;
+            if (dgDSLoaiNhanVien.SelectedValue.ToString() == "          ")
+            {
+                MessageBox.Show("Không thể chọn loại nhân viên này");
+                return;
+            }
+            string maLoaiNhanVien = dgDSLoaiNhanVien.SelectedValue.ToString();
+            loaiNhanVienSelect = CLoaiNhanVien_BUS.find(maLoaiNhanVien);
+            hienThiThongTin(loaiNhanVienSelect);
+            isEnabledThongTin(true);
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
@@ -49,7 +72,7 @@ namespace QuanLyQuanCoffee.Views
             do
             {
                 maLoaiNhanVien = CNhanVien_BUS.randomMaNhanVien();
-            } while (CLoaiNhanVien_BUS.find(maLoaiNhanVien) == null);
+            } while (CLoaiNhanVien_BUS.find(maLoaiNhanVien) != null);
 
             LoaiNhanVien loaiNhanVien = new LoaiNhanVien(
                 maLoaiNhanVien,
@@ -60,49 +83,57 @@ namespace QuanLyQuanCoffee.Views
             if (CLoaiNhanVien_BUS.add(loaiNhanVien))
             {
                 MessageBox.Show("Thêm thành công");
+                hienThiDSLoaiNhanVien(CLoaiNhanVien_BUS.toList());
             }
             else
             {
                 MessageBox.Show("Thêm không thành công");
             }
+            
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
-            if (loaiNhanVienSelect == null)
+            if (loaiNhanVienSelect != null)
             {
-                return;
-            }
-            if (CLoaiNhanVien_BUS.remove(loaiNhanVienSelect))
-            {
-                MessageBox.Show("Xóa thành công");
+                if (CLoaiNhanVien_BUS.remove(loaiNhanVienSelect))
+                {
+                    MessageBox.Show("Xóa thành công");
+                    hienThiDSLoaiNhanVien(CLoaiNhanVien_BUS.toList());
+                }
+                else
+                {
+                    MessageBox.Show("Xóa không thành công");
+                }
             }
             else
             {
-                MessageBox.Show("Xóa không thành công");
+                MessageBox.Show("Vui lòng chọn nhân viên cần xóa");
             }
         }
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void btnLuu_Click(object sender, RoutedEventArgs e)
-        {
             LoaiNhanVien loaiNhanVien = new LoaiNhanVien(
-                txtMaLoaiNhanVien.Text,
-                txtTenLoai.Text,
-                double.Parse(txtLuong.Text)
-                );
-            if (CLoaiNhanVien_BUS.remove(loaiNhanVien))
+                            txtMaLoaiNhanVien.Text,
+                            txtTenLoai.Text,
+                            double.Parse(txtLuong.Text)
+                            );
+            if (CLoaiNhanVien_BUS.edit(loaiNhanVien))
             {
-                MessageBox.Show("Xóa thành công");
+                MessageBox.Show("Sửa thành công");
+                hienThiDSLoaiNhanVien(CLoaiNhanVien_BUS.toList());
             }
             else
             {
-                MessageBox.Show("Xóa không thành công");
+                MessageBox.Show("Sửa không thành công");
             }
+        }
+
+        private void btnBoChon_Click(object sender, RoutedEventArgs e)
+        {
+            hienThiThongTin(new LoaiNhanVien());
+            isEnabledThongTin(false);
         }
     }
 }

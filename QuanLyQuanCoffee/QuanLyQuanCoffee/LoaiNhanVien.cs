@@ -22,7 +22,7 @@ namespace QuanLyQuanCoffee
 
         public LoaiNhanVien(string maLoaiNhanVien = "", string tenLoai = "", double luongCoBan = 0)
         {
-            this.maLoaiNhanvien = maLoaiNhanvien;
+            this.maLoaiNhanvien = maLoaiNhanVien;
             this.tenLoai = tenLoai;
             this.luongCoBan = luongCoBan;
         }
