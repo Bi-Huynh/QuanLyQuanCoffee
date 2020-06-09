@@ -69,7 +69,7 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="15"/>
             </Grid.RowDefinitions>
-            <Button x:Name="btnQuanLyLoaiNguyenLieu" Grid.Row="1" Grid.Column="1" Content="Quản Lý Loại Nguyên Liệu" FontFamily="Arial"/>
+            <Button x:Name="btnQuanLyLoaiNguyenLieu" Grid.Row="1" Grid.Column="1" Content="Quản Lý Loại Nguyên Liệu" FontFamily="Arial" Click="btnQuanLyLoaiNguyenLieu_Click"/>
             <Button x:Name="btnRefesh" Grid.Row="1" Grid.Column="3" Content="Refect" FontFamily="Arial" Click="btnRefesh_Click"/>
             <Button x:Name="btnSua" Grid.Row="1" Grid.Column="5" Content="Sửa" FontFamily="Arial" Click="btnSua_Click"/>
             <Button x:Name="btnXoa" Grid.Row="1" Grid.Column="7" Content="Xóa" FontFamily="Arial" Command="local:CMyCommand_NguyenLieu.lenhXoaNguyenLieu"/>

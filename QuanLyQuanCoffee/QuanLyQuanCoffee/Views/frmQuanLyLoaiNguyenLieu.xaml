@@ -32,7 +32,7 @@
         <DataGrid x:Name="dgDSLoaiNguyenLieu" MinHeight="200" Margin="10,0" AutoGenerateColumns="False" 
                   SelectedValuePath="maLoaiNhanvien" HorizontalContentAlignment="Center" 
                   Background="White" FontFamily="Arial"
-                  SelectionChanged="dgDSLoaiNhanVien_SelectionChanged" VerticalContentAlignment="Center">
+                  SelectionChanged="dgDSLoaiNguyenLieu_SelectionChanged" VerticalContentAlignment="Center">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã loại nhân viên" Binding="{Binding maLoaiNguyenLieu}" Width="1*"/>
                 <DataGridTextColumn Header="Tên loại" Binding="{Binding tenLoaiNguyenLieu}" Width="1.5*"/>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyQuanCoffee.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,39 +20,116 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmQuanLyLoaiNguyenLieu : Window
     {
+        private LoaiNguyenLieu loaiNguyenLieuSeclect;
+
         public frmQuanLyLoaiNguyenLieu()
         {
             InitializeComponent();
+            loaiNguyenLieuSeclect = new LoaiNguyenLieu();
+            hienThiDSLoaiNhanVien(CLoaiNguyenLieu_BUS.toList());
+            isEnabledThongTin(false);
+        }
+
+        private void hienThiDSLoaiNhanVien(List<LoaiNguyenLieu> list)
+        {
+            dgDSLoaiNguyenLieu.ItemsSource = list;
+        }
+
+        private void hienThiThongTin(LoaiNguyenLieu loaiNguyenLieu)
+        {
+            txtMaLoaiNguyenLieu.Text = loaiNguyenLieu.maLoaiNguyenLieu;
+            txtTenLoai.Text = loaiNguyenLieu.tenLoaiNguyenLieu;
+        }
+
+        private void isEnabledThongTin(bool value)
+        {
+            btnBoChon.IsEnabled = value;
+            btnSua.IsEnabled = value;
+            btnXoa.IsEnabled = value;
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
+            string maLoaiNguyenLieu = "";
+            do
+            {
+                maLoaiNguyenLieu = CNhanVien_BUS.randomMaNhanVien();
+            } while (CLoaiNhanVien_BUS.find(maLoaiNguyenLieu) != null);
 
+            LoaiNhanVien loaiNhanVien = new LoaiNhanVien(
+                maLoaiNguyenLieu,
+                txtTenLoai.Text
+                );
+
+            if (CLoaiNhanVien_BUS.add(loaiNhanVien))
+            {
+                MessageBox.Show("Thêm thành công");
+                hienThiDSLoaiNhanVien(CLoaiNguyenLieu_BUS.toList());
+            }
+            else
+            {
+                MessageBox.Show("Thêm không thành công");
+            }
         }
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-
+            LoaiNguyenLieu loaiNguyenLieu = new LoaiNguyenLieu(
+                            txtMaLoaiNguyenLieu.Text,
+                            txtTenLoai.Text
+                            );
+            if (CLoaiNguyenLieu_BUS.edit(loaiNguyenLieu))
+            {
+                MessageBox.Show("Sửa thành công");
+                hienThiDSLoaiNhanVien(CLoaiNguyenLieu_BUS.toList());
+            }
+            else
+            {
+                MessageBox.Show("Sửa không thành công");
+            }
         }
 
         private void btnBoChon_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void CommandBinding_Executed_ThemLoaiNguyenLieu(object sender, ExecutedRoutedEventArgs e)
-        {
-
-        }
-
-        private void CommandBinding_CanExecute_ThemLoaiNguyenLieu(object sender, CanExecuteRoutedEventArgs e)
-        {
-
+            hienThiThongTin(new LoaiNguyenLieu());
+            isEnabledThongTin(false);
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
+            if (loaiNguyenLieuSeclect != null)
+            {
+                if (CLoaiNguyenLieu_BUS.remove(loaiNguyenLieuSeclect))
+                {
+                    MessageBox.Show("Xóa thành công");
+                    hienThiDSLoaiNhanVien(CLoaiNguyenLieu_BUS.toList());
+                }
+                else
+                {
+                    MessageBox.Show("Xóa không thành công");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn nguyên liệu cần xóa");
+            }
+        }
 
+        private void dgDSLoaiNguyenLieu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgDSLoaiNguyenLieu.SelectedValue == null || dgDSLoaiNguyenLieu.SelectedValue.ToString() == "")
+            {
+                return;
+            }
+            if (dgDSLoaiNguyenLieu.SelectedValue.ToString() == "          ")
+            {
+                MessageBox.Show("Không thể chọn loại nguyên liệu này");
+                return;
+            }
+            string maLoaiNguyenLieu = dgDSLoaiNguyenLieu.SelectedValue.ToString();
+            loaiNguyenLieuSeclect = CLoaiNguyenLieu_BUS.find(maLoaiNguyenLieu);
+            hienThiThongTin(loaiNguyenLieuSeclect);
+            isEnabledThongTin(true);
         }
     }
 }

@@ -103,5 +103,10 @@ namespace QuanLyQuanCoffee.Views
             }
 
         }
+
+        private void btnQuanLyLoaiNguyenLieu_Click(object sender, RoutedEventArgs e)
+        {
+            new frmQuanLyLoaiNguyenLieu().Show();
+        }
     }
 }

@@ -22,7 +22,13 @@ namespace QuanLyQuanCoffee
     
         public string maLoaiNguyenLieu { get; set; }
         public string tenLoaiNguyenLieu { get; set; }
-    
+
+        public void copyData(LoaiNguyenLieu loaiNguyenLieu)
+        {
+            this.maLoaiNguyenLieu = loaiNguyenLieu.maLoaiNguyenLieu;
+            this.tenLoaiNguyenLieu = loaiNguyenLieu.tenLoaiNguyenLieu;
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NguyenLieu> NguyenLieux { get; set; }
     }

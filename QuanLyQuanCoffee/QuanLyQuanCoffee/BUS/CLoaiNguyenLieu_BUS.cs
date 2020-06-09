@@ -38,5 +38,49 @@ namespace QuanLyQuanCoffee.BUS
             return quanLyQuanCoffee.LoaiNguyenLieux.Where(x => x.tenLoaiNguyenLieu == tenLoai).FirstOrDefault().maLoaiNguyenLieu;
 
         }
+
+        public static bool kiemTraThongTin(LoaiNguyenLieu loaiNguyenLieu)
+        {
+            return true;
+        }
+
+        public static bool add(LoaiNguyenLieu loaiNguyenLieu)
+        {
+            if (kiemTraThongTin(loaiNguyenLieu))
+            {
+                quanLyQuanCoffee.LoaiNguyenLieux.Add(loaiNguyenLieu);
+                quanLyQuanCoffee.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public static bool edit(LoaiNguyenLieu loaiNguyenLieu)
+        {
+            LoaiNguyenLieu temp = find(loaiNguyenLieu.maLoaiNguyenLieu);
+            if (temp == null || !kiemTraThongTin(loaiNguyenLieu))
+            {
+                return false;
+            }
+            temp.copyData(loaiNguyenLieu);
+            quanLyQuanCoffee.SaveChanges();
+            return true;
+        }
+
+        public static bool remove(LoaiNguyenLieu loaiNguyenLieu)
+        {
+            LoaiNguyenLieu temp = find(loaiNguyenLieu.maLoaiNguyenLieu);
+
+            if (temp == null ||
+                !CNhanVien_BUS.removeLoaiNhanVien(loaiNguyenLieu.maLoaiNguyenLieu))
+            {
+                return false;
+            }
+            loaiNguyenLieu.NguyenLieux.Clear();
+
+            quanLyQuanCoffee.LoaiNguyenLieux.Remove(temp);
+            quanLyQuanCoffee.SaveChanges();
+            return true;
+        }
     }
 }
