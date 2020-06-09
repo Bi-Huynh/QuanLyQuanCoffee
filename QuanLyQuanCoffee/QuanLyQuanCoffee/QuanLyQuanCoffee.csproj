@@ -64,7 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BUS\CLoaiNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CLoaiNhanVien_BUS.cs" />
+    <Compile Include="BUS\CNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CNhanVien_BUS.cs" />
     <Compile Include="ChiTietChamCong.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>

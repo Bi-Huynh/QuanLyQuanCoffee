@@ -95,9 +95,18 @@ namespace QuanLyQuanCoffee.DTO
             this.maloainguyenlieu = "";
         }
 
-        //public void parse(CNguyenLieu_DTO nguyenLieu_DTO)
-        //{
-        //    this.ma
-        //}
+        public NguyenLieu parse()
+        {
+            return new NguyenLieu(
+                this.manguyenlieu,
+                this.tennguyenlieu,
+                double.Parse(this.dongia),
+                int.Parse(this.soluong),
+                this.donViTinh,
+                DateTime.Parse(this.ngayHetHan),
+                DateTime.Parse(this.ngayNhap),
+                this.maLoaiNguyenLieu
+                );
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyQuanCoffee.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,20 @@ namespace QuanLyQuanCoffee.Views
         public frmQuanLyNguyenLieu()
         {
             InitializeComponent();
+            hienThiDS(CNguyenLieu_BUS.toList());
+        }
+
+        private void hienThiDS(List<NguyenLieu> list)
+        {
+            dgDSNguyenLieu.ItemsSource = list.Select(x => new
+            {
+                maNguyenLieu = x.maNguyenLieu,
+                tenNguyenLieu = x.tenNguyenLieu,
+                donGia = x.donGia,
+                soLuong = x.soLuong,
+                ngayHetHan = x.ngayHetHan.ToString("dd/MM/yyyy"),
+                ngayNhap = x.ngayNhap.ToString("dd/MM/yyyy")
+            });
         }
 
         private void CommandBinding_Executed_XoaNguyenLieu(object sender, ExecutedRoutedEventArgs e)
@@ -33,6 +48,16 @@ namespace QuanLyQuanCoffee.Views
         private void CommandBinding_CanExecute_XoaNguyenLieu(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
+        }
+
+        private void btnThem_Click(object sender, RoutedEventArgs e)
+        {
+            new frmThongTinNguyenLieu().Show();
+        }
+
+        private void btnRefesh_Click(object sender, RoutedEventArgs e)
+        {
+            hienThiDS(CNguyenLieu_BUS.toList());
         }
     }
 }

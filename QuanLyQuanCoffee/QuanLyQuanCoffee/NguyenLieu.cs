@@ -20,7 +20,40 @@ namespace QuanLyQuanCoffee
             this.ChiTietPhieuNhapNguyenLieux = new HashSet<ChiTietPhieuNhapNguyenLieu>();
             this.ChiTietXuatNhapNguyenLieux = new HashSet<ChiTietXuatNhapNguyenLieu>();
         }
-    
+
+        public NguyenLieu(
+            string maNguyenLieu,
+            string tenNguyenLieu,
+            double donGia,
+            int soLuong,
+            string donViTinh,
+            DateTime ngayHetHan,
+            DateTime ngayNhap,
+            string maLoaiNguyenLieu
+            )
+        {
+            this.maNguyenLieu = maNguyenLieu;
+            this.tenNguyenLieu = tenNguyenLieu;
+            this.donGia = donGia;
+            this.soLuong = soLuong;
+            this.donViTinh = donViTinh;
+            this.ngayHetHan = ngayHetHan;
+            this.ngayNhap = ngayNhap;
+            this.maLoaiNguyenLieu = maLoaiNguyenLieu;
+        }
+
+        public void copyData(NguyenLieu nguyenLieu)
+        {
+            this.maNguyenLieu = nguyenLieu.maNguyenLieu;
+            this.tenNguyenLieu = nguyenLieu.tenNguyenLieu;
+            this.donGia = nguyenLieu.donGia;
+            this.soLuong = nguyenLieu.soLuong;
+            this.donViTinh = nguyenLieu.donViTinh;
+            this.ngayHetHan = nguyenLieu.ngayHetHan;
+            this.ngayNhap = nguyenLieu.ngayNhap;
+            this.maLoaiNguyenLieu = nguyenLieu.maLoaiNguyenLieu;
+        }
+
         public string maNguyenLieu { get; set; }
         public string tenNguyenLieu { get; set; }
         public double donGia { get; set; }
