@@ -20,10 +20,17 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmThongTinNguyenLieu : Window
     {
-        public frmThongTinNguyenLieu()
+        private NguyenLieu NguyenLieuSelect;
+
+        public frmThongTinNguyenLieu(NguyenLieu nguyenLieu = null)
         {
             InitializeComponent();
             hienThi();
+            NguyenLieuSelect = nguyenLieu;
+            if (NguyenLieuSelect != null)
+            {
+                hienThiThongTin(NguyenLieuSelect);
+            }
         }
 
         private void hienThi()
@@ -34,7 +41,14 @@ namespace QuanLyQuanCoffee.Views
 
         private void hienThiThongTin(NguyenLieu nguyenLieu)
         {
-
+            txtMaNguyenLieu.Text = nguyenLieu.maNguyenLieu;
+            txtTenNguyenLieu.Text = nguyenLieu.tenNguyenLieu;
+            txtDonGia.Text = nguyenLieu.donGia.ToString();
+            txtDonViTinh.Text = nguyenLieu.donViTinh;
+            txtSoLuong.Text = nguyenLieu.soLuong.ToString();
+            dateNgayHetHan.SelectedDate = nguyenLieu.ngayHetHan;
+            dateNgayNhap.SelectedDate = nguyenLieu.ngayNhap;
+            cmbLoaiNguyenLieu.SelectedItem = nguyenLieu.LoaiNguyenLieu.tenLoaiNguyenLieu;
         }
 
         private void CommandBinding_Executed_ThemNguyenLieu(object sender, ExecutedRoutedEventArgs e)
@@ -67,7 +81,25 @@ namespace QuanLyQuanCoffee.Views
 
         private void CommandBinding_Executed_SuaNguyenLieu(object sender, ExecutedRoutedEventArgs e)
         {
-
+            NguyenLieu nguyenLieu = new NguyenLieu(
+                txtMaNguyenLieu.Text,
+                txtTenNguyenLieu.Text,
+                double.Parse(txtDonGia.Text),
+                int.Parse(txtSoLuong.Text),
+                txtDonViTinh.Text,
+                dateNgayHetHan.SelectedDate.Value,
+                dateNgayNhap.SelectedDate.Value,
+                CLoaiNguyenLieu_BUS.findMaLoaibyTenLoai(cmbLoaiNguyenLieu.SelectedItem.ToString())
+                );
+            if (CNguyenLieu_BUS.edit(nguyenLieu))
+            {
+                MessageBox.Show("Sửa thành công");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Sửa không thành công");
+            }
         }
 
         private void CommandBinding_CanExecute_SuaNguyenLieu(object sender, CanExecuteRoutedEventArgs e)
@@ -77,12 +109,19 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-            new frmThongTinNguyenLieu().Show();
+
         }
 
         private void btnResest_Click(object sender, RoutedEventArgs e)
         {
-
+            if (NguyenLieuSelect != null)
+            {
+                hienThiThongTin(NguyenLieuSelect);
+            }
+            else
+            {
+                hienThiThongTin(new NguyenLieu());
+            }
         }
     }
 }

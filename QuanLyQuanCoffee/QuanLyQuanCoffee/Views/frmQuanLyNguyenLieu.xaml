@@ -35,11 +35,12 @@
                 <ComboBoxItem Content="Tên nguyên liệu" IsSelected="True"/>
                 <ComboBoxItem Content="Loại nguyên liệu"/>
             </ComboBox>
-            <Button x:Name="btnXemThongTinChiTiet" Grid.Row="1" Grid.Column="6" Content="Xem thông tin chi tiết" FontFamily="Arial" FontSize="13"/>
+            <Button x:Name="btnXemThongTinChiTiet" Grid.Row="1" Grid.Column="6" Content="Xem thông tin chi tiết" FontFamily="Arial" FontSize="13" Click="btnXemThongTinChiTiet_Click"/>
         </Grid>
         <DataGrid x:Name="dgDSNguyenLieu" MinHeight="565" Margin="10,0" AutoGenerateColumns="False" 
                   SelectedValuePath="maNguyenLieu" HorizontalContentAlignment="Center" 
-                  Background="White" FontFamily="Arial">
+                  Background="White" FontFamily="Arial"
+                  SelectionChanged="dgDSNguyenLieu_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã nguyên liệu" Binding="{Binding maNguyenLieu}" Width="1*"/>
                 <DataGridTextColumn Header="Tên" Binding="{Binding tenNguyenLieu}" Width="1.5*"/>
@@ -70,7 +71,7 @@
             </Grid.RowDefinitions>
             <Button x:Name="btnQuanLyLoaiNguyenLieu" Grid.Row="1" Grid.Column="1" Content="Quản Lý Loại Nguyên Liệu" FontFamily="Arial"/>
             <Button x:Name="btnRefesh" Grid.Row="1" Grid.Column="3" Content="Refect" FontFamily="Arial" Click="btnRefesh_Click"/>
-            <Button x:Name="btnSua" Grid.Row="1" Grid.Column="5" Content="Sửa" FontFamily="Arial"/>
+            <Button x:Name="btnSua" Grid.Row="1" Grid.Column="5" Content="Sửa" FontFamily="Arial" Click="btnSua_Click"/>
             <Button x:Name="btnXoa" Grid.Row="1" Grid.Column="7" Content="Xóa" FontFamily="Arial" Command="local:CMyCommand_NguyenLieu.lenhXoaNguyenLieu"/>
             <Button x:Name="btnThem" Grid.Row="1" Grid.Column="9" Content="Thêm" FontFamily="Arial" Height="30" VerticalAlignment="Bottom" Click="btnThem_Click"/>
         </Grid>

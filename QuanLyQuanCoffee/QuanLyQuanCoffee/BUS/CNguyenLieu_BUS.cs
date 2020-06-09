@@ -34,12 +34,24 @@ namespace QuanLyQuanCoffee.BUS
 
         public static bool edit(NguyenLieu nguyenLieu)
         {
-            NguyenLieu temp = find(nguyenLieu);
+            NguyenLieu temp = find(nguyenLieu.maNguyenLieu);
             if (temp == null)
             {
                 return false;
             }
             temp.copyData(nguyenLieu);
+            quanLyQuanCoffee.SaveChanges();
+            return true;
+        }
+
+        public static bool remove(NguyenLieu nguyenLieu)
+        {
+            NguyenLieu temp = find(nguyenLieu);
+            if (temp == null)
+            {
+                return false;
+            }
+            quanLyQuanCoffee.NguyenLieux.Remove(temp);
             quanLyQuanCoffee.SaveChanges();
             return true;
         }

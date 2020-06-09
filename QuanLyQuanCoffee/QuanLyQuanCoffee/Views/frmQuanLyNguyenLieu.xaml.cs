@@ -21,6 +21,8 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmQuanLyNguyenLieu : Page
     {
+        private NguyenLieu nguyenLieuSelect;
+
         public frmQuanLyNguyenLieu()
         {
             InitializeComponent();
@@ -42,12 +44,23 @@ namespace QuanLyQuanCoffee.Views
 
         private void CommandBinding_Executed_XoaNguyenLieu(object sender, ExecutedRoutedEventArgs e)
         {
-            MessageBox.Show("Đã xóa");
+            if (CNguyenLieu_BUS.remove(nguyenLieuSelect))
+            {
+                MessageBox.Show("Xóa thành công");
+                hienThiDS(CNguyenLieu_BUS.toList());
+            }
+            else
+            {
+                MessageBox.Show("Xóa không thành công");
+            }
         }
 
         private void CommandBinding_CanExecute_XoaNguyenLieu(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = true;
+            if (nguyenLieuSelect != null)
+            {
+                e.CanExecute = true;
+            }
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
@@ -58,6 +71,37 @@ namespace QuanLyQuanCoffee.Views
         private void btnRefesh_Click(object sender, RoutedEventArgs e)
         {
             hienThiDS(CNguyenLieu_BUS.toList());
+        }
+
+        private void btnXemThongTinChiTiet_Click(object sender, RoutedEventArgs e)
+        {
+            if (nguyenLieuSelect == null)
+            {
+                MessageBox.Show("Vui lòng chọn nguyên liệu");
+                return;
+            }
+            new frmThongTinNguyenLieu(nguyenLieuSelect).Show();
+        }
+
+        private void dgDSNguyenLieu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgDSNguyenLieu.SelectedItem != null)
+            {
+                nguyenLieuSelect = CNguyenLieu_BUS.find(dgDSNguyenLieu.SelectedValue.ToString());
+            }
+        }
+
+        private void btnSua_Click(object sender, RoutedEventArgs e)
+        {
+            if (nguyenLieuSelect != null)
+            {
+                new frmThongTinNguyenLieu(nguyenLieuSelect).Show();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn nguyên liệu");
+            }
+
         }
     }
 }

@@ -12,5 +12,6 @@ namespace QuanLyQuanCoffee.Command
         public static RoutedCommand lenhThemNguyenLieu = new RoutedCommand();
         public static RoutedCommand lenhXoaNguyenLieu = new RoutedCommand();
         public static RoutedCommand lenhSuaNguyenLieu = new RoutedCommand();
+        public static RoutedCommand lenhLuuNguyenLieu = new RoutedCommand();
     }
 }
