@@ -1,0 +1,58 @@
+﻿<Window x:Class="QuanLyQuanCoffee.Views.frmQuanLyLoaiNguyenLieu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyQuanCoffee.Command"
+        mc:Ignorable="d"
+        Title="Quản lý loại nguyên liệu" Height="380" Width="700">
+    <!--<Window.CommandBindings>
+        <CommandBinding Command="local:CMyCommand_LoaiNguyenLieu.lenhThemLoaiNguyenLieu"
+                        Executed="CommandBinding_Executed_ThemNguyenLieu"
+                        CanExecute="CommandBinding_CanExecute_ThemNguyenLieu"/>
+    </Window.CommandBindings>-->
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".6*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width=".3*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Content="Quản Lý Loại Nguyên Liệu" VerticalContentAlignment="Center" Height="30" Margin="10" FontFamily="Arial" FontSize="18" FontWeight="Bold"/>
+            <Label Grid.Column="0" Grid.Row="1" Content="Mã Loại nguyên liệu:" FontFamily="Arial" FontSize="12" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
+            <TextBox x:Name="txtMaLoaiNguyenLieu" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" Height="30" Margin="0,0,0,10" IsEnabled="False"/>
+            <Label Grid.Column="2" Grid.Row="1" Content="Tên Loại:" FontFamily="Arial" FontSize="12" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
+            <TextBox x:Name="txtTenLoai" Grid.Column="3" Grid.Row="1" VerticalContentAlignment="Center" Height="30" Margin="0,0,0,10"/>
+        </Grid>
+        <DataGrid x:Name="dgDSLoaiNguyenLieu" MinHeight="200" Margin="10,0" AutoGenerateColumns="False" 
+                  SelectedValuePath="maLoaiNhanvien" HorizontalContentAlignment="Center" 
+                  Background="White" FontFamily="Arial"
+                  SelectionChanged="dgDSLoaiNhanVien_SelectionChanged" VerticalContentAlignment="Center">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mã loại nhân viên" Binding="{Binding maLoaiNguyenLieu}" Width="1*"/>
+                <DataGridTextColumn Header="Tên loại" Binding="{Binding tenLoaiNguyenLieu}" Width="1.5*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnThem" Grid.Column="4" Grid.Row="0" Content="Thêm" Height="30" Margin="10,10,10,0" Click="btnThem_Click"/>
+            <Button x:Name="btnXoa" Grid.Column="3" Grid.Row="0" Content="Xóa" Height="30" Margin="10,10,10,0" Click="btnXoa_Click"/>
+            <Button x:Name="btnSua" Grid.Column="2" Grid.Row="0" Content="Sửa" Height="30" Margin="10,10,10,0" Click="btnSua_Click"/>
+            <Button x:Name="btnBoChon" Grid.Column="0" Grid.Row="0" Content="Bỏ chọn" Height="30" Margin="10,10,10,0" Click="btnBoChon_Click"/>
+        </Grid>
+    </StackPanel>
+</Window>

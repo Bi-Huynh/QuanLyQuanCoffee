@@ -80,8 +80,10 @@
     <Compile Include="ChiTietXuatNhapNguyenLieu.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
+    <Compile Include="Command\CMyCommand_LoaiNguyenLieu.cs" />
     <Compile Include="Command\CMyCommand_NguyenLieu.cs" />
     <Compile Include="Command\CBaseVM.cs" />
+    <Compile Include="DTO\CLoaiNguyenLieu_DTO.cs" />
     <Compile Include="DTO\CNguyenLieu_DTO.cs" />
     <Compile Include="HoaDon.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
@@ -131,6 +133,9 @@
     <Compile Include="TaiKhoan.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmQuanLyLoaiNguyenLieu.xaml.cs">
+      <DependentUpon>frmQuanLyLoaiNguyenLieu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmQuanLyLoaiNhanVien.xaml.cs">
       <DependentUpon>frmQuanLyLoaiNhanVien.xaml</DependentUpon>
     </Compile>
@@ -147,6 +152,10 @@
       <DependentUpon>frmThongTinNhanVien.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\frmAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmQuanLyLoaiNguyenLieu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
