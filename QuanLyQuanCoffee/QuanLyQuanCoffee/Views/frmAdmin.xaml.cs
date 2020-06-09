@@ -27,12 +27,21 @@ namespace QuanLyQuanCoffee.Views
         private void gd_QuanLyNhanVien_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new frmQuanLyNhanVien();
-            
         }
 
         private void Main_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
 
+        }
+
+        private void gd_QuanLySanPham_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void gd_QuanLyNguyenLieu_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new frmQuanLyNguyenLieu();
         }
     }
 }

@@ -23,7 +23,7 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="15"/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="1" Grid.Column="1" Content="Danh Sách Nhân Viên" FontSize="20" VerticalContentAlignment="Center" FontWeight="Bold" FontFamily="Arial"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="Danh Sách Nhân Viên" FontSize="18" VerticalContentAlignment="Center" FontWeight="Bold" FontFamily="Arial"/>
             <TextBox x:Name="txtTimKiem" Grid.Row="1" Grid.Column="2" FontFamily="Arial" FontSize="15" VerticalContentAlignment="Center" KeyUp="txtTimKiem_KeyUp"/>
             <ComboBox x:Name="cmbTimKiem" Grid.Row="1" Grid.Column="4" FontFamily="Arial" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
                 <ComboBoxItem Content="Tên nhân viên" IsSelected="True"/>

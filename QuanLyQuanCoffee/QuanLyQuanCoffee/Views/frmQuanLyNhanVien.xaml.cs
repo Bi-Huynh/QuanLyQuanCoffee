@@ -40,7 +40,7 @@ namespace QuanLyQuanCoffee.Views
                 tenLoai = x.LoaiNhanVien.tenLoai,
                 phai = x.phai == true ? "Nam" : "Nữ",
                 soDienThoai = x.soDienThoai,
-                ngayVaoLam = x.ngayVaoLam
+                ngayVaoLam = x.ngayVaoLam.ToString("dd/MM/yyyy")
             });
         }
 

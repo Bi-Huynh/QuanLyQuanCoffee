@@ -94,7 +94,7 @@ namespace QuanLyQuanCoffee.Views
             do
             {
                 maNhanVien = CNhanVien_BUS.randomMaNhanVien();
-            } while (CNhanVien_BUS.find(maNhanVien) != null);
+            } while (CNhanVien_BUS.find(maNhanVien) == null);
 
             NhanVien nhanVien = new NhanVien(
                             maNhanVien,

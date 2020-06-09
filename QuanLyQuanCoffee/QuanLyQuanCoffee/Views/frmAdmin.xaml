@@ -12,7 +12,8 @@
             <MenuItem Header="Order"/>
             <MenuItem Header="Nhân Sự" Height="30">
                 <MenuItem Header="Quản Lý Nhân Viên"
-                          Name="gd_QuanLyNhanVien" Click="gd_QuanLyNhanVien_Click"></MenuItem>
+                          Name="gd_QuanLyNhanVien" 
+                          Click="gd_QuanLyNhanVien_Click"></MenuItem>
                 <MenuItem Header="Quản Lý Chấm Công"
                           Name="gd_QuanLyChamCong"></MenuItem>
                 <MenuItem Header="Quản Lý Lương"
@@ -20,7 +21,7 @@
             </MenuItem>
             <MenuItem Header="Nguyên Liệu">
                 <MenuItem Header="Quản Lý Nguyên Liệu"
-                          Name="gd_QuanLyNguyenLieu"></MenuItem>
+                          Name="gd_QuanLyNguyenLieu" Click="gd_QuanLyNguyenLieu_Click"></MenuItem>
                 <MenuItem Header="Quản Lý Nhập Nguyên Liệu"
                           Name="gd_QuanLyNhapNguyenLieu"></MenuItem>
                 <MenuItem Header="Quản Lý Xuất Nguyên Liệu"
@@ -28,7 +29,8 @@
             </MenuItem>
             <MenuItem Header="Sản Phẩm">
                 <MenuItem Header="Quản Lý Sản Phẩm"
-                          Name="gd_QuanLySanPham"></MenuItem>
+                          Name="gd_QuanLySanPham" 
+                          Click="gd_QuanLySanPham_Click"></MenuItem>
             </MenuItem>
             <MenuItem Header="Hóa Đơn">
                 <MenuItem Header="Quản Lý Hóa Đơn"
