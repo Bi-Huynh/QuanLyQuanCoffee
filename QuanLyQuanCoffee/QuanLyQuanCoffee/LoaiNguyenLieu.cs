@@ -19,6 +19,12 @@ namespace QuanLyQuanCoffee
         {
             this.NguyenLieux = new HashSet<NguyenLieu>();
         }
+
+        public LoaiNguyenLieu(string maLoaiNguyenLieu = "", string tenLoaiNguyenLieu = "")
+        {
+            this.maLoaiNguyenLieu = maLoaiNguyenLieu;
+            this.tenLoaiNguyenLieu = tenLoaiNguyenLieu;
+        }
     
         public string maLoaiNguyenLieu { get; set; }
         public string tenLoaiNguyenLieu { get; set; }
