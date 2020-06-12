@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace QuanLyQuanCoffee.BUS
 {
@@ -72,12 +73,17 @@ namespace QuanLyQuanCoffee.BUS
         {
             LoaiNhanVien temp = find(loaiNhanVien.maLoaiNhanvien);
 
-            if (temp == null || 
-                !CNhanVien_BUS.removeLoaiNhanVien(loaiNhanVien.maLoaiNhanvien))
+            if (temp == null)
             {
+                MessageBox.Show("Không tìm thấy loại nhân viên để xóa");
                 return false;
             }
-            loaiNhanVien.NhanViens.Clear();
+
+            if (temp.NhanViens.Count > 0)
+            {
+                MessageBox.Show("Có nhân viên đang thuộc loại này, Không thể xóa");
+                return false;
+            }
 
             quanLyQuanCoffee.LoaiNhanViens.Remove(temp);
             quanLyQuanCoffee.SaveChanges();

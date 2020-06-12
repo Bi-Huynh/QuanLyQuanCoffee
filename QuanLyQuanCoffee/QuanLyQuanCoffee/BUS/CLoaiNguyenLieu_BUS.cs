@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace QuanLyQuanCoffee.BUS
 {
@@ -71,12 +72,17 @@ namespace QuanLyQuanCoffee.BUS
         {
             LoaiNguyenLieu temp = find(loaiNguyenLieu.maLoaiNguyenLieu);
 
-            if (temp == null ||
-                !CNhanVien_BUS.removeLoaiNhanVien(loaiNguyenLieu.maLoaiNguyenLieu))
+            if (temp == null)
             {
+                MessageBox.Show("Không tìm thấy loại nhân viên để xóa");
                 return false;
             }
-            loaiNguyenLieu.NguyenLieux.Clear();
+
+            if (temp.NguyenLieux.Count > 0)
+            {
+                MessageBox.Show("Có nhân viên đang thuộc loại này, Không thể xóa");
+                return false;
+            }
 
             quanLyQuanCoffee.LoaiNguyenLieux.Remove(temp);
             quanLyQuanCoffee.SaveChanges();

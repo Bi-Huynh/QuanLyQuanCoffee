@@ -100,20 +100,5 @@ namespace QuanLyQuanCoffee.BUS
             quanLyQuanCoffee.SaveChanges();
             return true;
         }
-        
-        public static bool removeLoaiNhanVien(string maLoaiNhanVien)
-        {
-            List<NhanVien> nhanViens = toListByLoai(maLoaiNhanVien);
-            if (nhanViens.Count <= 0)
-            {
-                return false;
-            }
-            LoaiNhanVien loaiNhanVien = CLoaiNhanVien_BUS.find("          ");
-            nhanViens.ForEach(x => {
-                    x.maLoaiNhanVien = loaiNhanVien.maLoaiNhanvien;
-                });
-            quanLyQuanCoffee.SaveChanges();
-            return true;
-        }
     }
 }

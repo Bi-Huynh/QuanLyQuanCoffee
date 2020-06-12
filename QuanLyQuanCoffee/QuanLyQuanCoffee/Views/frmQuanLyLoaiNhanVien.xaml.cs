@@ -102,10 +102,6 @@ namespace QuanLyQuanCoffee.Views
                     MessageBox.Show("Xóa thành công");
                     hienThiDSLoaiNhanVien(CLoaiNhanVien_BUS.toList());
                 }
-                else
-                {
-                    MessageBox.Show("Xóa không thành công");
-                }
             }
             else
             {
