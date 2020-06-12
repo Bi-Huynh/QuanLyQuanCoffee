@@ -29,7 +29,7 @@ namespace QuanLyQuanCoffee.Views
             hienThiDS(CNguyenLieu_BUS.toList());
         }
 
-        private void hienThiDS(List<NguyenLieu> list)
+        public void hienThiDS(List<NguyenLieu> list)
         {
             dgDSNguyenLieu.ItemsSource = list.Select(x => new
             {
@@ -42,30 +42,10 @@ namespace QuanLyQuanCoffee.Views
             });
         }
 
-        private void CommandBinding_Executed_XoaNguyenLieu(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (CNguyenLieu_BUS.remove(nguyenLieuSelect))
-            {
-                MessageBox.Show("Xóa thành công");
-                hienThiDS(CNguyenLieu_BUS.toList());
-            }
-            else
-            {
-                MessageBox.Show("Xóa không thành công");
-            }
-        }
-
-        private void CommandBinding_CanExecute_XoaNguyenLieu(object sender, CanExecuteRoutedEventArgs e)
-        {
-            if (nguyenLieuSelect != null)
-            {
-                e.CanExecute = true;
-            }
-        }
-
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            new frmThongTinNguyenLieu().Show();
+            frmThongTinNguyenLieu frm = new frmThongTinNguyenLieu();
+            frm.Show();
         }
 
         private void btnRefesh_Click(object sender, RoutedEventArgs e)
@@ -80,7 +60,7 @@ namespace QuanLyQuanCoffee.Views
                 MessageBox.Show("Vui lòng chọn nguyên liệu");
                 return;
             }
-            new frmThongTinNguyenLieu(nguyenLieuSelect).Show();
+            new frmThongTinNguyenLieu(nguyenLieuSelect, 0).Show();
         }
 
         private void dgDSNguyenLieu_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -95,7 +75,7 @@ namespace QuanLyQuanCoffee.Views
         {
             if (nguyenLieuSelect != null)
             {
-                new frmThongTinNguyenLieu(nguyenLieuSelect).Show();
+                new frmThongTinNguyenLieu(nguyenLieuSelect, 2).Show();
             }
             else
             {
@@ -107,6 +87,51 @@ namespace QuanLyQuanCoffee.Views
         private void btnQuanLyLoaiNguyenLieu_Click(object sender, RoutedEventArgs e)
         {
             new frmQuanLyLoaiNguyenLieu().Show();
+        }
+
+        private void btnXoa_Click(object sender, RoutedEventArgs e)
+        {
+            if (nguyenLieuSelect != null)
+            {
+                if (CNguyenLieu_BUS.remove(nguyenLieuSelect))
+                {
+                    MessageBox.Show("Xóa thành công");
+                    hienThiDS(CNguyenLieu_BUS.toList());
+                }
+                else
+                {
+                    MessageBox.Show("Xóa không thành công");
+                }
+            }
+            else
+            {
+                MessageBox.Show("vui lòng chọn nguyên liệu");
+            }
+        }
+
+        private void txtTimKiem_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (txtTimKiem.Text == "")
+            {
+                hienThiDS(CNguyenLieu_BUS.toList());
+                return;
+            }
+
+            // nếu combox tìm kiếm là 0 tức là tìm theo tên nguyên liệu
+            if (cmbTimKiem.SelectedIndex == 0)
+            {
+                hienThiDS(CNguyenLieu_BUS.findTen(txtTimKiem.Text));
+            }
+            //nếu combox tìm kiếm là 1 tức là tìm theo mã nguyên liệu
+            else if (cmbTimKiem.SelectedIndex == 1)
+            {
+                List<NguyenLieu> list = CNguyenLieu_BUS.findMa(txtTimKiem.Text);
+                hienThiDS(list);
+            }
+            else
+            {
+                hienThiDS(CNguyenLieu_BUS.findTenLoai(txtTimKiem.Text));
+            }
         }
     }
 }

@@ -3,14 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:QuanLyQuanCoffee.Command"
+        xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
         mc:Ignorable="d"
         Title="Quản lý loại nguyên liệu" Height="380" Width="700">
-    <!--<Window.CommandBindings>
-        <CommandBinding Command="local:CMyCommand_LoaiNguyenLieu.lenhThemLoaiNguyenLieu"
-                        Executed="CommandBinding_Executed_ThemNguyenLieu"
-                        CanExecute="CommandBinding_CanExecute_ThemNguyenLieu"/>
-    </Window.CommandBindings>-->
     <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>

@@ -1,4 +1,5 @@
 ﻿using QuanLyQuanCoffee.BUS;
+using QuanLyQuanCoffee.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace QuanLyQuanCoffee.Views
     {
         private NhanVien nhanVienSelect = null;
 
-        public frmThongTinNhanVien(NhanVien nhanVien = null, int flag = 0)
+        public frmThongTinNhanVien(NhanVien nhanVien = null, int flag = 1)
         {
             InitializeComponent();
 
@@ -93,8 +94,8 @@ namespace QuanLyQuanCoffee.Views
             // chưa xét trường hợp nếu các mã tạo ra đã trùng hết thì sẽ làm như nào
             do
             {
-                maNhanVien = CNhanVien_BUS.randomMaNhanVien();
-            } while (CNhanVien_BUS.find(maNhanVien) == null);
+                maNhanVien = CServices.randomMa();
+            } while (CNhanVien_BUS.find(maNhanVien) != null);
 
             NhanVien nhanVien = new NhanVien(
                             maNhanVien,

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyQuanCoffee.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,10 +27,34 @@ namespace QuanLyQuanCoffee.BUS
             return find(nguyenLieu.maNguyenLieu);
         }
 
-        public static void add(NguyenLieu nguyenLieu)
+        public static List<NguyenLieu> findTen(string tenNguyenLieu)
         {
-            quanLyQuanCoffee.NguyenLieux.Add(nguyenLieu);
-            quanLyQuanCoffee.SaveChanges();
+            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux.Where(x => x.tenNguyenLieu == tenNguyenLieu).ToList();
+            return list == null ? new List<NguyenLieu>() : list;
+        }
+
+        public static List<NguyenLieu> findMa(string maNguyenLieu)
+        {
+            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux.Where(x => x.maNguyenLieu.Contains(maNguyenLieu) == true).ToList();
+            return list == null ? new List<NguyenLieu>() : list;
+        }
+
+        public static List<NguyenLieu> findTenLoai(string tenLoai)
+        {
+            tenLoai = CServices.formatChuoi(tenLoai);
+            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux.Where(x => x.LoaiNguyenLieu.tenLoaiNguyenLieu == tenLoai).ToList();
+            return list == null ? new List<NguyenLieu>() : list;
+        }
+
+        public static bool add(NguyenLieu nguyenLieu)
+        {
+            if (CServices.kiemTraThongTin(nguyenLieu))
+            {
+                quanLyQuanCoffee.NguyenLieux.Add(nguyenLieu);
+                quanLyQuanCoffee.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public static bool edit(NguyenLieu nguyenLieu)

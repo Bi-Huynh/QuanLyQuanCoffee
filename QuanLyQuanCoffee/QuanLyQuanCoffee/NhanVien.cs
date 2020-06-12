@@ -10,6 +10,7 @@
 namespace QuanLyQuanCoffee
 {
     using QuanLyQuanCoffee.BUS;
+    using QuanLyQuanCoffee.Services;
     using System;
     using System.Collections.Generic;
     using System.Threading;
@@ -40,28 +41,28 @@ namespace QuanLyQuanCoffee
             string maLoaiNhanVien)
         {
             this.maNhanVien = maNhanVien;
-            this.hoNhanVien = CNhanVien_BUS.formatChuoi(hoNhanVien);
-            this.tenNhanVien = CNhanVien_BUS.formatChuoi(tenNhanVien);
+            this.hoNhanVien = CServices.formatChuoi(hoNhanVien);
+            this.tenNhanVien = CServices.formatChuoi(tenNhanVien);
             this.soDienThoai = soDienThoai.Trim();
             this.ngaySinh = ngaySinh;
             this.phai = phai;
             this.cMND = CMND.Trim();
-            this.thuongTru = CNhanVien_BUS.formatChuoi(thuongTru);
-            this.tamTru = CNhanVien_BUS.formatChuoi(tamTru);
+            this.thuongTru = CServices.formatChuoi(thuongTru);
+            this.tamTru = CServices.formatChuoi(tamTru);
             this.ngayVaoLam = ngayVaoLam;
             this.maLoaiNhanVien = maLoaiNhanVien;
         }
 
         public void copyData(NhanVien nhanVien)
         {
-            this.hoNhanVien = CNhanVien_BUS.formatChuoi(nhanVien.hoNhanVien);
-            this.tenNhanVien = CNhanVien_BUS.formatChuoi(nhanVien.tenNhanVien);
+            this.hoNhanVien = CServices.formatChuoi(nhanVien.hoNhanVien);
+            this.tenNhanVien = CServices.formatChuoi(nhanVien.tenNhanVien);
             this.soDienThoai = nhanVien.soDienThoai.Trim();
             this.ngaySinh = nhanVien.ngaySinh;
             this.phai = nhanVien.phai;
             this.cMND = nhanVien.cMND;
-            this.thuongTru = CNhanVien_BUS.formatChuoi(nhanVien.thuongTru);
-            this.tamTru = CNhanVien_BUS.formatChuoi(nhanVien.tamTru);
+            this.thuongTru = CServices.formatChuoi(nhanVien.thuongTru);
+            this.tamTru = CServices.formatChuoi(nhanVien.tamTru);
             this.ngayVaoLam = nhanVien.ngayVaoLam;
             this.maLoaiNhanVien = nhanVien.maLoaiNhanVien;
         }

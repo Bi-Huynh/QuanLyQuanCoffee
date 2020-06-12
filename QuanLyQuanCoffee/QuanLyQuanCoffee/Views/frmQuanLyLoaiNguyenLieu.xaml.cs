@@ -1,4 +1,5 @@
 ﻿using QuanLyQuanCoffee.BUS;
+using QuanLyQuanCoffee.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +54,7 @@ namespace QuanLyQuanCoffee.Views
             string maLoaiNguyenLieu = "";
             do
             {
-                maLoaiNguyenLieu = CNhanVien_BUS.randomMaNhanVien();
+                maLoaiNguyenLieu = CServices.randomMa();
             } while (CLoaiNhanVien_BUS.find(maLoaiNguyenLieu) != null);
 
             LoaiNhanVien loaiNhanVien = new LoaiNhanVien(

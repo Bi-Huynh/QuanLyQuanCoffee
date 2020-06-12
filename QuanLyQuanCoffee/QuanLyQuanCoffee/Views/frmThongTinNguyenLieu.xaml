@@ -3,17 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:QuanLyQuanCoffee.Command"
+        xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
         mc:Ignorable="d"
         Title="Thông Tin Nguyên Liệu" Height="260" Width="800">
-    <Window.CommandBindings>
-        <CommandBinding Command="local:CMyCommand_NguyenLieu.lenhThemNguyenLieu"
-                        Executed="CommandBinding_Executed_ThemNguyenLieu"
-                        CanExecute="CommandBinding_CanExecute_ThemNguyenLieu"/>
-        <CommandBinding Command="local:CMyCommand_NguyenLieu.lenhSuaNguyenLieu"
-                        Executed="CommandBinding_Executed_SuaNguyenLieu"
-                        CanExecute="CommandBinding_CanExecute_SuaNguyenLieu"/>
-    </Window.CommandBindings>
     <StackPanel>
         <Grid Margin="10,0">
             <Grid.ColumnDefinitions>
@@ -65,9 +57,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button x:Name="btnThem" Grid.Column="5" Content="Thêm" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="local:CMyCommand_NguyenLieu.lenhThemNguyenLieu"/>
+            <Button x:Name="btnThem" Grid.Column="5" Content="Thêm" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnThem_Click"/>
             <Button x:Name="btnSua" Grid.Column="4" Content="Sửa" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnSua_Click"/>
-            <Button x:Name="btnLuu" Grid.Column="3" Content="Lưu" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Command="local:CMyCommand_NguyenLieu.lenhSuaNguyenLieu"/>
+            <Button x:Name="btnLuu" Grid.Column="3" Content="Lưu" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnLuu_Click"/>
             <Button x:Name="btnResest" Grid.Column="0" Content="Resest" Height="30" Margin="0,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnResest_Click"/>
         </Grid>
     </StackPanel>

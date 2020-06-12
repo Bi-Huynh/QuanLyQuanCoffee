@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyQuanCoffee.Services;
+using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace QuanLyQuanCoffee.BUS
 
         public static bool kiemTraThongTin(LoaiNhanVien loaiNhanVien)
         {
-            loaiNhanVien.tenLoai = CNhanVien_BUS.formatChuoi(loaiNhanVien.tenLoai);
+            loaiNhanVien.tenLoai = CServices.formatChuoi(loaiNhanVien.tenLoai);
             return true;
         }
 

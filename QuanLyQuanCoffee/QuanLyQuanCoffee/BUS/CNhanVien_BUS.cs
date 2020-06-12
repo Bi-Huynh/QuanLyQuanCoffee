@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyQuanCoffee.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,7 @@ namespace QuanLyQuanCoffee.BUS
         // tìm kiếm nhân viên theo tên nhân viên
         public static List<NhanVien> findTen(string tenNhanVien)
         {
-            tenNhanVien = formatChuoi(tenNhanVien);
+            tenNhanVien = CServices.formatChuoi(tenNhanVien);
             List<NhanVien> list = toList().Where(x => x.tenNhanVien == tenNhanVien).ToList();
             return list == null ? new List<NhanVien>() : list;
         }
@@ -42,52 +43,9 @@ namespace QuanLyQuanCoffee.BUS
         // tìm kiếm nhân viên theo tên nhân viên
         public static List<NhanVien> findTenLoai(string tenLoaiNhanVien)
         {
-            tenLoaiNhanVien = formatChuoi(tenLoaiNhanVien);
+            tenLoaiNhanVien = CServices.formatChuoi(tenLoaiNhanVien);
             List<NhanVien> list = toList().Where(x => x.LoaiNhanVien.tenLoai == tenLoaiNhanVien).ToList();
             return list == null ? new List<NhanVien>() : list;
-        }
-
-        // chưa viết hàm này
-        public static Boolean kiemTraThongTin(NhanVien nhanVien)
-        {
-            return true;
-        }
-
-        // khởi tạo mã tự động cho nhân viên
-        public static string randomMaNhanVien()
-        {
-            Random random = new Random();
-            string ma = "";
-            for (int i = 0; i < 10; i++)
-            {
-                ma += Convert.ToString((char)random.Next(65, 90));
-            }
-            return ma;
-        }
-
-        // định dạng lại chuỗi được truyền vào thành chuỗi chuẩn
-        public static string formatChuoi (string strInput)
-        {
-            if (strInput == "")
-            {
-                return "";
-            }
-            string result = "";
-            result = strInput.Trim();
-            while(result.Contains("  ") == true)
-            {
-                result = result.Replace("  ", " ");
-            }
-            result = result.ToLower();
-            string[] arr = result.Split(' ');
-            result = string.Empty;
-            foreach(var item in arr)
-            {
-                String temp = item.Substring(0, 1).ToUpper() + item.Substring(1);
-                result += temp + " ";
-            }
-            result = result.Trim(); 
-            return result;
         }
 
         public static int tinhTuoi(DateTime ngaySinh)
@@ -106,7 +64,7 @@ namespace QuanLyQuanCoffee.BUS
 
         public static bool add(NhanVien nhanVien)
         {
-            if (kiemTraThongTin(nhanVien))
+            if (CServices.kiemTraThongTin(nhanVien))
             {
                 quanLyQuanCoffee.NhanViens.Add(nhanVien);
                 quanLyQuanCoffee.SaveChanges();
@@ -118,7 +76,7 @@ namespace QuanLyQuanCoffee.BUS
         public static bool edit(NhanVien nhanVien)
         {
             NhanVien temp = find(nhanVien.maNhanVien);
-            if (temp == null || !kiemTraThongTin(nhanVien))
+            if (temp == null || !CServices.kiemTraThongTin(nhanVien))
             {
                 return false;
             }
