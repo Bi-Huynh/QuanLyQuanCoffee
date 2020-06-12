@@ -145,7 +145,8 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-
+            btnLuu.IsEnabled = true;
+            isEnabledThongTin(true);
         }
 
         private void btnResest_Click(object sender, RoutedEventArgs e)
@@ -193,7 +194,26 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
+            NguyenLieu nguyenLieu = new NguyenLieu(
+                            txtMaNguyenLieu.Text,
+                            txtTenNguyenLieu.Text,
+                            double.Parse(txtDonGia.Text),
+                            int.Parse(txtSoLuong.Text),
+                            txtDonViTinh.Text,
+                            dateNgayHetHan.SelectedDate.Value.Date,
+                            dateNgayNhap.SelectedDate.Value.Date,
+                            CLoaiNguyenLieu_BUS.findMaLoaibyTenLoai(cmbLoaiNguyenLieu.SelectedItem.ToString())
+                            );
 
+            if (CNguyenLieu_BUS.edit(nguyenLieu))
+            {
+                MessageBox.Show("Sửa thành công");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Sửa không thành công");
+            }
         }
     }
 }

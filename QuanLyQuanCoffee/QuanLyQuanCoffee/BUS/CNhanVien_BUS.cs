@@ -80,6 +80,10 @@ namespace QuanLyQuanCoffee.BUS
             {
                 return false;
             }
+            if (!CServices.kiemTraThongTin(nhanVien))
+            {
+                return false;
+            }
             temp.copyData(nhanVien);
             quanLyQuanCoffee.SaveChanges();
             return true;

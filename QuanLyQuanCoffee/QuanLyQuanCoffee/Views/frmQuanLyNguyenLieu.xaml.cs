@@ -81,7 +81,6 @@ namespace QuanLyQuanCoffee.Views
             {
                 MessageBox.Show("Vui lòng chọn nguyên liệu");
             }
-
         }
 
         private void btnQuanLyLoaiNguyenLieu_Click(object sender, RoutedEventArgs e)
