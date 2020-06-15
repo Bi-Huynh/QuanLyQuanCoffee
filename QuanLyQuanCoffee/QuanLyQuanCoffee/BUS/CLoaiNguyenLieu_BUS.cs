@@ -14,19 +14,19 @@ namespace QuanLyQuanCoffee.BUS
 
         public static List<LoaiNguyenLieu> toList()
         {
-            List<LoaiNguyenLieu> list = quanLyQuanCoffee.LoaiNguyenLieux.ToList();
+            List<LoaiNguyenLieu> list = quanLyQuanCoffee.LoaiNguyenLieus.ToList();
             return list == null ? new List<LoaiNguyenLieu>() : list;
         }
 
         public static List<string> toListTenLoai()
         {
-            List<string> list = quanLyQuanCoffee.LoaiNguyenLieux.Select(x => x.tenLoaiNguyenLieu).ToList();
+            List<string> list = quanLyQuanCoffee.LoaiNguyenLieus.Select(x => x.tenLoaiNguyenLieu).ToList();
             return list == null ? new List<string>() : list;
         }
 
         public static LoaiNguyenLieu find(string maNguyenLieu)
         {
-            return quanLyQuanCoffee.LoaiNguyenLieux.Find(maNguyenLieu);
+            return quanLyQuanCoffee.LoaiNguyenLieus.Find(maNguyenLieu);
         }
 
         public static LoaiNguyenLieu find(LoaiNguyenLieu loaiNguyenLieu)
@@ -37,7 +37,7 @@ namespace QuanLyQuanCoffee.BUS
         public static string findMaLoaibyTenLoai(string tenLoai)
         {
             // so sánh cái tên của loại nguyên liệu và lấy ra cái mã
-            return quanLyQuanCoffee.LoaiNguyenLieux.Where(x => x.tenLoaiNguyenLieu == tenLoai).FirstOrDefault().maLoaiNguyenLieu;
+            return quanLyQuanCoffee.LoaiNguyenLieus.Where(x => x.tenLoaiNguyenLieu == tenLoai).FirstOrDefault().maLoaiNguyenLieu;
 
         }
 
@@ -45,7 +45,7 @@ namespace QuanLyQuanCoffee.BUS
         {
             if (CServices.kiemTraThongTin(loaiNguyenLieu))
             {
-                quanLyQuanCoffee.LoaiNguyenLieux.Add(loaiNguyenLieu);
+                quanLyQuanCoffee.LoaiNguyenLieus.Add(loaiNguyenLieu);
                 quanLyQuanCoffee.SaveChanges();
                 return true;
             }
@@ -59,7 +59,8 @@ namespace QuanLyQuanCoffee.BUS
             {
                 return false;
             }
-            temp.copyData(loaiNguyenLieu);
+            temp.maLoaiNguyenLieu = loaiNguyenLieu.maLoaiNguyenLieu;
+            temp.tenLoaiNguyenLieu = loaiNguyenLieu.tenLoaiNguyenLieu;
             quanLyQuanCoffee.SaveChanges();
             return true;
         }
@@ -74,13 +75,13 @@ namespace QuanLyQuanCoffee.BUS
                 return false;
             }
 
-            if (temp.NguyenLieux.Count > 0)
+            if (temp.NguyenLieus.Count > 0)
             {
-                MessageBox.Show("Có nhân viên đang thuộc loại này, Không thể xóa");
+                MessageBox.Show("Không thể xóa loại nguyên liệu này");
                 return false;
             }
 
-            quanLyQuanCoffee.LoaiNguyenLieux.Remove(temp);
+            quanLyQuanCoffee.LoaiNguyenLieus.Remove(temp);
             quanLyQuanCoffee.SaveChanges();
             return true;
         }

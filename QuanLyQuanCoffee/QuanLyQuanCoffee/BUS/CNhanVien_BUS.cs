@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace QuanLyQuanCoffee.BUS
 {
@@ -105,6 +106,17 @@ namespace QuanLyQuanCoffee.BUS
             NhanVien temp = find(nhanVien.maNhanVien);
             if (temp == null)
             {
+                MessageBox.Show("Không tìm thấy nhân viên để xóa");
+                return false;
+            }
+            if (temp.ChiTietChamCongs.Count > 0 || 
+                temp.Luongs.Count > 0 ||
+                temp.PhieuNhapNguyenLieus.Count > 0 ||
+                temp.PhieuXuatNguyenLieus.Count > 0 ||
+                temp.TaiKhoan != null ||
+                temp.HoaDons.Count > 0)
+            {
+                MessageBox.Show("Không thể xóa nhân viên này");
                 return false;
             }
             quanLyQuanCoffee.NhanViens.Remove(temp);

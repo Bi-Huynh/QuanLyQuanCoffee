@@ -64,7 +64,9 @@ namespace QuanLyQuanCoffee.BUS
             {
                 return false;
             }
-            temp.copyData(loaiNhanVien);
+            temp.maLoaiNhanvien = loaiNhanVien.maLoaiNhanvien;
+            temp.tenLoai = loaiNhanVien.tenLoai;
+            temp.luongCoBan = loaiNhanVien.luongCoBan;
             quanLyQuanCoffee.SaveChanges();
             return true;
         }

@@ -17,8 +17,8 @@ namespace QuanLyQuanCoffee
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NguyenLieu()
         {
-            this.ChiTietPhieuNhapNguyenLieux = new HashSet<ChiTietPhieuNhapNguyenLieu>();
-            this.ChiTietXuatNhapNguyenLieux = new HashSet<ChiTietXuatNhapNguyenLieu>();
+            this.ChiTietPhieuNhapNguyenLieus = new HashSet<ChiTietPhieuNhapNguyenLieu>();
+            this.ChiTietXuatNhapNguyenLieus = new HashSet<ChiTietXuatNhapNguyenLieu>();
         }
     
         public string maNguyenLieu { get; set; }
@@ -31,9 +31,9 @@ namespace QuanLyQuanCoffee
         public string maLoaiNguyenLieu { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietPhieuNhapNguyenLieu> ChiTietPhieuNhapNguyenLieux { get; set; }
+        public virtual ICollection<ChiTietPhieuNhapNguyenLieu> ChiTietPhieuNhapNguyenLieus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietXuatNhapNguyenLieu> ChiTietXuatNhapNguyenLieux { get; set; }
+        public virtual ICollection<ChiTietXuatNhapNguyenLieu> ChiTietXuatNhapNguyenLieus { get; set; }
         public virtual LoaiNguyenLieu LoaiNguyenLieu { get; set; }
     }
 }
