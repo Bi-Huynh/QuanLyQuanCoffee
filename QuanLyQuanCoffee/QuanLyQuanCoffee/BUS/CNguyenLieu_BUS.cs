@@ -50,7 +50,7 @@ namespace QuanLyQuanCoffee.BUS
         {
             if (CServices.kiemTraThongTin(nguyenLieu))
             {
-                quanLyQuanCoffee.NguyenLieux.Add(nguyenLieu);
+                quanLyQuanCoffee.NguyenLieus.Add(nguyenLieu);
                 quanLyQuanCoffee.SaveChanges();
                 return true;
             }
@@ -68,7 +68,16 @@ namespace QuanLyQuanCoffee.BUS
             {
                 return false;
             }
-            temp.copyData(nguyenLieu);
+
+            temp.maNguyenLieu = nguyenLieu.maNguyenLieu;
+            temp.tenNguyenLieu = nguyenLieu.tenNguyenLieu;
+            temp.donGia = nguyenLieu.donGia;
+            temp.soLuong = nguyenLieu.soLuong;
+            temp.donViTinh = nguyenLieu.donViTinh;
+            temp.ngayHetHan = nguyenLieu.ngayHetHan;
+            temp.ngayNhap = nguyenLieu.ngayNhap;
+            temp.maLoaiNguyenLieu = nguyenLieu.maLoaiNguyenLieu;
+
             quanLyQuanCoffee.SaveChanges();
             return true;
         }

@@ -84,7 +84,18 @@ namespace QuanLyQuanCoffee.BUS
             {
                 return false;
             }
-            temp.copyData(nhanVien);
+            temp.maNhanVien = nhanVien.maNhanVien;
+            temp.hoNhanVien = nhanVien.hoNhanVien;
+            temp.tenNhanVien = nhanVien.tenNhanVien;
+            temp.soDienThoai = nhanVien.soDienThoai;
+            temp.ngaySinh = nhanVien.ngaySinh;
+            temp.phai = nhanVien.phai;
+            temp.cMND = nhanVien.cMND;
+            temp.thuongTru = nhanVien.thuongTru;
+            temp.tamTru = nhanVien.tamTru;
+            temp.ngayVaoLam = nhanVien.ngayVaoLam;
+            temp.maLoaiNhanVien = nhanVien.maLoaiNhanVien;
+            temp.urlAnh = nhanVien.urlAnh;
             quanLyQuanCoffee.SaveChanges();
             return true;
         }
