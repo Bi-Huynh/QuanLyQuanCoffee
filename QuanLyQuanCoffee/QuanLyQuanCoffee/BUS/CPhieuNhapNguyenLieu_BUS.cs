@@ -22,7 +22,8 @@ namespace QuanLyQuanCoffee.BUS
         // Trả về những nhân viên có mã loại được truyền vào
         public static List<PhieuNhapNguyenLieu> toListByLoai(string maPhieuNhap)
         {
-            List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieus.Where(x => x.maPhieuNhap == maPhieuNhap).ToList();
+            List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieus.
+                Where(x => x.maPhieuNhap == maPhieuNhap).ToList();
             return list == null ? new List<PhieuNhapNguyenLieu>() : list;
         }
 
@@ -31,6 +32,22 @@ namespace QuanLyQuanCoffee.BUS
         {
             PhieuNhapNguyenLieu PhieuNhapNguyenLieu = quanLyQuanCoffee.PhieuNhapNguyenLieus.Find(maPhieuNhap);
             return PhieuNhapNguyenLieu == null ? new PhieuNhapNguyenLieu() : PhieuNhapNguyenLieu;
+        }
+
+        public static List<PhieuNhapNguyenLieu> findTenNhanVien(string tenNhanVien)
+        {
+            tenNhanVien = CServices.formatChuoi(tenNhanVien);
+            List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieus.
+                Where(x => x.NhanVien.tenNhanVien.Contains(tenNhanVien) == true).ToList();
+            
+            return list == null ? new List<PhieuNhapNguyenLieu>() : list;
+        }
+
+        public static List<PhieuNhapNguyenLieu> findNgayNhap(DateTime ngayNhap)
+        {
+            List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieus.
+                Where(x => x.ngayNhap == ngayNhap).ToList();
+            return list == null ? new List<PhieuNhapNguyenLieu>() : list;
         }
 
         public static bool add(PhieuNhapNguyenLieu PhieuNhapNguyenLieu)

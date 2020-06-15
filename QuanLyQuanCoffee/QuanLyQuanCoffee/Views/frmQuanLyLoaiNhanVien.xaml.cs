@@ -70,11 +70,10 @@ namespace QuanLyQuanCoffee.Views
                 maLoaiNhanVien = CServices.randomMa();
             } while (CLoaiNhanVien_BUS.find(maLoaiNhanVien) != null);
 
-            LoaiNhanVien loaiNhanVien = new LoaiNhanVien(
-                maLoaiNhanVien,
-                txtTenLoai.Text,
-                double.Parse(txtLuong.Text)
-                );
+            LoaiNhanVien loaiNhanVien = new LoaiNhanVien();
+            loaiNhanVien.maLoaiNhanvien = maLoaiNhanVien;
+            loaiNhanVien.tenLoai = txtTenLoai.Text;
+            loaiNhanVien.luongCoBan = double.Parse(txtLuong.Text);
 
             if (CLoaiNhanVien_BUS.add(loaiNhanVien))
             {
@@ -106,11 +105,11 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-            LoaiNhanVien loaiNhanVien = new LoaiNhanVien(
-                            txtMaLoaiNhanVien.Text,
-                            txtTenLoai.Text,
-                            double.Parse(txtLuong.Text)
-                            );
+            LoaiNhanVien loaiNhanVien = new LoaiNhanVien();
+            loaiNhanVien.maLoaiNhanvien = txtMaLoaiNhanVien.Text;
+            loaiNhanVien.tenLoai = txtTenLoai.Text;
+            loaiNhanVien.luongCoBan = double.Parse(txtLuong.Text);
+
             if (CLoaiNhanVien_BUS.edit(loaiNhanVien))
             {
                 MessageBox.Show("Sửa thành công");

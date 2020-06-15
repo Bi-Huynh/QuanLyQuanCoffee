@@ -97,21 +97,19 @@ namespace QuanLyQuanCoffee.Views
                 maNhanVien = CServices.randomMa();
             } while (CNhanVien_BUS.find(maNhanVien) != null);
 
-            NhanVien nhanVien = new NhanVien(
-                            maNhanVien,
-                            txtHoNhanVien.Text,
-                            txtTenNhanVien.Text,
-                            txtSoDienThoai.Text,
-                            dateNgaySinh.SelectedDate.Value.Date,
-                            // vì đã gán sẵn chỉ có 2 giá trị trên cmb, hk phải là đưa dữ liệu lên nên giá trị phái
-                            // lấy ra là 1 chuỗi khác không phải chỉ có chữ nam nên phải tách chuỗi để lấy
-                            phai.Substring(phai.Length - 3) == "Nam" ? true : false,
-                            txtCMND.Text,
-                            txtThuongTru.Text,
-                            txtTamTru.Text,
-                            dateNgayVaoLam.SelectedDate.Value.Date,
-                            CLoaiNhanVien_BUS.findMaLoaiByTenLoai(cmbLoaiNhanVien.SelectedItem.ToString())
-                            );
+            NhanVien nhanVien = new NhanVien();
+            nhanVien.maNhanVien = maNhanVien;
+            nhanVien.hoNhanVien = txtHoNhanVien.Text;
+            nhanVien.tenNhanVien = txtTenNhanVien.Text;
+            nhanVien.soDienThoai = txtSoDienThoai.Text;
+            nhanVien.ngaySinh = dateNgaySinh.SelectedDate.Value.Date;
+            nhanVien.phai = cmbPhai.SelectedValue.ToString() == "Nam" ? true : false;
+            nhanVien.cMND = txtCMND.Text;
+            nhanVien.thuongTru = txtThuongTru.Text;
+            nhanVien.tamTru = txtTamTru.Text;
+            nhanVien.ngayVaoLam = dateNgayVaoLam.SelectedDate.Value.Date;
+            nhanVien.maLoaiNhanVien = CLoaiNhanVien_BUS.findMaLoaiByTenLoai(cmbLoaiNhanVien.SelectedItem.ToString());
+
             if (CNhanVien_BUS.add(nhanVien))
             {
                 MessageBox.Show("Thêm thành công!");
@@ -161,21 +159,18 @@ namespace QuanLyQuanCoffee.Views
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
             string phai = cmbPhai.SelectedValue.ToString();
-            NhanVien nhanVien = new NhanVien(
-                            txtMaNhanVien.Text,
-                            txtHoNhanVien.Text,
-                            txtTenNhanVien.Text,
-                            txtSoDienThoai.Text,
-                            dateNgaySinh.SelectedDate.Value.Date,
-                            // vì đã gán sẵn chỉ có 2 giá trị trên cmb, hk phải là đưa dữ liệu lên nên giá trị phái
-                            // lấy ra là 1 chuỗi khác không phải chỉ có chữ nam nên phải tách chuỗi để lấy
-                            phai.Substring(phai.Length - 3) == "Nam" ? true : false,
-                            txtCMND.Text,
-                            txtThuongTru.Text,
-                            txtTamTru.Text,
-                            dateNgayVaoLam.SelectedDate.Value.Date,
-                            CLoaiNhanVien_BUS.findMaLoaiByTenLoai(cmbLoaiNhanVien.SelectedItem.ToString())
-                            );
+            NhanVien nhanVien = new NhanVien();
+            nhanVien.maNhanVien = txtMaNhanVien.Text;
+            nhanVien.hoNhanVien = txtHoNhanVien.Text;
+            nhanVien.tenNhanVien = txtTenNhanVien.Text;
+            nhanVien.soDienThoai = txtSoDienThoai.Text;
+            nhanVien.ngaySinh = dateNgaySinh.SelectedDate.Value.Date;
+            nhanVien.phai = cmbPhai.SelectedValue.ToString() == "Nam" ? true : false;
+            nhanVien.cMND = txtCMND.Text;
+            nhanVien.thuongTru = txtThuongTru.Text;
+            nhanVien.tamTru = txtTamTru.Text;
+            nhanVien.ngayVaoLam = dateNgayVaoLam.SelectedDate.Value.Date;
+            nhanVien.maLoaiNhanVien = CLoaiNhanVien_BUS.findMaLoaiByTenLoai(cmbLoaiNhanVien.SelectedItem.ToString());
 
             if (CNhanVien_BUS.edit(nhanVien))
             {

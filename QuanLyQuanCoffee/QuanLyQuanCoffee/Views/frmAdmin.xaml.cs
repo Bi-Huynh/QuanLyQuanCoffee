@@ -29,11 +29,6 @@ namespace QuanLyQuanCoffee.Views
             Main.Content = new frmQuanLyNhanVien();
         }
 
-        private void Main_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
-        {
-
-        }
-
         private void gd_QuanLySanPham_Click(object sender, RoutedEventArgs e)
         {
 
@@ -42,6 +37,11 @@ namespace QuanLyQuanCoffee.Views
         private void gd_QuanLyNguyenLieu_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new frmQuanLyNguyenLieu();
+        }
+
+        private void gd_QuanLyNhapNguyenLieu_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new frmQuanLyPhieuNhapNguyenLieu();
         }
     }
 }

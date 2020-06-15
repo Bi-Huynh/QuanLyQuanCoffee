@@ -23,7 +23,8 @@
                 <MenuItem Header="Quản Lý Nguyên Liệu"
                           Name="gd_QuanLyNguyenLieu" Click="gd_QuanLyNguyenLieu_Click"></MenuItem>
                 <MenuItem Header="Quản Lý Nhập Nguyên Liệu"
-                          Name="gd_QuanLyNhapNguyenLieu"></MenuItem>
+                          Name="gd_QuanLyNhapNguyenLieu"
+                          Click="gd_QuanLyNhapNguyenLieu_Click"></MenuItem>
                 <MenuItem Header="Quản Lý Xuất Nguyên Liệu"
                           Name="gd_QuanLyXuatNguyenLieu"></MenuItem>
             </MenuItem>
@@ -51,6 +52,6 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <Frame x:Name="Main" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" ScrollViewer.VerticalScrollBarVisibility="Auto" NavigationUIVisibility="Hidden" Navigated="Main_Navigated"/>
+        <Frame x:Name="Main" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" ScrollViewer.VerticalScrollBarVisibility="Auto" NavigationUIVisibility="Hidden"/>
     </StackPanel>
 </Window>

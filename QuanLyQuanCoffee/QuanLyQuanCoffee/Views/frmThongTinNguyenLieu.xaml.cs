@@ -87,62 +87,6 @@ namespace QuanLyQuanCoffee.Views
             cmbLoaiNguyenLieu.IsEnabled = value;
         }
 
-        //private void CommandBinding_Executed_ThemNguyenLieu(object sender, ExecutedRoutedEventArgs e)
-        //{
-        //    string maNguyenLieu = "";
-        //    do
-        //    {
-        //        maNguyenLieu = CNhanVien_BUS.randomMaNhanVien();
-        //    } while (CNguyenLieu_BUS.find(maNguyenLieu) != null);
-
-        //    NguyenLieu nguyenLieu = new NguyenLieu(
-        //        maNguyenLieu,
-        //        txtTenNguyenLieu.Text,
-        //        double.Parse(txtDonGia.Text),
-        //        int.Parse(txtSoLuong.Text),
-        //        txtDonViTinh.Text,
-        //        dateNgayHetHan.SelectedDate.Value,
-        //        dateNgayNhap.SelectedDate.Value,
-        //        CLoaiNguyenLieu_BUS.findMaLoaibyTenLoai(cmbLoaiNguyenLieu.SelectedItem.ToString())
-        //        );
-        //    CNguyenLieu_BUS.add(nguyenLieu);
-        //    MessageBox.Show("Thêm thành công");
-        //    this.Close();
-        //}
-
-        //private void CommandBinding_CanExecute_ThemNguyenLieu(object sender, CanExecuteRoutedEventArgs e)
-        //{
-        //    e.CanExecute = true;
-        //}
-
-        //private void CommandBinding_Executed_SuaNguyenLieu(object sender, ExecutedRoutedEventArgs e)
-        //{
-        //    NguyenLieu nguyenLieu = new NguyenLieu(
-        //        txtMaNguyenLieu.Text,
-        //        txtTenNguyenLieu.Text,
-        //        double.Parse(txtDonGia.Text),
-        //        int.Parse(txtSoLuong.Text),
-        //        txtDonViTinh.Text,
-        //        dateNgayHetHan.SelectedDate.Value,
-        //        dateNgayNhap.SelectedDate.Value,
-        //        CLoaiNguyenLieu_BUS.findMaLoaibyTenLoai(cmbLoaiNguyenLieu.SelectedItem.ToString())
-        //        );
-        //    if (CNguyenLieu_BUS.edit(nguyenLieu))
-        //    {
-        //        MessageBox.Show("Sửa thành công");
-        //        this.Close();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Sửa không thành công");
-        //    }
-        //}
-
-        //private void CommandBinding_CanExecute_SuaNguyenLieu(object sender, CanExecuteRoutedEventArgs e)
-        //{
-        //    e.CanExecute = true;
-        //}
-
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
             btnLuu.IsEnabled = true;
@@ -171,16 +115,15 @@ namespace QuanLyQuanCoffee.Views
                 maNguyenLieu = CServices.randomMa();
             } while (CNguyenLieu_BUS.find(maNguyenLieu) != null);
 
-            NguyenLieu nguyenLieu = new NguyenLieu(
-                            maNguyenLieu,
-                            txtTenNguyenLieu.Text,
-                            double.Parse(txtDonGia.Text),
-                            int.Parse(txtSoLuong.Text),
-                            txtDonViTinh.Text,
-                            dateNgayHetHan.SelectedDate.Value,
-                            dateNgayNhap.SelectedDate.Value,
-                            CLoaiNguyenLieu_BUS.findMaLoaibyTenLoai(cmbLoaiNguyenLieu.SelectedItem.ToString())
-                            );
+            NguyenLieu nguyenLieu = new NguyenLieu();
+            nguyenLieu.maNguyenLieu = maNguyenLieu;
+            nguyenLieu.tenNguyenLieu = txtTenNguyenLieu.Text;
+            nguyenLieu.donGia = double.Parse(txtDonGia.Text);
+            nguyenLieu.soLuong = int.Parse(txtSoLuong.Text);
+            nguyenLieu.donViTinh = txtDonViTinh.Text;
+            nguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value.Date;
+            nguyenLieu.ngayNhap = dateNgayNhap.SelectedDate.Value.Date;
+
             if (CNguyenLieu_BUS.add(nguyenLieu))
             {
                 MessageBox.Show("Thêm thành công!");
@@ -194,16 +137,14 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            NguyenLieu nguyenLieu = new NguyenLieu(
-                            txtMaNguyenLieu.Text,
-                            txtTenNguyenLieu.Text,
-                            double.Parse(txtDonGia.Text),
-                            int.Parse(txtSoLuong.Text),
-                            txtDonViTinh.Text,
-                            dateNgayHetHan.SelectedDate.Value.Date,
-                            dateNgayNhap.SelectedDate.Value.Date,
-                            CLoaiNguyenLieu_BUS.findMaLoaibyTenLoai(cmbLoaiNguyenLieu.SelectedItem.ToString())
-                            );
+            NguyenLieu nguyenLieu = new NguyenLieu();
+            nguyenLieu.maNguyenLieu = txtMaNguyenLieu.Text;
+            nguyenLieu.tenNguyenLieu = txtTenNguyenLieu.Text;
+            nguyenLieu.donGia = double.Parse(txtDonGia.Text);
+            nguyenLieu.soLuong = int.Parse(txtSoLuong.Text);
+            nguyenLieu.donViTinh = txtDonViTinh.Text;
+            nguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value.Date;
+            nguyenLieu.ngayNhap = dateNgayNhap.SelectedDate.Value.Date;
 
             if (CNguyenLieu_BUS.edit(nguyenLieu))
             {
