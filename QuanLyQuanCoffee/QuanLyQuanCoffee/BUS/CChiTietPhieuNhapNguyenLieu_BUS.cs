@@ -15,21 +15,21 @@ namespace QuanLyQuanCoffee.BUS
         // Trả về toàn bộ danh sách nhân viên
         public static List<ChiTietPhieuNhapNguyenLieu> toList()
         {
-            List<ChiTietPhieuNhapNguyenLieu> list = quanLyQuanCoffee.ChiTietPhieuNhapNguyenLieus.ToList();
+            List<ChiTietPhieuNhapNguyenLieu> list = quanLyQuanCoffee.ChiTietPhieuNhapNguyenLieux.ToList();
             return list == null ? new List<ChiTietPhieuNhapNguyenLieu>() : list;
         }
 
         // Trả về những nhân viên có mã loại được truyền vào
         public static List<ChiTietPhieuNhapNguyenLieu> toListByLoai(string maPhieuNhap)
         {
-            List<ChiTietPhieuNhapNguyenLieu> list = quanLyQuanCoffee.ChiTietPhieuNhapNguyenLieus.Where(x => x.maPhieuNhap == maPhieuNhap).ToList();
+            List<ChiTietPhieuNhapNguyenLieu> list = quanLyQuanCoffee.ChiTietPhieuNhapNguyenLieux.Where(x => x.maPhieuNhap == maPhieuNhap).ToList();
             return list == null ? new List<ChiTietPhieuNhapNguyenLieu>() : list;
         }
 
         // tìm kiếm nhân viên theo mã nhân viên
         public static ChiTietPhieuNhapNguyenLieu find(string maPhieuNhap)
         {
-            ChiTietPhieuNhapNguyenLieu chiTietPhieuNhapNguyenLieu = quanLyQuanCoffee.ChiTietPhieuNhapNguyenLieus.Find(maPhieuNhap);
+            ChiTietPhieuNhapNguyenLieu chiTietPhieuNhapNguyenLieu = quanLyQuanCoffee.ChiTietPhieuNhapNguyenLieux.Find(maPhieuNhap);
             return chiTietPhieuNhapNguyenLieu == null ? new ChiTietPhieuNhapNguyenLieu() : chiTietPhieuNhapNguyenLieu;
         }
 
@@ -37,7 +37,7 @@ namespace QuanLyQuanCoffee.BUS
         {
             if (CServices.kiemTraThongTin(chiTietPhieuNhapNguyenLieu))
             {
-                quanLyQuanCoffee.ChiTietPhieuNhapNguyenLieus.Add(chiTietPhieuNhapNguyenLieu);
+                quanLyQuanCoffee.ChiTietPhieuNhapNguyenLieux.Add(chiTietPhieuNhapNguyenLieu);
                 quanLyQuanCoffee.SaveChanges();
                 return true;
             }
@@ -77,7 +77,7 @@ namespace QuanLyQuanCoffee.BUS
                 MessageBox.Show("Không thể xóa chi tiết phiếu nhập nguyên liệu này");
                 return false;
             }
-            quanLyQuanCoffee.ChiTietPhieuNhapNguyenLieus.Remove(temp);
+            quanLyQuanCoffee.ChiTietPhieuNhapNguyenLieux.Remove(temp);
             quanLyQuanCoffee.SaveChanges();
             return true;
         }

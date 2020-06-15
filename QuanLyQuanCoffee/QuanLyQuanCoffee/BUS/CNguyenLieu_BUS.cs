@@ -14,13 +14,13 @@ namespace QuanLyQuanCoffee.BUS
 
         public static List<NguyenLieu> toList()
         {
-            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieus.ToList();
+            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux.ToList();
             return list == null ? new List<NguyenLieu>() : list;
         }
 
         public static NguyenLieu find(string maNguyenLieu)
         {
-            return quanLyQuanCoffee.NguyenLieus.Find(maNguyenLieu);
+            return quanLyQuanCoffee.NguyenLieux.Find(maNguyenLieu);
         }
 
         public static NguyenLieu find(NguyenLieu nguyenLieu)
@@ -30,20 +30,20 @@ namespace QuanLyQuanCoffee.BUS
 
         public static List<NguyenLieu> findTen(string tenNguyenLieu)
         {
-            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieus.Where(x => x.tenNguyenLieu == tenNguyenLieu).ToList();
+            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux.Where(x => x.tenNguyenLieu == tenNguyenLieu).ToList();
             return list == null ? new List<NguyenLieu>() : list;
         }
 
         public static List<NguyenLieu> findMa(string maNguyenLieu)
         {
-            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieus.Where(x => x.maNguyenLieu.Contains(maNguyenLieu) == true).ToList();
+            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux.Where(x => x.maNguyenLieu.Contains(maNguyenLieu) == true).ToList();
             return list == null ? new List<NguyenLieu>() : list;
         }
 
         public static List<NguyenLieu> findTenLoai(string tenLoai)
         {
             tenLoai = CServices.formatChuoi(tenLoai);
-            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieus.Where(x => x.LoaiNguyenLieu.tenLoaiNguyenLieu == tenLoai).ToList();
+            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux.Where(x => x.LoaiNguyenLieu.tenLoaiNguyenLieu == tenLoai).ToList();
             return list == null ? new List<NguyenLieu>() : list;
         }
 
@@ -51,7 +51,7 @@ namespace QuanLyQuanCoffee.BUS
         {
             if (CServices.kiemTraThongTin(nguyenLieu))
             {
-                quanLyQuanCoffee.NguyenLieus.Add(nguyenLieu);
+                quanLyQuanCoffee.NguyenLieux.Add(nguyenLieu);
                 quanLyQuanCoffee.SaveChanges();
                 return true;
             }
@@ -91,12 +91,12 @@ namespace QuanLyQuanCoffee.BUS
                 MessageBox.Show("Không tìm thấy nguyên liệu để xóa");
                 return false;
             }
-            if (temp.ChiTietPhieuNhapNguyenLieus.Count > 0  || temp.ChiTietXuatNhapNguyenLieus.Count > 0)
+            if (temp.ChiTietPhieuNhapNguyenLieux.Count > 0  || temp.ChiTietXuatNhapNguyenLieux.Count > 0)
             {
                 MessageBox.Show("Không thể xóa nguyên liệu này");
                 return false;
             }
-            quanLyQuanCoffee.NguyenLieus.Remove(temp);
+            quanLyQuanCoffee.NguyenLieux.Remove(temp);
             quanLyQuanCoffee.SaveChanges();
             return true;
         }

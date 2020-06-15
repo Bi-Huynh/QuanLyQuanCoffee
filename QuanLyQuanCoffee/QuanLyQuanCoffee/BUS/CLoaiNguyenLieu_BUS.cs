@@ -75,7 +75,7 @@ namespace QuanLyQuanCoffee.BUS
                 return false;
             }
 
-            if (temp.NguyenLieus.Count > 0)
+            if (temp.NguyenLieux.Count > 0)
             {
                 MessageBox.Show("Không thể xóa loại nguyên liệu này");
                 return false;

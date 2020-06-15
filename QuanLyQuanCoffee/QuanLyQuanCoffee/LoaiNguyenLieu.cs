@@ -17,13 +17,13 @@ namespace QuanLyQuanCoffee
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LoaiNguyenLieu()
         {
-            this.NguyenLieus = new HashSet<NguyenLieu>();
+            this.NguyenLieux = new HashSet<NguyenLieu>();
         }
     
         public string maLoaiNguyenLieu { get; set; }
         public string tenLoaiNguyenLieu { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NguyenLieu> NguyenLieus { get; set; }
+        public virtual ICollection<NguyenLieu> NguyenLieux { get; set; }
     }
 }

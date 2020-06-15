@@ -17,7 +17,7 @@ namespace QuanLyQuanCoffee
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PhieuNhapNguyenLieu()
         {
-            this.ChiTietPhieuNhapNguyenLieus = new HashSet<ChiTietPhieuNhapNguyenLieu>();
+            this.ChiTietPhieuNhapNguyenLieux = new HashSet<ChiTietPhieuNhapNguyenLieu>();
         }
     
         public string maPhieuNhap { get; set; }
@@ -26,7 +26,7 @@ namespace QuanLyQuanCoffee
         public string maNhanVien { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietPhieuNhapNguyenLieu> ChiTietPhieuNhapNguyenLieus { get; set; }
+        public virtual ICollection<ChiTietPhieuNhapNguyenLieu> ChiTietPhieuNhapNguyenLieux { get; set; }
         public virtual NhanVien NhanVien { get; set; }
     }
 }

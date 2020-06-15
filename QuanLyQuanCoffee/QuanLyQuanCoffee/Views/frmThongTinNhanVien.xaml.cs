@@ -30,6 +30,7 @@ namespace QuanLyQuanCoffee.Views
             // khi người dùng nhấn thêm thì ấn nút sửa đi
             if (flag == 1)
             {
+                txtMaNhanVien.Text = CServices.taoMaNhanVien();
                 btnSua.IsEnabled = false;
                 btnLuu.IsEnabled = false;
             }
@@ -88,22 +89,13 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            string maNhanVien = "";
-            string phai = cmbPhai.SelectedValue.ToString();
-
-            // chưa xét trường hợp nếu các mã tạo ra đã trùng hết thì sẽ làm như nào
-            do
-            {
-                maNhanVien = CServices.randomMa();
-            } while (CNhanVien_BUS.find(maNhanVien) != null);
-
             NhanVien nhanVien = new NhanVien();
-            nhanVien.maNhanVien = maNhanVien;
+            nhanVien.maNhanVien = txtMaNhanVien.Text;
             nhanVien.hoNhanVien = txtHoNhanVien.Text;
             nhanVien.tenNhanVien = txtTenNhanVien.Text;
             nhanVien.soDienThoai = txtSoDienThoai.Text;
             nhanVien.ngaySinh = dateNgaySinh.SelectedDate.Value.Date;
-            nhanVien.phai = cmbPhai.SelectedValue.ToString() == "Nam" ? true : false;
+            nhanVien.phai = cmbPhai.SelectedIndex == 0 ? true : false;
             nhanVien.cMND = txtCMND.Text;
             nhanVien.thuongTru = txtThuongTru.Text;
             nhanVien.tamTru = txtTamTru.Text;

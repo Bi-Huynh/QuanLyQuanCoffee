@@ -126,9 +126,7 @@ namespace QuanLyQuanCoffee.Views
             //nếu combox tìm kiếm là 1 tức là tìm theo mã nhân viên
             else if (cmbTimKiem.SelectedIndex == 1)
             {
-                List<NhanVien> list = new List<NhanVien>();
-                list.Add(CNhanVien_BUS.find(txtTimKiem.Text));
-                hienThiDSNhanVien(list);
+                hienThiDSNhanVien(CNhanVien_BUS.findListMa(txtTimKiem.Text));
             }
             else
             {

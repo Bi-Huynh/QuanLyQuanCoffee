@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyQuanCoffee.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace QuanLyQuanCoffee.Services
 {
     class CServices
     {
+        private static QuanLyQuanCoffeeEntities quanLyQuanCoffee = new QuanLyQuanCoffeeEntities();
+
         // khởi tạo mã tự động
         public static string randomMa()
         {
@@ -17,6 +20,25 @@ namespace QuanLyQuanCoffee.Services
             {
                 ma += Convert.ToString((char)random.Next(65, 90));
             }
+            return ma;
+        }
+
+        public static string taoMaNhanVien()
+        {
+            string ma = "NV";
+            var list = CNhanVien_BUS.toList();
+            if (list.Count == 0)
+            {
+                return "NV00000001";
+            }
+            NhanVien nhanVien = list[list.Count() - 1];
+            string chuoi1 = nhanVien.maNhanVien;
+            chuoi1 = chuoi1.Remove(0, 2);   // bỏ 2 ký tự đầu tiên đi - NV
+            int temp = int.Parse(chuoi1);
+            temp++;
+            chuoi1 = String.Format("{0:00000000}", temp);
+            ma += chuoi1;
+
             return ma;
         }
 

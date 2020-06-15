@@ -22,30 +22,42 @@ namespace QuanLyQuanCoffee.BUS
         // Trả về những nhân viên có mã loại được truyền vào
         public static List<NhanVien> toListByLoai(string maLoaiNhanVien)
         {
-            List<NhanVien> list = quanLyQuanCoffee.NhanViens.Where(x => x.maLoaiNhanVien == maLoaiNhanVien).ToList();
+            List<NhanVien> list = quanLyQuanCoffee.NhanViens.Where(x => x.maLoaiNhanVien.Contains(maLoaiNhanVien) == true).ToList();
             return list == null ? new List<NhanVien>() : list;
         }
 
         // tìm kiếm nhân viên theo mã nhân viên
         public static NhanVien find(string maNhanVien)
         {
+            maNhanVien = maNhanVien.ToUpper();
             NhanVien nhanVien = quanLyQuanCoffee.NhanViens.Find(maNhanVien);
             return nhanVien == null ? new NhanVien() : nhanVien;
+        }
+
+        // tìm kiếm nhân viên theo mã nhân viên
+        public static List<NhanVien> findListMa(string maNhanVien)
+        {
+            maNhanVien = maNhanVien.ToUpper();
+            List<NhanVien> list = quanLyQuanCoffee.NhanViens.
+                Where(x => x.maNhanVien.Contains(maNhanVien) == true).ToList();
+            return list == null ? new List<NhanVien>() : list;
         }
 
         // tìm kiếm nhân viên theo tên nhân viên
         public static List<NhanVien> findTen(string tenNhanVien)
         {
-            tenNhanVien = CServices.formatChuoi(tenNhanVien);
-            List<NhanVien> list = toList().Where(x => x.tenNhanVien == tenNhanVien).ToList();
+            tenNhanVien = CServices.formatChuoi(tenNhanVien).ToLower();
+            List<NhanVien> list = toList().Where(x => x.tenNhanVien.
+                ToLower().Contains(tenNhanVien) == true).ToList();
             return list == null ? new List<NhanVien>() : list;
         }
 
         // tìm kiếm nhân viên theo tên nhân viên
         public static List<NhanVien> findTenLoai(string tenLoaiNhanVien)
         {
-            tenLoaiNhanVien = CServices.formatChuoi(tenLoaiNhanVien);
-            List<NhanVien> list = toList().Where(x => x.LoaiNhanVien.tenLoai == tenLoaiNhanVien).ToList();
+            tenLoaiNhanVien = CServices.formatChuoi(tenLoaiNhanVien).ToLower();
+            List<NhanVien> list = toList().Where(x => x.LoaiNhanVien.tenLoai.
+                ToLower().Contains(tenLoaiNhanVien) == true).ToList();
             return list == null ? new List<NhanVien>() : list;
         }
 
@@ -111,8 +123,8 @@ namespace QuanLyQuanCoffee.BUS
             }
             if (temp.ChiTietChamCongs.Count > 0 || 
                 temp.Luongs.Count > 0 ||
-                temp.PhieuNhapNguyenLieus.Count > 0 ||
-                temp.PhieuXuatNguyenLieus.Count > 0 ||
+                temp.PhieuNhapNguyenLieux.Count > 0 ||
+                temp.PhieuXuatNguyenLieux.Count > 0 ||
                 temp.TaiKhoan != null ||
                 temp.HoaDons.Count > 0)
             {

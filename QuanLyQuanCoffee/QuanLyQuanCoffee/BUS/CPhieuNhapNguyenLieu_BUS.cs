@@ -15,14 +15,14 @@ namespace QuanLyQuanCoffee.BUS
         // Trả về toàn bộ danh sách nhân viên
         public static List<PhieuNhapNguyenLieu> toList()
         {
-            List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieus.ToList();
+            List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieux.ToList();
             return list == null ? new List<PhieuNhapNguyenLieu>() : list;
         }
 
         // Trả về những nhân viên có mã loại được truyền vào
         public static List<PhieuNhapNguyenLieu> toListByLoai(string maPhieuNhap)
         {
-            List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieus.
+            List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieux.
                 Where(x => x.maPhieuNhap == maPhieuNhap).ToList();
             return list == null ? new List<PhieuNhapNguyenLieu>() : list;
         }
@@ -30,14 +30,14 @@ namespace QuanLyQuanCoffee.BUS
         // tìm kiếm nhân viên theo mã nhân viên
         public static PhieuNhapNguyenLieu find(string maPhieuNhap)
         {
-            PhieuNhapNguyenLieu PhieuNhapNguyenLieu = quanLyQuanCoffee.PhieuNhapNguyenLieus.Find(maPhieuNhap);
+            PhieuNhapNguyenLieu PhieuNhapNguyenLieu = quanLyQuanCoffee.PhieuNhapNguyenLieux.Find(maPhieuNhap);
             return PhieuNhapNguyenLieu == null ? new PhieuNhapNguyenLieu() : PhieuNhapNguyenLieu;
         }
 
         public static List<PhieuNhapNguyenLieu> findTenNhanVien(string tenNhanVien)
         {
             tenNhanVien = CServices.formatChuoi(tenNhanVien);
-            List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieus.
+            List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieux.
                 Where(x => x.NhanVien.tenNhanVien.Contains(tenNhanVien) == true).ToList();
             
             return list == null ? new List<PhieuNhapNguyenLieu>() : list;
@@ -45,7 +45,7 @@ namespace QuanLyQuanCoffee.BUS
 
         public static List<PhieuNhapNguyenLieu> findNgayNhap(DateTime ngayNhap)
         {
-            List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieus.
+            List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieux.
                 Where(x => x.ngayNhap == ngayNhap).ToList();
             return list == null ? new List<PhieuNhapNguyenLieu>() : list;
         }
@@ -54,7 +54,7 @@ namespace QuanLyQuanCoffee.BUS
         {
             if (CServices.kiemTraThongTin(PhieuNhapNguyenLieu))
             {
-                quanLyQuanCoffee.PhieuNhapNguyenLieus.Add(PhieuNhapNguyenLieu);
+                quanLyQuanCoffee.PhieuNhapNguyenLieux.Add(PhieuNhapNguyenLieu);
                 quanLyQuanCoffee.SaveChanges();
                 return true;
             }
@@ -90,13 +90,13 @@ namespace QuanLyQuanCoffee.BUS
                 MessageBox.Show("Không tìm thấy phiếu nhập nguyên liệu để xóa");
                 return false;
             }
-            if (temp.ChiTietPhieuNhapNguyenLieus.Count > 0 ||
+            if (temp.ChiTietPhieuNhapNguyenLieux.Count > 0 ||
                 temp.NhanVien != null)
             {
                 MessageBox.Show("Không thể xóa phiếu nhập nguyên liệu này");
                 return false;
             }
-            quanLyQuanCoffee.PhieuNhapNguyenLieus.Remove(temp);
+            quanLyQuanCoffee.PhieuNhapNguyenLieux.Remove(temp);
             quanLyQuanCoffee.SaveChanges();
             return true;
         }

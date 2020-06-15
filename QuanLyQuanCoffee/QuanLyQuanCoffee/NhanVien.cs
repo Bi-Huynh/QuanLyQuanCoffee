@@ -20,8 +20,8 @@ namespace QuanLyQuanCoffee
             this.ChiTietChamCongs = new HashSet<ChiTietChamCong>();
             this.HoaDons = new HashSet<HoaDon>();
             this.Luongs = new HashSet<Luong>();
-            this.PhieuNhapNguyenLieus = new HashSet<PhieuNhapNguyenLieu>();
-            this.PhieuXuatNguyenLieus = new HashSet<PhieuXuatNguyenLieu>();
+            this.PhieuNhapNguyenLieux = new HashSet<PhieuNhapNguyenLieu>();
+            this.PhieuXuatNguyenLieux = new HashSet<PhieuXuatNguyenLieu>();
         }
     
         public string maNhanVien { get; set; }
@@ -45,9 +45,9 @@ namespace QuanLyQuanCoffee
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Luong> Luongs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhieuNhapNguyenLieu> PhieuNhapNguyenLieus { get; set; }
+        public virtual ICollection<PhieuNhapNguyenLieu> PhieuNhapNguyenLieux { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhieuXuatNguyenLieu> PhieuXuatNguyenLieus { get; set; }
+        public virtual ICollection<PhieuXuatNguyenLieu> PhieuXuatNguyenLieux { get; set; }
         public virtual TaiKhoan TaiKhoan { get; set; }
     }
 }
