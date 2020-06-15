@@ -14,10 +14,11 @@ namespace QuanLyQuanCoffee
     
     public partial class ChiTietHoaDon
     {
+        public string maChiTietHoaDon { get; set; }
         public string maHoaDon { get; set; }
         public string maSanPham { get; set; }
-        public int soLuong { get; set; }
-        public double thanhTien { get; set; }
+        public Nullable<int> soLuong { get; set; }
+        public Nullable<double> thanhTien { get; set; }
     
         public virtual HoaDon HoaDon { get; set; }
         public virtual SanPham SanPham { get; set; }

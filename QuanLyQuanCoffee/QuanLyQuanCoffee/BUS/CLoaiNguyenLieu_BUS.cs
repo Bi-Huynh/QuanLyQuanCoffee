@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyQuanCoffee.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,14 +41,9 @@ namespace QuanLyQuanCoffee.BUS
 
         }
 
-        public static bool kiemTraThongTin(LoaiNguyenLieu loaiNguyenLieu)
-        {
-            return true;
-        }
-
         public static bool add(LoaiNguyenLieu loaiNguyenLieu)
         {
-            if (kiemTraThongTin(loaiNguyenLieu))
+            if (CServices.kiemTraThongTin(loaiNguyenLieu))
             {
                 quanLyQuanCoffee.LoaiNguyenLieux.Add(loaiNguyenLieu);
                 quanLyQuanCoffee.SaveChanges();
@@ -59,7 +55,7 @@ namespace QuanLyQuanCoffee.BUS
         public static bool edit(LoaiNguyenLieu loaiNguyenLieu)
         {
             LoaiNguyenLieu temp = find(loaiNguyenLieu.maLoaiNguyenLieu);
-            if (temp == null || !kiemTraThongTin(loaiNguyenLieu))
+            if (temp == null || !CServices.kiemTraThongTin(loaiNguyenLieu))
             {
                 return false;
             }

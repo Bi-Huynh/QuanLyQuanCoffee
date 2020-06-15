@@ -52,13 +52,8 @@ namespace QuanLyQuanCoffee.Views
 
         private void dgDSLoaiNhanVien_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dgDSLoaiNhanVien.SelectedValue == null || dgDSLoaiNhanVien.SelectedValue.ToString() == "")
+            if (dgDSLoaiNhanVien.SelectedValue == null)
             {
-                return;
-            }
-            if (dgDSLoaiNhanVien.SelectedValue.ToString() == "          ")
-            {
-                MessageBox.Show("Không thể chọn loại nhân viên này");
                 return;
             }
             string maLoaiNhanVien = dgDSLoaiNhanVien.SelectedValue.ToString();

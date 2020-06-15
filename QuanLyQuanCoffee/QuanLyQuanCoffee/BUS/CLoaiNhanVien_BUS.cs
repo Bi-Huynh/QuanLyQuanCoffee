@@ -48,7 +48,7 @@ namespace QuanLyQuanCoffee.BUS
 
         public static bool add(LoaiNhanVien loaiNhanVien)
         {
-            if (kiemTraThongTin(loaiNhanVien))
+            if (CServices.kiemTraThongTin(loaiNhanVien))
             {
                 quanLyQuanCoffee.LoaiNhanViens.Add(loaiNhanVien);
                 quanLyQuanCoffee.SaveChanges();
@@ -60,7 +60,7 @@ namespace QuanLyQuanCoffee.BUS
         public static bool edit(LoaiNhanVien loaiNhanVien)
         {
             LoaiNhanVien temp = find(loaiNhanVien.maLoaiNhanvien);
-            if (temp == null || !kiemTraThongTin(loaiNhanVien))
+            if (temp == null || !CServices.kiemTraThongTin(loaiNhanVien))
             {
                 return false;
             }

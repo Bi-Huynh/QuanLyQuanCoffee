@@ -19,20 +19,6 @@ namespace QuanLyQuanCoffee
         {
             this.NhanViens = new HashSet<NhanVien>();
         }
-
-        public LoaiNhanVien(string maLoaiNhanVien = "", string tenLoai = "", double luongCoBan = 0)
-        {
-            this.maLoaiNhanvien = maLoaiNhanVien;
-            this.tenLoai = tenLoai;
-            this.luongCoBan = luongCoBan;
-        }
-
-        public void copyData(LoaiNhanVien loaiNhanVien)
-        {
-            this.maLoaiNhanvien = loaiNhanVien.maLoaiNhanvien;
-            this.tenLoai = loaiNhanVien.tenLoai;
-            this.luongCoBan = loaiNhanVien.luongCoBan;
-        }
     
         public string maLoaiNhanvien { get; set; }
         public string tenLoai { get; set; }

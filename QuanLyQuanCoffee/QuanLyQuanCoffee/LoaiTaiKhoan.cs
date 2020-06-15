@@ -12,18 +12,18 @@ namespace QuanLyQuanCoffee
     using System;
     using System.Collections.Generic;
     
-    public partial class LoaiNguyenLieu
+    public partial class LoaiTaiKhoan
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LoaiNguyenLieu()
+        public LoaiTaiKhoan()
         {
-            this.NguyenLieux = new HashSet<NguyenLieu>();
+            this.TaiKhoans = new HashSet<TaiKhoan>();
         }
     
-        public string maLoaiNguyenLieu { get; set; }
-        public string tenLoaiNguyenLieu { get; set; }
+        public string maLoaiTaiKhoan { get; set; }
+        public string tenLoaiTaiKhoan { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NguyenLieu> NguyenLieux { get; set; }
+        public virtual ICollection<TaiKhoan> TaiKhoans { get; set; }
     }
 }

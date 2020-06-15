@@ -80,6 +80,7 @@
     <Compile Include="ChiTietXuatNhapNguyenLieu.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\CNhanVien_DTO.cs" />
     <Compile Include="HoaDon.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
@@ -90,6 +91,9 @@
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
     <Compile Include="LoaiSanPham.cs">
+      <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoaiTaiKhoan.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
     <Compile Include="Luong.cs">
@@ -126,6 +130,9 @@
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\CServices.cs" />
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
+    </Compile>
     <Compile Include="TaiKhoan.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
@@ -226,13 +233,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTO\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="QuanLyQuanCoffee.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuanLyQuanCoffee.Context.cs</LastGenOutput>
       <DependentUpon>QuanLyQuanCoffee.edmx</DependentUpon>
+      <LastGenOutput>QuanLyQuanCoffee.Context.cs</LastGenOutput>
     </Content>
     <Content Include="QuanLyQuanCoffee.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
