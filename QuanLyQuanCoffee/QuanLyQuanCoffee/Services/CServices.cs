@@ -64,5 +64,10 @@ namespace QuanLyQuanCoffee.Services
         {
             return true;
         }
+
+        public static bool kiemTraThongTin(PhieuNhapNguyenLieu phieuNhapNguyenLieu)
+        {
+            return true;
+        }
     }
 }

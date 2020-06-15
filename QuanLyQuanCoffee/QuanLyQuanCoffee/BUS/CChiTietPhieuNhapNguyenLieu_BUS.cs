@@ -8,5 +8,6 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CChiTietPhieuNhapNguyenLieu_BUS
     {
+        
     }
 }
