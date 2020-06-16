@@ -189,5 +189,14 @@ namespace QuanLyQuanCoffee.Views
             var index = cmbLoaiNhanVien.SelectedIndex;
             txtLuong.Text = CLoaiNhanVien_BUS.toList()[index].luongCoBan.ToString();
         }
+
+        private void dateNgaySinh_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key.ToString() == "Tab" || e.Key == Key.Enter)
+            {
+                DateTime dateTime = DateTime.Parse(dateNgaySinh.Text);
+                txtTuoi.Text = CNhanVien_BUS.tinhTuoi(dateTime).ToString();
+            }
+        }
     }
 }
