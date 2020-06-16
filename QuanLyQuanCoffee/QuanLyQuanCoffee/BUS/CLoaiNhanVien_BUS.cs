@@ -103,8 +103,16 @@ namespace QuanLyQuanCoffee.BUS
                 return false;
             }
 
-            quanLyQuanCoffee.LoaiNhanViens.Remove(temp);
-            quanLyQuanCoffee.SaveChanges();
+            try
+            {
+                quanLyQuanCoffee.LoaiNhanViens.Remove(temp);
+                quanLyQuanCoffee.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show("Lỗi! Không thể xóa loại nhân viên");
+                return false;
+            }
             return true;
         }
     }
