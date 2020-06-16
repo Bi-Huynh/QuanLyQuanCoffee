@@ -1,9 +1,11 @@
-﻿using QuanLyQuanCoffee.BUS;
+﻿using Prism.Regions;
+using QuanLyQuanCoffee.BUS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace QuanLyQuanCoffee.Services
 {
@@ -67,8 +69,54 @@ namespace QuanLyQuanCoffee.Services
             return result;
         }
 
+        private static bool kiemTraTonTaiSo(string chuoi)
+        {
+            foreach (char item in chuoi)
+            {
+                if ((int)item >= 48 && (int)item <= 57)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private static bool kiemTraTonTaiChu(string chuoi)
+        {
+            foreach (char item in chuoi)
+            {
+                if ((int)item < 48 || (int)item > 57)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static bool kiemTraThongTin(NhanVien nhanVien)
         {
+            if (kiemTraTonTaiSo(nhanVien.hoNhanVien) == true ||
+                kiemTraTonTaiSo(nhanVien.tenNhanVien) == true)
+            {
+                MessageBox.Show("Họ Tên không được có ký tự số");
+                return false;
+            }
+            if (kiemTraTonTaiChu(nhanVien.soDienThoai.Trim()) == true ||
+                kiemTraTonTaiChu(nhanVien.cMND.Trim()) == true)
+            {
+                MessageBox.Show("số điện thoại và CMND chỉ có ký tự số");
+                return false;
+            }
+            if (nhanVien.cMND.Trim().Count() != 9 && nhanVien.cMND.Trim().Count() != 12)
+            {
+                MessageBox.Show("CMND chỉ có 9 ký tự số hoặc 12 ký tự số");
+                return false;
+            }
+            if (nhanVien.soDienThoai.Trim().Count() != 10)
+            {
+                MessageBox.Show("Số điện thoại chỉ có 10 số");
+                return false;
+            }
             return true;
         }
 

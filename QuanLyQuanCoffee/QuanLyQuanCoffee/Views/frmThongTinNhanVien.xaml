@@ -26,12 +26,11 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Image x:Name="imgAnh" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2" Margin="0,10,10,10" Stretch="Uniform" Width="270" Height="300"/>
+            <Image x:Name="imgAnh" Grid.Row="0" Grid.Column="0" Grid.RowSpan="8" Grid.ColumnSpan="2" Margin="0,10,10,10" Stretch="Uniform" Width="270" Height="330"/>
             <TextBox x:Name="txtMaNhanVien" Grid.Row="0" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,10" IsEnabled="False"/>
             <Label Grid.Row="0" Grid.Column="2" Content="Mã nhân viên:" Height="30" VerticalContentAlignment="Center" Margin="0,10"/>
-            <TextBox x:Name="txtUrl" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Height="30" VerticalContentAlignment="Center" Margin="0,0,7,10" IsEnabled="False"/>
             <Label Grid.Row="1" Grid.Column="2" Content="Loại nhân viên:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <ComboBox x:Name="cmbLoaiNhanVien" Grid.Row="1" Grid.Column="3" SelectedValuePath="tenLoai" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" TabIndex="2"/>
+            <ComboBox x:Name="cmbLoaiNhanVien" Grid.Row="1" Grid.Column="3" SelectedValuePath="tenLoai" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" TabIndex="2" SelectionChanged="cmbLoaiNhanVien_SelectionChanged"/>
             <Label Grid.Row="5" Grid.Column="4" Content="Ngày vào làm:" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
             <DatePicker x:Name="dateNgayVaoLam" Grid.Row="5" Grid.Column="5" Height="30" VerticalContentAlignment="Center" Margin="0,10" TabIndex="9"/>
             <Label Grid.Row="2" Grid.Column="2" Content="Họ nhân viên:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>

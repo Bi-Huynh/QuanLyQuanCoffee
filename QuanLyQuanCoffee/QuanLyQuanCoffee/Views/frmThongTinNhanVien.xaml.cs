@@ -25,6 +25,7 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmThongTinNhanVien : Window
     {
         private NhanVien nhanVienSelect = null;
+        private string urlAnh = "";
 
         public frmThongTinNhanVien(NhanVien nhanVien = null, int flag = 1)
         {
@@ -48,6 +49,7 @@ namespace QuanLyQuanCoffee.Views
             {
                 btnThem.IsEnabled = false;
                 btnLuu.IsEnabled = false;
+                btnChosse.IsEnabled = false;
                 isEnabledThongTin(false);
             }
             if (nhanVien != null)
@@ -73,6 +75,9 @@ namespace QuanLyQuanCoffee.Views
             txtTamTru.Text = nhanVien.tamTru;
             txtCMND.Text = nhanVien.cMND;
             txtTuoi.Text = CNhanVien_BUS.tinhTuoi(nhanVien).ToString();
+            txtLuong.Text = nhanVien.LoaiNhanVien.luongCoBan.ToString();
+            cmbTrangThai.SelectedIndex = nhanVien.trangThai;
+            hienThiHinh(nhanVien.urlAnh);
         }
 
         private void isEnabledThongTin(bool value)
@@ -89,6 +94,13 @@ namespace QuanLyQuanCoffee.Views
             txtTamTru.IsEnabled = value;
         }
 
+        private void hienThiHinh(string url)
+        {
+            Uri uri = new Uri(url);
+            imgAnh.Source = new BitmapImage(uri);
+            imgAnh.Stretch = Stretch.Fill;
+        }
+
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
             NhanVien nhanVien = new NhanVien();
@@ -103,17 +115,13 @@ namespace QuanLyQuanCoffee.Views
             nhanVien.tamTru = txtTamTru.Text;
             nhanVien.ngayVaoLam = dateNgayVaoLam.SelectedDate.Value.Date;
             nhanVien.maLoaiNhanVien = CLoaiNhanVien_BUS.findMaLoaiByTenLoai(cmbLoaiNhanVien.SelectedItem.ToString());
-            nhanVien.urlAnh = txtUrl.Text;
+            nhanVien.urlAnh = urlAnh;
             nhanVien.trangThai = cmbTrangThai.SelectedIndex;
 
             if (CNhanVien_BUS.add(nhanVien))
             {
                 MessageBox.Show("Thêm thành công!");
                 this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Thông tin không hợp lệ, Vui lòng kiểm tra lại!");
             }
         }
 
@@ -150,7 +158,7 @@ namespace QuanLyQuanCoffee.Views
             nhanVien.tamTru = txtTamTru.Text;
             nhanVien.ngayVaoLam = dateNgayVaoLam.SelectedDate.Value.Date;
             nhanVien.maLoaiNhanVien = CLoaiNhanVien_BUS.findMaLoaiByTenLoai(cmbLoaiNhanVien.SelectedItem.ToString());
-            nhanVien.urlAnh = txtUrl.Text;
+            nhanVien.urlAnh = urlAnh;
             nhanVien.trangThai = cmbTrangThai.SelectedIndex;
 
             if (CNhanVien_BUS.edit(nhanVien))
@@ -171,11 +179,15 @@ namespace QuanLyQuanCoffee.Views
             openFileDialog.InitialDirectory = @"QuanLyQuanCoffee\Hinh\";
             if (openFileDialog.ShowDialog() == true)
             {
-                txtUrl.Text = openFileDialog.FileName;
-                Uri uri = new Uri(txtUrl.Text);
-                imgAnh.Source = new BitmapImage(uri);
-                imgAnh.Stretch = Stretch.Fill;
+                urlAnh = openFileDialog.FileName;
+                hienThiHinh(urlAnh);
             }
+        }
+
+        private void cmbLoaiNhanVien_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var index = cmbLoaiNhanVien.SelectedIndex;
+            txtLuong.Text = CLoaiNhanVien_BUS.toList()[index].luongCoBan.ToString();
         }
     }
 }

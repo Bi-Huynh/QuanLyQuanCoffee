@@ -79,6 +79,14 @@ namespace QuanLyQuanCoffee.BUS
         {
             if (CServices.kiemTraThongTin(nhanVien))
             {
+                nhanVien.hoNhanVien = CServices.formatChuoi(nhanVien.hoNhanVien);
+                nhanVien.tenNhanVien = CServices.formatChuoi(nhanVien.tenNhanVien);
+                nhanVien.hoNhanVien = CServices.formatChuoi(nhanVien.hoNhanVien);
+                nhanVien.soDienThoai = nhanVien.soDienThoai.Trim();
+                nhanVien.cMND = nhanVien.cMND.Trim();
+                nhanVien.thuongTru = CServices.formatChuoi(nhanVien.thuongTru);
+                nhanVien.tamTru = CServices.formatChuoi(nhanVien.tamTru);
+
                 quanLyQuanCoffee.NhanViens.Add(nhanVien);
                 quanLyQuanCoffee.SaveChanges();
                 return true;
@@ -98,17 +106,18 @@ namespace QuanLyQuanCoffee.BUS
                 return false;
             }
             temp.maNhanVien = nhanVien.maNhanVien;
-            temp.hoNhanVien = nhanVien.hoNhanVien;
-            temp.tenNhanVien = nhanVien.tenNhanVien;
-            temp.soDienThoai = nhanVien.soDienThoai;
+            temp.hoNhanVien = CServices.formatChuoi(nhanVien.hoNhanVien);
+            temp.tenNhanVien = CServices.formatChuoi(nhanVien.tenNhanVien);
+            temp.soDienThoai = nhanVien.soDienThoai.Trim();
             temp.ngaySinh = nhanVien.ngaySinh;
             temp.phai = nhanVien.phai;
-            temp.cMND = nhanVien.cMND;
-            temp.thuongTru = nhanVien.thuongTru;
-            temp.tamTru = nhanVien.tamTru;
+            temp.cMND = nhanVien.cMND.Trim();
+            temp.thuongTru = CServices.formatChuoi(nhanVien.thuongTru);
+            temp.tamTru = CServices.formatChuoi(nhanVien.tamTru);
             temp.ngayVaoLam = nhanVien.ngayVaoLam;
             temp.maLoaiNhanVien = nhanVien.maLoaiNhanVien;
             temp.urlAnh = nhanVien.urlAnh;
+            temp.trangThai = nhanVien.trangThai;
             quanLyQuanCoffee.SaveChanges();
             return true;
         }
