@@ -60,7 +60,6 @@
             <Button x:Name="btnThem" Grid.Column="5" Content="Thêm" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnThem_Click"/>
             <Button x:Name="btnSua" Grid.Column="4" Content="Sửa" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnSua_Click"/>
             <Button x:Name="btnLuu" Grid.Column="3" Content="Lưu" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnLuu_Click"/>
-            <Button x:Name="btnResest" Grid.Column="0" Content="Resest" Height="30" Margin="0,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnResest_Click"/>
         </Grid>
     </StackPanel>
 </Window>

@@ -34,6 +34,7 @@ namespace QuanLyQuanCoffee.Views
             // khi người dùng nhấn thêm thì ấn nút sửa đi
             if (flag == 1)
             {
+                txtMaNguyenLieu.Text = CServices.taoMa<NguyenLieu>(CNguyenLieu_BUS.toList());
                 btnSua.IsEnabled = false;
                 btnLuu.IsEnabled = false;
             }
@@ -48,7 +49,6 @@ namespace QuanLyQuanCoffee.Views
             {
                 btnThem.IsEnabled = false;
                 btnLuu.IsEnabled = false;
-                btnResest.IsEnabled = false;
                 isEnabledThongTin(false);
             }
             if (nguyenLieu != null)
@@ -93,67 +93,69 @@ namespace QuanLyQuanCoffee.Views
             isEnabledThongTin(true);
         }
 
-        private void btnResest_Click(object sender, RoutedEventArgs e)
-        {
-            if (NguyenLieuSelect != null)
-            {
-                hienThiThongTin(NguyenLieuSelect);
-            }
-            else
-            {
-                hienThiThongTin(new NguyenLieu());
-            }
-        }
-
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            string maNguyenLieu = "";
-
-            // chưa xét trường hợp nếu các mã tạo ra đã trùng hết thì sẽ làm như nào
-            do
+            try
             {
-                maNguyenLieu = CServices.randomMa();
-            } while (CNguyenLieu_BUS.find(maNguyenLieu) != null);
+                NguyenLieu nguyenLieu = new NguyenLieu();
+                nguyenLieu.maNguyenLieu = txtMaNguyenLieu.Text;
+                nguyenLieu.tenNguyenLieu = txtTenNguyenLieu.Text;
+                nguyenLieu.donGia = double.Parse(txtDonGia.Text);
+                nguyenLieu.soLuong = int.Parse(txtSoLuong.Text);
+                nguyenLieu.donViTinh = txtDonViTinh.Text;
+                nguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value.Date;
+                nguyenLieu.ngayNhap = dateNgayNhap.SelectedDate.Value.Date;
 
-            NguyenLieu nguyenLieu = new NguyenLieu();
-            nguyenLieu.maNguyenLieu = maNguyenLieu;
-            nguyenLieu.tenNguyenLieu = txtTenNguyenLieu.Text;
-            nguyenLieu.donGia = double.Parse(txtDonGia.Text);
-            nguyenLieu.soLuong = int.Parse(txtSoLuong.Text);
-            nguyenLieu.donViTinh = txtDonViTinh.Text;
-            nguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value.Date;
-            nguyenLieu.ngayNhap = dateNgayNhap.SelectedDate.Value.Date;
-
-            if (CNguyenLieu_BUS.add(nguyenLieu))
-            {
-                MessageBox.Show("Thêm thành công!");
-                this.Close();
+                if (CNguyenLieu_BUS.add(nguyenLieu))
+                {
+                    MessageBox.Show("Thêm thành công!");
+                    this.Close();
+                }
             }
-            else
+            catch (ArgumentNullException)
             {
-                MessageBox.Show("Thông tin không hợp lệ, Vui lòng kiểm tra lại!");
+                MessageBox.Show("Lỗi! Để dữ liệu rỗng");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Lỗi! Không đúng kiểu dữ liệu, Đơn giá và số lượng phải là số");
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Lỗi! Đơn giá hoặc số lượng có độ dài quá giới hạn cho phép");
             }
         }
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            NguyenLieu nguyenLieu = new NguyenLieu();
-            nguyenLieu.maNguyenLieu = txtMaNguyenLieu.Text;
-            nguyenLieu.tenNguyenLieu = txtTenNguyenLieu.Text;
-            nguyenLieu.donGia = double.Parse(txtDonGia.Text);
-            nguyenLieu.soLuong = int.Parse(txtSoLuong.Text);
-            nguyenLieu.donViTinh = txtDonViTinh.Text;
-            nguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value.Date;
-            nguyenLieu.ngayNhap = dateNgayNhap.SelectedDate.Value.Date;
+            try
+            {
+                NguyenLieu nguyenLieu = new NguyenLieu();
+                nguyenLieu.maNguyenLieu = txtMaNguyenLieu.Text;
+                nguyenLieu.tenNguyenLieu = txtTenNguyenLieu.Text;
+                nguyenLieu.donGia = double.Parse(txtDonGia.Text);
+                nguyenLieu.soLuong = int.Parse(txtSoLuong.Text);
+                nguyenLieu.donViTinh = txtDonViTinh.Text;
+                nguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value.Date;
+                nguyenLieu.ngayNhap = dateNgayNhap.SelectedDate.Value.Date;
 
-            if (CNguyenLieu_BUS.edit(nguyenLieu))
-            {
-                MessageBox.Show("Sửa thành công");
-                this.Close();
+                if (CNguyenLieu_BUS.edit(nguyenLieu))
+                {
+                    MessageBox.Show("Sửa thành công");
+                    this.Close();
+                }
             }
-            else
+            catch (ArgumentNullException)
             {
-                MessageBox.Show("Sửa không thành công");
+                MessageBox.Show("Lỗi! Để dữ liệu rỗng");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Lỗi! Không đúng kiểu dữ liệu, Đơn giá và số lượng phải là số");
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Lỗi! Đơn giá hoặc số lượng có độ dài quá giới hạn cho phép");
             }
         }
     }

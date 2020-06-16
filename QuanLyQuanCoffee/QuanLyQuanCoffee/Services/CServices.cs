@@ -135,6 +135,16 @@ namespace QuanLyQuanCoffee.Services
 
         public static bool kiemTraThongTin(NguyenLieu nguyenLieu)
         {
+            if (nguyenLieu.soLuong <= 0)
+            {
+                MessageBox.Show("Lương cơ bản phải là số nguyên dương và lớn hơn 0");
+                return false;
+            }
+            if (nguyenLieu.ngayHetHan < DateTime.Now)
+            {
+                MessageBox.Show("Ngày hết hạn phải lớn hơn hoặc bằng ngày hiện tại");
+                return false;
+            }
             return true;
         }
 

@@ -1,6 +1,8 @@
 ﻿using QuanLyQuanCoffee.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,11 +53,25 @@ namespace QuanLyQuanCoffee.BUS
         {
             if (CServices.kiemTraThongTin(nguyenLieu))
             {
-                quanLyQuanCoffee.NguyenLieux.Add(nguyenLieu);
-                quanLyQuanCoffee.SaveChanges();
-                return true;
+                try
+                {
+                    nguyenLieu.tenNguyenLieu = CServices.formatChuoi(nguyenLieu.tenNguyenLieu);
+
+                    quanLyQuanCoffee.NguyenLieux.Add(nguyenLieu);
+                    quanLyQuanCoffee.SaveChanges();
+                }
+                catch (DbUpdateException)
+                {
+                    MessageBox.Show("Lỗi! Không thể thêm dữ liệu");
+                    return false;
+                }
+                catch (DbEntityValidationException)
+                {
+                    MessageBox.Show("Lỗi! Kiểu dữ liệu được truyền vào không hợp lệ");
+                    return false;
+                }
             }
-            return false;
+            return true;
         }
 
         public static bool edit(NguyenLieu nguyenLieu)
