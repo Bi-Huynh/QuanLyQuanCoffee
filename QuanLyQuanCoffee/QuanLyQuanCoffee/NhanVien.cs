@@ -36,7 +36,7 @@ namespace QuanLyQuanCoffee
         public System.DateTime ngayVaoLam { get; set; }
         public string maLoaiNhanVien { get; set; }
         public string urlAnh { get; set; }
-        public string trangThai { get; set; }
+        public int trangThai { get; set; }
 
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

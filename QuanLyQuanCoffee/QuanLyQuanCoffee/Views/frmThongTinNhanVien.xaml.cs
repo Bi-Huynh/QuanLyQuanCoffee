@@ -1,9 +1,11 @@
-﻿using Prism.Services.Dialogs;
+﻿using Microsoft.Win32;
+using Prism.Services.Dialogs;
 using QuanLyQuanCoffee.BUS;
 using QuanLyQuanCoffee.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -101,6 +103,8 @@ namespace QuanLyQuanCoffee.Views
             nhanVien.tamTru = txtTamTru.Text;
             nhanVien.ngayVaoLam = dateNgayVaoLam.SelectedDate.Value.Date;
             nhanVien.maLoaiNhanVien = CLoaiNhanVien_BUS.findMaLoaiByTenLoai(cmbLoaiNhanVien.SelectedItem.ToString());
+            nhanVien.urlAnh = txtUrl.Text;
+            nhanVien.trangThai = cmbTrangThai.SelectedIndex;
 
             if (CNhanVien_BUS.add(nhanVien))
             {
@@ -127,12 +131,12 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            //var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-            if (result == MessageBoxResult.Yes)
-            {
-                // Do something
-            }
+            //if (result == MessageBoxResult.Yes)
+            //{
+            //    // Do something
+            //}
             string phai = cmbPhai.SelectedValue.ToString();
             NhanVien nhanVien = new NhanVien();
             nhanVien.maNhanVien = txtMaNhanVien.Text;
@@ -146,6 +150,8 @@ namespace QuanLyQuanCoffee.Views
             nhanVien.tamTru = txtTamTru.Text;
             nhanVien.ngayVaoLam = dateNgayVaoLam.SelectedDate.Value.Date;
             nhanVien.maLoaiNhanVien = CLoaiNhanVien_BUS.findMaLoaiByTenLoai(cmbLoaiNhanVien.SelectedItem.ToString());
+            nhanVien.urlAnh = txtUrl.Text;
+            nhanVien.trangThai = cmbTrangThai.SelectedIndex;
 
             if (CNhanVien_BUS.edit(nhanVien))
             {
@@ -155,6 +161,20 @@ namespace QuanLyQuanCoffee.Views
             else
             {
                 MessageBox.Show("Sửa không thành công");
+            }
+        }
+
+        private void btnChosse_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.png;*.jpg)|*.png;*.jpg";
+            openFileDialog.InitialDirectory = @"QuanLyQuanCoffee\Hinh\";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                txtUrl.Text = openFileDialog.FileName;
+                Uri uri = new Uri(txtUrl.Text);
+                imgAnh.Source = new BitmapImage(uri);
+                imgAnh.Stretch = Stretch.Fill;
             }
         }
     }
