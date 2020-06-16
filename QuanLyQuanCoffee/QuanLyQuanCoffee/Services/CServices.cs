@@ -125,6 +125,11 @@ namespace QuanLyQuanCoffee.Services
 
         public static bool kiemTraThongTin(LoaiNhanVien loaiNhanVien)
         {
+            if (loaiNhanVien.luongCoBan < 0)
+            {
+                MessageBox.Show("Lương cơ bản phải là số nguyên dương");
+                return false;
+            }
             return true;
         }
 

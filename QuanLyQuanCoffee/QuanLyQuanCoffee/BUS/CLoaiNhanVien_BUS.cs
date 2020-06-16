@@ -2,6 +2,9 @@
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Common.CommandTrees;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -50,11 +53,24 @@ namespace QuanLyQuanCoffee.BUS
         {
             if (CServices.kiemTraThongTin(loaiNhanVien))
             {
-                quanLyQuanCoffee.LoaiNhanViens.Add(loaiNhanVien);
-                quanLyQuanCoffee.SaveChanges();
-                return true;
+                loaiNhanVien.tenLoai = CServices.formatChuoi(loaiNhanVien.tenLoai);
+                try
+                {
+                    quanLyQuanCoffee.LoaiNhanViens.Add(loaiNhanVien);
+                    quanLyQuanCoffee.SaveChanges();
+                }
+                catch (DbUpdateException)
+                {
+                    MessageBox.Show("Lỗi! Không thể thêm dữ liệu vào cơ sở dữ liệu");
+                    return false;
+                }
+                catch (DbEntityValidationException)
+                {
+                    MessageBox.Show("Lỗi! Kiểu dữ liệu được truyền vào không hợp lệ");
+                    return false;
+                }
             }
-            return false;
+            return true;
         }
 
         public static bool edit(LoaiNhanVien loaiNhanVien)

@@ -65,21 +65,31 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            LoaiNhanVien loaiNhanVien = new LoaiNhanVien();
-            loaiNhanVien.maLoaiNhanvien = txtMaLoaiNhanVien.Text;
-            loaiNhanVien.tenLoai = txtTenLoai.Text;
-            loaiNhanVien.luongCoBan = double.Parse(txtLuong.Text);
+            try
+            {
+                LoaiNhanVien loaiNhanVien = new LoaiNhanVien();
+                loaiNhanVien.maLoaiNhanvien = txtMaLoaiNhanVien.Text;
+                loaiNhanVien.tenLoai = txtTenLoai.Text;
+                loaiNhanVien.luongCoBan = double.Parse(txtLuong.Text);
 
-            if (CLoaiNhanVien_BUS.add(loaiNhanVien))
-            {
-                MessageBox.Show("Thêm thành công");
-                hienThiDSLoaiNhanVien(CLoaiNhanVien_BUS.toList());
+                if (CLoaiNhanVien_BUS.add(loaiNhanVien))
+                {
+                    MessageBox.Show("Thêm thành công");
+                    hienThiDSLoaiNhanVien(CLoaiNhanVien_BUS.toList());
+                }
             }
-            else
+            catch (ArgumentNullException)
             {
-                MessageBox.Show("Thêm không thành công");
+                MessageBox.Show("Lỗi! Dữ liệu rống");
             }
-            
+            catch (FormatException)
+            {
+                MessageBox.Show("Lỗi! Dữ liệu không hợp lệ, Lương cơ bản phải là số");
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Lỗi! Độ dài quá giới hạn cho phép");
+            }
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
