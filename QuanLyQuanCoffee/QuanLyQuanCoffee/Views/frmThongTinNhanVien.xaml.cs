@@ -1,4 +1,5 @@
-﻿using QuanLyQuanCoffee.BUS;
+﻿using Prism.Services.Dialogs;
+using QuanLyQuanCoffee.BUS;
 using QuanLyQuanCoffee.Services;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,6 @@ namespace QuanLyQuanCoffee.Views
             {
                 btnThem.IsEnabled = false;
                 btnLuu.IsEnabled = false;
-                btnResest.IsEnabled = false;
                 isEnabledThongTin(false);
             }
             if (nhanVien != null)
@@ -113,29 +113,6 @@ namespace QuanLyQuanCoffee.Views
             }
         }
 
-        private void btnResest_Click(object sender, RoutedEventArgs e)
-        {
-            // thêm cái group box vào để biding dữ liệu lên
-            if (nhanVienSelect == null)
-            {
-                txtMaNhanVien.Text = "";
-                txtHoNhanVien.Text = "";
-                txtTenNhanVien.Text = "";
-                dateNgayVaoLam.SelectedDate = DateTime.Now;
-                cmbLoaiNhanVien.SelectedIndex = 0;
-                cmbPhai.SelectedIndex = 0;
-                txtSoDienThoai.Text = "";
-                dateNgaySinh.SelectedDate = DateTime.Now;
-                txtThuongTru.Text = "";
-                txtTamTru.Text = "";
-                txtCMND.Text = "";
-            }
-            else
-            {
-                hienThiThongTin(nhanVienSelect);
-            }
-        }
-
         // sự kiện tính tuổi sau khi người dùng chọn ngày sinh của minh
         private void dateNgaySinh_CalendarClosed(object sender, RoutedEventArgs e)
         {
@@ -150,6 +127,12 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
+            var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                // Do something
+            }
             string phai = cmbPhai.SelectedValue.ToString();
             NhanVien nhanVien = new NhanVien();
             nhanVien.maNhanVien = txtMaNhanVien.Text;

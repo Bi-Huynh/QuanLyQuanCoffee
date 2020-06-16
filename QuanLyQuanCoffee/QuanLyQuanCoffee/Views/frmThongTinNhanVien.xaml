@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
         mc:Ignorable="d"
-        Title="Thông Tin Nhân Viên" Height="350" Width="1200" WindowStartupLocation="CenterScreen" FontFamily="Arial">
+        Title="Thông Tin Nhân Viên" Height="430" Width="1000" WindowStartupLocation="CenterScreen" FontFamily="Arial">
     <StackPanel>
         <Grid Margin="10,0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1.5*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -23,51 +23,82 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Content="Mã nhân viên:" Height="30" VerticalContentAlignment="Center" Margin="0,10"/>
-            <TextBox x:Name="txtMaNhanVien" Grid.Row="0" Grid.Column="1" Height="30" VerticalContentAlignment="Center" Margin="0,10" IsEnabled="False"/>
-            <Label Grid.Row="0" Grid.Column="2" Content="Loại nhân viên:" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
-            <ComboBox x:Name="cmbLoaiNhanVien" Grid.Row="0" Grid.Column="3" SelectedValuePath="tenLoai" Height="30" VerticalContentAlignment="Center" Margin="0,10"/>
-            <Label Grid.Row="0" Grid.Column="4" Content="Ngày vào làm:" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
-            <DatePicker x:Name="dateNgayVaoLam" Grid.Row="0" Grid.Column="5" Height="30" VerticalContentAlignment="Center" Margin="0,10"/>
-            <Label Grid.Row="1" Grid.Column="0" Content="Họ nhân viên:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <TextBox x:Name="txtHoNhanVien" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <Label Grid.Row="1" Grid.Column="2" Content="Tên nhân viên:" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
-            <TextBox x:Name="txtTenNhanVien" Grid.Row="1" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <Label Grid.Row="2" Grid.Column="0" Content="Số điệnt thoại:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <TextBox x:Name="txtSoDienThoai" Grid.Row="2" Grid.Column="1" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <Label Grid.Row="2" Grid.Column="2" Content="Ngày sinh:" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
-            <DatePicker x:Name="dateNgaySinh" Grid.Row="2" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" CalendarClosed="dateNgaySinh_CalendarClosed"/>
-            <Label Grid.Row="1" Grid.Column="4" Content="Giới tính:" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
-            <ComboBox x:Name="cmbPhai" Grid.Row="1" Grid.Column="5" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10">
+            <Image x:Name="imgAnh" Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="2" Margin="0,10,10,10" Stretch="Fill"/>
+            <TextBox x:Name="txtMaNhanVien" Grid.Row="0" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,10" IsEnabled="False"/>
+            <Label Grid.Row="0" Grid.Column="2" Content="Mã nhân viên:" Height="30" VerticalContentAlignment="Center" Margin="0,10"/>
+            <TextBox x:Name="txtUrl" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Height="30" VerticalContentAlignment="Center" Margin="0,0,7,10" IsEnabled="False"/>
+            <Label Grid.Row="1" Grid.Column="2" Content="Loại nhân viên:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <ComboBox x:Name="cmbLoaiNhanVien" Grid.Row="1" Grid.Column="3" SelectedValuePath="tenLoai" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" TabIndex="2"/>
+            <Label Grid.Row="5" Grid.Column="4" Content="Ngày vào làm:" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
+            <DatePicker x:Name="dateNgayVaoLam" Grid.Row="5" Grid.Column="5" Height="30" VerticalContentAlignment="Center" Margin="0,10" TabIndex="9"/>
+            <Label Grid.Row="2" Grid.Column="2" Content="Họ nhân viên:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtHoNhanVien" Grid.Row="2" Grid.Column="3" VerticalContentAlignment="Center" Margin="0,0,0,10" TabIndex="3"/>
+            <Label Grid.Row="2" Grid.Column="4" Content="Tên nhân viên:" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
+            <TextBox x:Name="txtTenNhanVien" Grid.Row="2" Grid.Column="5" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" TabIndex="4"/>
+            <Label Grid.Row="4" Grid.Column="2" Content="Số điệnt thoại:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtSoDienThoai" Grid.Row="4" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" TabIndex="6"/>
+            <Label Grid.Row="3" Grid.Column="2" Content="Ngày sinh:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <DatePicker x:Name="dateNgaySinh" Grid.Row="3" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" CalendarClosed="dateNgaySinh_CalendarClosed" TabIndex="5"/>
+            <Label Grid.Row="4" Grid.Column="4" Content="Giới tính:" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
+            <ComboBox x:Name="cmbPhai" Grid.Row="4" Grid.Column="5" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" TabIndex="7">
                 <ComboBoxItem Content="Nam" IsSelected="True" Height="30"/>
                 <ComboBoxItem Content="Nữ" Height="30"/>
             </ComboBox>
-            <Label Grid.Row="2" Grid.Column="4" Content="Tuổi:" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
-            <TextBox x:Name="txtTuoi" Grid.Row="2" Grid.Column="5" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" IsEnabled="False"/>
-            <Label Grid.Row="4" Grid.Column="0" Content="Địa chỉ thường trú:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <TextBox x:Name="txtThuongTru" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <Label Grid.Row="5" Grid.Column="0" Content="Địa chỉ tạm trú:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <TextBox x:Name="txtTamTru" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <Label Grid.Row="3" Grid.Column="0" Content="CMND:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <TextBox x:Name="txtCMND" Grid.Row="3" Grid.Column="1" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <Label Grid.Row="3" Grid.Column="4" Content="Tuổi:" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
+            <TextBox x:Name="txtTuoi" Grid.Row="3" Grid.Column="5" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" IsEnabled="False"/>
+            <Label Grid.Row="6" Grid.Column="2" Content="Địa chỉ thường trú:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtThuongTru" Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="3" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" TabIndex="10"/>
+            <Label Grid.Row="7" Grid.Column="2" Content="Địa chỉ tạm trú:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtTamTru" Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="3" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" TabIndex="11"/>
+            <Label Grid.Row="5" Grid.Column="2" Content="CMND:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtCMND" Grid.Row="5" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" TabIndex="8"/>
+            <Label Grid.Row="1" Grid.Column="4" Content="Lương cơ bản:" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
+            <TextBox x:Name="txtLuong" Grid.Row="1" Grid.Column="5" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" IsEnabled="False"/>
+            <Label Grid.Row="0" Grid.Column="4" Content="Trạng thái:" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
+            <ComboBox x:Name="cmbTrangThai" Grid.Row="0" Grid.Column="5" Height="30" VerticalContentAlignment="Center" Margin="0,10,0,10" TabIndex="1">
+                <ComboBoxItem Content="Đang làm" IsSelected="True" Height="30"/>
+                <ComboBoxItem Content="Tạm nghỉ" Height="30"/>
+                <ComboBoxItem Content="Nghỉ việc" Height="30"/>
+            </ComboBox>
         </Grid>
-        <Grid Margin="10,0">
+        <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="192*"/>
-                <ColumnDefinition Width="196*"/>
-                <ColumnDefinition Width="195*"/>
-                <ColumnDefinition Width="195*"/>
-                <ColumnDefinition Width="195*"/>
-                <ColumnDefinition Width="195*"/>
+                <ColumnDefinition Width="0.395*"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button x:Name="btnThem" Grid.Column="5" Content="Thêm" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnThem_Click"/>
-            <Button x:Name="btnSua" Grid.Column="4" Content="Sửa" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnSua_Click"/>
-            <Button x:Name="btnLuu" Grid.Column="3" Content="Lưu" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnLuu_Click"/>
-            <Button x:Name="btnResest" Grid.Column="0" Content="Resest" Height="30" Margin="0,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnResest_Click"/>
+            
+            <Grid Margin="10,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" Content="Chosse" Height="30" Margin="0,0,5,0" VerticalAlignment="Bottom" TabIndex="12" />
+                <Button Grid.Row="0" Grid.Column="1" Content="Upload" Height="30" Margin="5,0,0,0" VerticalAlignment="Bottom" TabIndex="13"/>
+            </Grid>
+            
+            <Grid Margin="10,0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button x:Name="btnThem" Grid.Column="3" Content="Thêm" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnThem_Click" TabIndex="14"/>
+                <Button x:Name="btnSua" Grid.Column="2" Content="Sửa" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnSua_Click" TabIndex="15"/>
+                <Button x:Name="btnLuu" Grid.Column="1" Content="Lưu" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnLuu_Click" TabIndex="16"/>
+            </Grid>
         </Grid>
     </StackPanel>
 </Window>
