@@ -61,7 +61,7 @@ namespace QuanLyQuanCoffee.BUS
                 }
                 catch (DbUpdateException)
                 {
-                    MessageBox.Show("Lỗi! Không thể thêm dữ liệu vào cơ sở dữ liệu");
+                    MessageBox.Show("Lỗi! Không thể thêm dữ liệu");
                     return false;
                 }
                 catch (DbEntityValidationException)
