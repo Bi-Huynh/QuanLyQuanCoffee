@@ -31,10 +31,10 @@ namespace QuanLyQuanCoffee.Views
         {
             InitializeComponent();
 
-            // khi người dùng nhấn thêm thì ấn nút sửa đi
+            // khi người dùng nhấn thêm thì ấn nút sửa
             if (flag == 1)
             {
-                txtMaNhanVien.Text = CServices.taoMaNhanVien();
+                txtMaNhanVien.Text = CServices.taoMa<NhanVien>(CNhanVien_BUS.toList());
                 btnSua.IsEnabled = false;
                 btnLuu.IsEnabled = false;
             }
@@ -77,6 +77,7 @@ namespace QuanLyQuanCoffee.Views
             txtTuoi.Text = CNhanVien_BUS.tinhTuoi(nhanVien).ToString();
             txtLuong.Text = nhanVien.LoaiNhanVien.luongCoBan.ToString();
             cmbTrangThai.SelectedIndex = nhanVien.trangThai;
+            urlAnh = nhanVien.urlAnh;
             hienThiHinh(nhanVien.urlAnh);
         }
 
@@ -96,9 +97,12 @@ namespace QuanLyQuanCoffee.Views
 
         private void hienThiHinh(string url)
         {
-            Uri uri = new Uri(url);
-            imgAnh.Source = new BitmapImage(uri);
-            imgAnh.Stretch = Stretch.Fill;
+            if (url != "" && url != null)
+            {
+                Uri uri = new Uri(url);
+                imgAnh.Source = new BitmapImage(uri);
+                imgAnh.Stretch = Stretch.Fill;
+            }
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
@@ -134,41 +138,36 @@ namespace QuanLyQuanCoffee.Views
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
             btnLuu.IsEnabled = true;
+            btnChosse.IsEnabled = true;
             isEnabledThongTin(true);
         }
 
         private void btnLuu_Click(object sender, RoutedEventArgs e)
         {
-            //var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-            //if (result == MessageBoxResult.Yes)
-            //{
-            //    // Do something
-            //}
-            string phai = cmbPhai.SelectedValue.ToString();
-            NhanVien nhanVien = new NhanVien();
-            nhanVien.maNhanVien = txtMaNhanVien.Text;
-            nhanVien.hoNhanVien = txtHoNhanVien.Text;
-            nhanVien.tenNhanVien = txtTenNhanVien.Text;
-            nhanVien.soDienThoai = txtSoDienThoai.Text;
-            nhanVien.ngaySinh = dateNgaySinh.SelectedDate.Value.Date;
-            nhanVien.phai = cmbPhai.SelectedValue.ToString() == "Nam" ? true : false;
-            nhanVien.cMND = txtCMND.Text;
-            nhanVien.thuongTru = txtThuongTru.Text;
-            nhanVien.tamTru = txtTamTru.Text;
-            nhanVien.ngayVaoLam = dateNgayVaoLam.SelectedDate.Value.Date;
-            nhanVien.maLoaiNhanVien = CLoaiNhanVien_BUS.findMaLoaiByTenLoai(cmbLoaiNhanVien.SelectedItem.ToString());
-            nhanVien.urlAnh = urlAnh;
-            nhanVien.trangThai = cmbTrangThai.SelectedIndex;
+            if (result == MessageBoxResult.Yes)
+            {
+                string phai = cmbPhai.SelectedValue.ToString();
+                NhanVien nhanVien = new NhanVien();
+                nhanVien.maNhanVien = txtMaNhanVien.Text;
+                nhanVien.hoNhanVien = txtHoNhanVien.Text;
+                nhanVien.tenNhanVien = txtTenNhanVien.Text;
+                nhanVien.soDienThoai = txtSoDienThoai.Text;
+                nhanVien.ngaySinh = dateNgaySinh.SelectedDate.Value.Date;
+                nhanVien.phai = cmbPhai.SelectedValue.ToString() == "Nam" ? true : false;
+                nhanVien.cMND = txtCMND.Text;
+                nhanVien.thuongTru = txtThuongTru.Text;
+                nhanVien.tamTru = txtTamTru.Text;
+                nhanVien.ngayVaoLam = dateNgayVaoLam.SelectedDate.Value.Date;
+                nhanVien.maLoaiNhanVien = CLoaiNhanVien_BUS.findMaLoaiByTenLoai(cmbLoaiNhanVien.SelectedItem.ToString());
+                nhanVien.urlAnh = urlAnh;
+                nhanVien.trangThai = cmbTrangThai.SelectedIndex;
 
-            if (CNhanVien_BUS.edit(nhanVien))
-            {
-                MessageBox.Show("Sửa thành công");
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Sửa không thành công");
+                if (CNhanVien_BUS.edit(nhanVien))
+                {
+                    this.Close();
+                }
             }
         }
 

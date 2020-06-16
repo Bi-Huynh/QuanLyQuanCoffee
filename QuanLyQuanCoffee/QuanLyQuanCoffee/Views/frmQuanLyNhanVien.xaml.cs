@@ -53,14 +53,14 @@ namespace QuanLyQuanCoffee.Views
         {
             if (nhanVienSelect != null)
             {
-                if (CNhanVien_BUS.remove(nhanVienSelect))
+                var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
                 {
-                    MessageBox.Show("Xóa thành công");
-                    hienThiDSNhanVien(CNhanVien_BUS.toList());
-                }
-                else
-                {
-                    MessageBox.Show("Xóa không thành công");
+                    if (CNhanVien_BUS.remove(nhanVienSelect))
+                    {
+                        hienThiDSNhanVien(CNhanVien_BUS.toList());
+                    }
                 }
             }
             else
@@ -79,7 +79,6 @@ namespace QuanLyQuanCoffee.Views
             {
                 MessageBox.Show("Vui lòng chọn nhân viên");
             }
-
         }
 
         private void btnXemThongTinChiTiet_Click(object sender, RoutedEventArgs e)

@@ -25,22 +25,25 @@ namespace QuanLyQuanCoffee.Services
             return ma;
         }
 
-        public static string taoMaNhanVien()
+        public static string taoMa<T>(List<T> list)
         {
-            string ma = "NV";
-            var list = CNhanVien_BUS.toList();
-            if (list.Count == 0)
+            string ma = "";
+            if (list.Count() == 0)
             {
-                return "NV00000001";
+                ma = "0000000001";
             }
-            NhanVien nhanVien = list[list.Count() - 1];
-            string chuoi1 = nhanVien.maNhanVien;
-            chuoi1 = chuoi1.Remove(0, 2);   // bỏ 2 ký tự đầu tiên đi - NV
-            int temp = int.Parse(chuoi1);
-            temp++;
-            chuoi1 = String.Format("{0:00000000}", temp);
-            ma += chuoi1;
-
+            else
+            {
+                T temp = list[list.Count() - 1];
+                double thuTu = int.Parse(temp.ToString());
+                ++thuTu;
+                if (thuTu == 9999999999)
+                {
+                    MessageBox.Show("Mã đã tới giới hạn, không thể tăng nữa");
+                    return "";
+                }
+                ma = String.Format("{0:00000000}", thuTu);
+            }
             return ma;
         }
 

@@ -29,6 +29,7 @@ namespace QuanLyQuanCoffee.Views
             loaiNhanVienSelect = new LoaiNhanVien();
             hienThiDSLoaiNhanVien(CLoaiNhanVien_BUS.toList());
             isEnabledThongTin(false);
+            txtMaLoaiNhanVien.Text = CServices.taoMa<LoaiNhanVien>(CLoaiNhanVien_BUS.toList());
         }
 
         private void hienThiDSLoaiNhanVien(List<LoaiNhanVien> list)
@@ -64,14 +65,8 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            string maLoaiNhanVien = "";
-            do
-            {
-                maLoaiNhanVien = CServices.randomMa();
-            } while (CLoaiNhanVien_BUS.find(maLoaiNhanVien) != null);
-
             LoaiNhanVien loaiNhanVien = new LoaiNhanVien();
-            loaiNhanVien.maLoaiNhanvien = maLoaiNhanVien;
+            loaiNhanVien.maLoaiNhanvien = txtMaLoaiNhanVien.Text;
             loaiNhanVien.tenLoai = txtTenLoai.Text;
             loaiNhanVien.luongCoBan = double.Parse(txtLuong.Text);
 
