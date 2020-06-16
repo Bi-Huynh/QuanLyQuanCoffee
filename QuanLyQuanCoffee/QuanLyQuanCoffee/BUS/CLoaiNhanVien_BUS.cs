@@ -80,10 +80,18 @@ namespace QuanLyQuanCoffee.BUS
             {
                 return false;
             }
-            temp.maLoaiNhanvien = loaiNhanVien.maLoaiNhanvien;
-            temp.tenLoai = loaiNhanVien.tenLoai;
-            temp.luongCoBan = loaiNhanVien.luongCoBan;
-            quanLyQuanCoffee.SaveChanges();
+            try
+            {
+                temp.maLoaiNhanvien = loaiNhanVien.maLoaiNhanvien;
+                temp.tenLoai = CServices.formatChuoi(loaiNhanVien.tenLoai);
+                temp.luongCoBan = loaiNhanVien.luongCoBan;
+                quanLyQuanCoffee.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show("Lỗi! không thể sửa thông tin loại nhân viên");
+                return false;
+            }
             return true;
         }
 

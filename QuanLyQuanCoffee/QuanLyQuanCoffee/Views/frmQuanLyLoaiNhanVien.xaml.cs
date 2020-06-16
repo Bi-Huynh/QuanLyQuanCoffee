@@ -111,19 +111,35 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-            LoaiNhanVien loaiNhanVien = new LoaiNhanVien();
-            loaiNhanVien.maLoaiNhanvien = txtMaLoaiNhanVien.Text;
-            loaiNhanVien.tenLoai = txtTenLoai.Text;
-            loaiNhanVien.luongCoBan = double.Parse(txtLuong.Text);
+            var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-            if (CLoaiNhanVien_BUS.edit(loaiNhanVien))
+            if (result == MessageBoxResult.Yes)
             {
-                MessageBox.Show("Sửa thành công");
-                hienThiDSLoaiNhanVien(CLoaiNhanVien_BUS.toList());
-            }
-            else
-            {
-                MessageBox.Show("Sửa không thành công");
+                try
+                {
+                    LoaiNhanVien loaiNhanVien = new LoaiNhanVien();
+                    loaiNhanVien.maLoaiNhanvien = txtMaLoaiNhanVien.Text;
+                    loaiNhanVien.tenLoai = txtTenLoai.Text;
+                    loaiNhanVien.luongCoBan = double.Parse(txtLuong.Text);
+
+                    if (CLoaiNhanVien_BUS.edit(loaiNhanVien))
+                    {
+                        MessageBox.Show("Sửa thành công");
+                        hienThiDSLoaiNhanVien(CLoaiNhanVien_BUS.toList());
+                    }
+                }
+                catch (ArgumentNullException)
+                {
+                    MessageBox.Show("Lỗi! Dữ liệu rống");
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Lỗi! Dữ liệu không hợp lệ, Lương cơ bản phải là số");
+                }
+                catch (OverflowException)
+                {
+                    MessageBox.Show("Lỗi! Độ dài quá giới hạn cho phép");
+                }
             }
         }
 
