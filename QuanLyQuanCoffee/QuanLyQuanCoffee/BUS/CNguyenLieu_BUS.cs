@@ -77,25 +77,29 @@ namespace QuanLyQuanCoffee.BUS
         public static bool edit(NguyenLieu nguyenLieu)
         {
             NguyenLieu temp = find(nguyenLieu.maNguyenLieu);
-            if (temp == null)
-            {
-                return false;
-            }
-            if (!CServices.kiemTraThongTin(nguyenLieu))
+            if (temp == null || !CServices.kiemTraThongTin(nguyenLieu))
             {
                 return false;
             }
 
-            temp.maNguyenLieu = nguyenLieu.maNguyenLieu;
-            temp.tenNguyenLieu = nguyenLieu.tenNguyenLieu;
-            temp.donGia = nguyenLieu.donGia;
-            temp.soLuong = nguyenLieu.soLuong;
-            temp.donViTinh = nguyenLieu.donViTinh;
-            temp.ngayHetHan = nguyenLieu.ngayHetHan;
-            temp.ngayNhap = nguyenLieu.ngayNhap;
-            temp.maLoaiNguyenLieu = nguyenLieu.maLoaiNguyenLieu;
+            try
+            {
+                temp.maNguyenLieu = nguyenLieu.maNguyenLieu;
+                temp.tenNguyenLieu = CServices.formatChuoi(nguyenLieu.tenNguyenLieu);
+                temp.donGia = nguyenLieu.donGia;
+                temp.soLuong = nguyenLieu.soLuong;
+                temp.donViTinh = nguyenLieu.donViTinh;
+                temp.ngayHetHan = nguyenLieu.ngayHetHan;
+                temp.ngayNhap = nguyenLieu.ngayNhap;
+                temp.maLoaiNguyenLieu = nguyenLieu.maLoaiNguyenLieu;
 
-            quanLyQuanCoffee.SaveChanges();
+                quanLyQuanCoffee.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show("Lỗi! không thể sửa thông tin nguyên liệu");
+                return false;
+            }
             return true;
         }
 
@@ -107,13 +111,23 @@ namespace QuanLyQuanCoffee.BUS
                 MessageBox.Show("Không tìm thấy nguyên liệu để xóa");
                 return false;
             }
-            if (temp.ChiTietPhieuNhapNguyenLieux.Count > 0  || temp.ChiTietXuatNhapNguyenLieux.Count > 0)
+            if (temp.ChiTietPhieuNhapNguyenLieux.Count > 0 || temp.ChiTietXuatNhapNguyenLieux.Count > 0)
             {
                 MessageBox.Show("Không thể xóa nguyên liệu này");
                 return false;
             }
-            quanLyQuanCoffee.NguyenLieux.Remove(temp);
-            quanLyQuanCoffee.SaveChanges();
+
+            try
+            {
+                quanLyQuanCoffee.NguyenLieux.Remove(temp);
+                quanLyQuanCoffee.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show("Lỗi! Không thể xóa nguyên liệu");
+                return false;
+            }
+            
             return true;
         }
     }
