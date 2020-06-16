@@ -92,19 +92,19 @@ namespace QuanLyQuanCoffee.Views
         {
             if (nguyenLieuSelect != null)
             {
-                if (CNguyenLieu_BUS.remove(nguyenLieuSelect))
+                var result = MessageBox.Show("Do you want to delete changes?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
                 {
-                    MessageBox.Show("Xóa thành công");
-                    hienThiDS(CNguyenLieu_BUS.toList());
-                }
-                else
-                {
-                    MessageBox.Show("Xóa không thành công");
+                    if (CNguyenLieu_BUS.remove(nguyenLieuSelect))
+                    {
+                        hienThiDS(CNguyenLieu_BUS.toList());
+                    }
                 }
             }
             else
             {
-                MessageBox.Show("vui lòng chọn nguyên liệu");
+                MessageBox.Show("Vui lòng chọn nguyên liệu");
             }
         }
 

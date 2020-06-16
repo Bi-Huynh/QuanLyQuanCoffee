@@ -62,7 +62,14 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
+            if (phieuNhapNguyenLieuSelect != null)
+            {
 
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn phiếu nhập nguyên liệu");
+            }
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
@@ -87,7 +94,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-
+            new frmThongTinNguyenLieu().Show();
         }
 
         private void txtTimKiem_KeyUp(object sender, KeyEventArgs e)
