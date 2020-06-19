@@ -32,6 +32,12 @@
                 <MenuItem Header="Quản Lý Sản Phẩm"
                           Name="gd_QuanLySanPham" 
                           Click="gd_QuanLySanPham_Click"></MenuItem>
+                <MenuItem  Header="Quản Lý Loại Sản Phẩm"
+                          Name="gd_QuanLyLoaiSanPham"
+                           Click="gd_QuanLyLoaiSanPham_Click"
+                          >
+                    
+                </MenuItem>
             </MenuItem>
             <MenuItem x:Name="hoaDon" Header="Hóa Đơn">
                 <MenuItem Header="Quản Lý Hóa Đơn"

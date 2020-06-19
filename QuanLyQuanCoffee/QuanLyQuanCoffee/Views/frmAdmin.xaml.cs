@@ -65,12 +65,12 @@ namespace QuanLyQuanCoffee.Views
 
         private void gd_quanlyTaiKhoan_Click(object sender, RoutedEventArgs e)
         {
-
+            Main.Content = new frmQuanLyTaiKhoan();
         }
 
         private void gd_quanlyLoaiTaiKhoan_Click(object sender, RoutedEventArgs e)
         {
-
+            Main.Content = new frmQuanLyLoaiTaiKhoan();
         }
 
         private void order_Click(object sender, RoutedEventArgs e)
@@ -81,7 +81,15 @@ namespace QuanLyQuanCoffee.Views
 
         private void dangXuat_Click(object sender, RoutedEventArgs e)
         {
+            frmDangNhap f = new frmDangNhap();
+            f.Show();
+            taiKhoan = null;
+            this.Close();
+        }
 
+        private void gd_QuanLyLoaiSanPham_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new frmQuanLyloaiSanPham();
         }
     }
 }

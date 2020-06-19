@@ -162,5 +162,15 @@ namespace QuanLyQuanCoffee.Services
         {
             return true;
         }
+
+        public static bool kiemTraThongTin(SanPham sanPham)
+        {
+            if (sanPham.donGia < 0)
+            {
+                MessageBox.Show("Đơn giá phải lơn hơn 0");
+                return false;
+            }
+            return true;
+        }
     }
 }
