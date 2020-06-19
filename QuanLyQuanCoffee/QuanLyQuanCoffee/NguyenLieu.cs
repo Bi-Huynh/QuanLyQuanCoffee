@@ -14,26 +14,17 @@ namespace QuanLyQuanCoffee
     
     public partial class NguyenLieu
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public NguyenLieu()
-        {
-            this.ChiTietPhieuNhapNguyenLieux = new HashSet<ChiTietPhieuNhapNguyenLieu>();
-            this.ChiTietXuatNhapNguyenLieux = new HashSet<ChiTietXuatNhapNguyenLieu>();
-        }
-    
         public string maNguyenLieu { get; set; }
         public string tenNguyenLieu { get; set; }
-        public double donGia { get; set; }
-        public int soLuong { get; set; }
-        public string donViTinh { get; set; }
-        public System.DateTime ngayHetHan { get; set; }
-        public System.DateTime ngayNhap { get; set; }
         public string maLoaiNguyenLieu { get; set; }
+        public Nullable<int> trangThai { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietPhieuNhapNguyenLieu> ChiTietPhieuNhapNguyenLieux { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietXuatNhapNguyenLieu> ChiTietXuatNhapNguyenLieux { get; set; }
+        public virtual ChiTietNguyenLieu ChiTietNguyenLieu { get; set; }
         public virtual LoaiNguyenLieu LoaiNguyenLieu { get; set; }
+
+        public override string ToString()
+        {
+            return maNguyenLieu;
+        }
     }
 }

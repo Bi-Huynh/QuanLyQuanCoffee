@@ -42,7 +42,7 @@ namespace QuanLyQuanCoffee.Services
                     MessageBox.Show("Mã đã tới giới hạn, không thể tăng nữa");
                     return "";
                 }
-                ma = String.Format("{0:00000000}", thuTu);
+                ma = String.Format("{0:0000000000}", thuTu);
             }
             return ma;
         }
@@ -135,16 +135,16 @@ namespace QuanLyQuanCoffee.Services
 
         public static bool kiemTraThongTin(NguyenLieu nguyenLieu)
         {
-            if (nguyenLieu.soLuong <= 0)
-            {
-                MessageBox.Show("Lương cơ bản phải là số nguyên dương và lớn hơn 0");
-                return false;
-            }
-            if (nguyenLieu.ngayHetHan < DateTime.Now)
-            {
-                MessageBox.Show("Ngày hết hạn phải lớn hơn hoặc bằng ngày hiện tại");
-                return false;
-            }
+            //if (nguyenLieu.soLuong <= 0)
+            //{
+            //    MessageBox.Show("Lương cơ bản phải là số nguyên dương và lớn hơn 0");
+            //    return false;
+            //}
+            //if (nguyenLieu.ngayHetHan < DateTime.Now)
+            //{
+            //    MessageBox.Show("Ngày hết hạn phải lớn hơn hoặc bằng ngày hiện tại");
+            //    return false;
+            //}
             return true;
         }
 

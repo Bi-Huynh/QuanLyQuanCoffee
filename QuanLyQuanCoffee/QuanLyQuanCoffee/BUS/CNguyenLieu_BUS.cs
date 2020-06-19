@@ -86,11 +86,11 @@ namespace QuanLyQuanCoffee.BUS
             {
                 temp.maNguyenLieu = nguyenLieu.maNguyenLieu;
                 temp.tenNguyenLieu = CServices.formatChuoi(nguyenLieu.tenNguyenLieu);
-                temp.donGia = nguyenLieu.donGia;
-                temp.soLuong = nguyenLieu.soLuong;
-                temp.donViTinh = nguyenLieu.donViTinh;
-                temp.ngayHetHan = nguyenLieu.ngayHetHan;
-                temp.ngayNhap = nguyenLieu.ngayNhap;
+                //temp.donGia = nguyenLieu.donGia;
+                //temp.soLuong = nguyenLieu.soLuong;
+                //temp.donViTinh = nguyenLieu.donViTinh;
+                //temp.ngayHetHan = nguyenLieu.ngayHetHan;
+                //temp.ngayNhap = nguyenLieu.ngayNhap;
                 temp.maLoaiNguyenLieu = nguyenLieu.maLoaiNguyenLieu;
 
                 quanLyQuanCoffee.SaveChanges();
@@ -111,11 +111,11 @@ namespace QuanLyQuanCoffee.BUS
                 MessageBox.Show("Không tìm thấy nguyên liệu để xóa");
                 return false;
             }
-            if (temp.ChiTietPhieuNhapNguyenLieux.Count > 0 || temp.ChiTietXuatNhapNguyenLieux.Count > 0)
-            {
-                MessageBox.Show("Không thể xóa nguyên liệu này");
-                return false;
-            }
+            //if (temp.ChiTietPhieuNhapNguyenLieux.Count > 0 || temp.ChiTietXuatNhapNguyenLieux.Count > 0)
+            //{
+            //    MessageBox.Show("Không thể xóa nguyên liệu này");
+            //    return false;
+            //}
 
             try
             {

@@ -27,10 +27,11 @@ namespace QuanLyQuanCoffee
     
         public virtual DbSet<ChiTietChamCong> ChiTietChamCongs { get; set; }
         public virtual DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
+        public virtual DbSet<ChiTietNguyenLieu> ChiTietNguyenLieux { get; set; }
         public virtual DbSet<ChiTietPhieuNhapNguyenLieu> ChiTietPhieuNhapNguyenLieux { get; set; }
-        public virtual DbSet<ChiTietXuatNhapNguyenLieu> ChiTietXuatNhapNguyenLieux { get; set; }
+        public virtual DbSet<ChiTietPhieuXuatNguyenLieu> ChiTietPhieuXuatNguyenLieux { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
-        public virtual DbSet<LoaiNguyenLieu> LoaiNguyenLieus { get; set; }
+        public virtual DbSet<LoaiNguyenLieu> LoaiNguyenLieux { get; set; }
         public virtual DbSet<LoaiNhanVien> LoaiNhanViens { get; set; }
         public virtual DbSet<LoaiSanPham> LoaiSanPhams { get; set; }
         public virtual DbSet<LoaiTaiKhoan> LoaiTaiKhoans { get; set; }
@@ -40,7 +41,6 @@ namespace QuanLyQuanCoffee
         public virtual DbSet<PhieuNhapNguyenLieu> PhieuNhapNguyenLieux { get; set; }
         public virtual DbSet<PhieuXuatNguyenLieu> PhieuXuatNguyenLieux { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
     }
 }

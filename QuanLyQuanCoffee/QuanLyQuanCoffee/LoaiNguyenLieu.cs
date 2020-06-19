@@ -22,8 +22,14 @@ namespace QuanLyQuanCoffee
     
         public string maLoaiNguyenLieu { get; set; }
         public string tenLoaiNguyenLieu { get; set; }
+        public Nullable<int> trangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NguyenLieu> NguyenLieux { get; set; }
+
+        public override string ToString()
+        {
+            return maLoaiNguyenLieu;
+        }
     }
 }

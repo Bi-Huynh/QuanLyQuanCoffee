@@ -92,10 +92,13 @@
     <Compile Include="ChiTietHoaDon.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
+    <Compile Include="ChiTietNguyenLieu.cs">
+      <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
+    </Compile>
     <Compile Include="ChiTietPhieuNhapNguyenLieu.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
-    <Compile Include="ChiTietXuatNhapNguyenLieu.cs">
+    <Compile Include="ChiTietPhieuXuatNguyenLieu.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
     <Compile Include="HoaDon.cs">
@@ -147,9 +150,6 @@
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\CServices.cs" />
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
-    </Compile>
     <Compile Include="TaiKhoan.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
@@ -167,6 +167,9 @@
     </Compile>
     <Compile Include="Views\frmQuanLyPhieuNhapNguyenLieu.xaml.cs">
       <DependentUpon>frmQuanLyPhieuNhapNguyenLieu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmQuanLyThongTinPhieuNhapNguyenLieu.xaml.cs">
+      <DependentUpon>frmQuanLyThongTinPhieuNhapNguyenLieu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\frmThongTinNguyenLieu.xaml.cs">
       <DependentUpon>frmThongTinNguyenLieu.xaml</DependentUpon>
@@ -191,6 +194,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\frmQuanLyPhieuNhapNguyenLieu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmQuanLyThongTinPhieuNhapNguyenLieu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -257,6 +264,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Hinh\" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="QuanLyQuanCoffee.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QuanLyQuanCoffee.edmx</DependentUpon>
@@ -267,12 +280,6 @@
       <DependentUpon>QuanLyQuanCoffee.edmx</DependentUpon>
       <LastGenOutput>QuanLyQuanCoffee.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Hinh\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

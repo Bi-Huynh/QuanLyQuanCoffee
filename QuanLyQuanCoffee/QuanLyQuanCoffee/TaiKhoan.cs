@@ -18,6 +18,7 @@ namespace QuanLyQuanCoffee
         public string taiKhoan1 { get; set; }
         public string matKhau { get; set; }
         public string maLoaiTaiKhoan { get; set; }
+        public Nullable<int> trangThai { get; set; }
     
         public virtual LoaiTaiKhoan LoaiTaiKhoan { get; set; }
         public virtual NhanVien NhanVien { get; set; }

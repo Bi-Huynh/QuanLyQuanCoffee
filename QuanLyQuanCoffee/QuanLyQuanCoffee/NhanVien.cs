@@ -35,9 +35,8 @@ namespace QuanLyQuanCoffee
         public string tamTru { get; set; }
         public System.DateTime ngayVaoLam { get; set; }
         public string maLoaiNhanVien { get; set; }
+        public Nullable<int> trangThai { get; set; }
         public string urlAnh { get; set; }
-        public int trangThai { get; set; }
-
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietChamCong> ChiTietChamCongs { get; set; }

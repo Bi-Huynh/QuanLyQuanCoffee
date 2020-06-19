@@ -43,7 +43,10 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnXemThongTinChiTiet_Click(object sender, RoutedEventArgs e)
         {
-
+            if (phieuNhapNguyenLieuSelect != null)
+            {
+                new frmQuanLyThongTinPhieuNhapNguyenLieu(phieuNhapNguyenLieuSelect).Show();
+            }
         }
 
         private void dgDSPhieuNhap_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -64,7 +67,7 @@ namespace QuanLyQuanCoffee.Views
         {
             if (phieuNhapNguyenLieuSelect != null)
             {
-
+                new frmQuanLyThongTinPhieuNhapNguyenLieu(phieuNhapNguyenLieuSelect, 1).Show();
             }
             else
             {

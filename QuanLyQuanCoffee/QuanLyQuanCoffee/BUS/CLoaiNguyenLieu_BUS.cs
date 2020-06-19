@@ -14,19 +14,19 @@ namespace QuanLyQuanCoffee.BUS
 
         public static List<LoaiNguyenLieu> toList()
         {
-            List<LoaiNguyenLieu> list = quanLyQuanCoffee.LoaiNguyenLieus.ToList();
+            List<LoaiNguyenLieu> list = quanLyQuanCoffee.LoaiNguyenLieux.ToList();
             return list == null ? new List<LoaiNguyenLieu>() : list;
         }
 
         public static List<string> toListTenLoai()
         {
-            List<string> list = quanLyQuanCoffee.LoaiNguyenLieus.Select(x => x.tenLoaiNguyenLieu).ToList();
+            List<string> list = quanLyQuanCoffee.LoaiNguyenLieux.Select(x => x.tenLoaiNguyenLieu).ToList();
             return list == null ? new List<string>() : list;
         }
 
         public static LoaiNguyenLieu find(string maNguyenLieu)
         {
-            return quanLyQuanCoffee.LoaiNguyenLieus.Find(maNguyenLieu);
+            return quanLyQuanCoffee.LoaiNguyenLieux.Find(maNguyenLieu);
         }
 
         public static LoaiNguyenLieu find(LoaiNguyenLieu loaiNguyenLieu)
@@ -37,7 +37,7 @@ namespace QuanLyQuanCoffee.BUS
         public static string findMaLoaibyTenLoai(string tenLoai)
         {
             // so sánh cái tên của loại nguyên liệu và lấy ra cái mã
-            return quanLyQuanCoffee.LoaiNguyenLieus.Where(x => x.tenLoaiNguyenLieu == tenLoai).FirstOrDefault().maLoaiNguyenLieu;
+            return quanLyQuanCoffee.LoaiNguyenLieux.Where(x => x.tenLoaiNguyenLieu == tenLoai).FirstOrDefault().maLoaiNguyenLieu;
 
         }
 
@@ -45,7 +45,7 @@ namespace QuanLyQuanCoffee.BUS
         {
             if (CServices.kiemTraThongTin(loaiNguyenLieu))
             {
-                quanLyQuanCoffee.LoaiNguyenLieus.Add(loaiNguyenLieu);
+                quanLyQuanCoffee.LoaiNguyenLieux.Add(loaiNguyenLieu);
                 quanLyQuanCoffee.SaveChanges();
                 return true;
             }
@@ -81,9 +81,10 @@ namespace QuanLyQuanCoffee.BUS
                 return false;
             }
 
-            quanLyQuanCoffee.LoaiNguyenLieus.Remove(temp);
+            quanLyQuanCoffee.LoaiNguyenLieux.Remove(temp);
             quanLyQuanCoffee.SaveChanges();
             return true;
         }
+
     }
 }

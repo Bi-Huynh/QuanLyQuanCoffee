@@ -16,9 +16,10 @@ namespace QuanLyQuanCoffee
     {
         public string maPhieuNhap { get; set; }
         public string maNguyenLieu { get; set; }
-        public double thanhTien { get; set; }
+        public Nullable<int> soLuong { get; set; }
+        public Nullable<double> thanhTien { get; set; }
     
-        public virtual NguyenLieu NguyenLieu { get; set; }
+        public virtual ChiTietNguyenLieu ChiTietNguyenLieu { get; set; }
         public virtual PhieuNhapNguyenLieu PhieuNhapNguyenLieu { get; set; }
     }
 }

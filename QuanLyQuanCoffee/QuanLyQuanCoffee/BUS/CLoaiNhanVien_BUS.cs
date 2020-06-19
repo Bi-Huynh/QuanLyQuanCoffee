@@ -64,11 +64,6 @@ namespace QuanLyQuanCoffee.BUS
                     MessageBox.Show("Lỗi! Không thể thêm dữ liệu");
                     return false;
                 }
-                catch (DbEntityValidationException)
-                {
-                    MessageBox.Show("Lỗi! Kiểu dữ liệu được truyền vào không hợp lệ");
-                    return false;
-                }
             }
             return true;
         }
@@ -123,5 +118,6 @@ namespace QuanLyQuanCoffee.BUS
             }
             return true;
         }
+
     }
 }

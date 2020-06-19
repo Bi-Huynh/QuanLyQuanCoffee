@@ -76,6 +76,10 @@ namespace QuanLyQuanCoffee.Views
                 {
                     MessageBox.Show("Thêm thành công");
                     hienThiDSLoaiNhanVien(CLoaiNhanVien_BUS.toList());
+
+                    txtMaLoaiNhanVien.Text = CServices.taoMa<LoaiNhanVien>(CLoaiNhanVien_BUS.toList());
+                    txtTenLoai.Text = "";
+                    txtLuong.Text = "";
                 }
             }
             catch (ArgumentNullException)
@@ -101,6 +105,10 @@ namespace QuanLyQuanCoffee.Views
                     MessageBox.Show("Xóa thành công");
                     hienThiDSLoaiNhanVien(CLoaiNhanVien_BUS.toList());
                     loaiNhanVienSelect = null;
+
+                    txtTenLoai.Text = "";
+                    txtLuong.Text = "";
+                    txtMaLoaiNhanVien.Text = CServices.taoMa<LoaiNhanVien>(CLoaiNhanVien_BUS.toList());
                 }
             }
             else
@@ -126,6 +134,10 @@ namespace QuanLyQuanCoffee.Views
                     {
                         MessageBox.Show("Sửa thành công");
                         hienThiDSLoaiNhanVien(CLoaiNhanVien_BUS.toList());
+
+                        txtTenLoai.Text = "";
+                        txtLuong.Text = "";
+                        txtMaLoaiNhanVien.Text = CServices.taoMa<LoaiNhanVien>(CLoaiNhanVien_BUS.toList());
                     }
                 }
                 catch (ArgumentNullException)
@@ -147,6 +159,14 @@ namespace QuanLyQuanCoffee.Views
         {
             hienThiThongTin(new LoaiNhanVien());
             isEnabledThongTin(false);
+        }
+
+        private void txtLuong_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && txtLuong.Text != "")
+            {
+                btnThem_Click(sender, e);
+            }
         }
     }
 }

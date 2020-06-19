@@ -24,9 +24,9 @@
             <Label Grid.Column="0" Grid.Row="1" Content="Mã Loại nhân viên:" FontFamily="Arial" FontSize="12" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
             <TextBox x:Name="txtMaLoaiNhanVien" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" Height="30" Margin="0,0,0,10" IsEnabled="False"/>
             <Label Grid.Column="2" Grid.Row="1" Content="Tên Loại:" FontFamily="Arial" FontSize="12" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
-            <TextBox x:Name="txtTenLoai" Grid.Column="3" Grid.Row="1" VerticalContentAlignment="Center" Height="30" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtTenLoai" Grid.Column="3" Grid.Row="1" VerticalContentAlignment="Center" Height="30" Margin="0,0,0,10" TabIndex="1"/>
             <Label Grid.Column="4" Grid.Row="1" Content="Lương:" FontFamily="Arial" FontSize="12" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
-            <TextBox x:Name="txtLuong" Grid.Column="5" Grid.Row="1" VerticalContentAlignment="Center" Height="30" Margin="0,0,10,10"/>
+            <TextBox x:Name="txtLuong" Grid.Column="5" Grid.Row="1" VerticalContentAlignment="Center" Height="30" Margin="0,0,10,10" TabIndex="2" KeyUp="txtLuong_KeyUp"/>
         </Grid>
         <DataGrid x:Name="dgDSLoaiNhanVien" MinHeight="200" Margin="10,0" AutoGenerateColumns="False" 
                   SelectedValuePath="maLoaiNhanvien" HorizontalContentAlignment="Center" 
@@ -50,10 +50,10 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button x:Name="btnThem" Grid.Column="5" Grid.Row="0" Content="Thêm" Height="30" Margin="10,10,10,0" Click="btnThem_Click"/>
-            <Button x:Name="btnXoa" Grid.Column="4" Grid.Row="0" Content="Xóa" Height="30" Margin="10,10,10,0" Click="btnXoa_Click"/>
-            <Button x:Name="btnSua" Grid.Column="3" Grid.Row="0" Content="Sửa" Height="30" Margin="10,10,10,0" Click="btnSua_Click"/>
-            <Button x:Name="btnBoChon" Grid.Column="0" Grid.Row="0" Content="Bỏ chọn" Height="30" Margin="10,10,10,0" Click="btnBoChon_Click"/>
+            <Button x:Name="btnThem" Grid.Column="5" Grid.Row="0" Content="Thêm" Height="30" Margin="10,10,10,0" Click="btnThem_Click" TabIndex="3"/>
+            <Button x:Name="btnXoa" Grid.Column="4" Grid.Row="0" Content="Xóa" Height="30" Margin="10,10,10,0" Click="btnXoa_Click" TabIndex="4"/>
+            <Button x:Name="btnSua" Grid.Column="3" Grid.Row="0" Content="Sửa" Height="30" Margin="10,10,10,0" Click="btnSua_Click" TabIndex="5"/>
+            <Button x:Name="btnBoChon" Grid.Column="0" Grid.Row="0" Content="Bỏ chọn" Height="30" Margin="10,10,10,0" Click="btnBoChon_Click" TabIndex="6"/>
         </Grid>
     </StackPanel>
 </Window>

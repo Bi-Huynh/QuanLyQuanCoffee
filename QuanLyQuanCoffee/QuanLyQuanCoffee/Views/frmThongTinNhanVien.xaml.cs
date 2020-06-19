@@ -76,7 +76,7 @@ namespace QuanLyQuanCoffee.Views
             txtCMND.Text = nhanVien.cMND;
             txtTuoi.Text = CNhanVien_BUS.tinhTuoi(nhanVien).ToString();
             txtLuong.Text = nhanVien.LoaiNhanVien.luongCoBan.ToString();
-            cmbTrangThai.SelectedIndex = nhanVien.trangThai;
+            cmbTrangThai.SelectedIndex = nhanVien.trangThai.Value;
             urlAnh = nhanVien.urlAnh;
             hienThiHinh(nhanVien.urlAnh);
         }
@@ -99,9 +99,10 @@ namespace QuanLyQuanCoffee.Views
         {
             if (url != "" && url != null)
             {
+                //Uri uri = new Uri(url, UriKind.Relative);
                 Uri uri = new Uri(url);
                 imgAnh.Source = new BitmapImage(uri);
-                imgAnh.Stretch = Stretch.Fill;
+                imgAnh.Stretch = Stretch.Uniform;
             }
         }
 
@@ -174,11 +175,14 @@ namespace QuanLyQuanCoffee.Views
         private void btnChosse_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Chọn ảnh";
             openFileDialog.Filter = "Image files (*.png;*.jpg)|*.png;*.jpg";
             openFileDialog.InitialDirectory = @"QuanLyQuanCoffee\Hinh\";
+            openFileDialog.RestoreDirectory = true;
             if (openFileDialog.ShowDialog() == true)
             {
                 urlAnh = openFileDialog.FileName;
+                //urlAnh = @".\QuanLyQuanCoffee\Hinh\1.jpg";
                 hienThiHinh(urlAnh);
             }
         }

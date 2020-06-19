@@ -24,9 +24,15 @@ namespace QuanLyQuanCoffee
         public System.DateTime ngayNhap { get; set; }
         public double tongThanhTien { get; set; }
         public string maNhanVien { get; set; }
+        public Nullable<int> trangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietPhieuNhapNguyenLieu> ChiTietPhieuNhapNguyenLieux { get; set; }
         public virtual NhanVien NhanVien { get; set; }
+
+        public override string ToString()
+        {
+            return maPhieuNhap;
+        }
     }
 }

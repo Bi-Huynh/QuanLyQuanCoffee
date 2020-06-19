@@ -27,10 +27,6 @@ namespace QuanLyQuanCoffee.Views
         {
             InitializeComponent();
             hienThi();
-            if (NguyenLieuSelect != null)
-            {
-                hienThiThongTin(NguyenLieuSelect);
-            }
             // khi người dùng nhấn thêm thì ấn nút sửa đi
             if (flag == 1)
             {
@@ -68,11 +64,11 @@ namespace QuanLyQuanCoffee.Views
         {
             txtMaNguyenLieu.Text = nguyenLieu.maNguyenLieu;
             txtTenNguyenLieu.Text = nguyenLieu.tenNguyenLieu;
-            txtDonGia.Text = nguyenLieu.donGia.ToString();
-            txtDonViTinh.Text = nguyenLieu.donViTinh;
-            txtSoLuong.Text = nguyenLieu.soLuong.ToString();
-            dateNgayHetHan.SelectedDate = nguyenLieu.ngayHetHan;
-            dateNgayNhap.SelectedDate = nguyenLieu.ngayNhap;
+            //txtDonGia.Text = nguyenLieu.donGia.ToString();
+            //txtDonViTinh.Text = nguyenLieu.donViTinh;
+            //txtSoLuong.Text = nguyenLieu.soLuong.ToString();
+            //dateNgayHetHan.SelectedDate = nguyenLieu.ngayHetHan;
+            //dateNgayNhap.SelectedDate = nguyenLieu.ngayNhap;
             cmbLoaiNguyenLieu.SelectedItem = nguyenLieu.LoaiNguyenLieu.tenLoaiNguyenLieu;
         }
 
@@ -100,11 +96,11 @@ namespace QuanLyQuanCoffee.Views
                 NguyenLieu nguyenLieu = new NguyenLieu();
                 nguyenLieu.maNguyenLieu = txtMaNguyenLieu.Text;
                 nguyenLieu.tenNguyenLieu = txtTenNguyenLieu.Text;
-                nguyenLieu.donGia = double.Parse(txtDonGia.Text);
-                nguyenLieu.soLuong = int.Parse(txtSoLuong.Text);
-                nguyenLieu.donViTinh = txtDonViTinh.Text;
-                nguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value.Date;
-                nguyenLieu.ngayNhap = dateNgayNhap.SelectedDate.Value.Date;
+                //nguyenLieu.donGia = double.Parse(txtDonGia.Text);
+                //nguyenLieu.soLuong = int.Parse(txtSoLuong.Text);
+                //nguyenLieu.donViTinh = txtDonViTinh.Text;
+                //nguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value.Date;
+                //nguyenLieu.ngayNhap = dateNgayNhap.SelectedDate.Value.Date;
 
                 if (CNguyenLieu_BUS.add(nguyenLieu))
                 {
@@ -133,11 +129,11 @@ namespace QuanLyQuanCoffee.Views
                 NguyenLieu nguyenLieu = new NguyenLieu();
                 nguyenLieu.maNguyenLieu = txtMaNguyenLieu.Text;
                 nguyenLieu.tenNguyenLieu = txtTenNguyenLieu.Text;
-                nguyenLieu.donGia = double.Parse(txtDonGia.Text);
-                nguyenLieu.soLuong = int.Parse(txtSoLuong.Text);
-                nguyenLieu.donViTinh = txtDonViTinh.Text;
-                nguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value.Date;
-                nguyenLieu.ngayNhap = dateNgayNhap.SelectedDate.Value.Date;
+                //nguyenLieu.donGia = double.Parse(txtDonGia.Text);
+                //nguyenLieu.soLuong = int.Parse(txtSoLuong.Text);
+                //nguyenLieu.donViTinh = txtDonViTinh.Text;
+                //nguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value.Date;
+                //nguyenLieu.ngayNhap = dateNgayNhap.SelectedDate.Value.Date;
 
                 if (CNguyenLieu_BUS.edit(nguyenLieu))
                 {

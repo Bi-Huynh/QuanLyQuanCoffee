@@ -20,7 +20,13 @@ namespace QuanLyQuanCoffee
         public System.DateTime denNgay { get; set; }
         public System.DateTime tongGioLam { get; set; }
         public double thanhTien { get; set; }
+        public Nullable<int> trangThai { get; set; }
     
         public virtual NhanVien NhanVien { get; set; }
+
+        public override string ToString()
+        {
+            return maLuong;
+        }
     }
 }

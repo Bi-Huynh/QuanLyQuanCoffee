@@ -1,0 +1,65 @@
+﻿<Window x:Class="QuanLyQuanCoffee.Views.frmQuanLyThongTinPhieuNhapNguyenLieu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
+        mc:Ignorable="d"
+        Title="Thông tin phiếu nhập nguyên liệu" Height="600" Width="1200">
+    <StackPanel>
+        <Grid Margin="10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Mã nguyên liệu:" Height="30" VerticalContentAlignment="Center" Margin="0,10"/>
+            <TextBox x:Name="txtMaNguyenLieu" Grid.Row="0" Grid.Column="1" Height="30" VerticalContentAlignment="Center" Margin="0,10" IsEnabled="False"/>
+            <Label Grid.Row="0" Grid.Column="2" Content="Loại nguyên liệu:" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
+            <ComboBox x:Name="cmbLoaiNguyenLieu" Grid.Row="0" Grid.Column="3" SelectedValuePath="tenLoai" Height="30" VerticalContentAlignment="Center" Margin="0,10"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Tên nguyên liệu:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <TextBox x:Name="txtTenNguyenLieu" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <Label Grid.Row="1" Grid.Column="2" Content="Đơn giá:" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
+            <TextBox x:Name="txtDonGia" Grid.Row="1" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Đơn vị tính:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <ComboBox x:Name="txtDonViTinh" Grid.Row="2" Grid.Column="1" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10">
+                <ComboBoxItem Content="gam" IsSelected="True"/>
+                <ComboBoxItem Content="Kg"/>
+                <ComboBoxItem Content="Chai"/>
+                <ComboBoxItem Content="Lon"/>
+                <ComboBoxItem Content="Hộp"/>
+                <ComboBoxItem Content="Lít"/>
+                <ComboBoxItem Content="ml"/>
+            </ComboBox>
+            <Label Grid.Row="3" Grid.Column="0" Content="Ngày Hết hạn:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <DatePicker x:Name="dateNgayHetHan" Grid.Row="3" Grid.Column="1" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <Label Grid.Row="2" Grid.Column="2" Content="Số lượng:" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
+            <TextBox x:Name="txtSoLuong" Grid.Row="2" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <Label Grid.Row="3" Grid.Column="2" Content="Ngày nhập:" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
+            <DatePicker x:Name="dateNgayNhap" Grid.Row="3" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+        </Grid>
+        <Grid Margin="10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="192*"/>
+                <ColumnDefinition Width="196*"/>
+                <ColumnDefinition Width="195*"/>
+                <ColumnDefinition Width="195*"/>
+                <ColumnDefinition Width="195*"/>
+                <ColumnDefinition Width="195*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnThem" Grid.Column="5" Content="Thêm" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Button x:Name="btnSua" Grid.Column="4" Content="Sửa" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Button x:Name="btnLuu" Grid.Column="3" Content="Lưu" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        </Grid>
+    </StackPanel>
+</Window>

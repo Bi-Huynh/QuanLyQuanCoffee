@@ -14,7 +14,6 @@ namespace QuanLyQuanCoffee
     
     public partial class ChiTietHoaDon
     {
-        public string maChiTietHoaDon { get; set; }
         public string maHoaDon { get; set; }
         public string maSanPham { get; set; }
         public Nullable<int> soLuong { get; set; }

@@ -35,10 +35,10 @@ namespace QuanLyQuanCoffee.Views
             {
                 maNguyenLieu = x.maNguyenLieu,
                 tenNguyenLieu = x.tenNguyenLieu,
-                donGia = x.donGia,
-                soLuong = x.soLuong,
-                ngayHetHan = x.ngayHetHan.ToString("dd/MM/yyyy"),
-                ngayNhap = x.ngayNhap.ToString("dd/MM/yyyy")
+                //donGia = x.donGia,
+                //soLuong = x.soLuong,
+                //ngayHetHan = x.ngayHetHan.ToString("dd/MM/yyyy"),
+                //ngayNhap = x.ngayNhap.ToString("dd/MM/yyyy")
             });
         }
 

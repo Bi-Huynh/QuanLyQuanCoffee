@@ -24,11 +24,16 @@ namespace QuanLyQuanCoffee
         public string tenSanPham { get; set; }
         public string donViTinh { get; set; }
         public string maLoaiSanPham { get; set; }
-        public double donGia { get; set; }
+        public Nullable<int> donGia { get; set; }
         public Nullable<int> trangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
         public virtual LoaiSanPham LoaiSanPham { get; set; }
+
+        public override string ToString()
+        {
+            return maSanPham;
+        }
     }
 }

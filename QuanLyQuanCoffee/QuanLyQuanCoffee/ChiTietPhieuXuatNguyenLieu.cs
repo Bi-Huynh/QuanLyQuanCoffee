@@ -12,12 +12,14 @@ namespace QuanLyQuanCoffee
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class ChiTietPhieuXuatNguyenLieu
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public string maPhieuXuat { get; set; }
+        public string maNguyenLieu { get; set; }
+        public Nullable<int> soLuong { get; set; }
+        public Nullable<double> thanhTien { get; set; }
+    
+        public virtual ChiTietNguyenLieu ChiTietNguyenLieu { get; set; }
+        public virtual PhieuXuatNguyenLieu PhieuXuatNguyenLieu { get; set; }
     }
 }
