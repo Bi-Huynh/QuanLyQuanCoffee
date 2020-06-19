@@ -80,7 +80,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BUS\CChiTietHoaDon_BUS.cs" />
     <Compile Include="BUS\CChiTietPhieuNhapNguyenLieu_BUS.cs" />
+    <Compile Include="BUS\CHoaDon_BUS.cs" />
     <Compile Include="BUS\CLoaiNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CLoaiNhanVien_BUS.cs" />
     <Compile Include="BUS\CNguyenLieu_BUS.cs" />
@@ -153,6 +155,9 @@
     <Compile Include="TaiKhoan.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmOrder.xaml.cs">
+      <DependentUpon>frmOrder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmQuanLyLoaiNguyenLieu.xaml.cs">
       <DependentUpon>frmQuanLyLoaiNguyenLieu.xaml</DependentUpon>
     </Compile>
@@ -178,6 +183,10 @@
       <DependentUpon>frmThongTinNhanVien.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\frmAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
