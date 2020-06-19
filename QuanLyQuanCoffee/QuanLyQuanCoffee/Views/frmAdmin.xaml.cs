@@ -33,7 +33,7 @@ namespace QuanLyQuanCoffee.Views
 
         public void kiemTraQuyen(TaiKhoan taiKhoan1)
         {
-            if (taiKhoan1.maLoaiTaiKhoan != "LOAI1")
+            if (taiKhoan1.maLoaiTaiKhoan != "00001")
             {
                 nhanSu.IsEnabled = false;
                 nguyenLieu.IsEnabled = false;
