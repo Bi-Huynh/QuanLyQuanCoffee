@@ -31,6 +31,7 @@ namespace QuanLyQuanCoffee
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
         public virtual LoaiSanPham LoaiSanPham { get; set; }
 
+
         public override string ToString()
         {
             return maSanPham;

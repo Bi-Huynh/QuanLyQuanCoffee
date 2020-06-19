@@ -142,6 +142,7 @@
           <Property Name="ngayVaoLam" Type="datetime" Nullable="false" />
           <Property Name="maLoaiNhanVien" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="trangThai" Type="int" />
+          <Property Name="urlAnh" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="PhieuNhapNguyenLieu">
           <Key>
@@ -636,6 +637,7 @@
           <Property Name="ngayVaoLam" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="maLoaiNhanVien" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="trangThai" Type="Int32" />
+          <Property Name="urlAnh" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChiTietChamCongs" Relationship="Self.FK_ChiTietChamCong_NhanVien" FromRole="NhanVien" ToRole="ChiTietChamCong" />
           <NavigationProperty Name="HoaDons" Relationship="Self.FK_HoaDon_NhanVien" FromRole="NhanVien" ToRole="HoaDon" />
           <NavigationProperty Name="LoaiNhanVien" Relationship="Self.FK_NhanVien_LoaiNhanVien" FromRole="NhanVien" ToRole="LoaiNhanVien" />
@@ -897,7 +899,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QuanLyQuanCoffeeEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="QuanLyQuanCoffeeEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChiTietChamCongs" EntityType="Self.ChiTietChamCong" />
           <EntitySet Name="ChiTietHoaDons" EntityType="Self.ChiTietHoaDon" />
           <EntitySet Name="ChiTietNguyenLieux" EntityType="Self.ChiTietNguyenLieu" />
@@ -989,7 +991,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QuanLyQuanCoffeeModelStoreContainer" CdmEntityContainer="QuanLyQuanCoffeeEntities">
+        <EntityContainerMapping StorageEntityContainer="QuanLyQuanCoffeeModelStoreContainer" CdmEntityContainer="QuanLyQuanCoffeeEntities1">
           <EntitySetMapping Name="ChiTietChamCongs">
             <EntityTypeMapping TypeName="QuanLyQuanCoffeeModel.ChiTietChamCong">
               <MappingFragment StoreEntitySet="ChiTietChamCong">
@@ -1135,6 +1137,7 @@
                 <ScalarProperty Name="ngayVaoLam" ColumnName="ngayVaoLam" />
                 <ScalarProperty Name="maLoaiNhanVien" ColumnName="maLoaiNhanVien" />
                 <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+                <ScalarProperty Name="urlAnh" ColumnName="urlAnh" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

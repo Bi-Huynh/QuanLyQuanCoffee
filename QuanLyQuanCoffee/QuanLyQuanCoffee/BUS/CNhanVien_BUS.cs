@@ -93,6 +93,7 @@ namespace QuanLyQuanCoffee.BUS
 
                     quanLyQuanCoffee.NhanViens.Add(nhanVien);
                     quanLyQuanCoffee.SaveChanges();
+                    return true;
                 }
                 catch (DbUpdateException)
                 {
@@ -105,7 +106,7 @@ namespace QuanLyQuanCoffee.BUS
                     return false;
                 }
             }
-            return true;
+            return false;
         }
 
         public static bool edit(NhanVien nhanVien)

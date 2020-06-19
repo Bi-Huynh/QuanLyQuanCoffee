@@ -156,7 +156,7 @@ namespace QuanLyQuanCoffee.Views
                 nhanVien.tenNhanVien = txtTenNhanVien.Text;
                 nhanVien.soDienThoai = txtSoDienThoai.Text;
                 nhanVien.ngaySinh = dateNgaySinh.SelectedDate.Value.Date;
-                nhanVien.phai = cmbPhai.SelectedValue.ToString() == "Nam" ? true : false;
+                nhanVien.phai = cmbPhai.SelectedIndex == 0 ? true : false;
                 nhanVien.cMND = txtCMND.Text;
                 nhanVien.thuongTru = txtThuongTru.Text;
                 nhanVien.tamTru = txtTamTru.Text;
@@ -197,8 +197,20 @@ namespace QuanLyQuanCoffee.Views
         {
             if (e.Key.ToString() == "Tab" || e.Key == Key.Enter)
             {
-                DateTime dateTime = DateTime.Parse(dateNgaySinh.Text);
-                txtTuoi.Text = CNhanVien_BUS.tinhTuoi(dateTime).ToString();
+                try
+                {
+                    string ngaySinh = dateNgaySinh.Text;
+                    dateNgaySinh.SelectedDate = DateTime.Parse(ngaySinh);
+                    txtTuoi.Text = CNhanVien_BUS.tinhTuoi(dateNgaySinh.SelectedDate.Value).ToString();
+                }
+                catch (ArgumentNullException)
+                {
+                    MessageBox.Show("Ngày sinh rỗng, không thể tính được tuổi nhân viên");
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Lỗi Định dạng! Ngày sinh phải là: MM/dd/yyyy");
+                }
             }
         }
     }
