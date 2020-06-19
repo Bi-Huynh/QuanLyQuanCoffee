@@ -8,7 +8,7 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CSanPham_BUS
     {
-        private static QuanLyQuanCoffeeEntities2 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities2();
+        private static QuanLyQuanCoffeeEntities quanLyQuanCoffee = new QuanLyQuanCoffeeEntities();
 
         public static SanPham find(string maSanPham)
         {

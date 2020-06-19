@@ -1,5 +1,4 @@
-﻿using QuanLyQuanCoffee.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,18 +16,23 @@ using System.Windows.Shapes;
 namespace QuanLyQuanCoffee.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for frmQuanLySanPham.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class frmQuanLySanPham : Page
     {
-        public MainWindow()
+        public frmQuanLySanPham()
         {
             InitializeComponent();
         }
 
-        private void gd_QuanLyNhanVien_Click(object sender, RoutedEventArgs e)
+        private void cboLoaisanpham_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
+        }
+
+        private void dgQlsanpham_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

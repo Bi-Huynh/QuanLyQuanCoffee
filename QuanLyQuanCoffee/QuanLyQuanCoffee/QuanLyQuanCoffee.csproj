@@ -88,6 +88,7 @@
     <Compile Include="BUS\CNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CNhanVien_BUS.cs" />
     <Compile Include="BUS\CPhieuNhapNguyenLieu_BUS.cs" />
+    <Compile Include="BUS\CSanPham_BUS.cs" />
     <Compile Include="ChiTietChamCong.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
@@ -155,6 +156,9 @@
     <Compile Include="TaiKhoan.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmDangNhap.xaml.cs">
+      <DependentUpon>frmDangNhap.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmOrder.xaml.cs">
       <DependentUpon>frmOrder.xaml</DependentUpon>
     </Compile>
@@ -173,6 +177,9 @@
     <Compile Include="Views\frmQuanLyPhieuNhapNguyenLieu.xaml.cs">
       <DependentUpon>frmQuanLyPhieuNhapNguyenLieu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmQuanLySanPham.xaml.cs">
+      <DependentUpon>frmQuanLySanPham.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmQuanLyThongTinPhieuNhapNguyenLieu.xaml.cs">
       <DependentUpon>frmQuanLyThongTinPhieuNhapNguyenLieu.xaml</DependentUpon>
     </Compile>
@@ -183,6 +190,10 @@
       <DependentUpon>frmThongTinNhanVien.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\frmAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmDangNhap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,6 +214,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\frmQuanLyPhieuNhapNguyenLieu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmQuanLySanPham.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

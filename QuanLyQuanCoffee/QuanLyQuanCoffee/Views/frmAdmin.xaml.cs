@@ -50,7 +50,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void gd_QuanLySanPham_Click(object sender, RoutedEventArgs e)
         {
-
+            Main.Content = new frmQuanLySanPham();
         }
 
         private void gd_QuanLyNguyenLieu_Click(object sender, RoutedEventArgs e)
@@ -77,6 +77,11 @@ namespace QuanLyQuanCoffee.Views
         {
             NhanVien nhanVien = quanLyQuanCoffee.NhanViens.Find(taiKhoan1.maNhanVien);
             Main.Content = new frmOrder(nhanVien);
+        }
+
+        private void dangXuat_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

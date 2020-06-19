@@ -57,7 +57,7 @@
 
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Đăng xuất" Click="MenuItem_Click_1_dangxuat">
+            <MenuItem x:Name="dangXuat" Header="Đăng xuất" Click="dangXuat_Click">
 
             </MenuItem>
         </Menu>
