@@ -26,7 +26,7 @@ namespace QuanLyQuanCoffee.Views
         public frmQuanLyNguyenLieu()
         {
             InitializeComponent();
-            hienThiDS(CNguyenLieu_BUS.toList());
+            hienThiDS(CNguyenLieu_BUS.to_List());
         }
 
         public void hienThiDS(List<NguyenLieu> list)
@@ -48,7 +48,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnRefesh_Click(object sender, RoutedEventArgs e)
         {
-            //hienThiDS(CNguyenLieu_BUS.toList());
+            hienThiDS(CNguyenLieu_BUS.to_List());
         }
 
         private void btnXemThongTinChiTiet_Click(object sender, RoutedEventArgs e)
@@ -96,7 +96,7 @@ namespace QuanLyQuanCoffee.Views
                 {
                     if (CNguyenLieu_BUS.remove(nguyenLieuSelect))
                     {
-                        //hienThiDS(CNguyenLieu_BUS.toList());
+                        hienThiDS(CNguyenLieu_BUS.to_List());
                     }
                 }
             }
@@ -110,24 +110,24 @@ namespace QuanLyQuanCoffee.Views
         {
             if (txtTimKiem.Text == "")
             {
-                //hienThiDS(CNguyenLieu_BUS.toList());
+                hienThiDS(CNguyenLieu_BUS.to_List());
                 return;
             }
 
             // nếu combox tìm kiếm là 0 tức là tìm theo tên nguyên liệu
             if (cmbTimKiem.SelectedIndex == 0)
             {
-                //hienThiDS(CNguyenLieu_BUS.findTen(txtTimKiem.Text));
+                hienThiDS(CNguyenLieu_BUS.findTen(txtTimKiem.Text));
             }
             //nếu combox tìm kiếm là 1 tức là tìm theo mã nguyên liệu
             else if (cmbTimKiem.SelectedIndex == 1)
             {
                 List<NguyenLieu> list = CNguyenLieu_BUS.findMa(txtTimKiem.Text);
-                //hienThiDS(list);
+                hienThiDS(list);
             }
             else
             {
-                //hienThiDS(CNguyenLieu_BUS.findTenLoai(txtTimKiem.Text));
+                hienThiDS(CNguyenLieu_BUS.findTenLoai(txtTimKiem.Text));
             }
         }
     }

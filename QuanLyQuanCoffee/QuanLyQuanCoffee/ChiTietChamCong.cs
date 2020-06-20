@@ -11,7 +11,8 @@ namespace QuanLyQuanCoffee
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity.Core.Metadata.Edm;
+
     public partial class ChiTietChamCong
     {
         public string maChamCong { get; set; }
@@ -26,5 +27,10 @@ namespace QuanLyQuanCoffee
         public Nullable<int> trangThai { get; set; }
     
         public virtual NhanVien NhanVien { get; set; }
+
+        public override string ToString()
+        {
+            return maChamCong;
+        }
     }
 }

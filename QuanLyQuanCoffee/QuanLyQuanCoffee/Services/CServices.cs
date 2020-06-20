@@ -34,15 +34,30 @@ namespace QuanLyQuanCoffee.Services
             }
             else
             {
-                T temp = list[list.Count() - 1];
-                double thuTu = int.Parse(temp.ToString());
-                ++thuTu;
-                if (thuTu == 9999999999)
+                try
                 {
-                    MessageBox.Show("Mã đã tới giới hạn, không thể tăng nữa");
-                    return "";
+                    T temp = list[list.Count() - 1];
+                    double thuTu = int.Parse(temp.ToString());
+                    ++thuTu;
+                    if (thuTu == 9999999999)
+                    {
+                        MessageBox.Show("Mã đã tới giới hạn, không thể tăng nữa");
+                        return "";
+                    }
+                    ma = String.Format("{0:0000000000}", thuTu);
                 }
-                ma = String.Format("{0:0000000000}", thuTu);
+                catch (ArgumentNullException)
+                {
+                    MessageBox.Show("Lỗi, tạo mã tự động 1");
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Lỗi, tạo mã tự động 2");
+                }
+                catch (OverflowException)
+                {
+                    MessageBox.Show("Lỗi, tạo mã tự động 3");
+                }
             }
             return ma;
         }
