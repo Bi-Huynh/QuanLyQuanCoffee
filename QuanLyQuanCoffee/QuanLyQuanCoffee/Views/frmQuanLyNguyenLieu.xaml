@@ -35,15 +35,13 @@
         </Grid>
         <DataGrid x:Name="dgDSNguyenLieu" MinHeight="565" Margin="10,0" AutoGenerateColumns="False" 
                   SelectedValuePath="maNguyenLieu" HorizontalContentAlignment="Center" 
-                  Background="White" FontFamily="Arial"
+                  Background="White" FontFamily="Arial" IsReadOnly="True"
                   SelectionChanged="dgDSNguyenLieu_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã nguyên liệu" Binding="{Binding maNguyenLieu}" Width="1*"/>
-                <DataGridTextColumn Header="Tên" Binding="{Binding tenNguyenLieu}" Width="1.5*"/>
-                <DataGridTextColumn Header="Đơn giá" Binding="{Binding donGia}" Width="1*"/>
-                <DataGridTextColumn Header="Số lượng" Binding="{Binding soLuong}" Width="1*"/>
-                <DataGridTextColumn Header="Ngày hết hạn" Binding="{Binding ngayHetHan}" Width="1.5*"/>
-                <DataGridTextColumn Header="Ngày nhập hàng" Binding="{Binding ngayNhap}" Width="1.5*"/>
+                <DataGridTextColumn Header="Tên nguyên liệu" Binding="{Binding tenNguyenLieu}" Width="1*"/>
+                <DataGridTextColumn Header="Tổng số lượng" Binding="{Binding tongSoLuong}" Width="1*"/>
+                <DataGridTextColumn Header="Loại nguyên liệu" Binding="{Binding tenLoaiNguyenLieu}" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Grid>

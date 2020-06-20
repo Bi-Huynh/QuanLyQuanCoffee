@@ -20,12 +20,12 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmQuanLyTaiKhoan : Page
     {
-        private QuanLyQuanCoffeeEntities dc = new QuanLyQuanCoffeeEntities();
+        private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
         TaiKhoan tk;
         public frmQuanLyTaiKhoan()
         {
             InitializeComponent();
-            dc = new QuanLyQuanCoffeeEntities();
+            dc = new QuanLyQuanCoffeeEntities1();
             hienthiDStaikhoan();
         }
         public void hienthiDStaikhoan()

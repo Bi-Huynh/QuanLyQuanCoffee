@@ -35,10 +35,8 @@ namespace QuanLyQuanCoffee.Views
             {
                 maNguyenLieu = x.maNguyenLieu,
                 tenNguyenLieu = x.tenNguyenLieu,
-                //donGia = x.donGia,
-                //soLuong = x.soLuong,
-                //ngayHetHan = x.ngayHetHan.ToString("dd/MM/yyyy"),
-                //ngayNhap = x.ngayNhap.ToString("dd/MM/yyyy")
+                tongSoLuong = CChiTietNguyenLieu_BUS.tongSoLuong(x.maNguyenLieu),
+                tenLoaiNguyenLieu = x.LoaiNguyenLieu.tenLoaiNguyenLieu
             });
         }
 
@@ -50,7 +48,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnRefesh_Click(object sender, RoutedEventArgs e)
         {
-            hienThiDS(CNguyenLieu_BUS.toList());
+            //hienThiDS(CNguyenLieu_BUS.toList());
         }
 
         private void btnXemThongTinChiTiet_Click(object sender, RoutedEventArgs e)
@@ -98,7 +96,7 @@ namespace QuanLyQuanCoffee.Views
                 {
                     if (CNguyenLieu_BUS.remove(nguyenLieuSelect))
                     {
-                        hienThiDS(CNguyenLieu_BUS.toList());
+                        //hienThiDS(CNguyenLieu_BUS.toList());
                     }
                 }
             }
@@ -112,24 +110,24 @@ namespace QuanLyQuanCoffee.Views
         {
             if (txtTimKiem.Text == "")
             {
-                hienThiDS(CNguyenLieu_BUS.toList());
+                //hienThiDS(CNguyenLieu_BUS.toList());
                 return;
             }
 
             // nếu combox tìm kiếm là 0 tức là tìm theo tên nguyên liệu
             if (cmbTimKiem.SelectedIndex == 0)
             {
-                hienThiDS(CNguyenLieu_BUS.findTen(txtTimKiem.Text));
+                //hienThiDS(CNguyenLieu_BUS.findTen(txtTimKiem.Text));
             }
             //nếu combox tìm kiếm là 1 tức là tìm theo mã nguyên liệu
             else if (cmbTimKiem.SelectedIndex == 1)
             {
                 List<NguyenLieu> list = CNguyenLieu_BUS.findMa(txtTimKiem.Text);
-                hienThiDS(list);
+                //hienThiDS(list);
             }
             else
             {
-                hienThiDS(CNguyenLieu_BUS.findTenLoai(txtTimKiem.Text));
+                //hienThiDS(CNguyenLieu_BUS.findTenLoai(txtTimKiem.Text));
             }
         }
     }

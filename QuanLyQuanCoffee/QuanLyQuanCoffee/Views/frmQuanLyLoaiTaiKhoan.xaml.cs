@@ -20,7 +20,7 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmQuanLyLoaiTaiKhoan : Page
     {
-        private QuanLyQuanCoffeeEntities dc = new QuanLyQuanCoffeeEntities();
+        private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
         LoaiTaiKhoan a;
         public frmQuanLyLoaiTaiKhoan()
         {

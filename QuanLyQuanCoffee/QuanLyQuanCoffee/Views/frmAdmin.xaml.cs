@@ -19,7 +19,7 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmAdmin : Window
     {
-        private QuanLyQuanCoffeeEntities quanLyQuanCoffee = new QuanLyQuanCoffeeEntities();
+        private QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
         private TaiKhoan taiKhoan1;
         private LoaiTaiKhoan ltk;
 

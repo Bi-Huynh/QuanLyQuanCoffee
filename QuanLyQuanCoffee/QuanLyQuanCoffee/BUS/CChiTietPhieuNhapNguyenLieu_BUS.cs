@@ -10,7 +10,7 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CChiTietPhieuNhapNguyenLieu_BUS
     {
-        private static QuanLyQuanCoffeeEntities quanLyQuanCoffee = new QuanLyQuanCoffeeEntities();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
 
         // Trả về toàn bộ danh sách nhân viên
         public static List<ChiTietPhieuNhapNguyenLieu> toList()

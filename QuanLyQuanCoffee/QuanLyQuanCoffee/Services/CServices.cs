@@ -11,7 +11,7 @@ namespace QuanLyQuanCoffee.Services
 {
     class CServices
     {
-        private static QuanLyQuanCoffeeEntities quanLyQuanCoffee = new QuanLyQuanCoffeeEntities();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
 
         // khởi tạo mã tự động
         public static string randomMa()
@@ -149,6 +149,11 @@ namespace QuanLyQuanCoffee.Services
         }
 
         public static bool kiemTraThongTin(LoaiNguyenLieu loaiNguyenLieu)
+        {
+            return true;
+        }
+
+        public static bool kiemTraThongTin(ChiTietNguyenLieu chiTietNguyenLieu)
         {
             return true;
         }

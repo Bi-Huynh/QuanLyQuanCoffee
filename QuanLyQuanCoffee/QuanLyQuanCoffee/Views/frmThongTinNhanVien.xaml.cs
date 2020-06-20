@@ -108,25 +108,30 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            NhanVien nhanVien = new NhanVien();
-            nhanVien.maNhanVien = txtMaNhanVien.Text;
-            nhanVien.hoNhanVien = txtHoNhanVien.Text;
-            nhanVien.tenNhanVien = txtTenNhanVien.Text;
-            nhanVien.soDienThoai = txtSoDienThoai.Text;
-            nhanVien.ngaySinh = dateNgaySinh.SelectedDate.Value.Date;
-            nhanVien.phai = cmbPhai.SelectedIndex == 0 ? true : false;
-            nhanVien.cMND = txtCMND.Text;
-            nhanVien.thuongTru = txtThuongTru.Text;
-            nhanVien.tamTru = txtTamTru.Text;
-            nhanVien.ngayVaoLam = dateNgayVaoLam.SelectedDate.Value.Date;
-            nhanVien.maLoaiNhanVien = CLoaiNhanVien_BUS.findMaLoaiByTenLoai(cmbLoaiNhanVien.SelectedItem.ToString());
-            nhanVien.urlAnh = urlAnh;
-            nhanVien.trangThai = cmbTrangThai.SelectedIndex;
-
-            if (CNhanVien_BUS.add(nhanVien))
+            if (dateNgaySinh.SelectedDate.Value != null ||
+                dateNgayVaoLam.SelectedDate.Value != null ||
+                cmbLoaiNhanVien.SelectedItem.ToString() != null)
             {
-                MessageBox.Show("Thêm thành công!");
-                this.Close();
+                NhanVien nhanVien = new NhanVien();
+                nhanVien.maNhanVien = txtMaNhanVien.Text;
+                nhanVien.hoNhanVien = txtHoNhanVien.Text;
+                nhanVien.tenNhanVien = txtTenNhanVien.Text;
+                nhanVien.soDienThoai = txtSoDienThoai.Text;
+                nhanVien.ngaySinh = dateNgaySinh.SelectedDate.Value.Date;
+                nhanVien.phai = cmbPhai.SelectedIndex == 0 ? true : false;
+                nhanVien.cMND = txtCMND.Text;
+                nhanVien.thuongTru = txtThuongTru.Text;
+                nhanVien.tamTru = txtTamTru.Text;
+                nhanVien.ngayVaoLam = dateNgayVaoLam.SelectedDate.Value.Date;
+                nhanVien.maLoaiNhanVien = CLoaiNhanVien_BUS.findMaLoaiByTenLoai(cmbLoaiNhanVien.SelectedItem.ToString());
+                nhanVien.urlAnh = urlAnh;
+                nhanVien.trangThai = cmbTrangThai.SelectedIndex;
+
+                if (CNhanVien_BUS.add(nhanVien))
+                {
+                    MessageBox.Show("Thêm thành công!");
+                    this.Close();
+                }
             }
         }
 

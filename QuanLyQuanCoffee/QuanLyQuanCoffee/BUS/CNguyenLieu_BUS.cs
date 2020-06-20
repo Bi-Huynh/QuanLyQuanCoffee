@@ -12,11 +12,12 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CNguyenLieu_BUS
     {
-        private static QuanLyQuanCoffeeEntities quanLyQuanCoffee = new QuanLyQuanCoffeeEntities();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
 
         public static List<NguyenLieu> toList()
         {
-            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux.ToList();
+            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux
+                .Where(x => x.trangThai == 0).ToList();
             return list == null ? new List<NguyenLieu>() : list;
         }
 

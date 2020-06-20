@@ -20,7 +20,7 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmDangNhap : Window
     {
         private TaiKhoan tk;
-        private QuanLyQuanCoffeeEntities dc = new QuanLyQuanCoffeeEntities();
+        private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
 
         public frmDangNhap()
         {
