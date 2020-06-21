@@ -42,7 +42,6 @@ namespace QuanLyQuanCoffee.BUS
         {
             return quanLyQuanCoffee.LoaiNhanViens.Select(x => x.tenLoai).ToList();
         }
-
         public static bool kiemTraThongTin(LoaiNhanVien loaiNhanVien)
         {
             loaiNhanVien.tenLoai = CServices.formatChuoi(loaiNhanVien.tenLoai);

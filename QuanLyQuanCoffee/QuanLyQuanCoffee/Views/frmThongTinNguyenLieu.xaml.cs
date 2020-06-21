@@ -56,7 +56,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void hienThi()
         {
-            cmbLoaiNguyenLieu.ItemsSource = CLoaiNguyenLieu_BUS.toList();
+            cmbLoaiNguyenLieu.ItemsSource = CLoaiNguyenLieu_BUS.toListMa();
         }
 
         private void hienThiThongTin(NguyenLieu nguyenLieu)

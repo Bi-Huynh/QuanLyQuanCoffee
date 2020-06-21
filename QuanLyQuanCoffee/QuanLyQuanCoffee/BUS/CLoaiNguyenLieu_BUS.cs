@@ -24,6 +24,12 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<string>() : list;
         }
 
+        public static List<string> toListMa()
+        {
+            List<string> list = quanLyQuanCoffee.LoaiNguyenLieux.Select(x => x.maLoaiNguyenLieu).ToList();
+            return list == null ? new List<string>() : list;
+        }
+
         public static LoaiNguyenLieu find(string maNguyenLieu)
         {
             return quanLyQuanCoffee.LoaiNguyenLieux.Find(maNguyenLieu);
