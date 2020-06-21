@@ -1,4 +1,5 @@
-﻿using QuanLyQuanCoffee.Services;
+﻿using QuanLyQuanCoffee.BUS;
+using QuanLyQuanCoffee.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmQuanLyloaiSanPham : Page
     {
         //private CLoaiSanPham lsp = new CLoaiSanPham();
-        private QuanLyQuanCoffeeEntities dc = new QuanLyQuanCoffeeEntities();
+       
         LoaiSanPham a;
         public frmQuanLyloaiSanPham()
         {
@@ -31,8 +32,8 @@ namespace QuanLyQuanCoffee.Views
         }
         public void HienThiDSLoaiSanPham()
         {
-            dgLoaisanpham.ItemsSource = dc.LoaiSanPhams.ToList();
-            txtmaLoai.Text = CServices.taoMa<LoaiSanPham>(dc.LoaiSanPhams.ToList());
+            dgLoaisanpham.ItemsSource = CLoaiSanPham_BUS.toList();
+            txtmaLoai.Text = CServices.taoMa<LoaiSanPham>(CLoaiSanPham_BUS.toList());
         }
         private void btnThemLoaiSP_Click(object sender, RoutedEventArgs e)
         {
@@ -43,15 +44,21 @@ namespace QuanLyQuanCoffee.Views
                 a.tenLoai = txttenLoai.Text;
                 string makt = txtmaLoai.Text;
                 a.trangThai = 0;
-                if (dc.LoaiSanPhams.Find(makt) == null)
+                if(CLoaiSanPham_BUS.KTRong(a))
                 {
-                    dc.LoaiSanPhams.Add(a);
-                    dc.SaveChanges();
-                    txtmaLoai.Text = CServices.taoMa<LoaiSanPham>(dc.LoaiSanPhams.ToList());
+                    if (CLoaiSanPham_BUS.find(makt) == null)
+                    {
+                        CLoaiSanPham_BUS.add(a);
+                        txtmaLoai.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Mã Loại bị trùng!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Mã Loại bị trùng!");
+                    MessageBox.Show("Vui lòng nhập tên loại");
                 }
             }
             catch (Exception ex)
@@ -70,26 +77,17 @@ namespace QuanLyQuanCoffee.Views
                 try
                 {
                     string maloai = dgLoaisanpham.SelectedValue.ToString();
-                    LoaiSanPham a = dc.LoaiSanPhams.Find(maloai);
                     if (maloai == null)
                     {
                         MessageBox.Show("Khong tim thay");
                     }
                     else
                     {
-                        if ((dc.SanPhams.Where(x => x.maLoaiSanPham == maloai).ToList().Count > 0) == false)
+                        a = CLoaiSanPham_BUS.find(maloai);
+                        if (CLoaiSanPham_BUS.remove(a))
                         {
-                            //MessageBox.Show("Bạn có chắc muốn xóa mã loại " + maloai + " khỏi danh sách sản phẩm Không?");
-                            dc.LoaiSanPhams.Remove(a);
-                            dc.SaveChanges();
                             MessageBox.Show("Xóa thành công " + maloai + " khỏi danh sách");
                         }
-                        else
-                        {
-                            MessageBox.Show("Mã loại sản phẩm này tồn tại trong Danh sách sản phẩm");
-                        }
-
-
                     }
                 }
                 catch (Exception ex)
@@ -108,15 +106,29 @@ namespace QuanLyQuanCoffee.Views
         {
             try
             {
-                if ((dc.LoaiSanPhams.Find(txtmaLoai.Text) == null))
+                
+                if(a==null)
                 {
-                    MessageBox.Show("Bạn không thể sửa loại sản phẩm");
+                    MessageBox.Show("Vui lòng chọn Loại sản phẩm cần xóa");
                 }
                 else
                 {
-                    LoaiSanPham a = dc.LoaiSanPhams.Find(txtmaLoai.Text);
-                    a.tenLoai = txttenLoai.Text;
-                    dc.SaveChanges();
+                    LoaiSanPham b = new LoaiSanPham();
+                    b.maLoaiSanPham = txtmaLoai.Text;
+                    b.tenLoai = txttenLoai.Text;
+                    b.trangThai = 0;
+                    if(CLoaiSanPham_BUS.KTRong(b))
+                    {
+                        if(CLoaiSanPham_BUS.edit(b))
+                        {
+                            MessageBox.Show("Sửa thành công");
+                            HienThiDSLoaiSanPham();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Yêu cầu nhập đầy đủ thông tin sản phẩm");
+                    }
                 }
             }
             catch (Exception ex)
@@ -132,13 +144,13 @@ namespace QuanLyQuanCoffee.Views
             {
                 if (dgLoaisanpham.SelectedItem != null)
                 {
-                    a = dc.LoaiSanPhams.Find(dgLoaisanpham.SelectedValue.ToString());
+                    a = CLoaiSanPham_BUS.find(dgLoaisanpham.SelectedValue.ToString());
                     txtmaLoai.Text = a.maLoaiSanPham;
                     txttenLoai.Text = a.tenLoai;
                 }
                 else
                 {
-                    txtmaLoai.Text = "";
+                    txtmaLoai.Text = CServices.taoMa<LoaiSanPham>(CLoaiSanPham_BUS.toList());
                     txttenLoai.Text = "";
                 }
             }
@@ -146,6 +158,13 @@ namespace QuanLyQuanCoffee.Views
             {
                 MessageBox.Show("Có lỗi: " + ex.Message);
             }
+        }
+
+        private void btnBoChon_Click(object sender, RoutedEventArgs e)
+        {
+            txtmaLoai.Text = CServices.taoMa<LoaiSanPham>(CLoaiSanPham_BUS.toList());
+            txttenLoai.Text = "";
+            a = null;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace QuanLyQuanCoffee.BUS
 
         public static List<SanPham> toList()
         {
-            List<SanPham> list = quanLyQuanCoffee.SanPhams.ToList();
+            List<SanPham> list = quanLyQuanCoffee.SanPhams.Where(x => x.trangThai == 0).ToList();
             return list == null ? new List<SanPham>() : list;
         }
 
@@ -80,7 +80,35 @@ namespace QuanLyQuanCoffee.BUS
             }
             return true;
         }
+        public static bool KTRong(SanPham sanPham )
+        {
+            
+           
+            if(sanPham.maSanPham.Length>10)
+            {
+                return false;
+            }
+            if(sanPham.tenSanPham==""||sanPham.maLoaiSanPham==""||sanPham.donViTinh=="")
+            {
+                return false;
+            }
+            if(sanPham.maLoaiSanPham==null)
+            {
+                return false;
+            }
+            
+            return true;
+        }
+        //public static bool KiemtraMaLoai(string maLoaisanPham)
+        //{
+            
+        //    if (maLoaisanPham==null)
+        //    {
+        //        return false;
+        //    }
 
+        //    return true;
+        //}
         public static bool edit(SanPham sanPham)
         {
             SanPham temp = find(sanPham.maSanPham);

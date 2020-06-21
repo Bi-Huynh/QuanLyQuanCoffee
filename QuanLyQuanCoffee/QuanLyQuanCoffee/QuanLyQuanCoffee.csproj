@@ -85,6 +85,7 @@
     <Compile Include="BUS\CHoaDon_BUS.cs" />
     <Compile Include="BUS\CLoaiNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CLoaiNhanVien_BUS.cs" />
+    <Compile Include="BUS\CLoaiSanPham_BUS.cs" />
     <Compile Include="BUS\CNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CNhanVien_BUS.cs" />
     <Compile Include="BUS\CPhieuNhapNguyenLieu_BUS.cs" />

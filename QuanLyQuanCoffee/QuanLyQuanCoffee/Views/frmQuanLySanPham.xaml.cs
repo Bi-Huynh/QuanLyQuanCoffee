@@ -94,21 +94,35 @@ namespace QuanLyQuanCoffee.Views
                 sp1.tenSanPham = txtTensanpham.Text;
                 sp1.donViTinh = txtDonvitinh.Text;
                 sp1.maLoaiSanPham = cboLoaisanpham.SelectedItem.ToString();
+                //if (CSanPham_BUS.KiemtraMaLoai(cboLoaisanpham.SelectedItem.ToString())) 
+                //{
+                //    
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Mã Loại sản phẩm không được để trống");
+                //}
                 sp1.donGia = int.Parse(txtDongia.Text);
                 sp1.trangThai = 0;
-
-                if (CSanPham_BUS.find(txtMasanpham.Text) == null)
+                if (CSanPham_BUS.KTRong(sp1))
                 {
-                    if (CSanPham_BUS.add(sp1))
+                    if (CSanPham_BUS.find(txtMasanpham.Text) == null)
                     {
-                        MessageBox.Show("Thêm thành công");
-                        txtMasanpham.Text = CServices.taoMa<SanPham>(CSanPham_BUS.toList());
-                        hienthiSP();
+                        if (CSanPham_BUS.add(sp1))
+                        {
+                            MessageBox.Show("Thêm thành công");
+                            txtMasanpham.Text = CServices.taoMa<SanPham>(CSanPham_BUS.toList());
+                            hienthiSP();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Mã sản phẩm bị trùng");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Mã sản phẩm bị trùng");
+                    MessageBox.Show("Yêu cầu nhập đầy đủ thông tin sản phẩm");
                 }
             }
             catch (ArgumentNullException)
@@ -162,12 +176,19 @@ namespace QuanLyQuanCoffee.Views
                     a.maLoaiSanPham = cboLoaisanpham.Text;
                     a.donGia = int.Parse(txtDongia.Text);
                     a.trangThai = 0;
-
-                    if (CSanPham_BUS.edit(a))
+                    if (CSanPham_BUS.KTRong(a))
                     {
-                        MessageBox.Show("Sửa thành công");
-                        hienthiSP();
+                        if (CSanPham_BUS.edit(a))
+                        {
+                            MessageBox.Show("Sửa thành công");
+                            hienthiSP();
+                        }
                     }
+                    else
+                    {
+                        MessageBox.Show("Yêu cầu nhập đầy đủ thông tin sản phẩm");
+                    }
+
                 }
             }
             catch (ArgumentNullException)
