@@ -65,7 +65,7 @@ namespace QuanLyQuanCoffee.Services
         // định dạng lại chuỗi được truyền vào thành chuỗi chuẩn
         public static string formatChuoi(string strInput)
         {
-            if (strInput == "")
+            if (strInput == "" || strInput == null)
             {
                 return "";
             }
@@ -133,6 +133,11 @@ namespace QuanLyQuanCoffee.Services
             if (nhanVien.soDienThoai.Trim().Count() != 10)
             {
                 MessageBox.Show("Số điện thoại chỉ có 10 số");
+                return false;
+            }
+            if (CNhanVien_BUS.tinhTuoi(nhanVien) == -1)
+            {
+                MessageBox.Show("Tuổi đi làm là 18 đến 65");
                 return false;
             }
             return true;

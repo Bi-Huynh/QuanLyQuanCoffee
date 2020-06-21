@@ -1,6 +1,7 @@
 ﻿using QuanLyQuanCoffee.BUS;
 using QuanLyQuanCoffee.Services;
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -147,7 +148,11 @@ namespace QuanLyQuanCoffee.Views
             }
             else
             {
-                txtTenLoai.Text = CLoaiNguyenLieu_BUS.find(cmbLoaiNguyenLieu.SelectedItem.ToString()).tenLoaiNguyenLieu;
+                LoaiNguyenLieu loaiNguyenLieu = CLoaiNguyenLieu_BUS.find(cmbLoaiNguyenLieu.SelectedItem.ToString());
+                if (loaiNguyenLieu != null)
+                {
+                    txtTenLoai.Text = loaiNguyenLieu.tenLoaiNguyenLieu;
+                }
             }
         }
     }

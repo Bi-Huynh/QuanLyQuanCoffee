@@ -51,6 +51,7 @@ namespace QuanLyQuanCoffee.Views
             hienThiDS(CNguyenLieu_BUS.to_List());
         }
 
+        // chưa sửa hiển thị thông tin chi tiết của nguyên liệu, chưa tạo giao diện cho phần này
         private void btnXemThongTinChiTiet_Click(object sender, RoutedEventArgs e)
         {
             if (nguyenLieuSelect == null)

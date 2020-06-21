@@ -34,7 +34,7 @@ namespace QuanLyQuanCoffee.Views
             // khi người dùng nhấn thêm thì ấn nút sửa
             if (flag == 1)
             {
-                txtMaNhanVien.Text = CServices.taoMa<NhanVien>(CNhanVien_BUS.toList());
+                txtMaNhanVien.Text = CServices.taoMa<NhanVien>(CNhanVien_BUS.toListAll());
                 btnSua.IsEnabled = false;
                 btnLuu.IsEnabled = false;
             }
@@ -108,37 +108,52 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            if (dateNgaySinh.SelectedDate.Value != null ||
-                dateNgayVaoLam.SelectedDate.Value != null ||
-                cmbLoaiNhanVien.SelectedItem.ToString() != null)
+            try
             {
-                NhanVien nhanVien = new NhanVien();
-                nhanVien.maNhanVien = txtMaNhanVien.Text;
-                nhanVien.hoNhanVien = txtHoNhanVien.Text;
-                nhanVien.tenNhanVien = txtTenNhanVien.Text;
-                nhanVien.soDienThoai = txtSoDienThoai.Text;
-                nhanVien.ngaySinh = dateNgaySinh.SelectedDate.Value.Date;
-                nhanVien.phai = cmbPhai.SelectedIndex == 0 ? true : false;
-                nhanVien.cMND = txtCMND.Text;
-                nhanVien.thuongTru = txtThuongTru.Text;
-                nhanVien.tamTru = txtTamTru.Text;
-                nhanVien.ngayVaoLam = dateNgayVaoLam.SelectedDate.Value.Date;
-                nhanVien.maLoaiNhanVien = CLoaiNhanVien_BUS.findMaLoaiByTenLoai(cmbLoaiNhanVien.SelectedItem.ToString());
-                nhanVien.urlAnh = urlAnh;
-                nhanVien.trangThai = cmbTrangThai.SelectedIndex;
-
-                if (CNhanVien_BUS.add(nhanVien))
+                if (dateNgaySinh.SelectedDate.Value != null &&
+                dateNgayVaoLam.SelectedDate.Value != null &&
+                cmbLoaiNhanVien.SelectedItem.ToString() != null)
                 {
-                    MessageBox.Show("Thêm thành công!");
-                    this.Close();
+                    NhanVien nhanVien = new NhanVien();
+                    nhanVien.maNhanVien = txtMaNhanVien.Text;
+                    nhanVien.hoNhanVien = txtHoNhanVien.Text;
+                    nhanVien.tenNhanVien = txtTenNhanVien.Text;
+                    nhanVien.soDienThoai = txtSoDienThoai.Text;
+                    nhanVien.ngaySinh = dateNgaySinh.SelectedDate.Value.Date;
+                    nhanVien.phai = cmbPhai.SelectedIndex == 0 ? true : false;
+                    nhanVien.cMND = txtCMND.Text;
+                    nhanVien.thuongTru = txtThuongTru.Text;
+                    nhanVien.tamTru = txtTamTru.Text;
+                    nhanVien.ngayVaoLam = dateNgayVaoLam.SelectedDate.Value.Date;
+                    nhanVien.maLoaiNhanVien = CLoaiNhanVien_BUS.findMaLoaiByTenLoai(cmbLoaiNhanVien.SelectedItem.ToString());
+                    nhanVien.urlAnh = urlAnh;
+                    nhanVien.trangThai = cmbTrangThai.SelectedIndex;
+
+                    if (CNhanVien_BUS.add(nhanVien))
+                    {
+                        MessageBox.Show("Thêm thành công!");
+                        this.Close();
+                    }
                 }
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("Lỗi! Không được để dữ liệu nhập vào là rỗng");
             }
         }
 
         // sự kiện tính tuổi sau khi người dùng chọn ngày sinh của minh
         private void dateNgaySinh_CalendarClosed(object sender, RoutedEventArgs e)
         {
-            txtTuoi.Text = CNhanVien_BUS.tinhTuoi(dateNgaySinh.SelectedDate.Value).ToString();
+            int tuoi = CNhanVien_BUS.tinhTuoi(dateNgaySinh.SelectedDate.Value);
+            if (tuoi == -1)
+            {
+                MessageBox.Show("Tuổi được đi làm là từ 18 đến 65 tuổi");
+            }
+            else
+            {
+                txtTuoi.Text = tuoi.ToString();
+            }
         }
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
@@ -204,9 +219,17 @@ namespace QuanLyQuanCoffee.Views
             {
                 try
                 {
-                    string ngaySinh = dateNgaySinh.Text;
-                    dateNgaySinh.SelectedDate = DateTime.Parse(ngaySinh);
-                    txtTuoi.Text = CNhanVien_BUS.tinhTuoi(dateNgaySinh.SelectedDate.Value).ToString();
+                    int tuoi = CNhanVien_BUS.tinhTuoi(dateNgaySinh.SelectedDate.Value);
+                    if (tuoi == -1)
+                    {
+                        MessageBox.Show("Tuổi được đi làm là từ 18 đến 65 tuổi");
+                    }
+                    else
+                    {
+                        txtTuoi.Text = tuoi.ToString();
+                        string ngaySinh = dateNgaySinh.Text;
+                        dateNgaySinh.SelectedDate = DateTime.Parse(ngaySinh);
+                    }
                 }
                 catch (ArgumentNullException)
                 {
