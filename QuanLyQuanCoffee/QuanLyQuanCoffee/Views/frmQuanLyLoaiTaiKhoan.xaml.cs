@@ -21,13 +21,9 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmQuanLyLoaiTaiKhoan : Page
     {
-<<<<<<< HEAD
-        private QuanLyQuanCoffeeEntities dc = new QuanLyQuanCoffeeEntities();
-        LoaiTaiKhoan loaiTK;
-=======
         private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
+        LoaiTaiKhoan loaiTK;
         LoaiTaiKhoan a;
->>>>>>> defb3c7bbeb7c23684a5da718b4a80559eb37774
         public frmQuanLyLoaiTaiKhoan()
         {
             InitializeComponent();

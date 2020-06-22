@@ -59,7 +59,7 @@ namespace QuanLyQuanCoffee.Views
                 MessageBox.Show("Vui lòng chọn nguyên liệu");
                 return;
             }
-            new frmThongTinNguyenLieu(nguyenLieuSelect, 0).Show();
+            new frmThongTinChiTietNguyenLieu(nguyenLieuSelect).Show();
         }
 
         private void dgDSNguyenLieu_SelectionChanged(object sender, SelectionChangedEventArgs e)

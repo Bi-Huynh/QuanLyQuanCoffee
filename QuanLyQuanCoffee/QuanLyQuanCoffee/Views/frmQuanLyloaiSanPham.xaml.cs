@@ -23,11 +23,7 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmQuanLyloaiSanPham : Page
     {
         //private CLoaiSanPham lsp = new CLoaiSanPham();
-<<<<<<< HEAD
-       
-=======
         private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
->>>>>>> defb3c7bbeb7c23684a5da718b4a80559eb37774
         LoaiSanPham a;
         public frmQuanLyloaiSanPham()
         {

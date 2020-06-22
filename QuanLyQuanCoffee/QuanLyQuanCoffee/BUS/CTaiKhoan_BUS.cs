@@ -12,7 +12,7 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CTaiKhoan_BUS
     {
-        private static QuanLyQuanCoffeeEntities quanLyQuanCoffee = new QuanLyQuanCoffeeEntities();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
 
         public static List<TaiKhoan> toList()
         {

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -47,6 +48,18 @@ namespace QuanLyQuanCoffee.BUS
                 });
             }
             return tong;
+        }
+
+        public static int soNgayConLai(DateTime ngayHetHan)
+        {
+            int soNgay = 0;
+            DateTime ngayHienTai = DateTime.Now;
+            if (ngayHetHan > ngayHienTai)
+            {
+                TimeSpan timeSpan = ngayHetHan - ngayHienTai;
+                soNgay = timeSpan.Days;
+            }
+            return soNgay;
         }
 
         public static bool add(ChiTietNguyenLieu chiTiet)
