@@ -84,7 +84,7 @@
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
             <TextBox Grid.Row="0" Grid.Column="3" FontSize="12"></TextBox>
-            <Button Grid.Row="0" Grid.Column="5" Content="TÌM"  FontSize="12"/>
+            <Button Grid.Row="0" Grid.Column="5" Click="btnBochon_Click" x:Name="btnBochon" Content="Bỏ chọn"  FontSize="12"/>
         </Grid>
 
         <StackPanel >

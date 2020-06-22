@@ -42,13 +42,15 @@ namespace QuanLyQuanCoffee.Views
                 LoaiSanPham a = new LoaiSanPham();
                 a.maLoaiSanPham = txtmaLoai.Text;
                 a.tenLoai = txttenLoai.Text;
-                string makt = txtmaLoai.Text;
                 a.trangThai = 0;
-                if(CLoaiSanPham_BUS.KTRong(a))
+                string makt = txtmaLoai.Text;
+                if (CLoaiSanPham_BUS.KTRong(a))
                 {
                     if (CLoaiSanPham_BUS.find(makt) == null)
                     {
+                        
                         CLoaiSanPham_BUS.add(a);
+                        MessageBox.Show("Thêm thành công");
                         txtmaLoai.Text = "";
                     }
                     else
@@ -66,17 +68,17 @@ namespace QuanLyQuanCoffee.Views
                 MessageBox.Show("Có lỗi: " + ex.Message);
             }
             HienThiDSLoaiSanPham();
+            load();
         }
 
         private void btnXoaLoaiSP_Click(object sender, RoutedEventArgs e)
         {
             if (a != null)
             {
-
-
                 try
                 {
-                    string maloai = dgLoaisanpham.SelectedValue.ToString();
+                    //string maloai = dgLoaisanpham.SelectedValue.ToString();
+                    string maloai = a.maLoaiSanPham.ToString();
                     if (maloai == null)
                     {
                         MessageBox.Show("Khong tim thay");
@@ -87,6 +89,7 @@ namespace QuanLyQuanCoffee.Views
                         if (CLoaiSanPham_BUS.remove(a))
                         {
                             MessageBox.Show("Xóa thành công " + maloai + " khỏi danh sách");
+                            
                         }
                     }
                 }
@@ -95,6 +98,7 @@ namespace QuanLyQuanCoffee.Views
                     MessageBox.Show("Có lỗi: " + ex.Message);
                 }
                 HienThiDSLoaiSanPham();
+                load();
             }
             else
             {
@@ -109,7 +113,7 @@ namespace QuanLyQuanCoffee.Views
                 
                 if(a==null)
                 {
-                    MessageBox.Show("Vui lòng chọn Loại sản phẩm cần xóa");
+                    MessageBox.Show("Vui lòng chọn Loại sản phẩm cần sửa");
                 }
                 else
                 {
@@ -123,6 +127,7 @@ namespace QuanLyQuanCoffee.Views
                         {
                             MessageBox.Show("Sửa thành công");
                             HienThiDSLoaiSanPham();
+                            load();
                         }
                     }
                     else
@@ -163,6 +168,11 @@ namespace QuanLyQuanCoffee.Views
         private void btnBoChon_Click(object sender, RoutedEventArgs e)
         {
             txtmaLoai.Text = CServices.taoMa<LoaiSanPham>(CLoaiSanPham_BUS.toList());
+            txttenLoai.Text = "";
+            a = null;
+        }
+        public void load()
+        {
             txttenLoai.Text = "";
             a = null;
         }

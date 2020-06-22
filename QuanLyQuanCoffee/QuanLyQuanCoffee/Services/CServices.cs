@@ -95,6 +95,19 @@ namespace QuanLyQuanCoffee.Services
             }
             return false;
         }
+        private static bool kiemTraTonTaiKhoangTrang(string chuoi)
+        {
+            string chuoi1;
+            for(int i=0;i<chuoi.Length;i++)
+            {
+                chuoi1 = chuoi.Substring(i, 1);
+                if (chuoi1==" ")
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
         public static bool kiemTraThongTin(NhanVien nhanVien)
         {
@@ -131,6 +144,34 @@ namespace QuanLyQuanCoffee.Services
                 return false;
             }
             return true;
+        }
+
+        public static bool kiemTraThongTin(TaiKhoan taiKhoan)
+        {
+            if(kiemTraTonTaiKhoangTrang(taiKhoan.taiKhoan1)==false)
+            {
+                MessageBox.Show("Tài khoản hoặc mật khẩu không được dùng Khoảng Trắng(Space)");
+                return false;
+            }
+            if (kiemTraTonTaiKhoangTrang(taiKhoan.matKhau) == false)
+            {
+                MessageBox.Show("Tài khoản hoặc mật khẩu không được dùng Khoảng Trắng(Space)");
+                return false;
+            }
+            return true;
+        }
+
+        public static string formatTK_MT(string strInput)
+        {
+            string TK_MK = "";
+            for (int i = 0; i <= strInput.Length; i++)
+            {
+                if (strInput[i]!=' ')
+                {
+                    TK_MK = TK_MK + strInput[i];
+                }    
+            }
+            return TK_MK;
         }
 
         public static bool kiemTraThongTin(NguyenLieu nguyenLieu)

@@ -86,10 +86,12 @@
     <Compile Include="BUS\CLoaiNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CLoaiNhanVien_BUS.cs" />
     <Compile Include="BUS\CLoaiSanPham_BUS.cs" />
+    <Compile Include="BUS\CLoaiTaiKhoan_BUS.cs" />
     <Compile Include="BUS\CNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CNhanVien_BUS.cs" />
     <Compile Include="BUS\CPhieuNhapNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CSanPham_BUS.cs" />
+    <Compile Include="BUS\CTaiKhoan_BUS.cs" />
     <Compile Include="ChiTietChamCong.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>

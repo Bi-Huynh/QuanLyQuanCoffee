@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
       mc:Ignorable="d" 
       d:DesignHeight="685" d:DesignWidth="1200" 
+      Loaded="Page_Loaded"
       Title="frmQuanLySanPham">
 
     <StackPanel>

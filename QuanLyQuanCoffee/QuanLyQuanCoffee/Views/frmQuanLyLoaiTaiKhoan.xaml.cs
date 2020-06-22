@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyQuanCoffee.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmQuanLyLoaiTaiKhoan : Page
     {
         private QuanLyQuanCoffeeEntities dc = new QuanLyQuanCoffeeEntities();
-        LoaiTaiKhoan a;
+        LoaiTaiKhoan loaiTK;
         public frmQuanLyLoaiTaiKhoan()
         {
             InitializeComponent();
@@ -29,69 +30,105 @@ namespace QuanLyQuanCoffee.Views
         }
         public void HienThiDSLoaitaikhoan()
         {
-            dgLoaitaikhoan.ItemsSource = dc.LoaiTaiKhoans.ToList();
+            dgLoaitaikhoan.ItemsSource = CLoaiTaiKhoan_BUS.toList();
         }
         private void btnThemLoaiTK_Click(object sender, RoutedEventArgs e)
         {
-            LoaiTaiKhoan a = new LoaiTaiKhoan();
-            a.maLoaiTaiKhoan = txtmaLoaitaikhoan.Text;
-            a.tenLoaiTaiKhoan = txttenLoaitaikhoan.Text;
-            a.trangThai = 0;
+            LoaiTaiKhoan ltk = new LoaiTaiKhoan();
+            ltk.maLoaiTaiKhoan = txtmaLoaitaikhoan.Text;
+            ltk.tenLoaiTaiKhoan = txttenLoaitaikhoan.Text;
+            ltk.trangThai = 0;
             string makt = txtmaLoaitaikhoan.Text;
-            if (dc.LoaiTaiKhoans.Find(makt) == null)
+            if (CLoaiTaiKhoan_BUS.KTRong(ltk))
             {
-                dc.LoaiTaiKhoans.Add(a);
-                dc.SaveChanges();
-            }
-            else
-            {
-                MessageBox.Show("Mã Loại bị trùng!");
-            }
-            HienThiDSLoaitaikhoan();
-        }
-
-        private void btnXoaLoaiTK_Click(object sender, RoutedEventArgs e)
-        {
-            string maloai = dgLoaitaikhoan.SelectedValue.ToString();
-            LoaiTaiKhoan a = dc.LoaiTaiKhoans.Find(maloai);
-            if (maloai == null)
-            {
-                MessageBox.Show("Khong tim thay");
-            }
-            else
-            {
-                if ((dc.TaiKhoans.Where(x => x.maLoaiTaiKhoan == maloai).ToList().Count > 0) == false)
+                if (CLoaiTaiKhoan_BUS.find(makt) == null)
                 {
-                    //MessageBox.Show("Bạn có chắc muốn xóa mã loại " + maloai + " khỏi danh sách sản phẩm Không?");
-                    dc.LoaiTaiKhoans.Remove(a);
-                    dc.SaveChanges();
-                    MessageBox.Show("Xóa thành công " + maloai + " khỏi danh sách");
+
+                    CLoaiTaiKhoan_BUS.add(ltk);
+                    MessageBox.Show("Thêm thành công");
+                    txtmaLoaitaikhoan.Text = "";
                 }
                 else
                 {
-                    MessageBox.Show("Mã loại tài khoản này tồn tại trong Danh sách tài khoản");
+                    MessageBox.Show("Mã loại bì trùng");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng nhập tên loại");
+            }
+            HienThiDSLoaitaikhoan();
+            load();
+
+        }
+
+        public void load()
+        {
+            txtmaLoaitaikhoan.Text = "";
+            txttenLoaitaikhoan.Text = "";
+            loaiTK = null;
+        }
+        private void btnXoaLoaiTK_Click(object sender, RoutedEventArgs e)
+        {
+            if (loaiTK != null)
+            {
+                try
+                {
+                    string maloai = loaiTK.maLoaiTaiKhoan.ToString();
+                    if (maloai == null)
+                    {
+                        MessageBox.Show("Không tìm thấy");
+                    }
+                    else
+                    {
+                        loaiTK = CLoaiTaiKhoan_BUS.find(maloai);
+                        if (CLoaiTaiKhoan_BUS.remove(loaiTK))
+                        {
+                            MessageBox.Show("Xóa thành công " + maloai + " khỏi danh sách");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Có lỗi: " + ex.Message);
                 }
 
-
             }
-
+            else
+            {
+                MessageBox.Show("Vui lòng chọn loại tài khoản cần xóa");
+            }
             HienThiDSLoaitaikhoan();
+            load();
         }
 
         private void btnSuaLoaiTK_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if ((dc.LoaiTaiKhoans.Find(txtmaLoaitaikhoan.Text) == null))
+                if (loaiTK == null)
                 {
-                    MessageBox.Show("Bạn không thể sửa loại tài khoản");
+                    MessageBox.Show("Vui lòng chọn loại tài khoản cần sửa");
                 }
                 else
                 {
-                    LoaiTaiKhoan a = dc.LoaiTaiKhoans.Find(txtmaLoaitaikhoan.Text);
+                    LoaiTaiKhoan a = new LoaiTaiKhoan();
                     a.maLoaiTaiKhoan = txtmaLoaitaikhoan.Text;
                     a.tenLoaiTaiKhoan = txttenLoaitaikhoan.Text;
-                    dc.SaveChanges();
+                    a.trangThai = 0;
+                    if (CLoaiTaiKhoan_BUS.KTRong(a))
+                    {
+                        if (CLoaiTaiKhoan_BUS.edit(a))
+                        {
+                            MessageBox.Show("Sửa thành công");
+                            HienThiDSLoaitaikhoan();
+                            load();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vui lòng nhập tên loại tài khoản");
+                    }    
                 }
             }
             catch (Exception ex)
@@ -107,9 +144,9 @@ namespace QuanLyQuanCoffee.Views
             {
                 if (dgLoaitaikhoan.SelectedItem != null)
                 {
-                    a = dc.LoaiTaiKhoans.Find(dgLoaitaikhoan.SelectedValue.ToString());
-                    txtmaLoaitaikhoan.Text = a.maLoaiTaiKhoan;
-                    txttenLoaitaikhoan.Text = a.tenLoaiTaiKhoan;
+                    loaiTK = CLoaiTaiKhoan_BUS.find(dgLoaitaikhoan.SelectedValue.ToString());
+                    txtmaLoaitaikhoan.Text = loaiTK.maLoaiTaiKhoan;
+                    txttenLoaitaikhoan.Text = loaiTK.tenLoaiTaiKhoan;
                 }
                 else
                 {
@@ -121,6 +158,13 @@ namespace QuanLyQuanCoffee.Views
             {
                 MessageBox.Show("Có lỗi: " + ex.Message);
             }
+        }
+
+        private void btnBochon_Click(object sender, RoutedEventArgs e)
+        {
+            txtmaLoaitaikhoan.Text = "";
+            txttenLoaitaikhoan.Text = "";
+            loaiTK = null;
         }
     }
 }

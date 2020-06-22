@@ -113,6 +113,7 @@ namespace QuanLyQuanCoffee.Views
                             MessageBox.Show("Thêm thành công");
                             txtMasanpham.Text = CServices.taoMa<SanPham>(CSanPham_BUS.toList());
                             hienthiSP();
+                            load();
                         }
                     }
                     else
@@ -147,6 +148,7 @@ namespace QuanLyQuanCoffee.Views
                 {
                     MessageBox.Show("Xóa thành công");
                     hienthiSP();
+                    load();
                 }
                 else
                 {
@@ -205,11 +207,28 @@ namespace QuanLyQuanCoffee.Views
             }
 
             hienthiSP();
+            load();
         }
 
         private void btnBochon_Click(object sender, RoutedEventArgs e)
         {
             txtMasanpham.Text = CServices.taoMa<SanPham>(CSanPham_BUS.toList());
+            txtDonvitinh.Text = null;
+            cboLoaisanpham.Text = null;
+            txtTensanpham.Text = "";
+            txtDongia.Text = "";
+            sanPhamSelect = null;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        public void load()
+        {
+            txtMasanpham.Text = CServices.taoMa<SanPham>(CSanPham_BUS.toList());
+            txtDonvitinh.Text = null;
+            cboLoaisanpham.Text = null;
             txtTensanpham.Text = "";
             txtDongia.Text = "";
             sanPhamSelect = null;
