@@ -184,17 +184,14 @@
     <Compile Include="Views\frmQuanLyNhanVien.xaml.cs">
       <DependentUpon>frmQuanLyNhanVien.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\frmQuanLyPhieuNhapNguyenLieu.xaml.cs">
-      <DependentUpon>frmQuanLyPhieuNhapNguyenLieu.xaml</DependentUpon>
+    <Compile Include="Views\frmQuanLyNhapNguyenLieu.xaml.cs">
+      <DependentUpon>frmQuanLyNhapNguyenLieu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\frmQuanLySanPham.xaml.cs">
       <DependentUpon>frmQuanLySanPham.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\frmQuanLyTaiKhoan.xaml.cs">
       <DependentUpon>frmQuanLyTaiKhoan.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\frmQuanLyThongTinPhieuNhapNguyenLieu.xaml.cs">
-      <DependentUpon>frmQuanLyThongTinPhieuNhapNguyenLieu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\frmThongTinChiTietNguyenLieu.xaml.cs">
       <DependentUpon>frmThongTinChiTietNguyenLieu.xaml</DependentUpon>
@@ -237,7 +234,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\frmQuanLyPhieuNhapNguyenLieu.xaml">
+    <Page Include="Views\frmQuanLyNhapNguyenLieu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -249,15 +246,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\frmQuanLyThongTinPhieuNhapNguyenLieu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\frmThongTinChiTietNguyenLieu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\frmThongTinNguyenLieu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmThongTinPhieuNhap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -271,6 +268,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\frmThongTinPhieuNhap.xaml.cs">
+      <DependentUpon>frmThongTinPhieuNhap.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
