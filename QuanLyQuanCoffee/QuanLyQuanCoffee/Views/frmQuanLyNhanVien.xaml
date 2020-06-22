@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
       mc:Ignorable="d" 
       d:DesignHeight="685" d:DesignWidth="1200" Title="frmQuanLyNhanVien">
+
     <StackPanel ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" CanHorizontallyScroll="True" CanVerticallyScroll="True">
         <Grid>
             <Grid.ColumnDefinitions>

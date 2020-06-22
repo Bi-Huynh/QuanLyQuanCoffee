@@ -37,7 +37,7 @@
             <TextBox x:Name="txtHoNhanVien" Grid.Row="2" Grid.Column="3" VerticalContentAlignment="Center" Margin="0,0,0,10" TabIndex="3"/>
             <Label Grid.Row="2" Grid.Column="4" Content="Tên nhân viên:" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
             <TextBox x:Name="txtTenNhanVien" Grid.Row="2" Grid.Column="5" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" TabIndex="4"/>
-            <Label Grid.Row="4" Grid.Column="2" Content="Số điệnt thoại:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <Label Grid.Row="4" Grid.Column="2" Content="Số điện thoại:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
             <TextBox x:Name="txtSoDienThoai" Grid.Row="4" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" TabIndex="6"/>
             <Label Grid.Row="3" Grid.Column="2" Content="Ngày sinh:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
             <DatePicker x:Name="dateNgaySinh" Grid.Row="3" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" CalendarClosed="dateNgaySinh_CalendarClosed" TabIndex="5" KeyDown="dateNgaySinh_KeyDown"/>
