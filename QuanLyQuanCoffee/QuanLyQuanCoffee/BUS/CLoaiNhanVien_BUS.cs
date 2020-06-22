@@ -15,7 +15,7 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CLoaiNhanVien_BUS
     {
-        private static QuanLyQuanCoffeeEntities quanLyQuanCoffee = new QuanLyQuanCoffeeEntities();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
 
         public static LoaiNhanVien find(string maLoaiNhanVien)
         {
@@ -42,7 +42,6 @@ namespace QuanLyQuanCoffee.BUS
         {
             return quanLyQuanCoffee.LoaiNhanViens.Select(x => x.tenLoai).ToList();
         }
-
         public static bool kiemTraThongTin(LoaiNhanVien loaiNhanVien)
         {
             loaiNhanVien.tenLoai = CServices.formatChuoi(loaiNhanVien.tenLoai);

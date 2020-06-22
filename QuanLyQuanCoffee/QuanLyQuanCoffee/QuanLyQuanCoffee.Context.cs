@@ -13,10 +13,10 @@ namespace QuanLyQuanCoffee
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QuanLyQuanCoffeeEntities : DbContext
+    public partial class QuanLyQuanCoffeeEntities1 : DbContext
     {
-        public QuanLyQuanCoffeeEntities()
-            : base("name=QuanLyQuanCoffeeEntities")
+        public QuanLyQuanCoffeeEntities1()
+            : base("name=QuanLyQuanCoffeeEntities1")
         {
         }
     

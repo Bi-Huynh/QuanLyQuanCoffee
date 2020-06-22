@@ -81,6 +81,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BUS\CChiTietHoaDon_BUS.cs" />
+    <Compile Include="BUS\CChiTietNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CChiTietPhieuNhapNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CHoaDon_BUS.cs" />
     <Compile Include="BUS\CLoaiNguyenLieu_BUS.cs" />

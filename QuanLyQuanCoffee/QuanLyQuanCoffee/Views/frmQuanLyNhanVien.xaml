@@ -34,7 +34,7 @@
         </Grid>
         <DataGrid x:Name="dgDSNhanVien" MinHeight="565" Margin="10,0" AutoGenerateColumns="False" 
                   SelectedValuePath="maNhanVien" HorizontalContentAlignment="Center" 
-                  Background="White" FontFamily="Arial"
+                  Background="White" FontFamily="Arial" IsReadOnly="True"
                   SelectionChanged="dgDSNhanVien_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}" Width="1*"/>

@@ -11,7 +11,8 @@ namespace QuanLyQuanCoffee
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity.Core.Metadata.Edm;
+
     public partial class ChiTietChamCong
     {
         public string maChamCong { get; set; }

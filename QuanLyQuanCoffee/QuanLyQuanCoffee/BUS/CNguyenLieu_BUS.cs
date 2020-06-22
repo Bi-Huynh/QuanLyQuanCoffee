@@ -12,7 +12,14 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CNguyenLieu_BUS
     {
-        private static QuanLyQuanCoffeeEntities quanLyQuanCoffee = new QuanLyQuanCoffeeEntities();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+
+        public static List<NguyenLieu> to_List()
+        {
+            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux
+                .Where(x => x.trangThai == 0).ToList();
+            return list == null ? new List<NguyenLieu>() : list;
+        }
 
         public static List<NguyenLieu> toList()
         {
@@ -32,20 +39,23 @@ namespace QuanLyQuanCoffee.BUS
 
         public static List<NguyenLieu> findTen(string tenNguyenLieu)
         {
-            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux.Where(x => x.tenNguyenLieu == tenNguyenLieu).ToList();
+            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux
+                .Where(x => x.tenNguyenLieu.Contains(tenNguyenLieu) && x.trangThai == 0).ToList();
             return list == null ? new List<NguyenLieu>() : list;
         }
 
         public static List<NguyenLieu> findMa(string maNguyenLieu)
         {
-            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux.Where(x => x.maNguyenLieu.Contains(maNguyenLieu) == true).ToList();
+            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux
+                .Where(x => x.maNguyenLieu.Contains(maNguyenLieu) == true && x.trangThai == 0).ToList();
             return list == null ? new List<NguyenLieu>() : list;
         }
 
         public static List<NguyenLieu> findTenLoai(string tenLoai)
         {
             tenLoai = CServices.formatChuoi(tenLoai);
-            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux.Where(x => x.LoaiNguyenLieu.tenLoaiNguyenLieu == tenLoai).ToList();
+            List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux
+                .Where(x => x.LoaiNguyenLieu.tenLoaiNguyenLieu.Contains(tenLoai) && x.trangThai == 0).ToList();
             return list == null ? new List<NguyenLieu>() : list;
         }
 
@@ -86,12 +96,8 @@ namespace QuanLyQuanCoffee.BUS
             {
                 temp.maNguyenLieu = nguyenLieu.maNguyenLieu;
                 temp.tenNguyenLieu = CServices.formatChuoi(nguyenLieu.tenNguyenLieu);
-                //temp.donGia = nguyenLieu.donGia;
-                //temp.soLuong = nguyenLieu.soLuong;
-                //temp.donViTinh = nguyenLieu.donViTinh;
-                //temp.ngayHetHan = nguyenLieu.ngayHetHan;
-                //temp.ngayNhap = nguyenLieu.ngayNhap;
                 temp.maLoaiNguyenLieu = nguyenLieu.maLoaiNguyenLieu;
+                temp.trangThai = nguyenLieu.trangThai;
 
                 quanLyQuanCoffee.SaveChanges();
             }
@@ -111,15 +117,9 @@ namespace QuanLyQuanCoffee.BUS
                 MessageBox.Show("Không tìm thấy nguyên liệu để xóa");
                 return false;
             }
-            //if (temp.ChiTietPhieuNhapNguyenLieux.Count > 0 || temp.ChiTietXuatNhapNguyenLieux.Count > 0)
-            //{
-            //    MessageBox.Show("Không thể xóa nguyên liệu này");
-            //    return false;
-            //}
-
             try
             {
-                quanLyQuanCoffee.NguyenLieux.Remove(temp);
+                temp.trangThai = 1;
                 quanLyQuanCoffee.SaveChanges();
             }
             catch (DbUpdateException)

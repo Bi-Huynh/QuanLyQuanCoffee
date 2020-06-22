@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
         mc:Ignorable="d"
-        Title="Thông Tin Nguyên Liệu" Height="260" Width="800">
+        Title="Thông Tin Nguyên Liệu" Height="200" Width="800">
     <StackPanel>
         <Grid Margin="10,0">
             <Grid.ColumnDefinitions>
@@ -23,27 +23,11 @@
             <Label Grid.Row="0" Grid.Column="0" Content="Mã nguyên liệu:" Height="30" VerticalContentAlignment="Center" Margin="0,10"/>
             <TextBox x:Name="txtMaNguyenLieu" Grid.Row="0" Grid.Column="1" Height="30" VerticalContentAlignment="Center" Margin="0,10" IsEnabled="False"/>
             <Label Grid.Row="0" Grid.Column="2" Content="Loại nguyên liệu:" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
-            <ComboBox x:Name="cmbLoaiNguyenLieu" Grid.Row="0" Grid.Column="3" SelectedValuePath="tenLoai" Height="30" VerticalContentAlignment="Center" Margin="0,10"/>
+            <ComboBox x:Name="cmbLoaiNguyenLieu" Grid.Row="0" Grid.Column="3" SelectedValuePath="maLoaiNguyenLieu" Height="30" VerticalContentAlignment="Center" Margin="0,10" SelectionChanged="cmbLoaiNguyenLieu_SelectionChanged"/>
             <Label Grid.Row="1" Grid.Column="0" Content="Tên nguyên liệu:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
             <TextBox x:Name="txtTenNguyenLieu" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <Label Grid.Row="1" Grid.Column="2" Content="Đơn giá:" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
-            <TextBox x:Name="txtDonGia" Grid.Row="1" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <Label Grid.Row="2" Grid.Column="0" Content="Đơn vị tính:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <ComboBox x:Name="txtDonViTinh" Grid.Row="2" Grid.Column="1" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10">
-                <ComboBoxItem Content="gam" IsSelected="True"/>
-                <ComboBoxItem Content="Kg"/>
-                <ComboBoxItem Content="Chai"/>
-                <ComboBoxItem Content="Lon"/>
-                <ComboBoxItem Content="Hộp"/>
-                <ComboBoxItem Content="Lít"/>
-                <ComboBoxItem Content="ml"/>
-            </ComboBox>
-            <Label Grid.Row="3" Grid.Column="0" Content="Ngày Hết hạn:" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <DatePicker x:Name="dateNgayHetHan" Grid.Row="3" Grid.Column="1" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <Label Grid.Row="2" Grid.Column="2" Content="Số lượng:" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
-            <TextBox x:Name="txtSoLuong" Grid.Row="2" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-            <Label Grid.Row="3" Grid.Column="2" Content="Ngày nhập:" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
-            <DatePicker x:Name="dateNgayNhap" Grid.Row="3" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+            <Label Grid.Row="1" Grid.Column="2" Content="tên loại:" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
+            <TextBox x:Name="txtTenLoai" Grid.Row="1" Grid.Column="3"  Height="30" VerticalContentAlignment="Center" Margin="0,0,0,10" IsEnabled="False"/>
         </Grid>
         <Grid Margin="10,0">
             <Grid.ColumnDefinitions>

@@ -12,10 +12,17 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CNhanVien_BUS
     {
-        private static QuanLyQuanCoffeeEntities quanLyQuanCoffee = new QuanLyQuanCoffeeEntities();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
 
         // Trả về toàn bộ danh sách nhân viên
         public static List<NhanVien> toList()
+        {
+            List<NhanVien> list = quanLyQuanCoffee.NhanViens.Where(x => x.trangThai == 0).ToList();
+            return list == null ? new List<NhanVien>() : list;
+        }
+
+        // Trả về toàn bộ danh sách nhân viên
+        public static List<NhanVien> toListAll()
         {
             List<NhanVien> list = quanLyQuanCoffee.NhanViens.ToList();
             return list == null ? new List<NhanVien>() : list;
@@ -66,9 +73,29 @@ namespace QuanLyQuanCoffee.BUS
         public static int tinhTuoi(DateTime ngaySinh)
         {
             int tuoi = 0;
-            int now = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
-            int ns = int.Parse(ngaySinh.ToString("yyyyMMdd"));
-            tuoi = (now - ns) / 10000;
+            try
+            {
+                int now = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
+                int ns = int.Parse(ngaySinh.ToString("yyyyMMdd"));
+                tuoi = (now - ns) / 10000;
+                if (tuoi < 18 || tuoi > 65)
+                {
+                    return -1;
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Lỗi! để dữ liệu rỗng");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Lỗi! định dạng kiểu dữ liệu");
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Lỗi! dữ liệu có giá trị vượt quá giới hạn cho phép");
+            }
+
             return tuoi;
         }
 
@@ -150,20 +177,23 @@ namespace QuanLyQuanCoffee.BUS
                 MessageBox.Show("Không tìm thấy nhân viên để xóa");
                 return false;
             }
-            if (temp.ChiTietChamCongs.Count > 0 ||
-                temp.Luongs.Count > 0 ||
-                temp.PhieuNhapNguyenLieux.Count > 0 ||
-                temp.PhieuXuatNguyenLieux.Count > 0 ||
-                temp.TaiKhoan != null ||
-                temp.HoaDons.Count > 0)
-            {
-                MessageBox.Show("Không thể xóa nhân viên này");
-                return false;
-            }
             try
             {
-                quanLyQuanCoffee.NhanViens.Remove(temp);
-                quanLyQuanCoffee.SaveChanges();
+                if (temp.ChiTietChamCongs.Count > 0 ||
+                                temp.Luongs.Count > 0 ||
+                                temp.PhieuNhapNguyenLieux.Count > 0 ||
+                                temp.PhieuXuatNguyenLieux.Count > 0 ||
+                                temp.TaiKhoan != null ||
+                                temp.HoaDons.Count > 0)
+                {
+                    temp.trangThai = 1;
+                    quanLyQuanCoffee.SaveChanges();
+                }
+                else
+                {
+                    quanLyQuanCoffee.NhanViens.Remove(temp);
+                    quanLyQuanCoffee.SaveChanges();
+                }
             }
             catch (DbUpdateException)
             {

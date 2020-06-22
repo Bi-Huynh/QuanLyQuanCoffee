@@ -26,7 +26,7 @@ namespace QuanLyQuanCoffee.Views
         public frmQuanLyNguyenLieu()
         {
             InitializeComponent();
-            hienThiDS(CNguyenLieu_BUS.toList());
+            hienThiDS(CNguyenLieu_BUS.to_List());
         }
 
         public void hienThiDS(List<NguyenLieu> list)
@@ -35,10 +35,8 @@ namespace QuanLyQuanCoffee.Views
             {
                 maNguyenLieu = x.maNguyenLieu,
                 tenNguyenLieu = x.tenNguyenLieu,
-                //donGia = x.donGia,
-                //soLuong = x.soLuong,
-                //ngayHetHan = x.ngayHetHan.ToString("dd/MM/yyyy"),
-                //ngayNhap = x.ngayNhap.ToString("dd/MM/yyyy")
+                tongSoLuong = CChiTietNguyenLieu_BUS.tongSoLuong(x.maNguyenLieu),
+                tenLoaiNguyenLieu = x.LoaiNguyenLieu.tenLoaiNguyenLieu
             });
         }
 
@@ -50,9 +48,10 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnRefesh_Click(object sender, RoutedEventArgs e)
         {
-            hienThiDS(CNguyenLieu_BUS.toList());
+            hienThiDS(CNguyenLieu_BUS.to_List());
         }
 
+        // chưa sửa hiển thị thông tin chi tiết của nguyên liệu, chưa tạo giao diện cho phần này
         private void btnXemThongTinChiTiet_Click(object sender, RoutedEventArgs e)
         {
             if (nguyenLieuSelect == null)
@@ -98,7 +97,7 @@ namespace QuanLyQuanCoffee.Views
                 {
                     if (CNguyenLieu_BUS.remove(nguyenLieuSelect))
                     {
-                        hienThiDS(CNguyenLieu_BUS.toList());
+                        hienThiDS(CNguyenLieu_BUS.to_List());
                     }
                 }
             }
@@ -112,7 +111,7 @@ namespace QuanLyQuanCoffee.Views
         {
             if (txtTimKiem.Text == "")
             {
-                hienThiDS(CNguyenLieu_BUS.toList());
+                hienThiDS(CNguyenLieu_BUS.to_List());
                 return;
             }
 

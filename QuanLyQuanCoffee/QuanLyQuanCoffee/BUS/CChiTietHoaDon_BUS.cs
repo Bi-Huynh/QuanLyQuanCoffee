@@ -8,7 +8,7 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CChiTietHoaDon_BUS
     {
-        private static QuanLyQuanCoffeeEntities quanLyQuanCoffee = new QuanLyQuanCoffeeEntities();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
         public static ChiTietHoaDon find(string maHoaDon)
         {
             return quanLyQuanCoffee.ChiTietHoaDons.Find(maHoaDon);

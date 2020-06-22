@@ -10,7 +10,7 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CLoaiNguyenLieu_BUS
     {
-        private static QuanLyQuanCoffeeEntities quanLyQuanCoffee = new QuanLyQuanCoffeeEntities();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
 
         public static List<LoaiNguyenLieu> toList()
         {
@@ -21,6 +21,12 @@ namespace QuanLyQuanCoffee.BUS
         public static List<string> toListTenLoai()
         {
             List<string> list = quanLyQuanCoffee.LoaiNguyenLieux.Select(x => x.tenLoaiNguyenLieu).ToList();
+            return list == null ? new List<string>() : list;
+        }
+
+        public static List<string> toListMa()
+        {
+            List<string> list = quanLyQuanCoffee.LoaiNguyenLieux.Select(x => x.maLoaiNguyenLieu).ToList();
             return list == null ? new List<string>() : list;
         }
 

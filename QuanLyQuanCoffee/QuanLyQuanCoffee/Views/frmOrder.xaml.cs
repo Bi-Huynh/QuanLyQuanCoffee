@@ -22,7 +22,7 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmOrder : Page
     {
         NhanVien nhanVienSelect;
-        private QuanLyQuanCoffeeEntities dc = new QuanLyQuanCoffeeEntities();
+        private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
         private List<ChiTietHoaDon> chiTietHoaDons;
 
         public frmOrder(NhanVien nhanVien)

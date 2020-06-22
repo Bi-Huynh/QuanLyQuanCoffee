@@ -1,6 +1,7 @@
 ﻿using QuanLyQuanCoffee.BUS;
 using QuanLyQuanCoffee.Services;
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,7 +31,7 @@ namespace QuanLyQuanCoffee.Views
             // khi người dùng nhấn thêm thì ấn nút sửa đi
             if (flag == 1)
             {
-                txtMaNguyenLieu.Text = CServices.taoMa<NguyenLieu>(CNguyenLieu_BUS.toList());
+                txtMaNguyenLieu.Text = CServices.taoMa<NguyenLieu>(CNguyenLieu_BUS.to_List());
                 btnSua.IsEnabled = false;
                 btnLuu.IsEnabled = false;
             }
@@ -56,30 +57,20 @@ namespace QuanLyQuanCoffee.Views
 
         private void hienThi()
         {
-            dateNgayNhap.SelectedDate = DateTime.Now;
-            cmbLoaiNguyenLieu.ItemsSource = CLoaiNguyenLieu_BUS.toListTenLoai();
+            cmbLoaiNguyenLieu.ItemsSource = CLoaiNguyenLieu_BUS.toListMa();
         }
 
         private void hienThiThongTin(NguyenLieu nguyenLieu)
         {
             txtMaNguyenLieu.Text = nguyenLieu.maNguyenLieu;
             txtTenNguyenLieu.Text = nguyenLieu.tenNguyenLieu;
-            //txtDonGia.Text = nguyenLieu.donGia.ToString();
-            //txtDonViTinh.Text = nguyenLieu.donViTinh;
-            //txtSoLuong.Text = nguyenLieu.soLuong.ToString();
-            //dateNgayHetHan.SelectedDate = nguyenLieu.ngayHetHan;
-            //dateNgayNhap.SelectedDate = nguyenLieu.ngayNhap;
-            cmbLoaiNguyenLieu.SelectedItem = nguyenLieu.LoaiNguyenLieu.tenLoaiNguyenLieu;
+            cmbLoaiNguyenLieu.SelectedItem = nguyenLieu.LoaiNguyenLieu.maLoaiNguyenLieu;
+            txtTenLoai.Text = nguyenLieu.LoaiNguyenLieu.tenLoaiNguyenLieu;
         }
 
         private void isEnabledThongTin(bool value)
         {
             txtTenNguyenLieu.IsEnabled = value;
-            txtDonGia.IsEnabled = value;
-            txtDonViTinh.IsEnabled = value;
-            txtSoLuong.IsEnabled = value;
-            dateNgayHetHan.IsEnabled = value;
-            dateNgayNhap.IsEnabled = value;
             cmbLoaiNguyenLieu.IsEnabled = value;
         }
 
@@ -96,11 +87,8 @@ namespace QuanLyQuanCoffee.Views
                 NguyenLieu nguyenLieu = new NguyenLieu();
                 nguyenLieu.maNguyenLieu = txtMaNguyenLieu.Text;
                 nguyenLieu.tenNguyenLieu = txtTenNguyenLieu.Text;
-                //nguyenLieu.donGia = double.Parse(txtDonGia.Text);
-                //nguyenLieu.soLuong = int.Parse(txtSoLuong.Text);
-                //nguyenLieu.donViTinh = txtDonViTinh.Text;
-                //nguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value.Date;
-                //nguyenLieu.ngayNhap = dateNgayNhap.SelectedDate.Value.Date;
+                nguyenLieu.maLoaiNguyenLieu = cmbLoaiNguyenLieu.SelectedItem.ToString();
+                nguyenLieu.trangThai = 0;
 
                 if (CNguyenLieu_BUS.add(nguyenLieu))
                 {
@@ -129,11 +117,8 @@ namespace QuanLyQuanCoffee.Views
                 NguyenLieu nguyenLieu = new NguyenLieu();
                 nguyenLieu.maNguyenLieu = txtMaNguyenLieu.Text;
                 nguyenLieu.tenNguyenLieu = txtTenNguyenLieu.Text;
-                //nguyenLieu.donGia = double.Parse(txtDonGia.Text);
-                //nguyenLieu.soLuong = int.Parse(txtSoLuong.Text);
-                //nguyenLieu.donViTinh = txtDonViTinh.Text;
-                //nguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value.Date;
-                //nguyenLieu.ngayNhap = dateNgayNhap.SelectedDate.Value.Date;
+                nguyenLieu.maLoaiNguyenLieu = cmbLoaiNguyenLieu.SelectedItem.ToString();
+                nguyenLieu.trangThai = 0;
 
                 if (CNguyenLieu_BUS.edit(nguyenLieu))
                 {
@@ -152,6 +137,22 @@ namespace QuanLyQuanCoffee.Views
             catch (OverflowException)
             {
                 MessageBox.Show("Lỗi! Đơn giá hoặc số lượng có độ dài quá giới hạn cho phép");
+            }
+        }
+
+        private void cmbLoaiNguyenLieu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbLoaiNguyenLieu.SelectedIndex < 0)
+            {
+                txtTenLoai.Text = "";
+            }
+            else
+            {
+                LoaiNguyenLieu loaiNguyenLieu = CLoaiNguyenLieu_BUS.find(cmbLoaiNguyenLieu.SelectedItem.ToString());
+                if (loaiNguyenLieu != null)
+                {
+                    txtTenLoai.Text = loaiNguyenLieu.tenLoaiNguyenLieu;
+                }
             }
         }
     }
