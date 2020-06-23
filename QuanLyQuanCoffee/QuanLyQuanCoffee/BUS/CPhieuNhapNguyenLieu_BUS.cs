@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,7 +47,7 @@ namespace QuanLyQuanCoffee.BUS
         {
             List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieux.
                 Where(x => x.ngayNhap == ngayNhap && x.trangThai == 0).ToList();
-            
+
             return list == null ? new List<PhieuNhapNguyenLieu>() : list;
         }
 
@@ -54,7 +55,7 @@ namespace QuanLyQuanCoffee.BUS
         {
             List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieux.
                 Where(x => x.tongThanhTien >= tongThanhTien && x.trangThai == 0).ToList();
-            
+
             return list == null ? new List<PhieuNhapNguyenLieu>() : list;
         }
 
@@ -69,8 +70,21 @@ namespace QuanLyQuanCoffee.BUS
         {
             if (CServices.kiemTraThongTin(PhieuNhapNguyenLieu))
             {
-                quanLyQuanCoffee.PhieuNhapNguyenLieux.Add(PhieuNhapNguyenLieu);
-                quanLyQuanCoffee.SaveChanges();
+                try
+                {
+                    quanLyQuanCoffee.PhieuNhapNguyenLieux.Add(PhieuNhapNguyenLieu);
+                    quanLyQuanCoffee.SaveChanges();
+                }
+                catch (DbUpdateException)
+                {
+                    MessageBox.Show("Lỗi! Không thể thêm dữ liệu");
+                    return false;
+                }
+                catch (DbEntityValidationException)
+                {
+                    MessageBox.Show("Lỗi! Kiểu dữ liệu được truyền vào không hợp lệ");
+                    return false;
+                }
                 return true;
             }
             return false;

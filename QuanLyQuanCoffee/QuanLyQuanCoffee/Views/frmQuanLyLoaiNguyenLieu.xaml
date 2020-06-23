@@ -25,7 +25,7 @@
             <TextBox x:Name="txtTenLoai" Grid.Column="3" Grid.Row="1" VerticalContentAlignment="Center" Height="30" Margin="0,0,0,10"/>
         </Grid>
         <DataGrid x:Name="dgDSLoaiNguyenLieu" MinHeight="200" Margin="10,0" AutoGenerateColumns="False" 
-                  SelectedValuePath="maLoaiNhanvien" HorizontalContentAlignment="Center" 
+                  SelectedValuePath="maLoaiNguyenLieu" HorizontalContentAlignment="Center" 
                   Background="White" FontFamily="Arial"
                   SelectionChanged="dgDSLoaiNguyenLieu_SelectionChanged" VerticalContentAlignment="Center">
             <DataGrid.Columns>

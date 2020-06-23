@@ -71,6 +71,8 @@ namespace QuanLyQuanCoffee.Views
             txtMaNhanVien.Text = nhanVienSelect.maNhanVien;
             txtTenNhanVien.Text = nhanVienSelect.hoNhanVien + " " + nhanVienSelect.tenNhanVien;
             cmbTenNguyenLieu.ItemsSource = CNguyenLieu_BUS.toListTen();
+
+            hienThiDSChiTietPhieuNhap(phieuNhap.ChiTietPhieuNhapNguyenLieux.ToList());
         }
 
         private void isEnabledThongTin(bool value)
@@ -115,7 +117,40 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnTaoPhieuNhap_Click(object sender, RoutedEventArgs e)
         {
+            if (chiTietPhieuNhapNguyenLieus.Count() == 0)
+            {
+                MessageBox.Show("Không thể tạo phiếu nhập rỗng");
+            }
+            else
+            {
+                PhieuNhapNguyenLieu phieuNhapNguyenLieu = new PhieuNhapNguyenLieu();
+                phieuNhapNguyenLieu.maPhieuNhap = chiTietPhieuNhapNguyenLieus[0].maPhieuNhap;
+                phieuNhapNguyenLieu.maNhanVien = nhanVienSelect.maNhanVien;
+                phieuNhapNguyenLieu.ngayNhap = chiTietPhieuNhapNguyenLieus[0].ChiTietNguyenLieu.ngayNhap.Value;
+                phieuNhapNguyenLieu.tongThanhTien = double.Parse(txtTongThanhTien.Text);
+                phieuNhapNguyenLieu.trangThai = 0;
 
+                chiTietPhieuNhapNguyenLieus.ForEach(x =>
+                {
+                    ChiTietPhieuNhapNguyenLieu chiTiet = new ChiTietPhieuNhapNguyenLieu();
+                    chiTiet.maPhieuNhap = x.maPhieuNhap;
+                    chiTiet.maNguyenLieu = x.maNguyenLieu;
+                    chiTiet.soLuong = x.soLuong;
+                    chiTiet.thanhTien = x.thanhTien;
+                    //chiTiet = x;
+
+                    chiTiet.ChiTietNguyenLieu = new ChiTietNguyenLieu();
+                    chiTiet.ChiTietNguyenLieu = x.ChiTietNguyenLieu;
+
+                    phieuNhapNguyenLieu.ChiTietPhieuNhapNguyenLieux.Add(chiTiet);
+                });
+
+                if (CPhieuNhapNguyenLieu_BUS.add(phieuNhapNguyenLieu))
+                {
+                    MessageBox.Show("Thêm thành công");
+                    this.Close();
+                }
+            }
         }
 
         private void btnSua_Click(object sender, RoutedEventArgs e)

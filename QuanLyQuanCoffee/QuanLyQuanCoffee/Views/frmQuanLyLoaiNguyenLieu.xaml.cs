@@ -61,10 +61,8 @@ namespace QuanLyQuanCoffee.Views
             {
                 MessageBox.Show("Thêm thành công");
                 hienThiDSLoaiNhanVien(CLoaiNguyenLieu_BUS.toList());
-            }
-            else
-            {
-                MessageBox.Show("Thêm không thành công");
+                txtMaLoaiNguyenLieu.Text = CServices.taoMa<LoaiNguyenLieu>(CLoaiNguyenLieu_BUS.toListAll());
+                txtTenLoai.Text = "";
             }
         }
 
@@ -79,10 +77,8 @@ namespace QuanLyQuanCoffee.Views
             {
                 MessageBox.Show("Sửa thành công");
                 hienThiDSLoaiNhanVien(CLoaiNguyenLieu_BUS.toList());
-            }
-            else
-            {
-                MessageBox.Show("Sửa không thành công");
+                txtMaLoaiNguyenLieu.Text = CServices.taoMa<LoaiNguyenLieu>(CLoaiNguyenLieu_BUS.toListAll());
+                txtTenLoai.Text = "";
             }
         }
 
@@ -100,10 +96,8 @@ namespace QuanLyQuanCoffee.Views
                 {
                     MessageBox.Show("Xóa thành công");
                     hienThiDSLoaiNhanVien(CLoaiNguyenLieu_BUS.toList());
-                }
-                else
-                {
-                    MessageBox.Show("Xóa không thành công");
+                    txtMaLoaiNguyenLieu.Text = CServices.taoMa<LoaiNguyenLieu>(CLoaiNguyenLieu_BUS.toListAll());
+                    txtTenLoai.Text = "";
                 }
             }
             else
@@ -114,19 +108,13 @@ namespace QuanLyQuanCoffee.Views
 
         private void dgDSLoaiNguyenLieu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dgDSLoaiNguyenLieu.SelectedValue == null || dgDSLoaiNguyenLieu.SelectedValue.ToString() == "")
+            if (dgDSLoaiNguyenLieu.SelectedValue != null)
             {
-                return;
+                string maLoaiNguyenLieu = dgDSLoaiNguyenLieu.SelectedValue.ToString();
+                loaiNguyenLieuSeclect = CLoaiNguyenLieu_BUS.find(maLoaiNguyenLieu);
+                hienThiThongTin(loaiNguyenLieuSeclect);
+                isEnabledThongTin(true);
             }
-            if (dgDSLoaiNguyenLieu.SelectedValue.ToString() == "          ")
-            {
-                MessageBox.Show("Không thể chọn loại nguyên liệu này");
-                return;
-            }
-            string maLoaiNguyenLieu = dgDSLoaiNguyenLieu.SelectedValue.ToString();
-            loaiNguyenLieuSeclect = CLoaiNguyenLieu_BUS.find(maLoaiNguyenLieu);
-            hienThiThongTin(loaiNguyenLieuSeclect);
-            isEnabledThongTin(true);
         }
     }
 }

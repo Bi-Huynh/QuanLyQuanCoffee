@@ -113,16 +113,18 @@ namespace QuanLyQuanCoffee.BUS
                 MessageBox.Show("Không tìm thấy loại nhân viên để xóa");
                 return false;
             }
-
-            if (temp.NguyenLieux.Count > 0)
-            {
-                MessageBox.Show("Không thể xóa loại nguyên liệu này");
-                return false;
-            }
             try
             {
-                quanLyQuanCoffee.LoaiNguyenLieux.Remove(temp);
-                quanLyQuanCoffee.SaveChanges();
+                if (temp.NguyenLieux.Count > 0)
+                {
+                    temp.trangThai = 1;
+                    quanLyQuanCoffee.SaveChanges();
+                }
+                else
+                {
+                    quanLyQuanCoffee.LoaiNguyenLieux.Remove(temp);
+                    quanLyQuanCoffee.SaveChanges();
+                }
             }
             catch (DbUpdateException)
             {
