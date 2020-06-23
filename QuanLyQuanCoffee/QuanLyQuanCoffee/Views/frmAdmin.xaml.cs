@@ -60,7 +60,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void gd_QuanLyNhapNguyenLieu_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new frmQuanLyPhieuNhapNguyenLieu();
+            // Main.Content = new frmQuanLyPhieuNhapNguyenLieu();
         }
 
         private void gd_quanlyTaiKhoan_Click(object sender, RoutedEventArgs e)
@@ -90,6 +90,11 @@ namespace QuanLyQuanCoffee.Views
         private void gd_QuanLyLoaiSanPham_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new frmQuanLyloaiSanPham();
+        }
+
+        private void gd_QuanLyHoaDon_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new frmQuanLyHoaDon();
         }
     }
 }

@@ -25,13 +25,21 @@ namespace QuanLyQuanCoffee.BUS
             List<SanPham> list = quanLyQuanCoffee.SanPhams.Where(x => x.trangThai == 0).ToList();
             return list == null ? new List<SanPham>() : list;
         }
-
+        public static List<SanPham> DsSanPham()
+        {
+            List<SanPham> list = quanLyQuanCoffee.SanPhams.ToList();
+            return list == null ? new List<SanPham>() : list;
+        }
         public static List<string> toListByMaSP()
         {
             List<string> list = quanLyQuanCoffee.LoaiSanPhams.Select(x => x.maLoaiSanPham).ToList();
             return list == null ? new List<string>() : list;
         }
-
+        public static List<SanPham> hienthiTheoMa(string maLoai)
+        {
+            List<SanPham> list = quanLyQuanCoffee.SanPhams.Where(x => x.trangThai == 0 && x.maLoaiSanPham == maLoai).ToList();
+            return list == null ? new List<SanPham>() : list;
+        }
         public static bool add(SanPham sanPham)
         {
             if (CServices.kiemTraThongTin(sanPham))
@@ -53,6 +61,10 @@ namespace QuanLyQuanCoffee.BUS
                     MessageBox.Show("Lỗi! kiểu dữ liệu");
                     return false;
                 }
+            }
+            else
+            {
+                MessageBox.Show("Xem lại đơn giá");
             }
             return true;
         }
@@ -80,35 +92,26 @@ namespace QuanLyQuanCoffee.BUS
             }
             return true;
         }
-        public static bool KTRong(SanPham sanPham )
+        public static bool KTRong(SanPham sanPham)
         {
-            
-           
-            if(sanPham.maSanPham.Length>10)
+
+
+            if (sanPham.maSanPham.Length > 10)
             {
                 return false;
             }
-            if(sanPham.tenSanPham==""||sanPham.maLoaiSanPham==""||sanPham.donViTinh=="")
+            if (sanPham.tenSanPham == "" || sanPham.donViTinh == "")
             {
                 return false;
             }
-            if(sanPham.maLoaiSanPham==null)
+            if (sanPham.maLoaiSanPham == null)
             {
                 return false;
             }
-            
+
             return true;
         }
-        //public static bool KiemtraMaLoai(string maLoaisanPham)
-        //{
-            
-        //    if (maLoaisanPham==null)
-        //    {
-        //        return false;
-        //    }
 
-        //    return true;
-        //}
         public static bool edit(SanPham sanPham)
         {
             SanPham temp = find(sanPham.maSanPham);

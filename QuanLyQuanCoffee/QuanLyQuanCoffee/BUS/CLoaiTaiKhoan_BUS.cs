@@ -17,6 +17,11 @@ namespace QuanLyQuanCoffee.BUS
             List<LoaiTaiKhoan> list = quanLyQuanCoffee.LoaiTaiKhoans.Where(x => x.trangThai == 0).ToList();
             return list == null ? new List<LoaiTaiKhoan>() : list;
         }
+        public static List<LoaiTaiKhoan> DSLoaiTK()
+        {
+            List<LoaiTaiKhoan> list = quanLyQuanCoffee.LoaiTaiKhoans.ToList();
+            return list == null ? new List<LoaiTaiKhoan>() : list;
+        }
 
         public static LoaiTaiKhoan find(string maLoaiTaiKhoan)
         {
@@ -28,7 +33,7 @@ namespace QuanLyQuanCoffee.BUS
 
             try
             {
-                
+
                 quanLyQuanCoffee.LoaiTaiKhoans.Add(loaiTaiKhoan);
                 quanLyQuanCoffee.SaveChanges();
             }

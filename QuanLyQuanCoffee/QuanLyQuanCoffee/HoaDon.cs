@@ -31,7 +31,7 @@ namespace QuanLyQuanCoffee
         public virtual NhanVien NhanVien { get; set; }
         public override string ToString()
         {
-            return maNhanVien;
+            return maHoaDon;
         }
     }
 }

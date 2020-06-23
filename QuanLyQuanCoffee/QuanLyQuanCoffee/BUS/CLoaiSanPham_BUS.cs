@@ -19,6 +19,22 @@ namespace QuanLyQuanCoffee.BUS
             List<LoaiSanPham> list = quanLyQuanCoffee.LoaiSanPhams.Where(x => x.trangThai == 0).ToList();
             return list == null ? new List<LoaiSanPham>() : list;
         }
+        public static List<LoaiSanPham> DSLoaiSP()
+        {
+            List<LoaiSanPham> list = quanLyQuanCoffee.LoaiSanPhams.ToList();
+            return list == null ? new List<LoaiSanPham>() : list;
+        }
+        public static List<string> DSLoaiSPtheoTen()
+        {
+            List<string> list = quanLyQuanCoffee.LoaiSanPhams.Select(x => x.tenLoai).ToList();
+            return list == null ? new List<string>() : list;
+        }
+        public static string layMaloaitheoSo(int dong)
+        {
+            string maLoai = quanLyQuanCoffee.LoaiSanPhams.ToList()[dong].maLoaiSanPham;
+            return maLoai;
+        }
+
         public static LoaiSanPham find(string maLoaiSanPham)
         {
             LoaiSanPham LoaisanPham = quanLyQuanCoffee.LoaiSanPhams.Find(maLoaiSanPham);
@@ -106,6 +122,5 @@ namespace QuanLyQuanCoffee.BUS
             }
             return true;
         }
-
     }
 }
