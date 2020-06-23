@@ -137,10 +137,5 @@ namespace QuanLyQuanCoffee.Views
         {
             new frmQuanLyLoaiNhanVien().Show();
         }
-
-        private void dgDSPhieuNhap_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

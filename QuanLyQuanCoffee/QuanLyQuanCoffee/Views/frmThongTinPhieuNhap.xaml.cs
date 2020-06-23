@@ -19,7 +19,7 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmThongTinPhieuNhap : Window
     {
-        public frmThongTinPhieuNhap()
+        public frmThongTinPhieuNhap(PhieuNhapNguyenLieu phieuNhapNguyenLieu = null, int flag = 1)
         {
             InitializeComponent();
         }

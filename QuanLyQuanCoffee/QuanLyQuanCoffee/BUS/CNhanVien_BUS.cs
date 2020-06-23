@@ -39,7 +39,8 @@ namespace QuanLyQuanCoffee.BUS
         public static NhanVien find(string maNhanVien)
         {
             maNhanVien = maNhanVien.ToUpper();
-            NhanVien nhanVien = quanLyQuanCoffee.NhanViens.Find(maNhanVien);
+            NhanVien nhanVien = quanLyQuanCoffee.NhanViens
+                .Where(x => x.maNhanVien == maNhanVien && x.trangThai == 0).FirstOrDefault();
             return nhanVien == null ? new NhanVien() : nhanVien;
         }
 
@@ -48,7 +49,7 @@ namespace QuanLyQuanCoffee.BUS
         {
             maNhanVien = maNhanVien.ToUpper();
             List<NhanVien> list = quanLyQuanCoffee.NhanViens.
-                Where(x => x.maNhanVien.Contains(maNhanVien) == true).ToList();
+                Where(x => x.maNhanVien.Contains(maNhanVien) == true && x.trangThai == 0).ToList();
             return list == null ? new List<NhanVien>() : list;
         }
 
@@ -57,7 +58,7 @@ namespace QuanLyQuanCoffee.BUS
         {
             tenNhanVien = CServices.formatChuoi(tenNhanVien).ToLower();
             List<NhanVien> list = toList().Where(x => x.tenNhanVien.
-                ToLower().Contains(tenNhanVien) == true).ToList();
+                ToLower().Contains(tenNhanVien) == true && x.trangThai == 0).ToList();
             return list == null ? new List<NhanVien>() : list;
         }
 
@@ -66,7 +67,7 @@ namespace QuanLyQuanCoffee.BUS
         {
             tenLoaiNhanVien = CServices.formatChuoi(tenLoaiNhanVien).ToLower();
             List<NhanVien> list = toList().Where(x => x.LoaiNhanVien.tenLoai.
-                ToLower().Contains(tenLoaiNhanVien) == true).ToList();
+                ToLower().Contains(tenLoaiNhanVien) == true && x.trangThai == 0).ToList();
             return list == null ? new List<NhanVien>() : list;
         }
 

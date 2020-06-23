@@ -15,15 +15,22 @@ namespace QuanLyQuanCoffee.BUS
         // Trả về toàn bộ danh sách nhân viên
         public static List<PhieuNhapNguyenLieu> toList()
         {
+            List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieux
+                .Where(x => x.trangThai == 0).ToList();
+            return list == null ? new List<PhieuNhapNguyenLieu>() : list;
+        }
+
+        public static List<PhieuNhapNguyenLieu> toListAll()
+        {
             List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieux.ToList();
             return list == null ? new List<PhieuNhapNguyenLieu>() : list;
         }
 
         // Trả về những nhân viên có mã loại được truyền vào
-        public static List<PhieuNhapNguyenLieu> toListByLoai(string maPhieuNhap)
+        public static List<PhieuNhapNguyenLieu> toListMa(string maPhieuNhap)
         {
             List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieux.
-                Where(x => x.maPhieuNhap == maPhieuNhap).ToList();
+                Where(x => x.maPhieuNhap.Contains(maPhieuNhap) == true && x.trangThai == 0).ToList();
             return list == null ? new List<PhieuNhapNguyenLieu>() : list;
         }
 
@@ -34,11 +41,18 @@ namespace QuanLyQuanCoffee.BUS
             return PhieuNhapNguyenLieu == null ? new PhieuNhapNguyenLieu() : PhieuNhapNguyenLieu;
         }
 
-        public static List<PhieuNhapNguyenLieu> findTenNhanVien(string tenNhanVien)
+        public static List<PhieuNhapNguyenLieu> toListNgayNhap(DateTime ngayNhap)
         {
-            tenNhanVien = CServices.formatChuoi(tenNhanVien);
             List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieux.
-                Where(x => x.NhanVien.tenNhanVien.Contains(tenNhanVien) == true).ToList();
+                Where(x => x.ngayNhap == ngayNhap && x.trangThai == 0).ToList();
+            
+            return list == null ? new List<PhieuNhapNguyenLieu>() : list;
+        }
+
+        public static List<PhieuNhapNguyenLieu> toListTongThanhTien(double tongThanhTien)
+        {
+            List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieux.
+                Where(x => x.tongThanhTien >= tongThanhTien && x.trangThai == 0).ToList();
             
             return list == null ? new List<PhieuNhapNguyenLieu>() : list;
         }
