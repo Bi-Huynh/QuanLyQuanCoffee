@@ -26,7 +26,8 @@
                           Name="gd_QuanLyNhapNguyenLieu"
                           Click="gd_QuanLyNhapNguyenLieu_Click"></MenuItem>
                 <MenuItem Header="Quản Lý Xuất Nguyên Liệu"
-                          Name="gd_QuanLyXuatNguyenLieu"></MenuItem>
+                          Name="gd_QuanLyXuatNguyenLieu"
+                          Click="gd_QuanLyXuatNguyenLieu_Click"></MenuItem>
             </MenuItem>
             <MenuItem x:Name="sanPham" Header="Sản Phẩm">
                 <MenuItem Header="Quản Lý Sản Phẩm"

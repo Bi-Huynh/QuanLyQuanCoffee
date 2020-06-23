@@ -101,5 +101,10 @@ namespace QuanLyQuanCoffee.Views
         {
             Main.Content = new frmQuanLyHoaDon();
         }
+
+        private void gd_QuanLyXuatNguyenLieu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
