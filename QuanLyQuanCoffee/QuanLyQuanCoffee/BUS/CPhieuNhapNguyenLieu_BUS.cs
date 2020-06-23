@@ -1,6 +1,7 @@
 ﻿using QuanLyQuanCoffee.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -104,14 +105,26 @@ namespace QuanLyQuanCoffee.BUS
                 MessageBox.Show("Không tìm thấy phiếu nhập nguyên liệu để xóa");
                 return false;
             }
-            if (temp.ChiTietPhieuNhapNguyenLieux.Count > 0 ||
-                temp.NhanVien != null)
+            try
             {
-                MessageBox.Show("Không thể xóa phiếu nhập nguyên liệu này");
+                if (temp.ChiTietPhieuNhapNguyenLieux.Count > 0 ||
+                    temp.NhanVien != null)
+                {
+                    temp.trangThai = 1;
+                    quanLyQuanCoffee.SaveChanges();
+                }
+                else
+                {
+                    quanLyQuanCoffee.PhieuNhapNguyenLieux.Remove(temp);
+                    quanLyQuanCoffee.SaveChanges();
+                }
+            }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show("Lỗi! Không thể xóa Phiếu nhập này");
                 return false;
             }
-            quanLyQuanCoffee.PhieuNhapNguyenLieux.Remove(temp);
-            quanLyQuanCoffee.SaveChanges();
+
             return true;
         }
     }

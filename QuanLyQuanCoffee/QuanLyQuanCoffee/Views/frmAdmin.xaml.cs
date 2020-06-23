@@ -22,6 +22,7 @@ namespace QuanLyQuanCoffee.Views
         private QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
         private TaiKhoan taiKhoan1;
         private LoaiTaiKhoan ltk;
+        NhanVien nhanVien;
 
         public frmAdmin(TaiKhoan taiKhoan)
         {
@@ -29,6 +30,11 @@ namespace QuanLyQuanCoffee.Views
             taiKhoan1 = taiKhoan;
             ltk = quanLyQuanCoffee.LoaiTaiKhoans.Find(taiKhoan.maLoaiTaiKhoan);
             kiemTraQuyen(taiKhoan);
+            nhanVien = quanLyQuanCoffee.NhanViens.Find(taiKhoan1.maNhanVien);
+            if (nhanVien == null)
+            {
+                nhanVien = new NhanVien();
+            }
         }
 
         public void kiemTraQuyen(TaiKhoan taiKhoan1)
@@ -60,7 +66,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void gd_QuanLyNhapNguyenLieu_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new frmQuanLyNhapNguyenLieu();
+            Main.Content = new frmQuanLyNhapNguyenLieu(nhanVien);
         }
 
         private void gd_quanlyTaiKhoan_Click(object sender, RoutedEventArgs e)
@@ -75,7 +81,6 @@ namespace QuanLyQuanCoffee.Views
 
         private void order_Click(object sender, RoutedEventArgs e)
         {
-            NhanVien nhanVien = quanLyQuanCoffee.NhanViens.Find(taiKhoan1.maNhanVien);
             Main.Content = new frmOrder(nhanVien);
         }
 
