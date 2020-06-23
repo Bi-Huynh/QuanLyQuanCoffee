@@ -24,7 +24,6 @@ namespace QuanLyQuanCoffee.Views
     {
         private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
         LoaiTaiKhoan loaiTK;
-        LoaiTaiKhoan a;
 
         public frmQuanLyLoaiTaiKhoan()
         {

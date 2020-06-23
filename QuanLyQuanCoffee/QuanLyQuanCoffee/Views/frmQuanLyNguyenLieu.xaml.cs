@@ -31,13 +31,16 @@ namespace QuanLyQuanCoffee.Views
 
         public void hienThiDS(List<NguyenLieu> list)
         {
-            dgDSNguyenLieu.ItemsSource = list.Select(x => new
+            if (list.Count() > 0)
             {
-                maNguyenLieu = x.maNguyenLieu,
-                tenNguyenLieu = x.tenNguyenLieu,
-                tongSoLuong = CChiTietNguyenLieu_BUS.tongSoLuong(x.maNguyenLieu),
-                tenLoaiNguyenLieu = x.LoaiNguyenLieu.tenLoaiNguyenLieu
-            });
+                dgDSNguyenLieu.ItemsSource = list.Select(x => new
+                {
+                    maNguyenLieu = x.maNguyenLieu,
+                    tenNguyenLieu = x.tenNguyenLieu,
+                    tongSoLuong = CChiTietNguyenLieu_BUS.tongSoLuong(x.maNguyenLieu),
+                    tenLoaiNguyenLieu = x.LoaiNguyenLieu.tenLoaiNguyenLieu
+                });
+            }
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)

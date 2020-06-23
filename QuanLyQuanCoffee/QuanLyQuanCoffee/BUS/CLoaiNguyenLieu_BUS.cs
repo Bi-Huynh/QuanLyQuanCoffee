@@ -14,6 +14,12 @@ namespace QuanLyQuanCoffee.BUS
 
         public static List<LoaiNguyenLieu> toList()
         {
+            List<LoaiNguyenLieu> list = quanLyQuanCoffee.LoaiNguyenLieux.Where(x => x.trangThai == 0).ToList();
+            return list == null ? new List<LoaiNguyenLieu>() : list;
+        }
+
+        public static List<LoaiNguyenLieu> toListAll()
+        {
             List<LoaiNguyenLieu> list = quanLyQuanCoffee.LoaiNguyenLieux.ToList();
             return list == null ? new List<LoaiNguyenLieu>() : list;
         }
@@ -40,11 +46,11 @@ namespace QuanLyQuanCoffee.BUS
             return find(loaiNguyenLieu.maLoaiNguyenLieu);
         }
 
-        public static string findMaLoaibyTenLoai(string tenLoai)
+        public static LoaiNguyenLieu findMaLoaibyTenLoai(string tenLoai)
         {
             // so sánh cái tên của loại nguyên liệu và lấy ra cái mã
-            return quanLyQuanCoffee.LoaiNguyenLieux.Where(x => x.tenLoaiNguyenLieu == tenLoai).FirstOrDefault().maLoaiNguyenLieu;
-
+            LoaiNguyenLieu loaiNguyenLieu = quanLyQuanCoffee.LoaiNguyenLieux.Where(x => x.tenLoaiNguyenLieu == tenLoai).FirstOrDefault();
+            return loaiNguyenLieu == null ? new LoaiNguyenLieu() : loaiNguyenLieu;
         }
 
         public static bool add(LoaiNguyenLieu loaiNguyenLieu)

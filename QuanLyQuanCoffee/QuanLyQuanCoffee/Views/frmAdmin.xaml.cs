@@ -60,11 +60,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void gd_QuanLyNhapNguyenLieu_Click(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD
             Main.Content = new frmQuanLyNhapNguyenLieu();
-=======
-            // Main.Content = new frmQuanLyPhieuNhapNguyenLieu();
->>>>>>> 9fcc44ade4dbcc053dbd7a3d667223c86441f261
         }
 
         private void gd_quanlyTaiKhoan_Click(object sender, RoutedEventArgs e)

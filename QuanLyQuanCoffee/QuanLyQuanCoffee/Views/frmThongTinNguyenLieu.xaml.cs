@@ -57,15 +57,15 @@ namespace QuanLyQuanCoffee.Views
 
         private void hienThi()
         {
-            cmbLoaiNguyenLieu.ItemsSource = CLoaiNguyenLieu_BUS.toListMa();
+            cmbLoaiNguyenLieu.ItemsSource = CLoaiNguyenLieu_BUS.toListTenLoai();
         }
 
         private void hienThiThongTin(NguyenLieu nguyenLieu)
         {
             txtMaNguyenLieu.Text = nguyenLieu.maNguyenLieu;
             txtTenNguyenLieu.Text = nguyenLieu.tenNguyenLieu;
-            cmbLoaiNguyenLieu.SelectedItem = nguyenLieu.LoaiNguyenLieu.maLoaiNguyenLieu;
-            txtTenLoai.Text = nguyenLieu.LoaiNguyenLieu.tenLoaiNguyenLieu;
+            cmbLoaiNguyenLieu.SelectedItem = nguyenLieu.LoaiNguyenLieu.tenLoaiNguyenLieu;
+            txtMaLoai.Text = nguyenLieu.LoaiNguyenLieu.maLoaiNguyenLieu;
         }
 
         private void isEnabledThongTin(bool value)
@@ -84,10 +84,11 @@ namespace QuanLyQuanCoffee.Views
         {
             try
             {
+                //string maLoaiNguyenLieu = CLoaiNguyenLieu_BUS.findMaLoaibyTenLoai(cmbLoaiNguyenLieu.SelectedItem.ToString());
                 NguyenLieu nguyenLieu = new NguyenLieu();
                 nguyenLieu.maNguyenLieu = txtMaNguyenLieu.Text;
                 nguyenLieu.tenNguyenLieu = txtTenNguyenLieu.Text;
-                nguyenLieu.maLoaiNguyenLieu = cmbLoaiNguyenLieu.SelectedItem.ToString();
+                nguyenLieu.maLoaiNguyenLieu = txtMaLoai.Text;
                 nguyenLieu.trangThai = 0;
 
                 if (CNguyenLieu_BUS.add(nguyenLieu))
@@ -114,10 +115,11 @@ namespace QuanLyQuanCoffee.Views
         {
             try
             {
+                //string maLoaiNguyenLieu = CLoaiNguyenLieu_BUS.findMaLoaibyTenLoai(cmbLoaiNguyenLieu.SelectedItem.ToString());
                 NguyenLieu nguyenLieu = new NguyenLieu();
                 nguyenLieu.maNguyenLieu = txtMaNguyenLieu.Text;
                 nguyenLieu.tenNguyenLieu = txtTenNguyenLieu.Text;
-                nguyenLieu.maLoaiNguyenLieu = cmbLoaiNguyenLieu.SelectedItem.ToString();
+                nguyenLieu.maLoaiNguyenLieu = txtMaLoai.Text;
                 nguyenLieu.trangThai = 0;
 
                 if (CNguyenLieu_BUS.edit(nguyenLieu))
@@ -144,14 +146,14 @@ namespace QuanLyQuanCoffee.Views
         {
             if (cmbLoaiNguyenLieu.SelectedIndex < 0)
             {
-                txtTenLoai.Text = "";
+                txtMaLoai.Text = "";
             }
             else
             {
-                LoaiNguyenLieu loaiNguyenLieu = CLoaiNguyenLieu_BUS.find(cmbLoaiNguyenLieu.SelectedItem.ToString());
+                LoaiNguyenLieu loaiNguyenLieu = CLoaiNguyenLieu_BUS.findMaLoaibyTenLoai(cmbLoaiNguyenLieu.SelectedItem.ToString());
                 if (loaiNguyenLieu != null)
                 {
-                    txtTenLoai.Text = loaiNguyenLieu.tenLoaiNguyenLieu;
+                    txtMaLoai.Text = loaiNguyenLieu.maLoaiNguyenLieu;
                 }
             }
         }

@@ -26,6 +26,7 @@ namespace QuanLyQuanCoffee.Views
         public frmQuanLyLoaiNguyenLieu()
         {
             InitializeComponent();
+            txtMaLoaiNguyenLieu.Text = CServices.taoMa<LoaiNguyenLieu>(CLoaiNguyenLieu_BUS.toListAll());
             loaiNguyenLieuSeclect = new LoaiNguyenLieu();
             hienThiDSLoaiNhanVien(CLoaiNguyenLieu_BUS.toList());
             isEnabledThongTin(false);
