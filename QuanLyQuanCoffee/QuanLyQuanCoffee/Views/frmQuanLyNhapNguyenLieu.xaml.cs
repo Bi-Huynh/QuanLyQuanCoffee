@@ -22,11 +22,16 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmQuanLyNhapNguyenLieu : Page
     {
         private PhieuNhapNguyenLieu PhieuNhapNguyenLieuSelect = new PhieuNhapNguyenLieu();
+        private NhanVien nhanVienSelect;
 
-        public frmQuanLyNhapNguyenLieu()
+        public frmQuanLyNhapNguyenLieu(NhanVien nhanVien = null)
         {
             InitializeComponent();
-
+            nhanVienSelect = nhanVien;
+            if (nhanVienSelect == null)
+            {
+                nhanVienSelect = new NhanVien();
+            }
             hienThiDSPhieuNhap(CPhieuNhapNguyenLieu_BUS.toList());
         }
 
@@ -96,7 +101,7 @@ namespace QuanLyQuanCoffee.Views
         {
             if (PhieuNhapNguyenLieuSelect != null)
             {
-                new frmThongTinPhieuNhap(PhieuNhapNguyenLieuSelect, 0).Show();
+                new frmThongTinPhieuNhap(nhanVienSelect, PhieuNhapNguyenLieuSelect, 0).Show();
             }
             else
             {
@@ -123,7 +128,7 @@ namespace QuanLyQuanCoffee.Views
         {
             if (PhieuNhapNguyenLieuSelect != null)
             {
-                new frmThongTinPhieuNhap(PhieuNhapNguyenLieuSelect, 2).Show();
+                new frmThongTinPhieuNhap(nhanVienSelect, PhieuNhapNguyenLieuSelect, 2).Show();
             }
             else
             {
@@ -133,12 +138,27 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
+            if (PhieuNhapNguyenLieuSelect != null)
+            {
+                var result = MessageBox.Show("Do you want to delete changes?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
+                if (result == MessageBoxResult.Yes)
+                {
+                    if (CPhieuNhapNguyenLieu_BUS.remove(PhieuNhapNguyenLieuSelect))
+                    {
+                        hienThiDSPhieuNhap(CPhieuNhapNguyenLieu_BUS.toList());
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn nhân viên");
+            }
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-
+            new frmThongTinPhieuNhap(nhanVienSelect).Show();
         }
     }
 }

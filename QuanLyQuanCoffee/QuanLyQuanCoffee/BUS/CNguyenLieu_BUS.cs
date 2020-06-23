@@ -27,6 +27,13 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<NguyenLieu>() : list;
         }
 
+        public static List<string> toListTen()
+        {
+            List<string> list = quanLyQuanCoffee.NguyenLieux
+                .Where(x => x.trangThai == 0).Select(x => x.tenNguyenLieu).ToList();
+            return list == null ? new List<string>() : list;
+        }
+
         public static NguyenLieu find(string maNguyenLieu)
         {
             return quanLyQuanCoffee.NguyenLieux.Find(maNguyenLieu);
