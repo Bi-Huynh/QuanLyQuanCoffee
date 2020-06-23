@@ -137,5 +137,13 @@ namespace QuanLyQuanCoffee.BUS
             
             return true;
         }
+
+
+        //////////HAM DANH CHO PHIEU XUAT NGUYEN LIEU
+        public static List<string> DSNguyenLieuTheoTen()
+        {
+            List<string> list = quanLyQuanCoffee.NguyenLieux.Select(x => x.tenNguyenLieu).ToList();
+            return list == null ? new List<string>() : list;
+        }
     }
 }

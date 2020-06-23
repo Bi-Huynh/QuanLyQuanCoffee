@@ -20,9 +20,11 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmQuanLyPhieuXuatNguyenLieu : Page
     {
-        public frmQuanLyPhieuXuatNguyenLieu()
+        NhanVien nhanVienSelected;
+        public frmQuanLyPhieuXuatNguyenLieu(NhanVien nhanVien)
         {
             InitializeComponent();
+            nhanVienSelected = nhanVien;
         }
 
         private void txtTimKiem_KeyUp(object sender, KeyEventArgs e)
@@ -57,7 +59,8 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-
+            frmXuatNguyenLieu f = new frmXuatNguyenLieu(nhanVienSelected);
+            f.Show();
         }
     }
 }
