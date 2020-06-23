@@ -99,7 +99,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void gd_QuanLyXuatNguyenLieu_Click(object sender, RoutedEventArgs e)
         {
-
+            Main.Content = new frmQuanLyPhieuXuatNguyenLieu();
         }
     }
 }

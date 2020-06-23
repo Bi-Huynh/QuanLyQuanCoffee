@@ -24,5 +24,40 @@ namespace QuanLyQuanCoffee.Views
         {
             InitializeComponent();
         }
+
+        private void txtTimKiem_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void btnXemThongTinChiTiet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dgDSPhieuNhap_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void btnRefesh_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSua_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnXoa_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnThem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

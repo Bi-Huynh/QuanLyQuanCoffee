@@ -193,6 +193,9 @@
     <Compile Include="Views\frmQuanLyNhapNguyenLieu.xaml.cs">
       <DependentUpon>frmQuanLyNhapNguyenLieu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmQuanLyPhieuXuatNguyenLieu.xaml.cs">
+      <DependentUpon>frmQuanLyPhieuXuatNguyenLieu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmQuanLySanPham.xaml.cs">
       <DependentUpon>frmQuanLySanPham.xaml</DependentUpon>
     </Compile>
@@ -249,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\frmQuanLyNhapNguyenLieu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmQuanLyPhieuXuatNguyenLieu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
