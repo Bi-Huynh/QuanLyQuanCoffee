@@ -1,6 +1,8 @@
 ﻿using QuanLyQuanCoffee.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,13 +57,25 @@ namespace QuanLyQuanCoffee.BUS
 
         public static bool add(LoaiNguyenLieu loaiNguyenLieu)
         {
-            if (CServices.kiemTraThongTin(loaiNguyenLieu))
+            try
             {
-                quanLyQuanCoffee.LoaiNguyenLieux.Add(loaiNguyenLieu);
-                quanLyQuanCoffee.SaveChanges();
-                return true;
+                if (CServices.kiemTraThongTin(loaiNguyenLieu))
+                {
+                    quanLyQuanCoffee.LoaiNguyenLieux.Add(loaiNguyenLieu);
+                    quanLyQuanCoffee.SaveChanges();
+                }
             }
-            return false;
+            catch (DbUpdateException)
+            {
+                MessageBox.Show("Lỗi! không thể thêm dữ liệu vào database");
+                return false;
+            }
+            catch (DbEntityValidationException)
+            {
+                MessageBox.Show("Lỗi! kiểu dữ liệu không hợp lệ");
+                return false;
+            }
+            return true;
         }
 
         public static bool edit(LoaiNguyenLieu loaiNguyenLieu)
@@ -71,9 +85,22 @@ namespace QuanLyQuanCoffee.BUS
             {
                 return false;
             }
-            temp.maLoaiNguyenLieu = loaiNguyenLieu.maLoaiNguyenLieu;
-            temp.tenLoaiNguyenLieu = loaiNguyenLieu.tenLoaiNguyenLieu;
-            quanLyQuanCoffee.SaveChanges();
+            try
+            {
+                temp.maLoaiNguyenLieu = loaiNguyenLieu.maLoaiNguyenLieu;
+                temp.tenLoaiNguyenLieu = loaiNguyenLieu.tenLoaiNguyenLieu;
+                quanLyQuanCoffee.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show("Lỗi! không thể thêm dữ liệu vào database");
+                return false;
+            }
+            catch (DbEntityValidationException)
+            {
+                MessageBox.Show("Lỗi! kiểu dữ liệu không hợp lệ");
+                return false;
+            }
             return true;
         }
 
@@ -92,9 +119,21 @@ namespace QuanLyQuanCoffee.BUS
                 MessageBox.Show("Không thể xóa loại nguyên liệu này");
                 return false;
             }
-
-            quanLyQuanCoffee.LoaiNguyenLieux.Remove(temp);
-            quanLyQuanCoffee.SaveChanges();
+            try
+            {
+                quanLyQuanCoffee.LoaiNguyenLieux.Remove(temp);
+                quanLyQuanCoffee.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show("Lỗi! không thể thêm dữ liệu vào database");
+                return false;
+            }
+            catch (DbEntityValidationException)
+            {
+                MessageBox.Show("Lỗi! kiểu dữ liệu không hợp lệ");
+                return false;
+            }
             return true;
         }
 
