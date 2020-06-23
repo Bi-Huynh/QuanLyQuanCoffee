@@ -46,7 +46,7 @@
             <Button x:Name="btnSua" Grid.Column="4" Content="Sửa" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnSua_Click"/>
             <Button x:Name="btnLuu" Grid.Column="3" Content="Lưu" Height="30" Margin="10,10,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="btnLuu_Click"/>
         </Grid>-->
-        <DataGrid x:Name="dgDSChiTietNguyenLieu" MinHeight="368" Margin="10,0" AutoGenerateColumns="False" 
+        <DataGrid x:Name="dgDSChiTietNguyenLieu" MinHeight="360" Margin="10,0" AutoGenerateColumns="False" 
                   SelectedValuePath="maNguyenLieu" HorizontalContentAlignment="Center" 
                   Background="White" FontFamily="Arial" IsReadOnly="True">
             <DataGrid.Columns>
