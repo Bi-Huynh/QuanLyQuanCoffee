@@ -24,6 +24,7 @@ namespace QuanLyQuanCoffee.Views
     {
         private TaiKhoan tk;
         private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
+
         public frmQuanLyTaiKhoan()
         {
             InitializeComponent();
@@ -141,10 +142,10 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnSuaTK_Click(object sender, RoutedEventArgs e)
         {
-            if(tk==null)
+            if (tk == null)
             {
                 MessageBox.Show("Vui lòng chọn tài khoản cần sửa");
-            }   
+            }
             else
             {
                 TaiKhoan tkSua = new TaiKhoan();
@@ -153,20 +154,20 @@ namespace QuanLyQuanCoffee.Views
                 tkSua.matKhau = txtMatkhau.Text;
                 tkSua.maLoaiTaiKhoan = cboLoaitaikhoan.Text;
                 tkSua.trangThai = tk.trangThai;
-                if(CTaiKhoan_BUS.KTRong(tkSua))
+                if (CTaiKhoan_BUS.KTRong(tkSua))
                 {
-                    if(CTaiKhoan_BUS.edit(tkSua))
+                    if (CTaiKhoan_BUS.edit(tkSua))
                     {
                         MessageBox.Show("Sửa thành công");
                         hienthiDStaikhoan();
-                    }    
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Yêu cầu điền đầy đủ thông tin tài khoản");
-                }    
-            }    
-            
+                }
+            }
+
             hienthiDStaikhoan();
             load();
         }

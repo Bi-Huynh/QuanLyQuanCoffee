@@ -36,12 +36,12 @@
                           Name="gd_QuanLyLoaiSanPham"
                            Click="gd_QuanLyLoaiSanPham_Click"
                           >
-                    
+
                 </MenuItem>
             </MenuItem>
             <MenuItem x:Name="hoaDon" Header="Hóa Đơn">
                 <MenuItem Header="Quản Lý Hóa Đơn"
-                          Name="gd_QuanLyHoaDon"></MenuItem>
+                          Name="gd_QuanLyHoaDon" Click="gd_QuanLyHoaDon_Click"></MenuItem>
             </MenuItem>
             <MenuItem x:Name="thongKe" Header="Thống kê">
                 <MenuItem Header="Thống Kê Doanh Thu">

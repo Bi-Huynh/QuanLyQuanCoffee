@@ -28,7 +28,7 @@ namespace QuanLyQuanCoffee.Views
         {
             InitializeComponent();
             hienthiSP();
-            txtMasanpham.Text = CServices.taoMa<SanPham>(CSanPham_BUS.toList());
+            txtMasanpham.Text = CServices.taoMa<SanPham>(CSanPham_BUS.DsSanPham());
         }
         public void hienthiSP()
         {
@@ -93,32 +93,42 @@ namespace QuanLyQuanCoffee.Views
                 sp1.maSanPham = txtMasanpham.Text;
                 sp1.tenSanPham = txtTensanpham.Text;
                 sp1.donViTinh = txtDonvitinh.Text;
-                sp1.maLoaiSanPham = cboLoaisanpham.SelectedItem.ToString();
-                //if (CSanPham_BUS.KiemtraMaLoai(cboLoaisanpham.SelectedItem.ToString())) 
-                //{
-                //    
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Mã Loại sản phẩm không được để trống");
-                //}
+                //sp1.maLoaiSanPham = cboLoaisanpham.SelectedItem.ToString();
+                if ((cboLoaisanpham.SelectedItem != null))
+                {
+                    sp1.maLoaiSanPham = cboLoaisanpham.SelectedItem.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Mã Loại sản phẩm không được để trống");
+                }
                 sp1.donGia = int.Parse(txtDongia.Text);
                 sp1.trangThai = 0;
                 if (CSanPham_BUS.KTRong(sp1))
                 {
-                    if (CSanPham_BUS.find(txtMasanpham.Text) == null)
+                    if (CServices.kiemTraThongTin(sp1))
                     {
-                        if (CSanPham_BUS.add(sp1))
+                        if (CSanPham_BUS.find(txtMasanpham.Text) == null)
                         {
-                            MessageBox.Show("Thêm thành công");
-                            txtMasanpham.Text = CServices.taoMa<SanPham>(CSanPham_BUS.toList());
-                            hienthiSP();
-                            load();
+                            if (CSanPham_BUS.add(sp1))
+                            {
+                                MessageBox.Show("Thêm thành công");
+                                txtMasanpham.Text = CServices.taoMa<SanPham>(CSanPham_BUS.DsSanPham());
+                                hienthiSP();
+                                load();
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Mã sản phẩm bị trùng");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Mã sản phẩm bị trùng");
+
+                        MessageBox.Show("Xem lại đơn giá");
+
                     }
                 }
                 else
@@ -137,6 +147,10 @@ namespace QuanLyQuanCoffee.Views
             catch (OverflowException)
             {
                 MessageBox.Show("Đơn giá vượt quá giới hạn lưu trữ");
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Dữ liệu không được bỏ trống");
             }
         }
 
@@ -212,7 +226,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnBochon_Click(object sender, RoutedEventArgs e)
         {
-            txtMasanpham.Text = CServices.taoMa<SanPham>(CSanPham_BUS.toList());
+            txtMasanpham.Text = CServices.taoMa<SanPham>(CSanPham_BUS.DsSanPham());
             txtDonvitinh.Text = null;
             cboLoaisanpham.Text = null;
             txtTensanpham.Text = "";
@@ -222,11 +236,11 @@ namespace QuanLyQuanCoffee.Views
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
         }
         public void load()
         {
-            txtMasanpham.Text = CServices.taoMa<SanPham>(CSanPham_BUS.toList());
+            txtMasanpham.Text = CServices.taoMa<SanPham>(CSanPham_BUS.DsSanPham());
             txtDonvitinh.Text = null;
             cboLoaisanpham.Text = null;
             txtTensanpham.Text = "";

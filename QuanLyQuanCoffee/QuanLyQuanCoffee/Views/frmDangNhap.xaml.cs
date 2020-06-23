@@ -29,12 +29,20 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnDangNhap_Click(object sender, RoutedEventArgs e)
         {
-            tk = dc.TaiKhoans.Where(x => x.taiKhoan1 == txtTaikhoan.Text && x.matKhau == txtMatkhau.Password).FirstOrDefault();
+            tk = dc.TaiKhoans.Where(x => x.taiKhoan1 == txtTaikhoan.Text && x.matKhau == txtMatkhau.Password && x.trangThai == 0).FirstOrDefault();
             if (tk != null)
             {
-                frmAdmin f = new frmAdmin(tk);
-                f.Show();
-                this.Close();
+                //if (tk.trangThai == 0)
+                //{
+                    frmAdmin f = new frmAdmin(tk);
+                    f.Show();
+                    this.Close();
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Tài khoản không tồn tại");
+                //}
+
             }
             else
             {

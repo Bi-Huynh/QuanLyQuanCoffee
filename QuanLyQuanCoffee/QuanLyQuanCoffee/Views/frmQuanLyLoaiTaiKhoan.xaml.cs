@@ -1,4 +1,5 @@
 ﻿using QuanLyQuanCoffee.BUS;
+using QuanLyQuanCoffee.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +25,12 @@ namespace QuanLyQuanCoffee.Views
         private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
         LoaiTaiKhoan loaiTK;
         LoaiTaiKhoan a;
+
         public frmQuanLyLoaiTaiKhoan()
         {
             InitializeComponent();
             HienThiDSLoaitaikhoan();
+            load();
         }
         public void HienThiDSLoaitaikhoan()
         {
@@ -47,7 +50,6 @@ namespace QuanLyQuanCoffee.Views
 
                     CLoaiTaiKhoan_BUS.add(ltk);
                     MessageBox.Show("Thêm thành công");
-                    txtmaLoaitaikhoan.Text = "";
                 }
                 else
                 {
@@ -65,7 +67,7 @@ namespace QuanLyQuanCoffee.Views
 
         public void load()
         {
-            txtmaLoaitaikhoan.Text = "";
+            txtmaLoaitaikhoan.Text = CServices.taoMaLoaiTaiKhoan(CLoaiTaiKhoan_BUS.DSLoaiTK());
             txttenLoaitaikhoan.Text = "";
             loaiTK = null;
         }
@@ -129,7 +131,7 @@ namespace QuanLyQuanCoffee.Views
                     else
                     {
                         MessageBox.Show("Vui lòng nhập tên loại tài khoản");
-                    }    
+                    }
                 }
             }
             catch (Exception ex)
@@ -151,7 +153,7 @@ namespace QuanLyQuanCoffee.Views
                 }
                 else
                 {
-                    txtmaLoaitaikhoan.Text = "";
+                    txtmaLoaitaikhoan.Text = CServices.taoMaLoaiTaiKhoan(CLoaiTaiKhoan_BUS.DSLoaiTK());
                     txttenLoaitaikhoan.Text = "";
                 }
             }
@@ -163,7 +165,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnBochon_Click(object sender, RoutedEventArgs e)
         {
-            txtmaLoaitaikhoan.Text = "";
+            txtmaLoaitaikhoan.Text = CServices.taoMaLoaiTaiKhoan(CLoaiTaiKhoan_BUS.DSLoaiTK());
             txttenLoaitaikhoan.Text = "";
             loaiTK = null;
         }

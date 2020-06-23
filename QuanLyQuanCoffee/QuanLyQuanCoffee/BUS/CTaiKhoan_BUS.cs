@@ -43,7 +43,7 @@ namespace QuanLyQuanCoffee.BUS
                 {
                     //taiKhoan.taiKhoan1 = CServices.formatTK_MT(taiKhoan.taiKhoan1);
                     //taiKhoan.matKhau = CServices.formatTK_MT(taiKhoan.matKhau);
-                    
+
                     quanLyQuanCoffee.TaiKhoans.Add(taiKhoan);
                     quanLyQuanCoffee.SaveChanges();
                 }

@@ -166,6 +166,12 @@
     <Compile Include="Views\frmOrder.xaml.cs">
       <DependentUpon>frmOrder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmQuanLyChiTietHoaDon.xaml.cs">
+      <DependentUpon>frmQuanLyChiTietHoaDon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmQuanLyHoaDon.xaml.cs">
+      <DependentUpon>frmQuanLyHoaDon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmQuanLyLoaiNguyenLieu.xaml.cs">
       <DependentUpon>frmQuanLyLoaiNguyenLieu.xaml</DependentUpon>
     </Compile>
@@ -211,6 +217,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\frmOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmQuanLyChiTietHoaDon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmQuanLyHoaDon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

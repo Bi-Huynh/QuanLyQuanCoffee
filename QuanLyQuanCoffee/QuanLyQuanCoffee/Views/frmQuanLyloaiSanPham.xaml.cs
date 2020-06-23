@@ -24,6 +24,8 @@ namespace QuanLyQuanCoffee.Views
     {
         //private CLoaiSanPham lsp = new CLoaiSanPham();
         private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
+
+
         LoaiSanPham a;
         public frmQuanLyloaiSanPham()
         {
@@ -48,10 +50,10 @@ namespace QuanLyQuanCoffee.Views
                 {
                     if (CLoaiSanPham_BUS.find(makt) == null)
                     {
-                        
+
                         CLoaiSanPham_BUS.add(a);
                         MessageBox.Show("Thêm thành công");
-                        txtmaLoai.Text = "";
+                        txtmaLoai.Text = CServices.taoMa<LoaiSanPham>(CLoaiSanPham_BUS.DSLoaiSP());
                     }
                     else
                     {
@@ -89,7 +91,7 @@ namespace QuanLyQuanCoffee.Views
                         if (CLoaiSanPham_BUS.remove(a))
                         {
                             MessageBox.Show("Xóa thành công " + maloai + " khỏi danh sách");
-                            
+
                         }
                     }
                 }
@@ -110,8 +112,8 @@ namespace QuanLyQuanCoffee.Views
         {
             try
             {
-                
-                if(a==null)
+
+                if (a == null)
                 {
                     MessageBox.Show("Vui lòng chọn Loại sản phẩm cần sửa");
                 }
@@ -121,9 +123,9 @@ namespace QuanLyQuanCoffee.Views
                     b.maLoaiSanPham = txtmaLoai.Text;
                     b.tenLoai = txttenLoai.Text;
                     b.trangThai = 0;
-                    if(CLoaiSanPham_BUS.KTRong(b))
+                    if (CLoaiSanPham_BUS.KTRong(b))
                     {
-                        if(CLoaiSanPham_BUS.edit(b))
+                        if (CLoaiSanPham_BUS.edit(b))
                         {
                             MessageBox.Show("Sửa thành công");
                             HienThiDSLoaiSanPham();
@@ -155,7 +157,7 @@ namespace QuanLyQuanCoffee.Views
                 }
                 else
                 {
-                    txtmaLoai.Text = CServices.taoMa<LoaiSanPham>(CLoaiSanPham_BUS.toList());
+                    txtmaLoai.Text = CServices.taoMa<LoaiSanPham>(CLoaiSanPham_BUS.DSLoaiSP());
                     txttenLoai.Text = "";
                 }
             }
@@ -167,13 +169,13 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnBoChon_Click(object sender, RoutedEventArgs e)
         {
-            txtmaLoai.Text = CServices.taoMa<LoaiSanPham>(CLoaiSanPham_BUS.toList());
+            txtmaLoai.Text = CServices.taoMa<LoaiSanPham>(CLoaiSanPham_BUS.DSLoaiSP());
             txttenLoai.Text = "";
             a = null;
         }
         public void load()
         {
-            txttenLoai.Text = "";
+            txtmaLoai.Text = CServices.taoMa<LoaiSanPham>(CLoaiSanPham_BUS.DSLoaiSP());
             a = null;
         }
     }

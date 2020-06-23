@@ -9,6 +9,12 @@ namespace QuanLyQuanCoffee.BUS
     class CChiTietHoaDon_BUS
     {
         private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+
+        public static List<ChiTietHoaDon> toList(string maHoaDon)
+        {
+            List<ChiTietHoaDon> list = quanLyQuanCoffee.ChiTietHoaDons.Where(x => x.maHoaDon == maHoaDon).ToList();
+            return list == null ? new List<ChiTietHoaDon>() : list;
+        }
         public static ChiTietHoaDon find(string maHoaDon)
         {
             return quanLyQuanCoffee.ChiTietHoaDons.Find(maHoaDon);
@@ -19,5 +25,10 @@ namespace QuanLyQuanCoffee.BUS
             var thanhTien = chiTietHoaDon.soLuong * chiTietHoaDon.SanPham.donGia;
             return double.Parse(thanhTien.ToString());
         }
+        //public static ChiTietHoaDon add(ChiTietHoaDon chiTietHoaDon)
+        //{
+
+        //    return quanLyQuanCoffee.ChiTietHoaDons.Find(maHoaDon);
+        //}
     }
 }
