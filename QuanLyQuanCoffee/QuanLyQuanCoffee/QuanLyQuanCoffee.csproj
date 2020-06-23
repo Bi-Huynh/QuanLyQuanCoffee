@@ -83,6 +83,7 @@
     <Compile Include="BUS\CChiTietHoaDon_BUS.cs" />
     <Compile Include="BUS\CChiTietNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CChiTietPhieuNhapNguyenLieu_BUS.cs" />
+    <Compile Include="BUS\CChiTietPhieuXuatNguyenLieu.cs" />
     <Compile Include="BUS\CHoaDon_BUS.cs" />
     <Compile Include="BUS\CLoaiNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CLoaiNhanVien_BUS.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="BUS\CNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CNhanVien_BUS.cs" />
     <Compile Include="BUS\CPhieuNhapNguyenLieu_BUS.cs" />
+    <Compile Include="BUS\CPhieuXuatNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CSanPham_BUS.cs" />
     <Compile Include="BUS\CTaiKhoan_BUS.cs" />
     <Compile Include="ChiTietChamCong.cs">
@@ -193,6 +195,9 @@
     <Compile Include="Views\frmQuanLyNhapNguyenLieu.xaml.cs">
       <DependentUpon>frmQuanLyNhapNguyenLieu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmQuanLyPhieuXuatNguyenLieu.xaml.cs">
+      <DependentUpon>frmQuanLyPhieuXuatNguyenLieu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmQuanLySanPham.xaml.cs">
       <DependentUpon>frmQuanLySanPham.xaml</DependentUpon>
     </Compile>
@@ -252,6 +257,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\frmQuanLyPhieuXuatNguyenLieu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\frmQuanLySanPham.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -272,6 +281,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\frmXuatNguyenLieu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -285,6 +298,9 @@
     </Compile>
     <Compile Include="Views\frmThongTinPhieuNhap.xaml.cs">
       <DependentUpon>frmThongTinPhieuNhap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmXuatNguyenLieu.xaml.cs">
+      <DependentUpon>frmXuatNguyenLieu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
