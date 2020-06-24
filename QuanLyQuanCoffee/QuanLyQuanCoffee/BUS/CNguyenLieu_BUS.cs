@@ -30,7 +30,7 @@ namespace QuanLyQuanCoffee.BUS
         public static List<string> toListTen()
         {
             List<string> list = quanLyQuanCoffee.NguyenLieux
-                .Where(x => x.trangThai == 0).Select(x => x.tenNguyenLieu).ToList();
+                .Where(x => x.trangThai == 0).Select(x => x.tenNguyenLieu.Trim()).ToList();
             return list == null ? new List<string>() : list;
         }
 
@@ -64,6 +64,15 @@ namespace QuanLyQuanCoffee.BUS
             List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux
                 .Where(x => x.LoaiNguyenLieu.tenLoaiNguyenLieu.Contains(tenLoai) && x.trangThai == 0).ToList();
             return list == null ? new List<NguyenLieu>() : list;
+        }
+
+        public static NguyenLieu findNguyenLieuByTen(string tenNguyenLieu)
+        {
+            tenNguyenLieu = CServices.formatChuoi(tenNguyenLieu);
+            NguyenLieu nguyenLieu = quanLyQuanCoffee.NguyenLieux
+                .Where(x => x.tenNguyenLieu.Contains(tenNguyenLieu) && x.trangThai == 0)
+                .FirstOrDefault();
+            return nguyenLieu == null ? new NguyenLieu() : nguyenLieu;
         }
 
         public static bool add(NguyenLieu nguyenLieu)

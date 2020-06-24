@@ -52,24 +52,17 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            string maLoaiNguyenLieu = "";
-            do
-            {
-                maLoaiNguyenLieu = CServices.randomMa();
-            } while (CLoaiNguyenLieu_BUS.find(maLoaiNguyenLieu) != null);
+            LoaiNguyenLieu loaiNguyenLieu = new LoaiNguyenLieu();
+            loaiNguyenLieu.maLoaiNguyenLieu = txtMaLoaiNguyenLieu.Text;
+            loaiNguyenLieu.tenLoaiNguyenLieu = txtTenLoai.Text;
+            loaiNguyenLieu.trangThai = 0;
 
-            LoaiNguyenLieu loaiNhanVien = new LoaiNguyenLieu();
-            loaiNhanVien.maLoaiNguyenLieu = maLoaiNguyenLieu;
-            loaiNhanVien.tenLoaiNguyenLieu = txtTenLoai.Text;
-
-            if (CLoaiNguyenLieu_BUS.add(loaiNhanVien))
+            if (CLoaiNguyenLieu_BUS.add(loaiNguyenLieu))
             {
                 MessageBox.Show("Thêm thành công");
                 hienThiDSLoaiNhanVien(CLoaiNguyenLieu_BUS.toList());
-            }
-            else
-            {
-                MessageBox.Show("Thêm không thành công");
+                txtMaLoaiNguyenLieu.Text = CServices.taoMa<LoaiNguyenLieu>(CLoaiNguyenLieu_BUS.toListAll());
+                txtTenLoai.Text = "";
             }
         }
 
@@ -78,14 +71,14 @@ namespace QuanLyQuanCoffee.Views
             LoaiNguyenLieu loaiNguyenLieu = new LoaiNguyenLieu();
             loaiNguyenLieu.maLoaiNguyenLieu = txtMaLoaiNguyenLieu.Text;
             loaiNguyenLieu.tenLoaiNguyenLieu = txtTenLoai.Text;
+            loaiNguyenLieu.trangThai = 0;
+
             if (CLoaiNguyenLieu_BUS.edit(loaiNguyenLieu))
             {
                 MessageBox.Show("Sửa thành công");
                 hienThiDSLoaiNhanVien(CLoaiNguyenLieu_BUS.toList());
-            }
-            else
-            {
-                MessageBox.Show("Sửa không thành công");
+                txtMaLoaiNguyenLieu.Text = CServices.taoMa<LoaiNguyenLieu>(CLoaiNguyenLieu_BUS.toListAll());
+                txtTenLoai.Text = "";
             }
         }
 
@@ -103,10 +96,8 @@ namespace QuanLyQuanCoffee.Views
                 {
                     MessageBox.Show("Xóa thành công");
                     hienThiDSLoaiNhanVien(CLoaiNguyenLieu_BUS.toList());
-                }
-                else
-                {
-                    MessageBox.Show("Xóa không thành công");
+                    txtMaLoaiNguyenLieu.Text = CServices.taoMa<LoaiNguyenLieu>(CLoaiNguyenLieu_BUS.toListAll());
+                    txtTenLoai.Text = "";
                 }
             }
             else
@@ -117,19 +108,13 @@ namespace QuanLyQuanCoffee.Views
 
         private void dgDSLoaiNguyenLieu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dgDSLoaiNguyenLieu.SelectedValue == null || dgDSLoaiNguyenLieu.SelectedValue.ToString() == "")
+            if (dgDSLoaiNguyenLieu.SelectedValue != null)
             {
-                return;
+                string maLoaiNguyenLieu = dgDSLoaiNguyenLieu.SelectedValue.ToString();
+                loaiNguyenLieuSeclect = CLoaiNguyenLieu_BUS.find(maLoaiNguyenLieu);
+                hienThiThongTin(loaiNguyenLieuSeclect);
+                isEnabledThongTin(true);
             }
-            if (dgDSLoaiNguyenLieu.SelectedValue.ToString() == "          ")
-            {
-                MessageBox.Show("Không thể chọn loại nguyên liệu này");
-                return;
-            }
-            string maLoaiNguyenLieu = dgDSLoaiNguyenLieu.SelectedValue.ToString();
-            loaiNguyenLieuSeclect = CLoaiNguyenLieu_BUS.find(maLoaiNguyenLieu);
-            hienThiThongTin(loaiNguyenLieuSeclect);
-            isEnabledThongTin(true);
         }
     }
 }

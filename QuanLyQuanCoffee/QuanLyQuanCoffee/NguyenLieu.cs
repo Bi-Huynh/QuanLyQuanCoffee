@@ -21,6 +21,7 @@ namespace QuanLyQuanCoffee
     
         public virtual ChiTietNguyenLieu ChiTietNguyenLieu { get; set; }
         public virtual LoaiNguyenLieu LoaiNguyenLieu { get; set; }
+
         public override string ToString()
         {
             return maNguyenLieu;
