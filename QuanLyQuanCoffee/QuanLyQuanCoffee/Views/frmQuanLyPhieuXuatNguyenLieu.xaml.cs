@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyQuanCoffee.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,12 +22,18 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmQuanLyPhieuXuatNguyenLieu : Page
     {
         NhanVien nhanVienSelected;
+        PhieuXuatNguyenLieu phieuXuatnguyenlieuSelect;
+
         public frmQuanLyPhieuXuatNguyenLieu(NhanVien nhanVien)
         {
             InitializeComponent();
             nhanVienSelected = nhanVien;
+            hienThiPhieuXuat();
         }
-
+        public void hienThiPhieuXuat()
+        {
+            dgDSPhieuXuat.ItemsSource = CPhieuXuatNguyenLieu_BUS.toList();
+        }
         private void txtTimKiem_KeyUp(object sender, KeyEventArgs e)
         {
 
@@ -34,12 +41,14 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnXemThongTinChiTiet_Click(object sender, RoutedEventArgs e)
         {
+            frmThongTinChiTietPhieuXuatNL f = new frmThongTinChiTietPhieuXuatNL(phieuXuatnguyenlieuSelect);
+            f.Show();
 
         }
 
-        private void dgDSPhieuNhap_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dgDSPhieuXuat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            phieuXuatnguyenlieuSelect = CPhieuXuatNguyenLieu_BUS.find(dgDSPhieuXuat.SelectedItem.ToString());
         }
 
         private void btnRefesh_Click(object sender, RoutedEventArgs e)

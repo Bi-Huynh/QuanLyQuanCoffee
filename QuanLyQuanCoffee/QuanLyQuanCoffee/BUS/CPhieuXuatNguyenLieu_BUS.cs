@@ -14,5 +14,10 @@ namespace QuanLyQuanCoffee.BUS
             List<PhieuXuatNguyenLieu> list = quanLyQuanCoffee.PhieuXuatNguyenLieux.Where(x => x.trangThai == 0).ToList();
             return list == null ? new List<PhieuXuatNguyenLieu>() : list;
         }
+        public static PhieuXuatNguyenLieu find(string maPhieuXuat)
+        {
+            PhieuXuatNguyenLieu PhieuXuatNguyenLieu = quanLyQuanCoffee.PhieuXuatNguyenLieux.Find(maPhieuXuat);
+            return PhieuXuatNguyenLieu == null ? new PhieuXuatNguyenLieu() : PhieuXuatNguyenLieu;
+        }
     }
 }

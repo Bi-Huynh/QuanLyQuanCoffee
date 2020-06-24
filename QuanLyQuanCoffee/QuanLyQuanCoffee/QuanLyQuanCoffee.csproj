@@ -207,6 +207,9 @@
     <Compile Include="Views\frmThongTinChiTietNguyenLieu.xaml.cs">
       <DependentUpon>frmThongTinChiTietNguyenLieu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmThongTinChiTietPhieuXuatNL.xaml.cs">
+      <DependentUpon>frmThongTinChiTietPhieuXuatNL.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmThongTinNguyenLieu.xaml.cs">
       <DependentUpon>frmThongTinNguyenLieu.xaml</DependentUpon>
     </Compile>
@@ -270,6 +273,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\frmThongTinChiTietNguyenLieu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmThongTinChiTietPhieuXuatNL.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

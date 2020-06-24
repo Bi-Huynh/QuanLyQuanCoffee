@@ -34,10 +34,10 @@
             </ComboBox>
             <Button x:Name="btnXemThongTinChiTiet" Grid.Row="1" Grid.Column="6" Content="Xem thông tin chi tiết" FontFamily="Arial" FontSize="13" Click="btnXemThongTinChiTiet_Click"/>
         </Grid>
-        <DataGrid x:Name="dgDSPhieuNhap" MinHeight="565" Margin="10,0" AutoGenerateColumns="False" 
+        <DataGrid x:Name="dgDSPhieuXuat" MinHeight="565" Margin="10,0" AutoGenerateColumns="False" 
                   SelectedValuePath="maPhieuNhap" HorizontalContentAlignment="Center" 
                   Background="White" FontFamily="Arial" IsReadOnly="True"
-                  SelectionChanged="dgDSPhieuNhap_SelectionChanged">
+                  SelectionChanged="dgDSPhieuXuat_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã phiếu xuất" Binding="{Binding maPhieuXuat}" Width="1*"/>
                 <DataGridTextColumn Header="Ngày xuất" Binding="{Binding ngayXuat}" Width="1*"/>
@@ -63,9 +63,9 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="15"/>
             </Grid.RowDefinitions>
-            <Button x:Name="btnRefesh" Grid.Row="1" Grid.Column="3" Content="Refect" FontFamily="Arial" Click="btnRefesh_Click"/>
+            <!--<Button x:Name="btnRefesh" Grid.Row="1" Grid.Column="3" Content="Refect" FontFamily="Arial" Click="btnRefesh_Click"/>
             <Button x:Name="btnSua" Grid.Row="1" Grid.Column="5" Content="Sửa" FontFamily="Arial" Click="btnSua_Click"/>
-            <Button x:Name="btnXoa" Grid.Row="1" Grid.Column="7" Content="Xóa" FontFamily="Arial" Click="btnXoa_Click"/>
+            <Button x:Name="btnXoa" Grid.Row="1" Grid.Column="7" Content="Xóa" FontFamily="Arial" Click="btnXoa_Click"/>-->
             <Button x:Name="btnThem" Grid.Row="1" Grid.Column="9" Content="Thêm" FontFamily="Arial" Height="30" VerticalAlignment="Top" Click="btnThem_Click" Margin="0,0.8,0.4,0" Grid.RowSpan="2"/>
         </Grid>
     </StackPanel>
