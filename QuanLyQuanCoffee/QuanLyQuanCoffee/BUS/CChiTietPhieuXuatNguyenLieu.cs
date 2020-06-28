@@ -9,10 +9,10 @@ namespace QuanLyQuanCoffee.BUS
     class CChiTietPhieuXuatNguyenLieu
     {
         private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
-        public static List<ChiTietPhieuXuatNguyenLieu> toList(string maPhieuXuat)
+        public static List<ChiTietPhieuXuat> toList(string maPhieuXuat)
         {
-            List<ChiTietPhieuXuatNguyenLieu> list = quanLyQuanCoffee.ChiTietPhieuXuatNguyenLieux.Where(x => x.maPhieuXuat == maPhieuXuat).ToList();
-            return list == null ? new List<ChiTietPhieuXuatNguyenLieu>() : list;
+            List<ChiTietPhieuXuat> list = quanLyQuanCoffee.ChiTietPhieuXuats.Where(x => x.maChiTietPhieuXuat == maPhieuXuat).ToList();
+            return list == null ? new List<ChiTietPhieuXuat>() : list;
         }
     }
 }

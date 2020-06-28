@@ -40,7 +40,7 @@ namespace QuanLyQuanCoffee.Views
             dgDSPhieuNhap.ItemsSource = list.Select(x => new
             {
                 maPhieuNhap = x.maPhieuNhap,
-                ngayNhap = x.ngayNhap.ToString("dd/MM/yyyy"),
+                ngayNhap = x.ngayNhap.Value.ToString("dd/MM/yyyy"),
                 tongThanhTien = x.tongThanhTien
             });
         }

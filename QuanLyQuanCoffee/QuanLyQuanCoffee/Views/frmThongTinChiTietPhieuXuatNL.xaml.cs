@@ -31,15 +31,15 @@ namespace QuanLyQuanCoffee.Views
         public void hienThiChitietPX()
         {
 
-            List<ChiTietPhieuXuatNguyenLieu> list = CChiTietPhieuXuatNguyenLieu.toList(phieuXuatSelected.maPhieuXuat);
-            if (list.Count() > 0)
-            {
-                dgQlchitietphieuxuat.ItemsSource = list;
-            }
-            else
-            {
-                MessageBox.Show("Hóa đơn này không có chi tiết hóa đơn");
-            }
+            //List<ChiTietPhieuXuatNguyenLieu> list = CChiTietPhieuXuatNguyenLieu.toList(phieuXuatSelected.maPhieuXuat);
+            //if (list.Count() > 0)
+            //{
+            //    dgQlchitietphieuxuat.ItemsSource = list;
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Hóa đơn này không có chi tiết hóa đơn");
+            //}
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

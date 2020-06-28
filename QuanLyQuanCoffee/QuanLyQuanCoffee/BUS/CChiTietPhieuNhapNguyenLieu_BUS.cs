@@ -12,41 +12,39 @@ namespace QuanLyQuanCoffee.BUS
     {
         private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
 
-        // Trả về toàn bộ danh sách nhân viên
-        public static List<ChiTietPhieuNhapNguyenLieu> toList()
+        public static List<ChiTietPhieuNhap> toList()
         {
-            List<ChiTietPhieuNhapNguyenLieu> list = quanLyQuanCoffee.ChiTietPhieuNhapNguyenLieux.ToList();
-            return list == null ? new List<ChiTietPhieuNhapNguyenLieu>() : list;
+            List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps.ToList();
+            return list == null ? new List<ChiTietPhieuNhap>() : list;
         }
 
-        // Trả về những nhân viên có mã loại được truyền vào
-        public static List<ChiTietPhieuNhapNguyenLieu> toListByLoai(string maPhieuNhap)
+        public static List<ChiTietPhieuNhap> toList(string maPhieuNhap)
         {
-            List<ChiTietPhieuNhapNguyenLieu> list = quanLyQuanCoffee.ChiTietPhieuNhapNguyenLieux.Where(x => x.maPhieuNhap == maPhieuNhap).ToList();
-            return list == null ? new List<ChiTietPhieuNhapNguyenLieu>() : list;
+            List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
+                .Where(x => x.maPhieuNhap == maPhieuNhap).ToList();
+            return list == null ? new List<ChiTietPhieuNhap>() : list;
         }
 
-        // tìm kiếm nhân viên theo mã nhân viên
-        public static ChiTietPhieuNhapNguyenLieu find(string maPhieuNhap)
+        public static ChiTietPhieuNhap find(string maChiTietPhieuNhap)
         {
-            ChiTietPhieuNhapNguyenLieu chiTietPhieuNhapNguyenLieu = quanLyQuanCoffee.ChiTietPhieuNhapNguyenLieux.Find(maPhieuNhap);
-            return chiTietPhieuNhapNguyenLieu == null ? new ChiTietPhieuNhapNguyenLieu() : chiTietPhieuNhapNguyenLieu;
+            ChiTietPhieuNhap chiTietPhieuNhapNguyenLieu = quanLyQuanCoffee.ChiTietPhieuNhaps.Find(maChiTietPhieuNhap);
+            return chiTietPhieuNhapNguyenLieu == null ? new ChiTietPhieuNhap() : chiTietPhieuNhapNguyenLieu;
         }
 
-        public static bool add(ChiTietPhieuNhapNguyenLieu chiTietPhieuNhapNguyenLieu)
+        public static bool add(ChiTietPhieuNhap chiTietPhieuNhapNguyenLieu)
         {
             if (CServices.kiemTraThongTin(chiTietPhieuNhapNguyenLieu))
             {
-                quanLyQuanCoffee.ChiTietPhieuNhapNguyenLieux.Add(chiTietPhieuNhapNguyenLieu);
+                quanLyQuanCoffee.ChiTietPhieuNhaps.Add(chiTietPhieuNhapNguyenLieu);
                 quanLyQuanCoffee.SaveChanges();
                 return true;
             }
             return false;
         }
 
-        public static bool edit(ChiTietPhieuNhapNguyenLieu chiTietPhieuNhapNguyenLieu)
+        public static bool edit(ChiTietPhieuNhap chiTietPhieuNhapNguyenLieu)
         {
-            ChiTietPhieuNhapNguyenLieu temp = find(chiTietPhieuNhapNguyenLieu.maPhieuNhap);
+            ChiTietPhieuNhap temp = find(chiTietPhieuNhapNguyenLieu.maChiTietPhieuNhap);
             if (temp == null)
             {
                 MessageBox.Show("Không tìm thấy chi tiết phiếu nhập nguyên liệu để sửa thông tin");
@@ -57,27 +55,29 @@ namespace QuanLyQuanCoffee.BUS
                 MessageBox.Show("Thông tin không hợp lệ");
                 return false;
             }
-            temp.maPhieuNhap = chiTietPhieuNhapNguyenLieu.maPhieuNhap;
-            temp.maNguyenLieu = chiTietPhieuNhapNguyenLieu.maNguyenLieu;
+            temp.maChiTietPhieuNhap = chiTietPhieuNhapNguyenLieu.maChiTietPhieuNhap;
+            temp.maChitietNguyenLieu = chiTietPhieuNhapNguyenLieu.maChitietNguyenLieu;
+            temp.soLuong = chiTietPhieuNhapNguyenLieu.soLuong;
+            temp.donGia = chiTietPhieuNhapNguyenLieu.donGia;
             temp.thanhTien = chiTietPhieuNhapNguyenLieu.thanhTien;
             quanLyQuanCoffee.SaveChanges();
             return true;
         }
 
-        public static bool remove(ChiTietPhieuNhapNguyenLieu ChiTietPhieuNhapNguyenLieu)
+        public static bool remove(ChiTietPhieuNhap ChiTietPhieuNhapNguyenLieu)
         {
-            ChiTietPhieuNhapNguyenLieu temp = find(ChiTietPhieuNhapNguyenLieu.maPhieuNhap);
+            ChiTietPhieuNhap temp = find(ChiTietPhieuNhapNguyenLieu.maChiTietPhieuNhap);
             if (temp == null)
             {
                 MessageBox.Show("Không tìm thấy chi tiết phiếu nhập nguyên liệu để xóa");
                 return false;
             }
-            if (temp.PhieuNhapNguyenLieu != null)
+            if (temp.ChiTietNguyenLieu != null)
             {
                 MessageBox.Show("Không thể xóa chi tiết phiếu nhập nguyên liệu này");
                 return false;
             }
-            quanLyQuanCoffee.ChiTietPhieuNhapNguyenLieux.Remove(temp);
+            quanLyQuanCoffee.ChiTietPhieuNhaps.Remove(temp);
             quanLyQuanCoffee.SaveChanges();
             return true;
         }

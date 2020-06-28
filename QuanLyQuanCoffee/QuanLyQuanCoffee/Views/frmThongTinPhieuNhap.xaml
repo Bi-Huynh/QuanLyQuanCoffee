@@ -27,23 +27,25 @@
             <Label Grid.Row="0" Grid.Column="0" Content="Mã phiếu nhập:" Height="30" VerticalContentAlignment="Center" Margin="0,10"/>
             <TextBox x:Name="txtMaPhieuNhap" Grid.Row="0" Grid.Column="1" Height="30" VerticalContentAlignment="Center" Margin="0,10" IsEnabled="False"/>
             <Label Grid.Row="0" Grid.Column="2" Content="Ngày nhập:" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
-            <DatePicker x:Name="dateNgayNhap" Grid.Row="0" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,10"/>
+            <DatePicker x:Name="dateNgayNhap" Grid.Row="0" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,10" IsEnabled="False"/>
             <Label Grid.Row="0" Grid.Column="4" Content="Mã nhân viên:" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
             <TextBox x:Name="txtMaNhanVien" Grid.Row="0" Grid.Column="5" Height="30" VerticalContentAlignment="Center" Margin="0,10" IsEnabled="False"/>
             <Label Grid.Row="0" Grid.Column="6" Content="Họ tên:" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
             <TextBox x:Name="txtTenNhanVien" Grid.Row="0" Grid.Column="7" Height="30" VerticalContentAlignment="Center" Margin="0,10,10,10" IsEnabled="False"/>
-            <Label Grid.Row="1" Grid.Column="0" Content="Nguyên liệu" Height="30" VerticalContentAlignment="Center" Margin="0,10"/>
-            <ComboBox x:Name="cmbTenNguyenLieu" Grid.Row="1" Grid.Column="1" Height="30" VerticalContentAlignment="Center" Margin="0,10"/>
-            <Label Grid.Row="1" Grid.Column="2" Content="Số lượng:" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
-            <TextBox x:Name="txtSoLuong" Grid.Row="1" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,10" KeyUp="txtSoLuong_KeyUp"/>
-            <Label Grid.Row="1" Grid.Column="4" Content="Đơn giá" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
-            <TextBox x:Name="txtDonGia" Grid.Row="1" Grid.Column="5" Height="30" VerticalContentAlignment="Center" Margin="0,10" KeyUp="txtDonGia_KeyUp"/>
-            <Label Grid.Row="1" Grid.Column="6" Content="Thành tiền:" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
-            <TextBox x:Name="txtThanhTien" Grid.Row="1" Grid.Column="7" Height="30" VerticalContentAlignment="Center" Margin="0,10,10,10" IsEnabled="False"/>
-            <Label Grid.Row="2" Grid.Column="0" Content="Ngày hết hạn" Height="30" VerticalContentAlignment="Center" Margin="0,10,0,10"/>
-            <DatePicker x:Name="dateNgayHetHan" Grid.Row="2" Grid.Column="1" Height="30" VerticalContentAlignment="Center" Margin="0,10"/>
-            <Label Grid.Row="2" Grid.Column="2" Content="Đơn vị tính:" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
-            <ComboBox x:Name="cmbDonViTinh" Grid.Row="2" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,10,0,10">
+            <Label Grid.Row="1" Grid.Column="0" Content="Mã NSX" Height="30" VerticalContentAlignment="Center" Margin="0,10,0,10"/>
+            <TextBox x:Name="txtMaChiTietNguyenLieu" Grid.Row="1" Grid.Column="1" Height="30" VerticalContentAlignment="Center" Margin="0,10,0,10" TabIndex="1"/>
+            <Label Grid.Row="1" Grid.Column="2" Content="Nguyên liệu" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
+            <ComboBox x:Name="cmbTenNguyenLieu" Grid.Row="1" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,10" TabIndex="2"/>
+            <Label Grid.Row="2" Grid.Column="0" Content="Số lượng:" Height="30" VerticalContentAlignment="Center" Margin="0,10,0,10"/>
+            <TextBox x:Name="txtSoLuong" Grid.Row="2" Grid.Column="1" Height="30" VerticalContentAlignment="Center" Margin="0,10" KeyUp="txtSoLuong_KeyUp" TabIndex="5"/>
+            <Label Grid.Row="2" Grid.Column="2" Content="Đơn giá" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
+            <TextBox x:Name="txtDonGia" Grid.Row="2" Grid.Column="3" Height="30" VerticalContentAlignment="Center" Margin="0,10" KeyUp="txtDonGia_KeyUp" TabIndex="6"/>
+            <Label Grid.Row="2" Grid.Column="4" Content="Thành tiền:" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
+            <TextBox x:Name="txtThanhTien" Grid.Row="2" Grid.Column="5" Height="30" VerticalContentAlignment="Center" Margin="0,10,0,10" IsEnabled="False"/>
+            <Label Grid.Row="1" Grid.Column="4" Content="Ngày hết hạn" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
+            <DatePicker x:Name="dateNgayHetHan" Grid.Row="1" Grid.Column="5" Height="30" VerticalContentAlignment="Center" Margin="0,10" TabIndex="3"/>
+            <Label Grid.Row="1" Grid.Column="6" Content="Đơn vị tính:" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
+            <ComboBox x:Name="cmbDonViTinh" Grid.Row="1" Grid.Column="7" Height="30" VerticalContentAlignment="Center" Margin="0,10,10,10" TabIndex="4">
                 <ComboBoxItem Content="Kg" IsSelected="True"/>
                 <ComboBoxItem Content="Gam"/>
                 <ComboBoxItem Content="Lon"/>
@@ -72,15 +74,15 @@
             </Grid.RowDefinitions>
             <Button x:Name="btnSua" Grid.Row="1" Grid.Column="5" Content="Sửa" FontFamily="Arial" Click="btnSua_Click"/>
             <Button x:Name="btnXoa" Grid.Row="1" Grid.Column="7" Content="Xóa" FontFamily="Arial" Click="btnXoa_Click"/>
-            <Button x:Name="btnThem" Grid.Row="1" Grid.Column="9" Content="Thêm" FontFamily="Arial" Height="30" VerticalAlignment="Bottom" Click="btnThem_Click"/>
+            <Button x:Name="btnThem" Grid.Row="1" Grid.Column="9" Content="Thêm" FontFamily="Arial" Height="30" VerticalAlignment="Bottom" Click="btnThem_Click" TabIndex="7"/>
         </Grid>
         <DataGrid x:Name="dgDSChiTietPhieuNhap" MinHeight="350" Margin="10,0" AutoGenerateColumns="False" 
-                  SelectedValuePath="maPhieuNhap" HorizontalContentAlignment="Center" 
+                  SelectedValuePath="maChiTietNguyenLieu" HorizontalContentAlignment="Center" 
                   Background="White" FontFamily="Arial" IsReadOnly="True"
                   SelectionChanged="dgDSChiTietPhieuNhap_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Mã phiếu nhập" Binding="{Binding maPhieuNhap}" Width="1*"/>
-                <DataGridTextColumn Header="Mã nguyên liệu" Binding="{Binding maNguyenLieu}" Width="1*"/>
+                <DataGridTextColumn Header="Mã chi tiết phiếu nhập" Binding="{Binding maChiTietPhieuNhap}" Width="1*"/>
+                <DataGridTextColumn Header="Mã chi tiết nguyên liệu" Binding="{Binding maChiTietNguyenLieu}" Width="1*"/>
                 <DataGridTextColumn Header="Tên nguyên liệu" Binding="{Binding tenNguyenLieu}" Width="1*"/>
                 <DataGridTextColumn Header="Ngày hết hạn" Binding="{Binding ngayHetHan}" Width="1*"/>
                 <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding donViTinh}" Width="1*"/>

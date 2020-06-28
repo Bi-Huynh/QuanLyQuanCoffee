@@ -74,6 +74,7 @@ namespace QuanLyQuanCoffee.BUS
                 {
                     quanLyQuanCoffee.PhieuNhapNguyenLieux.Add(PhieuNhapNguyenLieu);
                     quanLyQuanCoffee.SaveChanges();
+                    return true;
                 }
                 catch (DbUpdateException)
                 {
@@ -85,7 +86,6 @@ namespace QuanLyQuanCoffee.BUS
                     MessageBox.Show("Lỗi! Kiểu dữ liệu được truyền vào không hợp lệ");
                     return false;
                 }
-                return true;
             }
             return false;
         }
@@ -121,17 +121,17 @@ namespace QuanLyQuanCoffee.BUS
             }
             try
             {
-                if (temp.ChiTietPhieuNhapNguyenLieux.Count > 0 ||
-                    temp.NhanVien != null)
-                {
-                    temp.trangThai = 1;
-                    quanLyQuanCoffee.SaveChanges();
-                }
-                else
-                {
-                    quanLyQuanCoffee.PhieuNhapNguyenLieux.Remove(temp);
-                    quanLyQuanCoffee.SaveChanges();
-                }
+                //if (temp.ChiTietPhieuNhap.Count > 0 ||
+                //    temp.NhanVien != null)
+                //{
+                //    temp.trangThai = 1;
+                //    quanLyQuanCoffee.SaveChanges();
+                //}
+                //else
+                //{
+                //    quanLyQuanCoffee.PhieuNhapNguyenLieux.Remove(temp);
+                //    quanLyQuanCoffee.SaveChanges();
+                //}
             }
             catch (DbUpdateException)
             {

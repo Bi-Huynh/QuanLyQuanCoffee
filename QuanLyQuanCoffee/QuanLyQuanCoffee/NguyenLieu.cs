@@ -14,12 +14,19 @@ namespace QuanLyQuanCoffee
     
     public partial class NguyenLieu
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public NguyenLieu()
+        {
+            this.ChiTietNguyenLieux = new HashSet<ChiTietNguyenLieu>();
+        }
+    
         public string maNguyenLieu { get; set; }
         public string tenNguyenLieu { get; set; }
         public string maLoaiNguyenLieu { get; set; }
         public Nullable<int> trangThai { get; set; }
     
-        public virtual ChiTietNguyenLieu ChiTietNguyenLieu { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietNguyenLieu> ChiTietNguyenLieux { get; set; }
         public virtual LoaiNguyenLieu LoaiNguyenLieu { get; set; }
 
         public override string ToString()
