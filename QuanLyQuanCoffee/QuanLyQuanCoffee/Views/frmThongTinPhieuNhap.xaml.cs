@@ -77,6 +77,8 @@ namespace QuanLyQuanCoffee.Views
 
             chiTietPhieuNhaps = CChiTietPhieuNhapNguyenLieu_BUS.toList(phieuNhap.maPhieuNhap);
 
+            txtTongThanhTien.Text = phieuNhap.tongThanhTien.ToString();
+
             hienThiDSChiTietPhieuNhap(chiTietPhieuNhaps);
         }
 
@@ -86,7 +88,7 @@ namespace QuanLyQuanCoffee.Views
                 .Substring(0, chiTietPhieuNhap.maChitietNguyenLieu.Length - 10);
             cmbTenNguyenLieu.SelectedItem = chiTietPhieuNhap.ChiTietNguyenLieu.NguyenLieu.tenNguyenLieu.Trim();
             dateNgayHetHan.SelectedDate = chiTietPhieuNhap.ChiTietNguyenLieu.ngayHetHan;
-            cmbDonViTinh.SelectedItem = chiTietPhieuNhap.ChiTietNguyenLieu.donViTinh;
+            cmbDonViTinh.SelectedItem = chiTietPhieuNhap.ChiTietNguyenLieu.donViTinh.Trim();
             txtSoLuong.Text = chiTietPhieuNhap.soLuong.ToString();
             txtDonGia.Text = chiTietPhieuNhap.donGia.ToString();
             txtThanhTien.Text = chiTietPhieuNhap.thanhTien.ToString();
@@ -111,7 +113,7 @@ namespace QuanLyQuanCoffee.Views
                     dgDSChiTietPhieuNhap.ItemsSource = list.Select(x => new
                     {
                         maChiTietPhieuNhap = x.maChiTietPhieuNhap,
-                        maChiTietNguyenLieu = x.maChitietNguyenLieu.Substring(0, x.maChitietNguyenLieu.Length - 10),
+                        maChiTietNguyenLieu = x.maChitietNguyenLieu,//.Substring(0, x.maChitietNguyenLieu.Length - 10),
                         tenNguyenLieu = CNguyenLieu_BUS.find(x.ChiTietNguyenLieu.maNguyenLieu).tenNguyenLieu,
                         ngayHetHan = x.ChiTietNguyenLieu.ngayHetHan.Value.ToString("dd/MM/yyyy"),
                         donViTinh = x.ChiTietNguyenLieu.donViTinh,
@@ -208,12 +210,43 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
+            if (chiTietPhieuNhaps.Count() > 0)
+            {
+                string tenNguyenLieu = cmbTenNguyenLieu.SelectedItem.ToString();
+                NguyenLieu nguyenLieu = CNguyenLieu_BUS.findNguyenLieuByTen(tenNguyenLieu);
 
+                ChiTietPhieuNhap chiTietPhieuNhap = chiTietPhieuNhaps.ElementAt(dgDSChiTietPhieuNhap.SelectedIndex);
+                chiTietPhieuNhap.maChiTietPhieuNhap = ChiTietPhieuNhapSelect.maChiTietPhieuNhap;
+
+                string maCTNL = ChiTietPhieuNhapSelect.maChitietNguyenLieu;
+                chiTietPhieuNhap.maChitietNguyenLieu = txtMaChiTietNguyenLieu.Text + maCTNL.Substring(maCTNL.Length - 10);
+                chiTietPhieuNhap.soLuong = int.Parse(txtSoLuong.Text);
+                chiTietPhieuNhap.donGia = double.Parse(txtDonGia.Text);
+                chiTietPhieuNhap.thanhTien = double.Parse(txtThanhTien.Text);
+                chiTietPhieuNhap.maPhieuNhap = txtMaPhieuNhap.Text;
+
+                ChiTietNguyenLieu chiTietNguyenLieu = new ChiTietNguyenLieu();
+                chiTietNguyenLieu.maChiTietNguyenLieu = chiTietPhieuNhap.maChitietNguyenLieu;
+                chiTietNguyenLieu.maNguyenLieu = nguyenLieu.maNguyenLieu;
+                chiTietNguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value;
+                chiTietNguyenLieu.soLuong = chiTietPhieuNhap.soLuong;
+                chiTietNguyenLieu.donViTinh = cmbDonViTinh.Text;
+
+                chiTietPhieuNhap.ChiTietNguyenLieu = chiTietNguyenLieu;
+
+                ChiTietPhieuNhapSelect = chiTietPhieuNhap;
+                txtTongThanhTien.Text = tinhTongThanhTien(chiTietPhieuNhaps).ToString();
+                hienThiDSChiTietPhieuNhap(chiTietPhieuNhaps);
+            }
         }
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
-
+            if (ChiTietPhieuNhapSelect != null)
+            {
+                chiTietPhieuNhaps.Remove(ChiTietPhieuNhapSelect);
+                hienThiDSChiTietPhieuNhap(chiTietPhieuNhaps);
+            }
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
