@@ -104,10 +104,10 @@
     <Compile Include="ChiTietNguyenLieu.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
-    <Compile Include="ChiTietPhieuNhapNguyenLieu.cs">
+    <Compile Include="ChiTietPhieuNhap.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
-    <Compile Include="ChiTietPhieuXuatNguyenLieu.cs">
+    <Compile Include="ChiTietPhieuXuat.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
     <Compile Include="HoaDon.cs">

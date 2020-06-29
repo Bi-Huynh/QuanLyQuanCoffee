@@ -23,6 +23,47 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<ChiTietNguyenLieu>() : list;
         }
 
+        public static string taoMa(string ma, List<ChiTietNguyenLieu> list)
+        {
+            string result = "";
+            string temp = "";
+
+            if (list.Count() == 0)
+            {
+                temp = "0000000001";
+            }
+            else
+            {
+                try
+                {
+                    string maCTNguyenLieu = list[list.Count() - 1].maChiTietNguyenLieu;
+                    string maLast = maCTNguyenLieu.Substring(maCTNguyenLieu.Length - 10);
+                    double thuTu = int.Parse(maLast.ToString());
+                    ++thuTu;
+                    if (thuTu == 9999999999)
+                    {
+                        MessageBox.Show("Mã đã tới giới hạn, không thể tăng nữa");
+                        return "";
+                    }
+                    temp = String.Format("{0:0000000000}", thuTu);
+                }
+                catch (ArgumentNullException)
+                {
+                    MessageBox.Show("Lỗi tạo mã chi tiết nguyên liệu, để dữ liệu rỗng");
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Lỗi tạo mã chi tiết nguyên liệu, định dạng dữ liệu không hợp lệ");
+                }
+                catch (OverflowException)
+                {
+                    MessageBox.Show("Lỗi tạo mã chi tiết nguyên liệu, giá trị vượt quá giới hạn cho phép");
+                }
+            }
+            result = ma + temp;
+            return result;
+        }
+
         public static List<ChiTietNguyenLieu> find(string maNguyenLieu)
         {
             List<ChiTietNguyenLieu> list = new List<ChiTietNguyenLieu>();

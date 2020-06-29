@@ -39,10 +39,7 @@ namespace QuanLyQuanCoffee.Views
                 soLuong = x.soLuong,
                 ngayHetHan = x.ngayHetHan,
                 soNgayConLai = CChiTietNguyenLieu_BUS.soNgayConLai(x.ngayHetHan.Value),
-                donGia = x.donGia,
-                donViTinh = x.donViTinh,
-                ngayNhap = x.ngayNhap == null ? "NULL" : x.ngayNhap.Value.ToString("dd/MM/yyyy"),
-                ngayXuat = x.ngayXuat == null ? "NULL" : x.ngayXuat.Value.ToString("dd/MM/yyyy")
+                donViTinh = x.donViTinh
             });
         }
     }

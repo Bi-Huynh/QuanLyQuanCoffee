@@ -32,5 +32,13 @@ namespace QuanLyQuanCoffee
         public virtual ICollection<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietPhieuXuat> ChiTietPhieuXuats { get; set; }
+<<<<<<< HEAD
+=======
+
+        public override string ToString()
+        {
+            return maChiTietNguyenLieu;
+        }
+>>>>>>> a85b98ff83272a9b1f21479b60bfcaa31a0bf7b5
     }
 }
