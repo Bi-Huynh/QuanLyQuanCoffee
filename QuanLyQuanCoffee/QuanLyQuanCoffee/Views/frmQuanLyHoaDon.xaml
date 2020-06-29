@@ -103,7 +103,7 @@
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Grid.Column="1" Content="Danh sách hóa đơn" FontSize="12" />
                 <Grid Grid.Row="1" Grid.Column="1">
-                    <DataGrid  Name="dgQlhoadon"  FontSize="12" SelectedValuePath="maHoaDon" SelectionChanged="dgQlhoadon_SelectionChanged" AutoGenerateColumns="False">
+                    <DataGrid  Name="dgQlhoadon" IsReadOnly="True"  FontSize="12" SelectedValuePath="maHoaDon" SelectionChanged="dgQlhoadon_SelectionChanged" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding maHoaDon}"/>
                             <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}"/>

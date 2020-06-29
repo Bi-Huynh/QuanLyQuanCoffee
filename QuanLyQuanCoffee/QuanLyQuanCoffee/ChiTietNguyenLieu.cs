@@ -17,22 +17,20 @@ namespace QuanLyQuanCoffee
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ChiTietNguyenLieu()
         {
-            this.ChiTietPhieuNhapNguyenLieux = new HashSet<ChiTietPhieuNhapNguyenLieu>();
-            this.ChiTietPhieuXuatNguyenLieux = new HashSet<ChiTietPhieuXuatNguyenLieu>();
+            this.ChiTietPhieuNhaps = new HashSet<ChiTietPhieuNhap>();
+            this.ChiTietPhieuXuats = new HashSet<ChiTietPhieuXuat>();
         }
     
+        public string maChiTietNguyenLieu { get; set; }
         public string maNguyenLieu { get; set; }
         public Nullable<int> soLuong { get; set; }
         public Nullable<System.DateTime> ngayHetHan { get; set; }
-        public Nullable<double> donGia { get; set; }
         public string donViTinh { get; set; }
-        public Nullable<System.DateTime> ngayNhap { get; set; }
-        public Nullable<System.DateTime> ngayXuat { get; set; }
     
         public virtual NguyenLieu NguyenLieu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietPhieuNhapNguyenLieu> ChiTietPhieuNhapNguyenLieux { get; set; }
+        public virtual ICollection<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietPhieuXuatNguyenLieu> ChiTietPhieuXuatNguyenLieux { get; set; }
+        public virtual ICollection<ChiTietPhieuXuat> ChiTietPhieuXuats { get; set; }
     }
 }

@@ -215,6 +215,16 @@ namespace QuanLyQuanCoffee.Services
                 MessageBox.Show("Tài khoản hoặc mật khẩu không được dùng Khoảng Trắng(Space)");
                 return false;
             }
+            if (taiKhoan.taiKhoan1 == "")
+            {
+                MessageBox.Show("Bạn chưa nhập tài khoản");
+                return false;
+            }
+            if (taiKhoan.matKhau == "")
+            {
+                MessageBox.Show("Bạn chưa nhập mật khẩu");
+                return false;
+            }
             return true;
         }
 
@@ -278,6 +288,11 @@ namespace QuanLyQuanCoffee.Services
             if (sanPham.donGia < 0)
             {
                 MessageBox.Show("Đơn giá phải lơn hơn 0");
+                return false;
+            }
+            if (sanPham.maLoaiSanPham == null)
+            {
+                MessageBox.Show("Bạn chưa chọn loại sản phẩm");
                 return false;
             }
             return true;

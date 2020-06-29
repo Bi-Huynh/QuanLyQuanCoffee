@@ -1,4 +1,5 @@
-﻿using QuanLyQuanCoffee.BUS;
+﻿using Prism.Services.Dialogs;
+using QuanLyQuanCoffee.BUS;
 using QuanLyQuanCoffee.Services;
 using System;
 using System.Collections.Generic;
@@ -71,36 +72,84 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnThemTK_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (cboManhanvien.SelectedItem == null)
             {
-                TaiKhoan tk1 = new TaiKhoan();
-                //CSanPham.saochep(sp1, sp);
-                tk1.maNhanVien = cboManhanvien.SelectedItem.ToString();
-                tk1.taiKhoan1 = txtTaikhoan.Text;
-                tk1.matKhau = txtMatkhau.Text;
-                tk1.maLoaiTaiKhoan = cboLoaitaikhoan.SelectedItem.ToString();
-                tk1.trangThai = 0;
-                string makt = cboManhanvien.SelectedItem.ToString();
-                if (CServices.kiemTraThongTin(tk1))
+                MessageBox.Show("Bạn chưa chọn mã nhân viên cần cấp tài khoản");
+                return;
+            }
+            if (cboLoaitaikhoan.SelectedItem == null)
+            {
+                MessageBox.Show("Bạn chưa chọn mã loại tài khoản");
+                return;
+            }
+            else
+            {
+                try
                 {
-                    if (CTaiKhoan_BUS.find(makt) == null)
+                    TaiKhoan tk1 = new TaiKhoan();
+                    //CSanPham.saochep(sp1, sp)
+                    tk1.maNhanVien = cboManhanvien.SelectedItem.ToString();
+                    tk1.taiKhoan1 = txtTaikhoan.Text;
+                    tk1.matKhau = txtMatkhau.Text;
+                    tk1.maLoaiTaiKhoan = cboLoaitaikhoan.SelectedItem.ToString();
+                    tk1.trangThai = 0;
+                    string makt = cboManhanvien.SelectedItem.ToString();
+                    if (CServices.kiemTraThongTin(tk1))///Kiểm tra thông tin tài khoản hợp lệ
                     {
-                        CTaiKhoan_BUS.add(tk1);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Nhân viên này đã có tài khoản.");
+                        if (CTaiKhoan_BUS.find(makt) == null)//Kiểm tra tài khoản đã tồn tại chưa
+                        {
+                            CTaiKhoan_BUS.add(tk1);//Thêm tài khoản
+                            MessageBox.Show("Thêm thành công");
+                        }
+                        else
+                        {
+                            if (CTaiKhoan_BUS.findTrangThai(tk1.maNhanVien))//kiểm tra  trạng thái=1(đã được cấp và đã bị xóa)
+                            {
+
+                                //MessageBox.Show("Nhân viên này đã có tài khoản nhưng đã được xóa, bạn có muốn phục hồi không","Thông báo",MessageBoxButton.YesNo);
+                                if (CTaiKhoan_BUS.KTtaiKhoanDaXoa(tk1) == "Yes")// tài khoản đã được xóa và hỏi người dùng có muốn phục hồi tài khoản cho nhân viên Không//Người dùng chọn "Yes"
+                                {
+
+                                    TaiKhoan tkphuchoi = CTaiKhoan_BUS.find(makt);
+                                    if (CTaiKhoan_BUS.KTRong(tkphuchoi))
+                                    {
+                                        if (CTaiKhoan_BUS.hoiPhucTK(tkphuchoi))
+                                        {
+                                            MessageBox.Show("Nhân viên có mã: " + tk1.maNhanVien + " đã được khôi phục tài khoản");
+                                            load();
+                                            hienthiDStaikhoan();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Lỗi không thể thay đổi thông tin tài khoản");
+                                    }
+                                    hienthiDStaikhoan();
+                                    load();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Nhân viên có mã: " + tk1.maNhanVien + " không được hồi phục tài khoản");
+                                }
+                            }
+                            else//trang thai tai khoản =0(tài khoản đang được sử dụng)
+                            {
+                                MessageBox.Show("Nhân viên này đã có tài khoản.");
+                            }
+
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Có lỗi: " + ex.Message);
+                catch (NullReferenceException)
+                {
+                    MessageBox.Show("Bạn chưa chọn mã nhân viên cần cấp tài khoản");
+                }
             }
 
             hienthiDStaikhoan();
             load();
         }
+
         public void load()
         {
             txtTaikhoan.Text = "";
@@ -153,7 +202,7 @@ namespace QuanLyQuanCoffee.Views
                 tkSua.taiKhoan1 = txtTaikhoan.Text;
                 tkSua.matKhau = txtMatkhau.Text;
                 tkSua.maLoaiTaiKhoan = cboLoaitaikhoan.Text;
-                tkSua.trangThai = tk.trangThai;
+                tkSua.trangThai = 0;
                 if (CTaiKhoan_BUS.KTRong(tkSua))
                 {
                     if (CTaiKhoan_BUS.edit(tkSua))

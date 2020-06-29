@@ -17,22 +17,17 @@ namespace QuanLyQuanCoffee
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PhieuXuatNguyenLieu()
         {
-            this.ChiTietPhieuXuatNguyenLieux = new HashSet<ChiTietPhieuXuatNguyenLieu>();
+            this.ChiTietPhieuXuats = new HashSet<ChiTietPhieuXuat>();
         }
     
         public string maPhieuXuat { get; set; }
-        public System.DateTime ngayXuat { get; set; }
-        public double tongThanhTien { get; set; }
+        public Nullable<System.DateTime> ngayXuat { get; set; }
+        public Nullable<double> tongThanhTien { get; set; }
         public string maNhanVien { get; set; }
         public Nullable<int> trangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietPhieuXuatNguyenLieu> ChiTietPhieuXuatNguyenLieux { get; set; }
+        public virtual ICollection<ChiTietPhieuXuat> ChiTietPhieuXuats { get; set; }
         public virtual NhanVien NhanVien { get; set; }
-
-        public override string ToString()
-        {
-            return maPhieuXuat;
-        }
     }
 }

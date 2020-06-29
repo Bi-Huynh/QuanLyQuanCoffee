@@ -73,6 +73,11 @@ namespace QuanLyQuanCoffee.Views
         private void LstBoxLoaisanpham_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             int dongthu = LstBoxLoaisanpham.SelectedIndex;
+            if (dongthu < 0)
+            {
+                MessageBox.Show("Chưa có loại sản phẩm nào được cập nhập");
+                return;
+            }
             //string maLoai = dc.LoaiSanPhams.ToList()[dongthu].maLoaiSanPham;
             //string maLoai = CLoaiSanPham_BUS.DSLoaiSPtheoTen()[dongthu];
             string maLoai = CLoaiSanPham_BUS.layMaloaitheoSo(dongthu);
@@ -129,6 +134,7 @@ namespace QuanLyQuanCoffee.Views
         {
             if (dgDanhsachsanpham.SelectedItem == null)
             {
+                MessageBox.Show("Bạn chưa chọn sản phẩm");
                 return;
             }
             SanPham sanPham = CSanPham_BUS.find(dgDanhsachsanpham.SelectedValue.ToString());
@@ -150,9 +156,20 @@ namespace QuanLyQuanCoffee.Views
                 chiTietHoaDon.maSanPham = sanPham.maSanPham;
                 chiTietHoaDon.soLuong = 1;
                 chiTietHoaDon.SanPham = sanPham;
+                if (chiTietHoaDons.Where(x => x.maSanPham == chiTietHoaDon.maSanPham).Count() == 0)
+                {
+                    chiTietHoaDons.Add(chiTietHoaDon);
+                    hienThiDSChiTietHD(chiTietHoaDons);
+                }
+                else
+                {
+                    ChiTietHoaDon a = new ChiTietHoaDon();
+                    a = chiTietHoaDons.Where(x => x.maSanPham == chiTietHoaDon.maSanPham).FirstOrDefault();
+                    a.soLuong += 1;
+                    hienThiDSChiTietHD(chiTietHoaDons);
+                }
                 //chiTietHoaDon.tinhThanhTien();
-                chiTietHoaDons.Add(chiTietHoaDon);
-                hienThiDSChiTietHD(chiTietHoaDons);
+
                 HienthiSP();
             }
 
@@ -173,8 +190,18 @@ namespace QuanLyQuanCoffee.Views
             }
             else
             {
-                chiTietHoaDons.Remove(chiTietHoaDon);
-                hienThiDSChiTietHD(chiTietHoaDons);
+                if (chiTietHoaDon.soLuong > 1)
+                {
+                    ChiTietHoaDon a = new ChiTietHoaDon();
+                    a = chiTietHoaDons.Where(x => x.maSanPham == chiTietHoaDon.maSanPham).FirstOrDefault();
+                    a.soLuong -= 1;
+                    hienThiDSChiTietHD(chiTietHoaDons);
+                }
+                else
+                {
+                    chiTietHoaDons.Remove(chiTietHoaDon);
+                    hienThiDSChiTietHD(chiTietHoaDons);
+                }
             }
         }
 

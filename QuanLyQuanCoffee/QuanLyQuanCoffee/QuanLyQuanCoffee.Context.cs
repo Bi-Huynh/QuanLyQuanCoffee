@@ -28,8 +28,8 @@ namespace QuanLyQuanCoffee
         public virtual DbSet<ChiTietChamCong> ChiTietChamCongs { get; set; }
         public virtual DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
         public virtual DbSet<ChiTietNguyenLieu> ChiTietNguyenLieux { get; set; }
-        public virtual DbSet<ChiTietPhieuNhapNguyenLieu> ChiTietPhieuNhapNguyenLieux { get; set; }
-        public virtual DbSet<ChiTietPhieuXuatNguyenLieu> ChiTietPhieuXuatNguyenLieux { get; set; }
+        public virtual DbSet<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
+        public virtual DbSet<ChiTietPhieuXuat> ChiTietPhieuXuats { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<LoaiNguyenLieu> LoaiNguyenLieux { get; set; }
         public virtual DbSet<LoaiNhanVien> LoaiNhanViens { get; set; }

@@ -46,7 +46,14 @@ namespace QuanLyQuanCoffee.Views
         {
             try
             {
-                cboLoaisanpham.ItemsSource = CSanPham_BUS.toListByMaSP();
+                if (CSanPham_BUS.toListByMaSP().Count() <= 0)
+                {
+                    MessageBox.Show("Bạn chưa có loại sản phẩm nào, cần thêm loại sản phẩm trước");
+                }
+                else
+                {
+                    cboLoaisanpham.ItemsSource = CSanPham_BUS.toListByMaSP();
+                }
             }
             catch (Exception ex)
             {

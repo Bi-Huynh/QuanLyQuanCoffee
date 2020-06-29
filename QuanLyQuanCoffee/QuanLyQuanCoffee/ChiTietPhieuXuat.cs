@@ -12,12 +12,14 @@ namespace QuanLyQuanCoffee
     using System;
     using System.Collections.Generic;
     
-    public partial class ChiTietPhieuXuatNguyenLieu
+    public partial class ChiTietPhieuXuat
     {
-        public string maPhieuXuat { get; set; }
-        public string maNguyenLieu { get; set; }
+        public string maChiTietPhieuXuat { get; set; }
+        public string maChitietNguyenLieu { get; set; }
         public Nullable<int> soLuong { get; set; }
+        public Nullable<double> donGia { get; set; }
         public Nullable<double> thanhTien { get; set; }
+        public string maPhieuXuat { get; set; }
     
         public virtual ChiTietNguyenLieu ChiTietNguyenLieu { get; set; }
         public virtual PhieuXuatNguyenLieu PhieuXuatNguyenLieu { get; set; }

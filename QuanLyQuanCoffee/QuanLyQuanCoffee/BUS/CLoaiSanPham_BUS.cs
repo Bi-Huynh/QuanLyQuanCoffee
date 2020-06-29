@@ -31,6 +31,7 @@ namespace QuanLyQuanCoffee.BUS
         }
         public static string layMaloaitheoSo(int dong)
         {
+           
             string maLoai = quanLyQuanCoffee.LoaiSanPhams.ToList()[dong].maLoaiSanPham;
             return maLoai;
         }

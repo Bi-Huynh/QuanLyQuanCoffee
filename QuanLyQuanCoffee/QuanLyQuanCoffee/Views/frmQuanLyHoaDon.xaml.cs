@@ -29,24 +29,46 @@ namespace QuanLyQuanCoffee.Views
         }
         public void hienthiHoaDon()
         {
-            dgQlhoadon.ItemsSource = CHoaDon_BUS.toList();
-        }
-        private void gdQuanLyChitietHoaDon_Click(object sender, RoutedEventArgs e)
-        {
-            if (hoaDonSelected != null)
+            if (CHoaDon_BUS.toList().Count()<=0)
             {
-                frmQuanLyChiTietHoaDon f = new frmQuanLyChiTietHoaDon(hoaDonSelected);
-                f.Show();
+                MessageBox.Show("Hiện tại chưa có hóa đơn nào");
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn hóa đơn");
+                dgQlhoadon.ItemsSource = CHoaDon_BUS.toList();
+            }
+
+        }
+        private void gdQuanLyChitietHoaDon_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (hoaDonSelected != null)
+                {
+                    frmQuanLyChiTietHoaDon f = new frmQuanLyChiTietHoaDon(hoaDonSelected);
+                    f.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn hóa đơn");
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Bạn Chưa chọn hóa đơn");
             }
         }
-
         private void dgQlhoadon_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            hoaDonSelected = CHoaDon_BUS.find(dgQlhoadon.SelectedItem.ToString());
+            if (dgQlhoadon.SelectedItem == null)
+            {
+                MessageBox.Show("Hiện tại chưa có hóa đơn nào");
+            }
+            else
+            {
+                hoaDonSelected = CHoaDon_BUS.find(dgQlhoadon.SelectedItem.ToString());
+
+            }
         }
     }
 }
