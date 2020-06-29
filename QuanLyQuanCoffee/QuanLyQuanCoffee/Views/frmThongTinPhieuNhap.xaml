@@ -45,13 +45,7 @@
             <Label Grid.Row="1" Grid.Column="4" Content="Ngày hết hạn" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
             <DatePicker x:Name="dateNgayHetHan" Grid.Row="1" Grid.Column="5" Height="30" VerticalContentAlignment="Center" Margin="0,10" TabIndex="3"/>
             <Label Grid.Row="1" Grid.Column="6" Content="Đơn vị tính:" Height="30" VerticalContentAlignment="Center" Margin="10,10,0,10"/>
-            <ComboBox x:Name="cmbDonViTinh" Grid.Row="1" Grid.Column="7" Height="30" VerticalContentAlignment="Center" Margin="0,10,10,10" TabIndex="4">
-                <ComboBoxItem Content="Kg" IsSelected="True"/>
-                <ComboBoxItem Content="Gam"/>
-                <ComboBoxItem Content="Lon"/>
-                <ComboBoxItem Content="Chai"/>
-                <ComboBoxItem Content="Lit"/>
-            </ComboBox>
+            <ComboBox x:Name="cmbDonViTinh" Grid.Row="1" Grid.Column="7" Height="30" VerticalContentAlignment="Center" Margin="0,10,10,10" TabIndex="4"/>
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
