@@ -77,7 +77,7 @@
             <Button x:Name="btnThem" Grid.Row="1" Grid.Column="9" Content="Thêm" FontFamily="Arial" Height="30" VerticalAlignment="Bottom" Click="btnThem_Click" TabIndex="7"/>
         </Grid>
         <DataGrid x:Name="dgDSChiTietPhieuNhap" MinHeight="350" Margin="10,0" AutoGenerateColumns="False" 
-                  SelectedValuePath="maChiTietNguyenLieu" HorizontalContentAlignment="Center" 
+                  SelectedValuePath="maChiTietPhieuNhap" HorizontalContentAlignment="Center" 
                   Background="White" FontFamily="Arial" IsReadOnly="True"
                   SelectionChanged="dgDSChiTietPhieuNhap_SelectionChanged">
             <DataGrid.Columns>
