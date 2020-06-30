@@ -151,6 +151,17 @@ namespace QuanLyQuanCoffee.Views
             }
         }
 
+        void hienThiDefault()
+        {
+            txtMaChiTietNguyenLieu.Text = "";
+            cmbTenNguyenLieu.SelectedIndex = 0;
+            dateNgayHetHan.SelectedDate = null;
+            cmbDonViTinh.SelectedIndex = 0;
+            txtSoLuong.Text = "";
+            txtDonGia.Text = "";
+            txtThanhTien.Text = "";
+        }
+
         private double tinhTongThanhTien(List<ChiTietPhieuNhap> list)
         {
             double tongThanhTien = 0;
@@ -224,7 +235,6 @@ namespace QuanLyQuanCoffee.Views
                         return;
                     }
                 }
-                //chiTietPhieuNhaps = new List<ChiTietPhieuNhap>();
                 MessageBox.Show("Thêm thành công");
                 this.Close();
             }
@@ -232,34 +242,53 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-            if (chiTietPhieuNhaps.Count() > 0)
+            if (ChiTietPhieuNhapSelect != null)
             {
-                string tenNguyenLieu = cmbTenNguyenLieu.SelectedItem.ToString();
-                NguyenLieu nguyenLieu = CNguyenLieu_BUS.findNguyenLieuByTen(tenNguyenLieu);
+                try
+                {
+                    string tenNguyenLieu = cmbTenNguyenLieu.SelectedItem.ToString();
+                    NguyenLieu nguyenLieu = CNguyenLieu_BUS.findNguyenLieuByTen(tenNguyenLieu);
 
-                ChiTietPhieuNhap chiTietPhieuNhap = chiTietPhieuNhaps.ElementAt(dgDSChiTietPhieuNhap.SelectedIndex);
-                chiTietPhieuNhap.maChiTietPhieuNhap = ChiTietPhieuNhapSelect.maChiTietPhieuNhap;
+                    ChiTietPhieuNhap chiTietPhieuNhap = chiTietPhieuNhaps.ElementAt(dgDSChiTietPhieuNhap.SelectedIndex);
+                    chiTietPhieuNhap.maChiTietPhieuNhap = ChiTietPhieuNhapSelect.maChiTietPhieuNhap;
 
-                string maCTNL = ChiTietPhieuNhapSelect.maChitietNguyenLieu;
-                chiTietPhieuNhap.maChitietNguyenLieu = txtMaChiTietNguyenLieu.Text + maCTNL.Substring(maCTNL.Length - 10);
-                chiTietPhieuNhap.soLuong = int.Parse(txtSoLuong.Text);
-                chiTietPhieuNhap.donGia = double.Parse(txtDonGia.Text);
-                chiTietPhieuNhap.thanhTien = double.Parse(txtThanhTien.Text);
-                chiTietPhieuNhap.maPhieuNhap = txtMaPhieuNhap.Text;
+                    string maCTNL = ChiTietPhieuNhapSelect.maChitietNguyenLieu;
+                    chiTietPhieuNhap.maChitietNguyenLieu = txtMaChiTietNguyenLieu.Text + maCTNL.Substring(maCTNL.Length - 10);
+                    chiTietPhieuNhap.soLuong = int.Parse(txtSoLuong.Text);
+                    chiTietPhieuNhap.donGia = double.Parse(txtDonGia.Text);
+                    chiTietPhieuNhap.thanhTien = double.Parse(txtThanhTien.Text);
+                    chiTietPhieuNhap.maPhieuNhap = txtMaPhieuNhap.Text;
 
-                ChiTietNguyenLieu chiTietNguyenLieu = new ChiTietNguyenLieu();
-                chiTietNguyenLieu.maChiTietNguyenLieu = chiTietPhieuNhap.maChitietNguyenLieu;
-                chiTietNguyenLieu.maNguyenLieu = nguyenLieu.maNguyenLieu;
-                chiTietNguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value;
-                chiTietNguyenLieu.soLuong = chiTietPhieuNhap.soLuong;
-                chiTietNguyenLieu.donViTinh = cmbDonViTinh.Text;
+                    ChiTietNguyenLieu chiTietNguyenLieu = new ChiTietNguyenLieu();
+                    chiTietNguyenLieu.maChiTietNguyenLieu = chiTietPhieuNhap.maChitietNguyenLieu;
+                    chiTietNguyenLieu.maNguyenLieu = nguyenLieu.maNguyenLieu;
+                    chiTietNguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value;
+                    chiTietNguyenLieu.soLuong = chiTietPhieuNhap.soLuong;
+                    chiTietNguyenLieu.donViTinh = cmbDonViTinh.Text;
 
-                chiTietPhieuNhap.ChiTietNguyenLieu = chiTietNguyenLieu;
+                    chiTietPhieuNhap.ChiTietNguyenLieu = chiTietNguyenLieu;
 
-                ChiTietPhieuNhapSelect = chiTietPhieuNhap;
-                txtTongThanhTien.Text = tinhTongThanhTien(chiTietPhieuNhaps).ToString();
-                hienThiDSChiTietPhieuNhap(chiTietPhieuNhaps);
-
+                    ChiTietPhieuNhapSelect = chiTietPhieuNhap;
+                    txtTongThanhTien.Text = tinhTongThanhTien(chiTietPhieuNhaps).ToString();
+                    hienThiDSChiTietPhieuNhap(chiTietPhieuNhaps);
+                    hienThiDefault();
+                }
+                catch (InvalidOperationException)
+                {
+                    MessageBox.Show("Dữ liệu không được để rỗng");
+                }
+                catch (ArgumentNullException)
+                {
+                    MessageBox.Show("Dữ liệu không được để rỗng");
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Dữ liệu phải là số");
+                }
+                catch (OverflowException)
+                {
+                    MessageBox.Show("Dữ liệu có độ lớn vượt quá giới hạn cho phép");
+                }
                 btnSua.IsEnabled = false;
                 btnXoa.IsEnabled = false;
             }
@@ -274,6 +303,7 @@ namespace QuanLyQuanCoffee.Views
                 btnSua.IsEnabled = false;
                 btnXoa.IsEnabled = false;
                 hienThiDSChiTietPhieuNhap(chiTietPhieuNhaps);
+                hienThiDefault();
             }
         }
 
@@ -332,11 +362,14 @@ namespace QuanLyQuanCoffee.Views
                         chiTietNguyenLieu.donViTinh = cmbDonViTinh.Text;
 
                         chiTiet.ChiTietNguyenLieu = chiTietNguyenLieu;
+                        if (CServices.kiemTraThongTin(chiTiet))
+                        {
+                            chiTietPhieuNhaps.Add(chiTiet);
+                            txtTongThanhTien.Text = tinhTongThanhTien(chiTietPhieuNhaps).ToString();
 
-                        chiTietPhieuNhaps.Add(chiTiet);
-                        txtTongThanhTien.Text = tinhTongThanhTien(chiTietPhieuNhaps).ToString();
-
-                        hienThiDSChiTietPhieuNhap(chiTietPhieuNhaps);
+                            hienThiDSChiTietPhieuNhap(chiTietPhieuNhaps);
+                            hienThiDefault();
+                        }
                     }
                 }
             }

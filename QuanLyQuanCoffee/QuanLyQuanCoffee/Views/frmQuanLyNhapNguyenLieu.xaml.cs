@@ -45,6 +45,40 @@ namespace QuanLyQuanCoffee.Views
             });
         }
 
+        private void cmbTimKiem_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbTimKiem.SelectedIndex == 1)
+            {
+                txtTimKiem.Visibility = Visibility.Hidden;
+                dateNgayNhap.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txtTimKiem.Visibility = Visibility.Visible;
+                dateNgayNhap.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void dateNgayNhap_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                try
+                {
+                    DateTime ngayNhap = DateTime.Parse(dateNgayNhap.Text);
+                    hienThiDSPhieuNhap(CPhieuNhapNguyenLieu_BUS.toListNgayNhap(ngayNhap));
+                }
+                catch (ArgumentNullException)
+                {
+                    MessageBox.Show("Dữ liệu ngày nhập không được để rỗng");
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Dữ liệu ngày nhập không hợp lệ 'MM/dd/yyyy'");
+                }
+            }
+        }
+
         private void txtTimKiem_KeyUp(object sender, KeyEventArgs e)
         {
             if (txtTimKiem.Text == "")
@@ -57,23 +91,6 @@ namespace QuanLyQuanCoffee.Views
             if (cmbTimKiem.SelectedIndex == 0)
             {
                 hienThiDSPhieuNhap(CPhieuNhapNguyenLieu_BUS.toListMa(txtTimKiem.Text));
-            }
-            //nếu combox tìm kiếm là 1 tức là tìm theo ngày nhập
-            else if (cmbTimKiem.SelectedIndex == 1)
-            {
-                try
-                {
-                    DateTime ngayNhap = DateTime.Parse(txtTimKiem.Text);
-                    hienThiDSPhieuNhap(CPhieuNhapNguyenLieu_BUS.toListNgayNhap(ngayNhap));
-                }
-                catch (ArgumentNullException)
-                {
-                    MessageBox.Show("Dữ liệu ngày nhập không được để rỗng");
-                }
-                catch (FormatException)
-                {
-                    MessageBox.Show("Dữ liệu ngày nhập không hợp lệ");
-                }
             }
             else
             {
@@ -124,17 +141,17 @@ namespace QuanLyQuanCoffee.Views
             hienThiDSPhieuNhap(CPhieuNhapNguyenLieu_BUS.toList());
         }
 
-        private void btnSua_Click(object sender, RoutedEventArgs e)
-        {
-            if (PhieuNhapNguyenLieuSelect != null)
-            {
-                new frmThongTinPhieuNhap(nhanVienSelect, PhieuNhapNguyenLieuSelect, 2).Show();
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn phiếu nhập");
-            }
-        }
+        //private void btnSua_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (PhieuNhapNguyenLieuSelect != null)
+        //    {
+        //        new frmThongTinPhieuNhap(nhanVienSelect, PhieuNhapNguyenLieuSelect, 2).Show();
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Vui lòng chọn phiếu nhập");
+        //    }
+        //}
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
@@ -160,5 +177,7 @@ namespace QuanLyQuanCoffee.Views
         {
             new frmThongTinPhieuNhap(nhanVienSelect).Show();
         }
+
+        
     }
 }
