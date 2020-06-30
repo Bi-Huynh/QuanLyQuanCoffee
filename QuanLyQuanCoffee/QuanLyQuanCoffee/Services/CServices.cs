@@ -202,6 +202,15 @@ namespace QuanLyQuanCoffee.Services
             }
             return true;
         }
+        public static bool kiemTraThongTin(ChiTietHoaDon chiTietHoaDon)
+        {
+            if (chiTietHoaDon.thanhTien < 0)
+            {
+                MessageBox.Show("Xem lại thành tiền");
+                return false;
+            }
+            return true;
+        }
 
         public static bool kiemTraThongTin(TaiKhoan taiKhoan)
         {
@@ -261,6 +270,10 @@ namespace QuanLyQuanCoffee.Services
             {
                 return false;
             }
+            if(hoaDon.maNhanVien==null)
+            {
+                return false;
+            }    
             return true;
         }
         public static bool kiemTraThongTin(LoaiNguyenLieu loaiNguyenLieu)

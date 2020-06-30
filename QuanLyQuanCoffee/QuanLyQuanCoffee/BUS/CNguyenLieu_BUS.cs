@@ -154,5 +154,16 @@ namespace QuanLyQuanCoffee.BUS
             List<string> list = quanLyQuanCoffee.NguyenLieux.Select(x => x.tenNguyenLieu).ToList();
             return list == null ? new List<string>() : list;
         }
+        public static List<ChiTietNguyenLieu> hienthiTheoNL(string maNL)
+        {
+            List<ChiTietNguyenLieu> list = quanLyQuanCoffee.ChiTietNguyenLieux.Where(x =>x.maNguyenLieu == maNL).ToList();
+            return list == null ? new List<ChiTietNguyenLieu>() : list;
+        }
+        public static string layMaloaitheoSo(int dong)
+        {
+
+            string maLoai = quanLyQuanCoffee.NguyenLieux.ToList()[dong].maNguyenLieu;
+            return maLoai;
+        }
     }
 }

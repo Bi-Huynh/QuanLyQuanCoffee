@@ -25,7 +25,7 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmOrder : Page
     {
         NhanVien nhanVienSelect;
-        private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
+        //private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
         private List<ChiTietHoaDon> chiTietHoaDons;
 
         public frmOrder(NhanVien nhanVien)
@@ -144,15 +144,7 @@ namespace QuanLyQuanCoffee.Views
             }
             else
             {
-                //string maChiTietHoaDon;
-                //do
-                //{
-                //    maChiTietHoaDon = randomMa();
-                //} while (dc.ChiTietHoaDons.Find(maChiTietHoaDon) != null);
-
                 ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();
-                //chiTietHoaDon.maChiTietHoaDon = randomMa();
-                //chiTietHoaDon.maHoaDon = txtMahoadon.Text;
                 chiTietHoaDon.maSanPham = sanPham.maSanPham;
                 chiTietHoaDon.soLuong = 1;
                 chiTietHoaDon.SanPham = sanPham;
@@ -235,10 +227,17 @@ namespace QuanLyQuanCoffee.Views
                         hoaDon.ChiTietHoaDons.Add(a);
                     }
 
-                    dc.HoaDons.Add(hoaDon);
+                    if(CHoaDon_BUS.add(hoaDon))
+                    {
+                        MessageBox.Show("Xuất hóa đơn thành công");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hóa đơn bị lỗi");
+                    }    
 
                     //themChiTietHoaDon();
-                    dc.SaveChanges();
+                    
                     taoma();
 
                     chiTietHoaDons.Clear();
@@ -277,8 +276,7 @@ namespace QuanLyQuanCoffee.Views
         {
             foreach (ChiTietHoaDon item in chiTietHoaDons)
             {
-                dc.ChiTietHoaDons.Add(item);
-                //dc.SaveChanges();
+                CChiTietHoaDon_BUS.add(item);
             }
 
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyQuanCoffee.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,10 +26,13 @@ namespace QuanLyQuanCoffee.BUS
             var thanhTien = chiTietHoaDon.soLuong * chiTietHoaDon.SanPham.donGia;
             return double.Parse(thanhTien.ToString());
         }
-        //public static ChiTietHoaDon add(ChiTietHoaDon chiTietHoaDon)
-        //{
-
-        //    return quanLyQuanCoffee.ChiTietHoaDons.Find(maHoaDon);
-        //}
+        public static bool  add(ChiTietHoaDon chiTietHoaDon)
+        {
+            if(CServices.kiemTraThongTin(chiTietHoaDon))
+            {
+                quanLyQuanCoffee.ChiTietHoaDons.Add(chiTietHoaDon);
+            }
+            return true;
+        }
     }
 }

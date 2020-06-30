@@ -23,7 +23,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition MinHeight="685"></RowDefinition>
                 </Grid.RowDefinitions>
-                <ListBox Grid.Column="1" Grid.Row="1" Name="LstBoxNguyenLieu" Loaded="LstBoxNguyenLieu_Loaded"   BorderBrush="Blue" Background="White" FontFamily="Arial"  FontSize="20" >
+                <ListBox Grid.Column="1" Grid.Row="1" Name="LstBoxNguyenLieu" Loaded="LstBoxNguyenLieu_Loaded"   BorderBrush="Blue" Background="White" FontFamily="Arial" MouseDoubleClick="LstBoxNguyenLieu_MouseDoubleClick" FontSize="20" >
 
                 </ListBox>
                 <Grid Grid.Row="0" Grid.Column="3">
@@ -56,10 +56,12 @@
                         </Grid.ColumnDefinitions>
                         <DataGrid  Name="dgChiTietNguyenLieu" FontSize="12" 
                                    Margin="0,0,0,-0.2" AutoGenerateColumns="False" 
-                                    ColumnWidth="0.3*" IsReadOnly="True" Grid.ColumnSpan="2">
+                                    ColumnWidth="0.3*" IsReadOnly="True" Grid.ColumnSpan="2"
+                                   SelectedValuePath="maChiTietNguyenLieu">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Mã nguyên liệu" Binding="{Binding maNguyenLieu}"/>
-                                <!--<DataGridTextColumn Header="Tên nguyên liệu" Binding="{Binding tenNguyenLieu}"/>-->
+                               
+                                <DataGridTextColumn Header="Mã chi tiết nguyên liệu" Binding="{Binding maChiTietNguyenLieu}"/>
+                                <DataGridTextColumn Header="Tên nguyên liệu" Binding="{Binding tenNguyenLieu}"/>
                                 <DataGridTextColumn Header="Số lượng" Binding="{Binding soLuong}"/>
                                 <DataGridTextColumn Header="Đơn giá" Binding="{Binding donGia}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Ngày nhập" Binding="{Binding ngayNhap}"></DataGridTextColumn>
@@ -77,7 +79,7 @@
                             <RowDefinition Height="10"></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Button Grid.Column="1" Grid.Row="1" Content="Chọn"  Name="btnChonsanpham" Background="#FF70C5C3"></Button>
+                        <Button Grid.Column="1" Grid.Row="1" Content="Chọn"  Name="btnChonNL" Click="btnChonNL_Click" Background="#FF70C5C3"></Button>
                     </Grid>
 
                 </Grid>
@@ -124,17 +126,17 @@
                         <TextBox Grid.Row="1" Grid.Column="2" Name="txtMaPhieuXuat" FontSize="15" IsEnabled="False"></TextBox>
                         <Button Grid.Column="4" Grid.Row="1" Content="Bỏ Chọn" Name="btnBochon" ></Button>
                     </Grid>
-                    <Button Content="Xuất Nguyên Liệu" Grid.Column="0" Grid.Row="3" Name="btnXuatNguyenLieu"  Background="#FF0056FF" FontFamily="Arial" FontSize="24" ></Button>
+                    <Button Content="Tạo phiếu xuất" Grid.Column="0" Grid.Row="3" Name="btnXuatNguyenLieu"  Background="#FF0056FF" FontFamily="Arial" FontSize="24" Click="btnXuatNguyenLieu_Click" ></Button>
                     <DataGrid Grid.Row="1" Grid.Column="0"  Background="White" 
                               FontFamily="Arial" Name="dgChitietPhieuXuat" 
                               SelectedValuePath="maNguỵenLieu" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-
-                            <DataGridTextColumn Header="Mã nguyên liệu" Binding="{Binding maNguyenLieu}"/>
+                            <!--<DataGridTextColumn Header="Mã chi tiết phiếu xuất" Binding="{Binding maChiTietPhieuXuat}"/>-->
+                            <DataGridTextColumn Header="Mã chi tiết nguyên liệu" Binding="{Binding maChiTietNguyenLieu}"/>
+                            <DataGridTextColumn Header="Tên nguyên liệu" Binding="{Binding tenNguyenLieu}"/>
                             <DataGridTextColumn Header="Số lượng" Binding="{Binding soLuong}"/>
-                            <DataGridTextColumn Header="Thành tiền" Binding="{Binding thanhTien}"/>
-
-
+                            <DataGridTextColumn Header="Đơn giá" Binding="{Binding donGia}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Thành tiền" Binding="{Binding thanhTien}"></DataGridTextColumn>
 
                         </DataGrid.Columns>
                     </DataGrid>

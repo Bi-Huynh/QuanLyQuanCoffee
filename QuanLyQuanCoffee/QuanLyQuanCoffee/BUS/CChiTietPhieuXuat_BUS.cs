@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace QuanLyQuanCoffee.BUS
 {
-    class CChiTietPhieuXuatNguyenLieu
+    class CChiTietPhieuXuat_BUS
     {
         private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
-        public static List<ChiTietPhieuXuat> toList(string maPhieuXuat)
+        public static List<ChiTietPhieuXuat> toList()
         {
-            List<ChiTietPhieuXuat> list = quanLyQuanCoffee.ChiTietPhieuXuats.Where(x => x.maPhieuXuat == maPhieuXuat).ToList();
+            List<ChiTietPhieuXuat> list = quanLyQuanCoffee.ChiTietPhieuXuats.ToList();
             return list == null ? new List<ChiTietPhieuXuat>() : list;
         }
     }

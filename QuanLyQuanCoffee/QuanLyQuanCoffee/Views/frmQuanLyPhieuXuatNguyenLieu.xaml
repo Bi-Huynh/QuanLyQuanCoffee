@@ -35,7 +35,7 @@
             <Button x:Name="btnXemThongTinChiTiet" Grid.Row="1" Grid.Column="6" Content="Xem thông tin chi tiết" FontFamily="Arial" FontSize="13" Click="btnXemThongTinChiTiet_Click"/>
         </Grid>
         <DataGrid x:Name="dgDSPhieuXuat" MinHeight="565" Margin="10,0" AutoGenerateColumns="False" 
-                  SelectedValuePath="maPhieuNhap" HorizontalContentAlignment="Center" 
+                  SelectedValuePath="maPhieuXuat" HorizontalContentAlignment="Center" 
                   Background="White" FontFamily="Arial" IsReadOnly="True"
                   SelectionChanged="dgDSPhieuXuat_SelectionChanged">
             <DataGrid.Columns>

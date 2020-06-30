@@ -26,7 +26,7 @@ namespace QuanLyQuanCoffee.Views
             InitializeComponent();
             hoaDonSelected = hoaDon;
             hienthiHoaDon();
-            hienthiChiTietHD(hoaDon);
+            hienthiChiTietHD(hoaDonSelected);
         }
         public void hienthiHoaDon()
         {

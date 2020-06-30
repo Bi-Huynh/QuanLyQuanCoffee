@@ -14,7 +14,8 @@ namespace QuanLyQuanCoffee.BUS
 
         public static List<ChiTietPhieuNhap> toList()
         {
-            List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps.ToList();
+            List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
+                .Where(x => x.soLuong > 0).ToList();
             return list == null ? new List<ChiTietPhieuNhap>() : list;
         }
 
@@ -22,6 +23,13 @@ namespace QuanLyQuanCoffee.BUS
         {
             List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
                 .Where(x => x.maPhieuNhap == maPhieuNhap).ToList();
+            return list == null ? new List<ChiTietPhieuNhap>() : list;
+        }
+
+        public static List<ChiTietPhieuNhap> toListTenNguyenLieu(string tenNguyenLieu)
+        {
+            List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
+                .Where(x => x.ChiTietNguyenLieu.NguyenLieu.tenNguyenLieu == tenNguyenLieu).ToList();
             return list == null ? new List<ChiTietPhieuNhap>() : list;
         }
 

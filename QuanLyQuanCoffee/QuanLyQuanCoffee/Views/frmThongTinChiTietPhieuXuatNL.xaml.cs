@@ -31,20 +31,29 @@ namespace QuanLyQuanCoffee.Views
         public void hienThiChitietPX()
         {
 
-            //List<ChiTietPhieuXuatNguyenLieu> list = CChiTietPhieuXuatNguyenLieu.toList(phieuXuatSelected.maPhieuXuat);
-            //if (list.Count() > 0)
-            //{
-            //    dgQlchitietphieuxuat.ItemsSource = list;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Hóa đơn này không có chi tiết hóa đơn");
-            //}
+            List<ChiTietPhieuXuat> list = CChiTietPhieuXuatNguyenLieu.toList(phieuXuatSelected.maPhieuXuat);
+            if (list.Count() > 0)
+            {
+                dgQlchitietphieuxuat.ItemsSource = list.Select(x => new {
+
+                    maChiTietPhieuXuat = x.maChiTietPhieuXuat,
+                    maNguyenLieu = x.maChitietNguyenLieu.Substring(0, 13),
+                    tenNguyenLieu = x.ChiTietNguyenLieu.NguyenLieu.tenNguyenLieu,
+                    soLuong = x.soLuong,
+                    donGia = x.donGia,
+                    thanhTien=x.thanhTien
+                });
+            }
+            else
+            {
+                MessageBox.Show("Phiếu Xuất này không có chi tiết Phiếu Xuất");
+                return;
+            }
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             txtMaPhieuXuat.Text = phieuXuatSelected.maPhieuXuat;
-            txtNgayxuat.Text = phieuXuatSelected.ngayXuat.ToString();
+            txtNgayxuat.Text = phieuXuatSelected.ngayXuat.Value.ToString("dd/MM/yyyy");
             txtTongthanhtien.Text = phieuXuatSelected.tongThanhTien.ToString();
             txtNguoilapPhieuXuat.Text = phieuXuatSelected.NhanVien.hoNhanVien + phieuXuatSelected.NhanVien.tenNhanVien;
         }
