@@ -26,14 +26,20 @@ namespace QuanLyQuanCoffee.Views
         private ChiTietPhieuNhap ChiTietPhieuNhapSelect;
         private List<ChiTietPhieuNhap> chiTietPhieuNhaps;
         private List<ChiTietNguyenLieu> chiTietNguyenLieus;
+        private List<ChiTietPhieuNhap> list1;
+        private List<string> donViTinhs;
+        private int flat;
 
         public frmThongTinPhieuNhap(NhanVien nhanVien = null, PhieuNhapNguyenLieu phieuNhapNguyenLieu = null, int flag = 1)
         {
             InitializeComponent();
             nhanVienSelect = nhanVien;
             chiTietNguyenLieus = CChiTietNguyenLieu_BUS.toList();
+            list1 = CChiTietPhieuNhapNguyenLieu_BUS.toList();
             phieuNhapNguyenLieuSelect = phieuNhapNguyenLieu;
             chiTietPhieuNhaps = new List<ChiTietPhieuNhap>();
+
+            donViTinhs = new List<string>();
 
             if (nhanVienSelect == null)
             {
@@ -45,34 +51,46 @@ namespace QuanLyQuanCoffee.Views
             }
 
             txtMaPhieuNhap.Text = CServices.taoMa<PhieuNhapNguyenLieu>(CPhieuNhapNguyenLieu_BUS.toListAll());
-            //if (flag == 1)
-            //{
-            //    btnSua.IsEnabled = false;
-            //}
-            //// khi người dùng nhấn nút sửa
-            //else if (flag == 2)
-            //{
-            //    btnThem.IsEnabled = false;
-            //    btnSua.IsEnabled = true;
-            //}
-            //// là khi người dùng bấm nút xem chi tiết
-            //else
-            //{
-            //    btnThem.IsEnabled = false;
-            //    isEnabledThongTin(false);
-            //}
-            //if (nhanVien != null)
-            //{
-            //    nhanVienSelect = nhanVien;
-            //}
+            donViTinhs.Add("Kg");
+            donViTinhs.Add("Gam");
+            donViTinhs.Add("Lon");
+            donViTinhs.Add("Chai");
+            donViTinhs.Add("Lit");
+            cmbDonViTinh.ItemsSource = donViTinhs;
+
+
+            if (flag == 1)
+            {
+                btnSua.IsEnabled = false;
+                btnXoa.IsEnabled = false;
+                flat = 1;
+            }
+            // là khi người dùng bấm nút xem chi tiết
+            else
+            {
+                btnThem.IsEnabled = false;
+                btnSua.IsEnabled = false;
+                btnXoa.IsEnabled = false;
+                btnTaoPhieuNhap.IsEnabled = false;
+                flat = 0;
+                isEnabledThongTin(false);
+            }
             hienThiThongTin(phieuNhapNguyenLieuSelect);
         }
 
         private void hienThiThongTin(PhieuNhapNguyenLieu phieuNhap)
         {
             dateNgayNhap.SelectedDate = DateTime.Now;
-            txtMaNhanVien.Text = phieuNhap.NhanVien.maNhanVien;
-            txtTenNhanVien.Text = phieuNhap.NhanVien.hoNhanVien + " " + phieuNhap.NhanVien.tenNhanVien;
+            if (phieuNhap.NhanVien == null)
+            {
+                txtMaNhanVien.Text = nhanVienSelect.maNhanVien;
+                txtTenNhanVien.Text = nhanVienSelect.hoNhanVien + " " + nhanVienSelect.tenNhanVien;
+            }
+            else
+            {
+                txtMaNhanVien.Text = phieuNhap.NhanVien.maNhanVien;
+                txtTenNhanVien.Text = phieuNhap.NhanVien.hoNhanVien + " " + phieuNhap.NhanVien.tenNhanVien;
+            }
             cmbTenNguyenLieu.ItemsSource = CNguyenLieu_BUS.toListTen();
 
             chiTietPhieuNhaps = CChiTietPhieuNhapNguyenLieu_BUS.toList(phieuNhap.maPhieuNhap);
@@ -113,7 +131,7 @@ namespace QuanLyQuanCoffee.Views
                     dgDSChiTietPhieuNhap.ItemsSource = list.Select(x => new
                     {
                         maChiTietPhieuNhap = x.maChiTietPhieuNhap,
-                        maChiTietNguyenLieu = x.maChitietNguyenLieu,//.Substring(0, x.maChitietNguyenLieu.Length - 10),
+                        maChiTietNguyenLieu = x.maChitietNguyenLieu.Substring(0, 13),
                         tenNguyenLieu = CNguyenLieu_BUS.find(x.ChiTietNguyenLieu.maNguyenLieu).tenNguyenLieu,
                         ngayHetHan = x.ChiTietNguyenLieu.ngayHetHan.Value.ToString("dd/MM/yyyy"),
                         donViTinh = x.ChiTietNguyenLieu.donViTinh,
@@ -126,7 +144,22 @@ namespace QuanLyQuanCoffee.Views
                 {
                     MessageBox.Show("Chi tiết phiếu nhập rỗng");
                 }
+                catch (NullReferenceException)
+                {
+                    MessageBox.Show("Chi tiết null");
+                }
             }
+        }
+
+        void hienThiDefault()
+        {
+            txtMaChiTietNguyenLieu.Text = "";
+            cmbTenNguyenLieu.SelectedIndex = 0;
+            dateNgayHetHan.SelectedDate = null;
+            cmbDonViTinh.SelectedIndex = 0;
+            txtSoLuong.Text = "";
+            txtDonGia.Text = "";
+            txtThanhTien.Text = "";
         }
 
         private double tinhTongThanhTien(List<ChiTietPhieuNhap> list)
@@ -141,9 +174,14 @@ namespace QuanLyQuanCoffee.Views
             if (dgDSChiTietPhieuNhap.SelectedItem != null)
             {
                 int index = dgDSChiTietPhieuNhap.SelectedIndex;
-                ChiTietPhieuNhapSelect = chiTietPhieuNhaps.ElementAt(index);
+                ChiTietPhieuNhapSelect = chiTietPhieuNhaps[index] as ChiTietPhieuNhap;
 
                 hienThiThongTin(ChiTietPhieuNhapSelect);
+                if (flat == 1)
+                {
+                    btnXoa.IsEnabled = true;
+                    btnSua.IsEnabled = true;
+                }
             }
         }
 
@@ -165,7 +203,6 @@ namespace QuanLyQuanCoffee.Views
                 if (!CPhieuNhapNguyenLieu_BUS.add(phieuNhapNguyenLieu))
                 {
                     MessageBox.Show("Lỗi! Thêm Phiếu Nhập không thành công");
-                    //this.Close();
                     return;
                 }
 
@@ -185,11 +222,7 @@ namespace QuanLyQuanCoffee.Views
                     }
 
                     ChiTietPhieuNhap chiTiet = new ChiTietPhieuNhap();
-                    if (true)
-                    {
-
-                    }
-                    chiTiet.maChiTietPhieuNhap = CServices.taoMa<ChiTietPhieuNhap>(CChiTietPhieuNhapNguyenLieu_BUS.toList());
+                    chiTiet.maChiTietPhieuNhap = x.maChiTietPhieuNhap;
                     chiTiet.maPhieuNhap = x.maPhieuNhap;
                     chiTiet.maChitietNguyenLieu = x.maChitietNguyenLieu;
                     chiTiet.soLuong = x.soLuong;
@@ -202,7 +235,6 @@ namespace QuanLyQuanCoffee.Views
                         return;
                     }
                 }
-                chiTietPhieuNhaps = new List<ChiTietPhieuNhap>();
                 MessageBox.Show("Thêm thành công");
                 this.Close();
             }
@@ -210,33 +242,55 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-            if (chiTietPhieuNhaps.Count() > 0)
+            if (ChiTietPhieuNhapSelect != null)
             {
-                string tenNguyenLieu = cmbTenNguyenLieu.SelectedItem.ToString();
-                NguyenLieu nguyenLieu = CNguyenLieu_BUS.findNguyenLieuByTen(tenNguyenLieu);
+                try
+                {
+                    string tenNguyenLieu = cmbTenNguyenLieu.SelectedItem.ToString();
+                    NguyenLieu nguyenLieu = CNguyenLieu_BUS.findNguyenLieuByTen(tenNguyenLieu);
 
-                ChiTietPhieuNhap chiTietPhieuNhap = chiTietPhieuNhaps.ElementAt(dgDSChiTietPhieuNhap.SelectedIndex);
-                chiTietPhieuNhap.maChiTietPhieuNhap = ChiTietPhieuNhapSelect.maChiTietPhieuNhap;
+                    ChiTietPhieuNhap chiTietPhieuNhap = chiTietPhieuNhaps.ElementAt(dgDSChiTietPhieuNhap.SelectedIndex);
+                    chiTietPhieuNhap.maChiTietPhieuNhap = ChiTietPhieuNhapSelect.maChiTietPhieuNhap;
 
-                string maCTNL = ChiTietPhieuNhapSelect.maChitietNguyenLieu;
-                chiTietPhieuNhap.maChitietNguyenLieu = txtMaChiTietNguyenLieu.Text + maCTNL.Substring(maCTNL.Length - 10);
-                chiTietPhieuNhap.soLuong = int.Parse(txtSoLuong.Text);
-                chiTietPhieuNhap.donGia = double.Parse(txtDonGia.Text);
-                chiTietPhieuNhap.thanhTien = double.Parse(txtThanhTien.Text);
-                chiTietPhieuNhap.maPhieuNhap = txtMaPhieuNhap.Text;
+                    string maCTNL = ChiTietPhieuNhapSelect.maChitietNguyenLieu;
+                    chiTietPhieuNhap.maChitietNguyenLieu = txtMaChiTietNguyenLieu.Text + maCTNL.Substring(maCTNL.Length - 10);
+                    chiTietPhieuNhap.soLuong = int.Parse(txtSoLuong.Text);
+                    chiTietPhieuNhap.donGia = double.Parse(txtDonGia.Text);
+                    chiTietPhieuNhap.thanhTien = double.Parse(txtThanhTien.Text);
+                    chiTietPhieuNhap.maPhieuNhap = txtMaPhieuNhap.Text;
 
-                ChiTietNguyenLieu chiTietNguyenLieu = new ChiTietNguyenLieu();
-                chiTietNguyenLieu.maChiTietNguyenLieu = chiTietPhieuNhap.maChitietNguyenLieu;
-                chiTietNguyenLieu.maNguyenLieu = nguyenLieu.maNguyenLieu;
-                chiTietNguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value;
-                chiTietNguyenLieu.soLuong = chiTietPhieuNhap.soLuong;
-                chiTietNguyenLieu.donViTinh = cmbDonViTinh.Text;
+                    ChiTietNguyenLieu chiTietNguyenLieu = new ChiTietNguyenLieu();
+                    chiTietNguyenLieu.maChiTietNguyenLieu = chiTietPhieuNhap.maChitietNguyenLieu;
+                    chiTietNguyenLieu.maNguyenLieu = nguyenLieu.maNguyenLieu;
+                    chiTietNguyenLieu.ngayHetHan = dateNgayHetHan.SelectedDate.Value;
+                    chiTietNguyenLieu.soLuong = chiTietPhieuNhap.soLuong;
+                    chiTietNguyenLieu.donViTinh = cmbDonViTinh.Text;
 
-                chiTietPhieuNhap.ChiTietNguyenLieu = chiTietNguyenLieu;
+                    chiTietPhieuNhap.ChiTietNguyenLieu = chiTietNguyenLieu;
 
-                ChiTietPhieuNhapSelect = chiTietPhieuNhap;
-                txtTongThanhTien.Text = tinhTongThanhTien(chiTietPhieuNhaps).ToString();
-                hienThiDSChiTietPhieuNhap(chiTietPhieuNhaps);
+                    ChiTietPhieuNhapSelect = chiTietPhieuNhap;
+                    txtTongThanhTien.Text = tinhTongThanhTien(chiTietPhieuNhaps).ToString();
+                    hienThiDSChiTietPhieuNhap(chiTietPhieuNhaps);
+                    hienThiDefault();
+                }
+                catch (InvalidOperationException)
+                {
+                    MessageBox.Show("Dữ liệu không được để rỗng");
+                }
+                catch (ArgumentNullException)
+                {
+                    MessageBox.Show("Dữ liệu không được để rỗng");
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Dữ liệu phải là số");
+                }
+                catch (OverflowException)
+                {
+                    MessageBox.Show("Dữ liệu có độ lớn vượt quá giới hạn cho phép");
+                }
+                btnSua.IsEnabled = false;
+                btnXoa.IsEnabled = false;
             }
         }
 
@@ -245,7 +299,11 @@ namespace QuanLyQuanCoffee.Views
             if (ChiTietPhieuNhapSelect != null)
             {
                 chiTietPhieuNhaps.Remove(ChiTietPhieuNhapSelect);
+
+                btnSua.IsEnabled = false;
+                btnXoa.IsEnabled = false;
                 hienThiDSChiTietPhieuNhap(chiTietPhieuNhaps);
+                hienThiDefault();
             }
         }
 
@@ -264,7 +322,6 @@ namespace QuanLyQuanCoffee.Views
                         ChiTietPhieuNhap chiTiet = new ChiTietPhieuNhap();
 
                         // tạo mã chi tiết phiếu nhập
-                        var list1 = CChiTietPhieuNhapNguyenLieu_BUS.toList();
                         if (list1.Count() == 0)
                         {
                             chiTiet.maChiTietPhieuNhap = CServices.taoMa<ChiTietPhieuNhap>(chiTietPhieuNhaps);
@@ -272,6 +329,7 @@ namespace QuanLyQuanCoffee.Views
                         else
                         {
                             chiTiet.maChiTietPhieuNhap = CServices.taoMa<ChiTietPhieuNhap>(list1);
+                            list1 = new List<ChiTietPhieuNhap>();
                         }
 
                         // tạo mã chi tiết nguyên liệu
@@ -304,11 +362,14 @@ namespace QuanLyQuanCoffee.Views
                         chiTietNguyenLieu.donViTinh = cmbDonViTinh.Text;
 
                         chiTiet.ChiTietNguyenLieu = chiTietNguyenLieu;
+                        if (CServices.kiemTraThongTin(chiTiet))
+                        {
+                            chiTietPhieuNhaps.Add(chiTiet);
+                            txtTongThanhTien.Text = tinhTongThanhTien(chiTietPhieuNhaps).ToString();
 
-                        chiTietPhieuNhaps.Add(chiTiet);
-                        txtTongThanhTien.Text = tinhTongThanhTien(chiTietPhieuNhaps).ToString();
-
-                        hienThiDSChiTietPhieuNhap(chiTietPhieuNhaps);
+                            hienThiDSChiTietPhieuNhap(chiTietPhieuNhaps);
+                            hienThiDefault();
+                        }
                     }
                 }
             }

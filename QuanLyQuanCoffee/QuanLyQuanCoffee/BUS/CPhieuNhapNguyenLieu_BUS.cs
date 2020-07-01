@@ -121,17 +121,16 @@ namespace QuanLyQuanCoffee.BUS
             }
             try
             {
-                //if (temp.ChiTietPhieuNhap.Count > 0 ||
-                //    temp.NhanVien != null)
-                //{
-                //    temp.trangThai = 1;
-                //    quanLyQuanCoffee.SaveChanges();
-                //}
-                //else
-                //{
-                //    quanLyQuanCoffee.PhieuNhapNguyenLieux.Remove(temp);
-                //    quanLyQuanCoffee.SaveChanges();
-                //}
+                if (temp.ChiTietPhieuNhaps.Count > 0)
+                {
+                    temp.trangThai = 1;
+                    quanLyQuanCoffee.SaveChanges();
+                }
+                else
+                {
+                    quanLyQuanCoffee.PhieuNhapNguyenLieux.Remove(temp);
+                    quanLyQuanCoffee.SaveChanges();
+                }
             }
             catch (DbUpdateException)
             {

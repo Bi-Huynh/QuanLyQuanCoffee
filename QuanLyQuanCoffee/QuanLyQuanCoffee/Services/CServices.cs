@@ -283,6 +283,16 @@ namespace QuanLyQuanCoffee.Services
 
         public static bool kiemTraThongTin(ChiTietNguyenLieu chiTietNguyenLieu)
         {
+            if (chiTietNguyenLieu.ngayHetHan < DateTime.Now)
+            {
+                MessageBox.Show("Ngày hết hạn phải lơn hơn hoặc bằng ngày hiện tại");
+                return false;
+            }
+            if (chiTietNguyenLieu.soLuong < 0)
+            {
+                MessageBox.Show("Số lượng phải lớn hơn hoặc bằng 0");
+                return false;
+            }
             return true;
         }
 
@@ -291,8 +301,23 @@ namespace QuanLyQuanCoffee.Services
             return true;
         }
 
-        public static bool kiemTraThongTin(ChiTietPhieuNhap chiTietPhieuNhapNguyenLieu)
+        public static bool kiemTraThongTin(ChiTietPhieuNhap chiTietPhieuNhap)
         {
+            if (chiTietPhieuNhap.soLuong < 0)
+            {
+                MessageBox.Show("Số lượng phải lớn hơn 0");
+                return false;
+            }
+            if (chiTietPhieuNhap.donGia.ToString().Length < 4)
+            {
+                MessageBox.Show("đơn giá phải tối thiểu có 4 chữ số");
+                return false;
+            }
+            if (chiTietPhieuNhap.ChiTietNguyenLieu.ngayHetHan < DateTime.Now)
+            {
+                MessageBox.Show("Ngày hết hạn phải lớn hơn hoặc bằng ngày hiện tại");
+                return false;
+            }
             return true;
         }
 
