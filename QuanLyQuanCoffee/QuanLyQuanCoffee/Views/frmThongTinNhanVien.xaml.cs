@@ -4,6 +4,7 @@ using QuanLyQuanCoffee.BUS;
 using QuanLyQuanCoffee.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -99,10 +100,20 @@ namespace QuanLyQuanCoffee.Views
         {
             if (url != "" && url != null)
             {
-                //Uri uri = new Uri(url, UriKind.Relative);
-                Uri uri = new Uri(url);
-                imgAnh.Source = new BitmapImage(uri);
-                imgAnh.Stretch = Stretch.Uniform;
+                try
+                {
+                    Uri uri = new Uri(url, UriKind.Relative);
+                    //Uri uri = new Uri(url);
+                    imgAnh.Source = new BitmapImage(uri);
+                }
+                catch (ArgumentNullException)
+                {
+                    MessageBox.Show("Đường dẫn ảnh rỗng");
+                }
+                catch (FileNotFoundException)
+                {
+                    MessageBox.Show("Lỗi! đường dẫn, không thể mở ảnh");
+                }
             }
         }
 
@@ -201,8 +212,10 @@ namespace QuanLyQuanCoffee.Views
             openFileDialog.RestoreDirectory = true;
             if (openFileDialog.ShowDialog() == true)
             {
-                urlAnh = openFileDialog.FileName;
-                //urlAnh = @".\QuanLyQuanCoffee\Hinh\1.jpg";
+                string url = "";
+                url = openFileDialog.FileName;
+                
+
                 hienThiHinh(urlAnh);
             }
         }
