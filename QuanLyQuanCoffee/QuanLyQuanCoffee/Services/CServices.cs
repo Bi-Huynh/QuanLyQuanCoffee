@@ -313,11 +313,11 @@ namespace QuanLyQuanCoffee.Services
                 MessageBox.Show("đơn giá phải tối thiểu có 4 chữ số");
                 return false;
             }
-            if (chiTietPhieuNhap.ChiTietNguyenLieu.ngayHetHan < DateTime.Now)
-            {
-                MessageBox.Show("Ngày hết hạn phải lớn hơn hoặc bằng ngày hiện tại");
-                return false;
-            }
+            //if (chiTietPhieuNhap.ChiTietNguyenLieu.ngayHetHan < DateTime.Now)
+            //{
+            //    MessageBox.Show("Ngày hết hạn phải lớn hơn hoặc bằng ngày hiện tại");
+            //    return false;
+            //}
             return true;
         }
 

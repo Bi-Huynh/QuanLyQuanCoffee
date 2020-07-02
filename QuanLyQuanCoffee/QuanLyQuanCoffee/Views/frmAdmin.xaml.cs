@@ -106,5 +106,10 @@ namespace QuanLyQuanCoffee.Views
         {
             Main.Content = new frmQuanLyPhieuXuatNguyenLieu(nhanVien);
         }
+
+        private void ketCa_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new frmKetCa();
+        }
     }
 }

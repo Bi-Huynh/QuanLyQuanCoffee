@@ -1,0 +1,73 @@
+﻿<Page x:Class="QuanLyQuanCoffee.Views.frmKetCa"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="460" d:DesignWidth="500"
+      MaxHeight="460" MaxWidth="500"
+    Title="frmKetCa">
+
+    <StackPanel>
+       
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Phiếu Kết Ca" FontSize="20" FontWeight="Bold"/>
+            
+            <Label Grid.Row="1" Grid.Column="0"  VerticalContentAlignment="Center" Height="40" Content="Mã nhân viên: " FontSize="15" Margin="10,0,0,0"/>
+            <TextBox x:Name="txtMaNhanVien" Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="15" Margin="10,0,10,0"/>
+
+            <Label Grid.Row="2" Grid.Column="0"  VerticalContentAlignment="Center" Height="40" Content="Tên nhân viên: " FontSize="15" Margin="10,10,0,0"/>
+            <TextBox x:Name="txtTenNhanVien" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0"/>
+
+            <Label Grid.Row="3" Grid.Column="0"  VerticalContentAlignment="Center" Height="40" Content="Giờ bắt đầu: " FontSize="15" Margin="10,10,0,0"/>
+            <TextBox x:Name="txtGioBatDau" Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0"/>
+
+            <Label Grid.Row="4" Grid.Column="0"  VerticalContentAlignment="Center" Height="40" Content="Giờ kết thúc: " FontSize="15" Margin="10,10,0,0"/>
+            <TextBox x:Name="txtGioKetThuc" Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0"/>
+
+
+            <Label Grid.Row="5" Grid.Column="0"  VerticalContentAlignment="Center" Height="40" Content="Số lượng bán : " FontSize="15" Margin="10,10,0,0"/>
+            <TextBox x:Name="txtSoLuongBan" Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0"/>
+
+
+            <Label Grid.Row="6" Grid.Column="0"  VerticalContentAlignment="Center" Height="40" Content="Số tiền ban đầu: " FontSize="15" Margin="10,10,0,0"/>
+            <TextBox x:Name="txtSoTienBanDau" Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0"/>
+
+
+            <Label Grid.Row="7" Grid.Column="0"  VerticalContentAlignment="Center" Height="40" Content="Tổng doanh thu: " FontSize="15" Margin="10,10,0,0"/>
+            <TextBox x:Name="txtTongDoanhThu" Grid.Row="7" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0"/>
+        </Grid>
+        <Grid Margin="10,10,10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Grid.Row="0" x:Name="btnKetCa" Height="40" Content="Kết Ca" FontWeight="Bold" FontSize="20" Margin="0, 0, 5, 0"></Button>
+            <Button Grid.Column="1" Grid.Row="0" x:Name="btnHuy" Content="Hủy" FontWeight="Bold" FontSize="20" Margin="5, 0, 0, 0"></Button>
+        </Grid>
+
+    </StackPanel>
+
+</Page>

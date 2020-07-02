@@ -166,6 +166,9 @@
     <Compile Include="Views\frmDangNhap.xaml.cs">
       <DependentUpon>frmDangNhap.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmKetCa.xaml.cs">
+      <DependentUpon>frmKetCa.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmOrder.xaml.cs">
       <DependentUpon>frmOrder.xaml</DependentUpon>
     </Compile>
@@ -222,6 +225,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\frmDangNhap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmKetCa.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
