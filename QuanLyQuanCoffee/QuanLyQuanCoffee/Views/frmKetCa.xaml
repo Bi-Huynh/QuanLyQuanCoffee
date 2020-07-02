@@ -1,12 +1,12 @@
-﻿<Page x:Class="QuanLyQuanCoffee.Views.frmKetCa"
+﻿<Window x:Class="QuanLyQuanCoffee.Views.frmKetCa"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="500"
-      MaxHeight="500" MaxWidth="500"
+      d:DesignHeight="530" d:DesignWidth="500"
+      MaxHeight="530" MaxWidth="500"
     Title="frmKetCa">
 
     <StackPanel>
@@ -68,10 +68,10 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" x:Name="btnKetCa" Height="40" Content="Kết Ca" FontWeight="Bold" FontSize="20" Margin="0, 0, 5, 0"></Button>
+            <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" x:Name="btnKetCa" Height="40" Content="Kết Ca" FontWeight="Bold" FontSize="20" Margin="0, 0, 5, 0" Click="btnKetCa_Click" KeyUp="btnKetCa_KeyUp"></Button>
             <!--<Button Grid.Column="1" Grid.Row="0" x:Name="btnHuy" Content="Hủy" FontWeight="Bold" FontSize="20" Margin="5, 0, 0, 0"></Button>-->
         </Grid>
 
     </StackPanel>
 
-</Page>
+</Window>

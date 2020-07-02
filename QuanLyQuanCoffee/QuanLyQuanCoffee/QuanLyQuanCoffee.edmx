@@ -72,6 +72,20 @@
           <Property Name="tongThanhTien" Type="float" Nullable="false" />
           <Property Name="trangThai" Type="int" />
         </EntityType>
+        <EntityType Name="KetCa">
+          <Key>
+            <PropertyRef Name="maKetCa" />
+          </Key>
+          <Property Name="maKetCa" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="maNhanVien" Type="char" MaxLength="10" />
+          <Property Name="gioBatDau" Type="datetime" />
+          <Property Name="gioKetThuc" Type="datetime" />
+          <Property Name="ngayLap" Type="datetime" />
+          <Property Name="soLuong" Type="int" />
+          <Property Name="tongTienBan" Type="float" />
+          <Property Name="tienDauCa" Type="float" />
+          <Property Name="tongDoanhThu" Type="float" />
+        </EntityType>
         <EntityType Name="LoaiNguyenLieu">
           <Key>
             <PropertyRef Name="maLoaiNguyenLieu" />
@@ -293,6 +307,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_KetCa_NhanVien">
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+          <End Role="KetCa" Type="Self.KetCa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="maNhanVien" />
+            </Principal>
+            <Dependent Role="KetCa">
+              <PropertyRef Name="maNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Luong_NhanVien1">
           <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
           <End Role="Luong" Type="Self.Luong" Multiplicity="*" />
@@ -396,6 +422,7 @@
           <EntitySet Name="ChiTietPhieuNhap" EntityType="Self.ChiTietPhieuNhap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietPhieuXuat" EntityType="Self.ChiTietPhieuXuat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KetCa" EntityType="Self.KetCa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiNguyenLieu" EntityType="Self.LoaiNguyenLieu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiNhanVien" EntityType="Self.LoaiNhanVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiSanPham" EntityType="Self.LoaiSanPham" Schema="dbo" store:Type="Tables" />
@@ -442,6 +469,10 @@
           <AssociationSet Name="FK_HoaDon_NhanVien" Association="Self.FK_HoaDon_NhanVien">
             <End Role="NhanVien" EntitySet="NhanVien" />
             <End Role="HoaDon" EntitySet="HoaDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KetCa_NhanVien" Association="Self.FK_KetCa_NhanVien">
+            <End Role="NhanVien" EntitySet="NhanVien" />
+            <End Role="KetCa" EntitySet="KetCa" />
           </AssociationSet>
           <AssociationSet Name="FK_Luong_NhanVien1" Association="Self.FK_Luong_NhanVien1">
             <End Role="NhanVien" EntitySet="NhanVien" />
@@ -560,6 +591,21 @@
           <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK_ChiTietHoaDon_HoaDon" FromRole="HoaDon" ToRole="ChiTietHoaDon" />
           <NavigationProperty Name="NhanVien" Relationship="Self.FK_HoaDon_NhanVien" FromRole="HoaDon" ToRole="NhanVien" />
         </EntityType>
+        <EntityType Name="KetCa">
+          <Key>
+            <PropertyRef Name="maKetCa" />
+          </Key>
+          <Property Name="maKetCa" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="maNhanVien" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="gioBatDau" Type="DateTime" Precision="3" />
+          <Property Name="gioKetThuc" Type="DateTime" Precision="3" />
+          <Property Name="ngayLap" Type="DateTime" Precision="3" />
+          <Property Name="soLuong" Type="Int32" />
+          <Property Name="tongTienBan" Type="Double" />
+          <Property Name="tienDauCa" Type="Double" />
+          <Property Name="tongDoanhThu" Type="Double" />
+          <NavigationProperty Name="NhanVien" Relationship="Self.FK_KetCa_NhanVien" FromRole="KetCa" ToRole="NhanVien" />
+        </EntityType>
         <EntityType Name="LoaiNguyenLieu">
           <Key>
             <PropertyRef Name="maLoaiNguyenLieu" />
@@ -640,6 +686,7 @@
           <Property Name="urlAnh" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ChiTietChamCongs" Relationship="Self.FK_ChiTietChamCong_NhanVien" FromRole="NhanVien" ToRole="ChiTietChamCong" />
           <NavigationProperty Name="HoaDons" Relationship="Self.FK_HoaDon_NhanVien" FromRole="NhanVien" ToRole="HoaDon" />
+          <NavigationProperty Name="KetCas" Relationship="Self.FK_KetCa_NhanVien" FromRole="NhanVien" ToRole="KetCa" />
           <NavigationProperty Name="LoaiNhanVien" Relationship="Self.FK_NhanVien_LoaiNhanVien" FromRole="NhanVien" ToRole="LoaiNhanVien" />
           <NavigationProperty Name="Luongs" Relationship="Self.FK_Luong_NhanVien1" FromRole="NhanVien" ToRole="Luong" />
           <NavigationProperty Name="PhieuNhapNguyenLieux" Relationship="Self.FK_PhieuNhapNguyenLieu_NhanVien" FromRole="NhanVien" ToRole="PhieuNhapNguyenLieu" />
@@ -803,6 +850,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_KetCa_NhanVien">
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+          <End Role="KetCa" Type="Self.KetCa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NhanVien">
+              <PropertyRef Name="maNhanVien" />
+            </Principal>
+            <Dependent Role="KetCa">
+              <PropertyRef Name="maNhanVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NguyenLieu_LoaiNguyenLieu">
           <End Role="LoaiNguyenLieu" Type="Self.LoaiNguyenLieu" Multiplicity="1" />
           <End Role="NguyenLieu" Type="Self.NguyenLieu" Multiplicity="*" />
@@ -906,6 +965,7 @@
           <EntitySet Name="ChiTietPhieuNhaps" EntityType="Self.ChiTietPhieuNhap" />
           <EntitySet Name="ChiTietPhieuXuats" EntityType="Self.ChiTietPhieuXuat" />
           <EntitySet Name="HoaDons" EntityType="Self.HoaDon" />
+          <EntitySet Name="KetCas" EntityType="Self.KetCa" />
           <EntitySet Name="LoaiNguyenLieux" EntityType="Self.LoaiNguyenLieu" />
           <EntitySet Name="LoaiNhanViens" EntityType="Self.LoaiNhanVien" />
           <EntitySet Name="LoaiSanPhams" EntityType="Self.LoaiSanPham" />
@@ -952,6 +1012,10 @@
           <AssociationSet Name="FK_HoaDon_NhanVien" Association="Self.FK_HoaDon_NhanVien">
             <End Role="NhanVien" EntitySet="NhanViens" />
             <End Role="HoaDon" EntitySet="HoaDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KetCa_NhanVien" Association="Self.FK_KetCa_NhanVien">
+            <End Role="NhanVien" EntitySet="NhanViens" />
+            <End Role="KetCa" EntitySet="KetCas" />
           </AssociationSet>
           <AssociationSet Name="FK_NguyenLieu_LoaiNguyenLieu" Association="Self.FK_NguyenLieu_LoaiNguyenLieu">
             <End Role="LoaiNguyenLieu" EntitySet="LoaiNguyenLieux" />
@@ -1061,6 +1125,21 @@
                 <ScalarProperty Name="ngayLap" ColumnName="ngayLap" />
                 <ScalarProperty Name="tongThanhTien" ColumnName="tongThanhTien" />
                 <ScalarProperty Name="trangThai" ColumnName="trangThai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KetCas">
+            <EntityTypeMapping TypeName="QuanLyQuanCoffeeModel.KetCa">
+              <MappingFragment StoreEntitySet="KetCa">
+                <ScalarProperty Name="maKetCa" ColumnName="maKetCa" />
+                <ScalarProperty Name="maNhanVien" ColumnName="maNhanVien" />
+                <ScalarProperty Name="gioBatDau" ColumnName="gioBatDau" />
+                <ScalarProperty Name="gioKetThuc" ColumnName="gioKetThuc" />
+                <ScalarProperty Name="ngayLap" ColumnName="ngayLap" />
+                <ScalarProperty Name="soLuong" ColumnName="soLuong" />
+                <ScalarProperty Name="tongTienBan" ColumnName="tongTienBan" />
+                <ScalarProperty Name="tienDauCa" ColumnName="tienDauCa" />
+                <ScalarProperty Name="tongDoanhThu" ColumnName="tongDoanhThu" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

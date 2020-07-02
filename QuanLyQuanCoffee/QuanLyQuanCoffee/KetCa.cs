@@ -12,21 +12,23 @@ namespace QuanLyQuanCoffee
     using System;
     using System.Collections.Generic;
     
-    public partial class Luong
+    public partial class KetCa
     {
-        public string maLuong { get; set; }
+        public string maKetCa { get; set; }
         public string maNhanVien { get; set; }
-        public System.DateTime tuNgay { get; set; }
-        public System.DateTime denNgay { get; set; }
-        public System.DateTime tongGioLam { get; set; }
-        public double thanhTien { get; set; }
-        public Nullable<int> trangThai { get; set; }
+        public Nullable<System.DateTime> gioBatDau { get; set; }
+        public Nullable<System.DateTime> gioKetThuc { get; set; }
+        public Nullable<System.DateTime> ngayLap { get; set; }
+        public Nullable<int> soLuong { get; set; }
+        public Nullable<double> tongTienBan { get; set; }
+        public Nullable<double> tienDauCa { get; set; }
+        public Nullable<double> tongDoanhThu { get; set; }
     
         public virtual NhanVien NhanVien { get; set; }
 
         public override string ToString()
         {
-            return maLuong;
+            return maKetCa;
         }
     }
 }

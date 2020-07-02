@@ -21,6 +21,7 @@ namespace QuanLyQuanCoffee
     
         public virtual HoaDon HoaDon { get; set; }
         public virtual SanPham SanPham { get; set; }
+
         public override string ToString()
         {
             return maHoaDon;

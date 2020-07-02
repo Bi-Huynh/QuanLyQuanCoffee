@@ -1,29 +1,48 @@
-﻿using System;
+﻿using QuanLyQuanCoffee.DTO;
+using QuanLyQuanCoffee.Services;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace QuanLyQuanCoffee.BUS
 {
     public class CCa_BUS
     {
-        private string maNhanVien;
-        private DateTime gioBatDau;
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
 
-        public CCa_BUS()
+        public static List<KetCa> toList()
         {
-            this.MaNhanVien = "";
-            this.GioBatDau = DateTime.Now;
+            List<KetCa> list = quanLyQuanCoffee.KetCas.ToList();
+            return list == null ? new List<KetCa>() : list;
         }
 
-        public CCa_BUS(string maNhanVien, DateTime gioBatDau)
+        public static bool add(KetCa ketCa)
         {
-            this.MaNhanVien = maNhanVien;
-            this.GioBatDau = gioBatDau;
-        }
+            try
+            {
+                if (CServices.kiemTraThongTin(ketCa))
+                {
+                    quanLyQuanCoffee.KetCas.Add(ketCa);
+                    quanLyQuanCoffee.SaveChanges();
+                }
+            }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show("Lỗi! không thể lưu dữ liệu");
+                return false;
+            }
+            catch (DbEntityValidationException)
+            {
+                MessageBox.Show("Lỗi! không thể lưu dữ liệu");
+                return false;
+            }
 
-        public string MaNhanVien { get => maNhanVien; set => maNhanVien = value; }
-        public DateTime GioBatDau { get => gioBatDau; set => gioBatDau = value; }
+            return true;
+        }
     }
 }

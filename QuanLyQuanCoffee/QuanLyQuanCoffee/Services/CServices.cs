@@ -335,5 +335,15 @@ namespace QuanLyQuanCoffee.Services
             }
             return true;
         }
+
+        public static bool kiemTraThongTin(KetCa ketCa)
+        {
+            if (ketCa.tienDauCa < 0)
+            {
+                MessageBox.Show("tiền đầu ca phải lớn hơn hoặc bằng 0");
+                return false;
+            }
+            return true;
+        }
     }
 }

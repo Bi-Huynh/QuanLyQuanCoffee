@@ -1,4 +1,5 @@
 ﻿using QuanLyQuanCoffee.BUS;
+using QuanLyQuanCoffee.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,26 +25,33 @@ namespace QuanLyQuanCoffee.Views
         private TaiKhoan taiKhoan1;
         private LoaiTaiKhoan ltk;
         private NhanVien nhanVien;
-        private CCa_BUS ca;
+        private CCa_DTO ca;
 
-        public frmAdmin(TaiKhoan taiKhoan)
+        public frmAdmin(TaiKhoan taiKhoan = null)
         {
             InitializeComponent();
             taiKhoan1 = taiKhoan;
-            ltk = quanLyQuanCoffee.LoaiTaiKhoans.Find(taiKhoan.maLoaiTaiKhoan);
-            kiemTraQuyen(taiKhoan);
+            if (taiKhoan == null)
+            {
+                taiKhoan1 = new TaiKhoan();
+            }
+            else
+            {
+                ltk = quanLyQuanCoffee.LoaiTaiKhoans.Find(taiKhoan.maLoaiTaiKhoan);
+            }
+            kiemTraQuyen(taiKhoan1);
             nhanVien = quanLyQuanCoffee.NhanViens.Find(taiKhoan1.maNhanVien);
             if (nhanVien == null)
             {
                 nhanVien = new NhanVien();
             }
 
-            ca = new CCa_BUS(nhanVien.maNhanVien, DateTime.Now);
+            ca = new CCa_DTO(nhanVien.maNhanVien, DateTime.Now);
         }
 
         public void kiemTraQuyen(TaiKhoan taiKhoan1)
         {
-            if (taiKhoan1.maLoaiTaiKhoan != "00001")
+            if (taiKhoan1.maLoaiTaiKhoan != "00001" && taiKhoan1.maLoaiTaiKhoan != null)
             {
                 nhanSu.IsEnabled = false;
                 nguyenLieu.IsEnabled = false;
@@ -88,7 +96,7 @@ namespace QuanLyQuanCoffee.Views
             Main.Content = new frmOrder(nhanVien);
         }
 
-        private void dangXuat_Click(object sender, RoutedEventArgs e)
+        public void dangXuat_Click(object sender, RoutedEventArgs e)
         {
             frmDangNhap f = new frmDangNhap();
             f.Show();
@@ -113,7 +121,8 @@ namespace QuanLyQuanCoffee.Views
 
         private void ketCa_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new frmKetCa(ca, nhanVien);
+            frmKetCa _frmKetCa = new frmKetCa(ca, nhanVien);
+            _frmKetCa.Show();
         }
     }
 }

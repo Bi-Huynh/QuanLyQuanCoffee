@@ -112,7 +112,11 @@
     <Compile Include="ChiTietPhieuXuat.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\CCa_DTO.cs" />
     <Compile Include="HoaDon.cs">
+      <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KetCa.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
     <Compile Include="LoaiNguyenLieu.cs">
