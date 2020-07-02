@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyQuanCoffee.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,24 +33,16 @@ namespace QuanLyQuanCoffee.Views
             tk = dc.TaiKhoans.Where(x => x.taiKhoan1 == txtTaikhoan.Text && x.matKhau == txtMatkhau.Password && x.trangThai == 0).FirstOrDefault();
             if (tk != null)
             {
-                //if (tk.trangThai == 0)
-                //{
-                    frmAdmin f = new frmAdmin(tk);
-                    f.Show();
-                    this.Close();
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Tài khoản không tồn tại");
-                //}
-
+                frmAdmin f = new frmAdmin(tk);
+                f.Show();
+                this.Close();
             }
             else
             {
                 MessageBox.Show("Sai tài khoản hoặc mật khẩu");
             }
 
-           
+
         }
     }
 }

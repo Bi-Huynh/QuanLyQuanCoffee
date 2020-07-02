@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyQuanCoffee.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,8 @@ namespace QuanLyQuanCoffee.Views
         private QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
         private TaiKhoan taiKhoan1;
         private LoaiTaiKhoan ltk;
-        NhanVien nhanVien;
+        private NhanVien nhanVien;
+        private CCa_BUS ca;
 
         public frmAdmin(TaiKhoan taiKhoan)
         {
@@ -35,6 +37,8 @@ namespace QuanLyQuanCoffee.Views
             {
                 nhanVien = new NhanVien();
             }
+
+            ca = new CCa_BUS(nhanVien.maNhanVien, DateTime.Now);
         }
 
         public void kiemTraQuyen(TaiKhoan taiKhoan1)
@@ -109,7 +113,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void ketCa_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new frmKetCa();
+            Main.Content = new frmKetCa(ca, nhanVien);
         }
     }
 }
