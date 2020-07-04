@@ -69,6 +69,7 @@ namespace QuanLyQuanCoffee.Views
         {
             if (dgDSNguyenLieu.SelectedItem != null)
             {
+                nguyenLieuSelect = new NguyenLieu();
                 nguyenLieuSelect = CNguyenLieu_BUS.find(dgDSNguyenLieu.SelectedValue.ToString());
             }
         }
