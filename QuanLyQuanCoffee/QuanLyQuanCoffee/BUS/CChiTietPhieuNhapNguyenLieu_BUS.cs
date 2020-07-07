@@ -24,6 +24,33 @@ namespace QuanLyQuanCoffee.BUS
             List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
                 .Where(x => x.maPhieuNhap == maPhieuNhap).ToList();
             return list == null ? new List<ChiTietPhieuNhap>() : list;
+            //List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
+            //    .Include("ChiTietNguyenLieux").Include("NguyenLieux")
+            //    .Select(x => new ChiTietPhieuNhap()
+            //    {
+            //        maChiTietPhieuNhap = x.maChiTietPhieuNhap,
+            //        maChitietNguyenLieu = x.maChitietNguyenLieu,
+            //        soLuong = x.soLuong,
+            //        donGia = x.donGia,
+            //        thanhTien = x.thanhTien,
+            //        maPhieuNhap = x.maPhieuNhap,
+            //        ChiTietNguyenLieu = x.ChiTietNguyenLieu == null ? null : new ChiTietNguyenLieu()
+            //        {
+            //            maChiTietNguyenLieu = x.ChiTietNguyenLieu.maChiTietNguyenLieu,
+            //            maNguyenLieu = x.ChiTietNguyenLieu.maNguyenLieu,
+            //            soLuong = x.ChiTietNguyenLieu.soLuong,
+            //            ngayHetHan = x.ChiTietNguyenLieu.ngayHetHan,
+            //            donViTinh = x.ChiTietNguyenLieu.donViTinh,
+            //            NguyenLieu = x.ChiTietNguyenLieu.NguyenLieu == null ? null : new NguyenLieu()
+            //            {
+            //                maNguyenLieu = x.ChiTietNguyenLieu.NguyenLieu.maNguyenLieu,
+            //                tenNguyenLieu = x.ChiTietNguyenLieu.NguyenLieu.tenNguyenLieu,
+            //                maLoaiNguyenLieu = x.ChiTietNguyenLieu.NguyenLieu.maLoaiNguyenLieu,
+            //                trangThai = x.ChiTietNguyenLieu.NguyenLieu.trangThai
+            //            }
+            //        }
+            //    }).ToList<ChiTietPhieuNhap>();
+            //return list == null ? new List<ChiTietPhieuNhap>() : list;
         }
 
         public static List<ChiTietPhieuNhap> toListAll()
