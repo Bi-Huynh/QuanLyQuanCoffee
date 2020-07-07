@@ -95,16 +95,16 @@ namespace QuanLyQuanCoffee.Views
 
             chiTietPhieuNhaps = CChiTietPhieuNhapNguyenLieu_BUS.toList(phieuNhap.maPhieuNhap);
 
-            txtTongThanhTien.Text = phieuNhap.tongThanhTien.ToString();
+            txtTongThanhTien.Text = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", phieuNhap.tongThanhTien);
 
             hienThiDSChiTietPhieuNhap(chiTietPhieuNhaps);
         }
 
         private void hienThiThongTin(ChiTietPhieuNhap chiTietPhieuNhap)
         {
-            txtMaChiTietNguyenLieu.Text = chiTietPhieuNhap.maChitietNguyenLieu
-                .Substring(0, chiTietPhieuNhap.maChitietNguyenLieu.Length - 10);
-            cmbTenNguyenLieu.SelectedItem = chiTietPhieuNhap.ChiTietNguyenLieu.NguyenLieu.tenNguyenLieu.Trim();
+            txtMaChiTietNguyenLieu.Text = chiTietPhieuNhap.maChitietNguyenLieu;
+                //.Substring(0, chiTietPhieuNhap.maChitietNguyenLieu.Length - 10);
+            cmbTenNguyenLieu.SelectedItem = CNguyenLieu_BUS.findTenNguyenLieu(chiTietPhieuNhap.ChiTietNguyenLieu.maNguyenLieu);
             dateNgayHetHan.SelectedDate = chiTietPhieuNhap.ChiTietNguyenLieu.ngayHetHan;
             cmbDonViTinh.SelectedItem = chiTietPhieuNhap.ChiTietNguyenLieu.donViTinh.Trim();
             txtSoLuong.Text = chiTietPhieuNhap.soLuong.ToString();
@@ -131,14 +131,14 @@ namespace QuanLyQuanCoffee.Views
                     dgDSChiTietPhieuNhap.ItemsSource = list.Select(x => new
                     {
                         maChiTietPhieuNhap = x.maChiTietPhieuNhap,
-                        maChiTietNguyenLieu = x.maChitietNguyenLieu.Substring(0, 13),
-                        tenNguyenLieu = CNguyenLieu_BUS.find(x.ChiTietNguyenLieu.maNguyenLieu).tenNguyenLieu,
+                        maChiTietNguyenLieu = x.maChitietNguyenLieu,//.Substring(0, 13),
+                        tenNguyenLieu = CNguyenLieu_BUS.findTenNguyenLieu(x.ChiTietNguyenLieu.maNguyenLieu).Trim(),
                         ngayHetHan = x.ChiTietNguyenLieu.ngayHetHan.Value.ToString("dd/MM/yyyy"),
                         donViTinh = x.ChiTietNguyenLieu.donViTinh,
                         soLuong = x.soLuong,
-                        donGia = x.donGia,
-                        thanhTien = x.thanhTien
-                    });
+                        donGia = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.donGia),
+                        thanhTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.thanhTien)
+                    }) ;
                 }
                 catch (ArgumentNullException)
                 {
@@ -174,11 +174,12 @@ namespace QuanLyQuanCoffee.Views
             if (dgDSChiTietPhieuNhap.SelectedItem != null)
             {
                 int index = dgDSChiTietPhieuNhap.SelectedIndex;
+                ChiTietPhieuNhapSelect = new ChiTietPhieuNhap();
                 ChiTietPhieuNhapSelect = chiTietPhieuNhaps[index] as ChiTietPhieuNhap;
 
-                hienThiThongTin(ChiTietPhieuNhapSelect);
                 if (flat == 1)
                 {
+                    hienThiThongTin(ChiTietPhieuNhapSelect);
                     btnXoa.IsEnabled = true;
                     btnSua.IsEnabled = true;
                 }
@@ -187,6 +188,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnTaoPhieuNhap_Click(object sender, RoutedEventArgs e)
         {
+            int flag = 0;
             if (chiTietPhieuNhaps.Count() == 0)
             {
                 MessageBox.Show("Không thể tạo phiếu nhập rỗng");
@@ -200,44 +202,76 @@ namespace QuanLyQuanCoffee.Views
                 phieuNhapNguyenLieu.tongThanhTien = double.Parse(txtTongThanhTien.Text);
                 phieuNhapNguyenLieu.trangThai = 0;
 
-                if (!CPhieuNhapNguyenLieu_BUS.add(phieuNhapNguyenLieu))
+                if (CPhieuNhapNguyenLieu_BUS.add(phieuNhapNguyenLieu))
                 {
-                    MessageBox.Show("Lỗi! Thêm Phiếu Nhập không thành công");
-                    return;
+                    foreach (var x in chiTietPhieuNhaps)
+                    {
+                        ChiTietNguyenLieu chiTietNguyenLieu = new ChiTietNguyenLieu();
+                        chiTietNguyenLieu.maChiTietNguyenLieu = x.maChitietNguyenLieu;
+                        chiTietNguyenLieu.maNguyenLieu = x.ChiTietNguyenLieu.maNguyenLieu;
+                        chiTietNguyenLieu.ngayHetHan = x.ChiTietNguyenLieu.ngayHetHan.Value;
+                        chiTietNguyenLieu.soLuong = x.soLuong;
+                        chiTietNguyenLieu.donViTinh = x.ChiTietNguyenLieu.donViTinh;
+
+                        if (CChiTietNguyenLieu_BUS.add(chiTietNguyenLieu))
+                        {
+                            ChiTietPhieuNhap chiTiet = new ChiTietPhieuNhap();
+                            chiTiet.maChiTietPhieuNhap = x.maChiTietPhieuNhap;
+                            chiTiet.maPhieuNhap = x.maPhieuNhap;
+                            chiTiet.maChitietNguyenLieu = x.maChitietNguyenLieu;
+                            chiTiet.soLuong = x.soLuong;
+                            chiTiet.donGia = x.donGia;
+                            chiTiet.thanhTien = x.thanhTien;
+                            if (!CChiTietPhieuNhapNguyenLieu_BUS.add(chiTiet))
+                            {
+                                flag = 1;
+                            }
+                        }
+                        else
+                        {
+                            flag = 1;
+                        }
+                    }
+                }
+                else
+                {
+                    flag = 1;
                 }
 
-                foreach (var x in chiTietPhieuNhaps)
+                if (flag == 1)
                 {
-                    ChiTietNguyenLieu chiTietNguyenLieu = new ChiTietNguyenLieu();
-                    chiTietNguyenLieu.maChiTietNguyenLieu = x.maChitietNguyenLieu;
-                    chiTietNguyenLieu.maNguyenLieu = x.ChiTietNguyenLieu.maNguyenLieu;
-                    chiTietNguyenLieu.ngayHetHan = x.ChiTietNguyenLieu.ngayHetHan.Value;
-                    chiTietNguyenLieu.soLuong = x.soLuong;
-                    chiTietNguyenLieu.donViTinh = x.ChiTietNguyenLieu.donViTinh;
-
-                    if (!CChiTietNguyenLieu_BUS.add(chiTietNguyenLieu))
-                    {
-                        MessageBox.Show("Lỗi, không thêm chi tiết nguyên liệu không thành công");
-                        return;
-                    }
-
-                    ChiTietPhieuNhap chiTiet = new ChiTietPhieuNhap();
-                    chiTiet.maChiTietPhieuNhap = x.maChiTietPhieuNhap;
-                    chiTiet.maPhieuNhap = x.maPhieuNhap;
-                    chiTiet.maChitietNguyenLieu = x.maChitietNguyenLieu;
-                    chiTiet.soLuong = x.soLuong;
-                    chiTiet.donGia = x.donGia;
-                    chiTiet.thanhTien = x.thanhTien;
-
-                    if (!CChiTietPhieuNhapNguyenLieu_BUS.add(chiTiet))
-                    {
-                        MessageBox.Show("Lỗi, không thêm chi tiết phiếu nhập không thành công");
-                        return;
-                    }
+                    rollback(chiTietPhieuNhaps);
                 }
                 MessageBox.Show("Thêm thành công");
                 this.Close();
             }
+        }
+
+        private static bool rollback(List<ChiTietPhieuNhap> list)
+        {
+            foreach (var item in list)
+            {
+                if (!CChiTietNguyenLieu_BUS.remove(item.maChitietNguyenLieu))
+                {
+                    MessageBox.Show("Lỗi rollback, xóa chi tiết nguyên liệu");
+                    return false;
+                }
+            }
+            foreach (var item in list)
+            {
+                if (!CChiTietPhieuNhapNguyenLieu_BUS.remove(item.maChiTietPhieuNhap))
+                {
+                    MessageBox.Show("Lỗi rollback, xóa chi tiết phiêu nhập");
+                    return false;
+                }
+            }
+            if (CPhieuNhapNguyenLieu_BUS.remove(list[0].maPhieuNhap))
+            {
+                MessageBox.Show("Lỗi rollback, xóa phiếu nhập");
+                return false;
+            }
+
+            return true;
         }
 
         private void btnSua_Click(object sender, RoutedEventArgs e)

@@ -41,7 +41,7 @@ namespace QuanLyQuanCoffee.Views
                 soLuong = x.soLuong,
                 ngayHetHan = x.ChiTietNguyenLieu.ngayHetHan.Value.ToString("dd/MM/yyyy"),
                 soNgayConLai = CChiTietNguyenLieu_BUS.soNgayConLai(x.ChiTietNguyenLieu.ngayHetHan.Value),
-                donGia = x.donGia,
+                donGia = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.donGia),
                 donViTinh = x.ChiTietNguyenLieu.donViTinh,
                 ngayNhap = x.PhieuNhapNguyenLieu.ngayNhap.Value.ToString("dd/MM/yyyy"),
                 ngayXuat = CChiTietPhieuXuat_BUS.findNgayXuat(x.maChitietNguyenLieu)

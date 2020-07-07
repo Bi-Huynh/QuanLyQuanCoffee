@@ -36,7 +36,8 @@ namespace QuanLyQuanCoffee.BUS
 
         public static NguyenLieu find(string maNguyenLieu)
         {
-            return quanLyQuanCoffee.NguyenLieux.Find(maNguyenLieu);
+            NguyenLieu nguyenLieu = quanLyQuanCoffee.NguyenLieux.Find(maNguyenLieu);
+            return nguyenLieu == null ? new NguyenLieu() : nguyenLieu;
         }
 
         public static NguyenLieu find(NguyenLieu nguyenLieu)
@@ -49,6 +50,28 @@ namespace QuanLyQuanCoffee.BUS
             List<NguyenLieu> list = quanLyQuanCoffee.NguyenLieux
                 .Where(x => x.tenNguyenLieu.Contains(tenNguyenLieu) && x.trangThai == 0).ToList();
             return list == null ? new List<NguyenLieu>() : list;
+        }
+
+        public static string findTenNguyenLieu(string maNguyenLieu)
+        {
+            string tenNguyenLieu = quanLyQuanCoffee.NguyenLieux
+                .Where(x => x.maNguyenLieu == maNguyenLieu && x.trangThai == 0).FirstOrDefault().tenNguyenLieu;
+            return tenNguyenLieu == null ? "Null" : tenNguyenLieu.Trim();
+        }
+
+        public static string findTenByMaChiTietNguyenLieu(string maChiTietNguyenLieu)
+        {
+            string tenNguyenLieu = "";
+            List<ChiTietNguyenLieu> list = CChiTietNguyenLieu_BUS.toList();
+            foreach(var item in list)
+            {
+                if (item.maChiTietNguyenLieu == maChiTietNguyenLieu)
+                {
+                    tenNguyenLieu = item.NguyenLieu.tenNguyenLieu;
+                    break;
+                }
+            }
+            return tenNguyenLieu == "" ? "Null" : tenNguyenLieu.Trim();
         }
 
         public static List<NguyenLieu> findMa(string maNguyenLieu)

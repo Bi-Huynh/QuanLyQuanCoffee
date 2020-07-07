@@ -12,7 +12,7 @@ namespace QuanLyQuanCoffee
     using System;
     using System.Collections.Generic;
     
-    public partial class ChiTietNguyenLieu
+    public partial class ChiTietNguyenLieu : IComparable<ChiTietNguyenLieu>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ChiTietNguyenLieu()
@@ -36,6 +36,28 @@ namespace QuanLyQuanCoffee
         public override string ToString()
         {
             return maChiTietNguyenLieu;
+        }
+
+        public int CompareTo(ChiTietNguyenLieu order)
+        {
+            string temp1 = this.maChiTietNguyenLieu.Substring(13);
+            int thuTu1 = int.Parse(temp1);
+
+            string temp2 = order.maChiTietNguyenLieu.Substring(13);
+            int thuTu2 = int.Parse(temp2);
+            if (thuTu1 > thuTu2)
+            {
+                return 1;
+            }
+            if (thuTu1 < thuTu2)
+            {
+                return -1;
+            }
+            if (thuTu1 == thuTu2)
+            {
+                return 0;
+            }
+            return this.maChiTietNguyenLieu.CompareTo(order.maChiTietNguyenLieu);
         }
     }
 }

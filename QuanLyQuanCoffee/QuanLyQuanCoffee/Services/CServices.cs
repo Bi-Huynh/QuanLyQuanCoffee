@@ -36,6 +36,10 @@ namespace QuanLyQuanCoffee.Services
             {
                 try
                 {
+                    // trường hợp database lưu không theo thứ tự
+                    // lấy mã có số thứ tự lơn nhất
+                    //list.Sort();
+
                     T temp = list[list.Count() - 1];
                     double thuTu = int.Parse(temp.ToString());
                     ++thuTu;
@@ -61,6 +65,15 @@ namespace QuanLyQuanCoffee.Services
             }
             return ma;
         }
+
+        //public static void swap<T>(T[] array, int i, int m)
+        //{
+        //    T temp = array[i];
+        //    array[i] = array[m];
+        //    array[m] = temp;
+        //}
+
+        //public static List<T> sort()
 
         public static string taoMaLoaiTaiKhoan(List<LoaiTaiKhoan> list)
         {
@@ -283,6 +296,11 @@ namespace QuanLyQuanCoffee.Services
 
         public static bool kiemTraThongTin(ChiTietNguyenLieu chiTietNguyenLieu)
         {
+            if (chiTietNguyenLieu.maChiTietNguyenLieu.Length != 23)
+            {
+                MessageBox.Show("Mã chi tiết nguyên liệu phải là 13 ký tự số");
+                return false;
+            }
             if (chiTietNguyenLieu.ngayHetHan < DateTime.Now)
             {
                 MessageBox.Show("Ngày hết hạn phải lơn hơn hoặc bằng ngày hiện tại");

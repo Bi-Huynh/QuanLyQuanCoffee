@@ -111,9 +111,9 @@ namespace QuanLyQuanCoffee.BUS
             return true;
         }
 
-        public static bool remove(PhieuNhapNguyenLieu phieuNhapNguyenLieu)
+        public static bool remove(string maPhieuNhap)
         {
-            PhieuNhapNguyenLieu temp = find(phieuNhapNguyenLieu.maPhieuNhap);
+            PhieuNhapNguyenLieu temp = find(maPhieuNhap);
             if (temp == null)
             {
                 MessageBox.Show("Không tìm thấy phiếu nhập nguyên liệu để xóa");
@@ -139,6 +139,11 @@ namespace QuanLyQuanCoffee.BUS
             }
 
             return true;
+        }
+
+        public static bool remove(PhieuNhapNguyenLieu phieuNhapNguyenLieu)
+        {
+            return remove(phieuNhapNguyenLieu.maPhieuNhap);
         }
     }
 }

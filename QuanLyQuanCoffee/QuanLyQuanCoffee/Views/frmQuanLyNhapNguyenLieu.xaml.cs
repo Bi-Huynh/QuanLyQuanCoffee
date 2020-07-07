@@ -41,7 +41,7 @@ namespace QuanLyQuanCoffee.Views
             {
                 maPhieuNhap = x.maPhieuNhap,
                 ngayNhap = x.ngayNhap.Value.ToString("dd/MM/yyyy"),
-                tongThanhTien = x.tongThanhTien
+                tongThanhTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.tongThanhTien)
             });
         }
 

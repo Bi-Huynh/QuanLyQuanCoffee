@@ -52,6 +52,18 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<ChiTietPhieuNhap>() : list;
         }
 
+        public static double tongThanhTien(string maNguyenLieu)
+        {
+            double tongThanhTien = 0;
+            List<ChiTietPhieuNhap> list = findList(maNguyenLieu);
+            foreach (var item in list)
+            {
+                tongThanhTien += item.thanhTien.Value;
+            }
+
+            return tongThanhTien;
+        }
+
         public static bool add(ChiTietPhieuNhap chiTietPhieuNhapNguyenLieu)
         {
             if (CServices.kiemTraThongTin(chiTietPhieuNhapNguyenLieu))
@@ -85,9 +97,9 @@ namespace QuanLyQuanCoffee.BUS
             return true;
         }
 
-        public static bool remove(ChiTietPhieuNhap ChiTietPhieuNhapNguyenLieu)
+        public static bool remove(string maChiTietPhieuNhap)
         {
-            ChiTietPhieuNhap temp = find(ChiTietPhieuNhapNguyenLieu.maChiTietPhieuNhap);
+            ChiTietPhieuNhap temp = find(maChiTietPhieuNhap);
             if (temp == null)
             {
                 MessageBox.Show("Không tìm thấy chi tiết phiếu nhập nguyên liệu để xóa");
@@ -101,6 +113,11 @@ namespace QuanLyQuanCoffee.BUS
             quanLyQuanCoffee.ChiTietPhieuNhaps.Remove(temp);
             quanLyQuanCoffee.SaveChanges();
             return true;
+        }
+
+        public static bool remove(ChiTietPhieuNhap chiTietPhieuNhap)
+        {
+            return remove(chiTietPhieuNhap.maChiTietPhieuNhap);
         }
     }
 }
