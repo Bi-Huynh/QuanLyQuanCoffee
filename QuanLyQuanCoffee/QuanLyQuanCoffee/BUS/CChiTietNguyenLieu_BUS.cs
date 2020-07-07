@@ -76,6 +76,13 @@ namespace QuanLyQuanCoffee.BUS
             });
             return list;
         }
+       
+        public static ChiTietNguyenLieu findChiTietNguyenLieu(string maChiTietNguyenLieu)
+        {
+            ChiTietNguyenLieu chiTiet = new ChiTietNguyenLieu();
+            chiTiet = quanLyQuanCoffee.ChiTietNguyenLieux.Where(x => x.maChiTietNguyenLieu == maChiTietNguyenLieu).FirstOrDefault();
+            return chiTiet;
+        }
 
         public static int tongSoLuong(string maNguyenLieu)
         {
@@ -125,5 +132,6 @@ namespace QuanLyQuanCoffee.BUS
             }
             return true;
         }
+       
     }
 }

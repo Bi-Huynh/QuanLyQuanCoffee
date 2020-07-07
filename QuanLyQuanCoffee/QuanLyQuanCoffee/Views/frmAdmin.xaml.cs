@@ -124,5 +124,10 @@ namespace QuanLyQuanCoffee.Views
             frmKetCa _frmKetCa = new frmKetCa(ca, nhanVien);
             _frmKetCa.Show();
         }
+
+        private void quanLyKetCa_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new frmQuanLyKetCa();
+        }
     }
 }

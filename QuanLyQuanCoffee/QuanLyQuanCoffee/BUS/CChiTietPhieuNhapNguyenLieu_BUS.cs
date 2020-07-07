@@ -39,6 +39,8 @@ namespace QuanLyQuanCoffee.BUS
             return chiTietPhieuNhapNguyenLieu == null ? new ChiTietPhieuNhap() : chiTietPhieuNhapNguyenLieu;
         }
 
+       
+
         public static bool add(ChiTietPhieuNhap chiTietPhieuNhapNguyenLieu)
         {
             if (CServices.kiemTraThongTin(chiTietPhieuNhapNguyenLieu))
@@ -89,5 +91,13 @@ namespace QuanLyQuanCoffee.BUS
             quanLyQuanCoffee.SaveChanges();
             return true;
         }
+
+        //ham danh cho phiếu xuất
+        public static ChiTietPhieuNhap findMaChiTietNguyenLieu(string maChiTietNguyenLieu)
+        {
+            ChiTietPhieuNhap chiTietPhieuNhapNguyenLieu = quanLyQuanCoffee.ChiTietPhieuNhaps.Find(maChiTietNguyenLieu);
+            return chiTietPhieuNhapNguyenLieu == null ? new ChiTietPhieuNhap() : chiTietPhieuNhapNguyenLieu;
+        }
+
     }
 }

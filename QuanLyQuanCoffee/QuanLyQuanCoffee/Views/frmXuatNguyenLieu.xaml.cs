@@ -28,6 +28,7 @@ namespace QuanLyQuanCoffee.Views
         private List<ChiTietPhieuNhap> chiTietPhieuNhaps;
         private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
         int i = 0;
+        ChiTietPhieuNhap chiTietPhieuNhapselect;
         public frmXuatNguyenLieu(NhanVien nhanVien)
         {
             InitializeComponent();
@@ -57,10 +58,11 @@ namespace QuanLyQuanCoffee.Views
             {
                 dgChiTietNguyenLieu.ItemsSource = list.Select(x => new
                 {
+                    
                     maChiTietNguyenLieu = x.maChitietNguyenLieu,
                     tenNguyenLieu = x.ChiTietNguyenLieu.NguyenLieu.tenNguyenLieu,
-                    soLuong = x.soLuong,
                     donGia = x.donGia,
+                    soLuong = x.soLuong,
                     ngayNhap = x.PhieuNhapNguyenLieu.ngayNhap,
                     ngayHetHan = x.ChiTietNguyenLieu.ngayHetHan
                 });
@@ -113,9 +115,11 @@ namespace QuanLyQuanCoffee.Views
                 MessageBox.Show("Bạn chưa chọn chi tiết Nguyên Liệu cần xuất");
                 return;
             }
+          
             int index = dgChiTietNguyenLieu.SelectedIndex;
-            ChiTietPhieuNhap chiTietPhieuNhap = chiTietPhieuNhaps[index] as ChiTietPhieuNhap;
-            if (chiTietPhieuNhap == null)
+            chiTietPhieuNhapselect = new ChiTietPhieuNhap();
+             chiTietPhieuNhapselect = chiTietPhieuNhaps[index] as ChiTietPhieuNhap;
+            if (chiTietPhieuNhapselect == null)
             {
                 MessageBox.Show("Không có chi tiết phiếu nhập");
             }
@@ -132,12 +136,12 @@ namespace QuanLyQuanCoffee.Views
                 {
                     chitietPhieuXuat.maChiTietPhieuXuat = CServices.taoMa<ChiTietPhieuXuat>(chiTietPhieuXuats);
                 }
-                chitietPhieuXuat.maChitietNguyenLieu = chiTietPhieuNhap.maChitietNguyenLieu;
-                chitietPhieuXuat.soLuong = chiTietPhieuNhap.soLuong;
-                chitietPhieuXuat.donGia = chiTietPhieuNhap.donGia;
-                chitietPhieuXuat.thanhTien = chiTietPhieuNhap.thanhTien;
+                chitietPhieuXuat.maChitietNguyenLieu = chiTietPhieuNhapselect.maChitietNguyenLieu;
+                chitietPhieuXuat.soLuong = chiTietPhieuNhapselect.soLuong;
+                chitietPhieuXuat.donGia = chiTietPhieuNhapselect.donGia;
+                chitietPhieuXuat.thanhTien = chiTietPhieuNhapselect.thanhTien;
                 chitietPhieuXuat.maPhieuXuat = txtMaPhieuXuat.Text;
-                chitietPhieuXuat.ChiTietNguyenLieu = chiTietPhieuNhap.ChiTietNguyenLieu;
+                chitietPhieuXuat.ChiTietNguyenLieu = chiTietPhieuNhapselect.ChiTietNguyenLieu;
                 chiTietPhieuXuats.Add(chitietPhieuXuat);
                 dgChitietPhieuXuat.ItemsSource = chiTietPhieuXuats.Select(x => new
                 {
@@ -182,7 +186,7 @@ namespace QuanLyQuanCoffee.Views
                 MessageBox.Show("Hóa Đơn chưa có chi tiết Phiếu Xuất");
                 return;
             }
-            if (CHoaDon_BUS.find(txtMaPhieuXuat.Text) == null)
+            if (CPhieuXuatNguyenLieu_BUS.find(txtMaPhieuXuat.Text) == null)
             {
                 try
                 {
@@ -207,23 +211,26 @@ namespace QuanLyQuanCoffee.Views
                         //ctPX.ChiTietNguyenLieu = item.ChiTietNguyenLieu;
                         //ctPX.PhieuXuatNguyenLieu = item.PhieuXuatNguyenLieu;
                         phieuXuat.ChiTietPhieuXuats.Add(ctPX);
+                        //CChiTietPhieuXuat_BUS.CapNhapSoLuong_PhieuNhap(ctPX);
                     }
                     //phieuXuat.NhanVien = nhanVienSelected;
                     dc.PhieuXuatNguyenLieux.Add(phieuXuat);
                     dc.SaveChanges();
                     txtMaPhieuXuat.Text = CServices.taoMa<PhieuXuatNguyenLieu>(CPhieuXuatNguyenLieu_BUS.toList());
+                    CChiTietPhieuXuat_BUS.CapNhapSoLuong_CTNguyenLieu(chiTietPhieuXuats);
+                    //dc.SaveChanges();
                     chiTietPhieuXuats.Clear();
-                    chiTietPhieuNhaps.Clear();
-                    
                     hienThiDSChiTietPX(chiTietPhieuXuats);
+                    chiTietPhieuNhapselect = null;
+                    i = 0;
                 }
                 catch (DbEntityValidationException)
                 {
-                    MessageBox.Show("loi kieu du lieu");
+                    MessageBox.Show("Lỗi kiểu dữ liệu");
                 }
                 catch (DbUpdateException)
                 {
-                    MessageBox.Show("data k update");
+                    MessageBox.Show("Không cập được dữ liệu");
                 }
                 catch (ArgumentNullException)
                 {
@@ -241,10 +248,15 @@ namespace QuanLyQuanCoffee.Views
             }
             else
             {
-                MessageBox.Show("Ma hoa don da ton tai");
+                MessageBox.Show("Mã Phiếu Xuất đã tồn tại");
             }
            
             
+        }
+
+        private void dgChiTietNguyenLieu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

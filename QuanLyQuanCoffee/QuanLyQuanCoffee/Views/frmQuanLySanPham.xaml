@@ -103,7 +103,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Row="0" Grid.Column="1" FontSize="12"></TextBox>
+            <!--<TextBox Grid.Row="0" Grid.Column="1" FontSize="12"></TextBox>-->
             <Button Grid.Row="0" Grid.Column="3" Content="Bỏ chọn" Name="btnBochon" Click="btnBochon_Click" FontSize="12"/>
         </Grid>
 

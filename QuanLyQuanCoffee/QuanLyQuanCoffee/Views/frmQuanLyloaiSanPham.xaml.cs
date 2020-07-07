@@ -71,6 +71,8 @@ namespace QuanLyQuanCoffee.Views
             }
             HienThiDSLoaiSanPham();
             load();
+            txttenLoai.Text = "";
+            //btnBoChon_Click(sender, e);
         }
 
         private void btnXoaLoaiSP_Click(object sender, RoutedEventArgs e)
@@ -178,5 +180,6 @@ namespace QuanLyQuanCoffee.Views
             txtmaLoai.Text = CServices.taoMa<LoaiSanPham>(CLoaiSanPham_BUS.DSLoaiSP());
             a = null;
         }
+        
     }
 }

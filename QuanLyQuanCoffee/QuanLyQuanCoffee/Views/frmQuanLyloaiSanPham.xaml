@@ -27,8 +27,8 @@
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="1" Grid.Column="1" Content="QUẢN LÝ LOẠI SẢN PHẨM" FontSize="18" FontFamily="Arial"></Label>
-            <Button Grid.Row="1" Grid.Column="3" Content="" FontSize="12" />
-            <Button Grid.Row="1" Grid.Column="5" Content="Trở về"  FontSize="12"/>
+            <!--<Button Grid.Row="1" Grid.Column="3" Content="" FontSize="12" />
+            <Button Grid.Row="1" Grid.Column="5" Content="Trở về"  FontSize="12"/>-->
         </Grid>
         <Grid x:Name="gridLoaisanpham" >
             <Grid.RowDefinitions>
@@ -85,7 +85,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Row="0" Grid.Column="3" FontSize="12"></TextBox>
+            <!--<TextBox Grid.Row="0" Grid.Column="3" FontSize="12"></TextBox>-->
             <Button Grid.Row="0" Grid.Column="5" x:Name="btnBoChon" Click="btnBoChon_Click" Content="Bỏ Chọn"  FontSize="12"/>
         </Grid>
 

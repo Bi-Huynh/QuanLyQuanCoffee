@@ -34,9 +34,10 @@
             </ComboBox>
             <Button x:Name="btnXemThongTinChiTiet" Grid.Row="1" Grid.Column="6" Content="Xem thông tin chi tiết" FontFamily="Arial" FontSize="13" Click="btnXemThongTinChiTiet_Click"/>
         </Grid>
-        <DataGrid x:Name="dgDSPhieuXuat" MinHeight="565" Margin="10,0" AutoGenerateColumns="False" 
+        <DataGrid x:Name="dgDSPhieuXuat" MinHeight="565" MaxHeight="600" Margin="10,0" AutoGenerateColumns="False" 
                   SelectedValuePath="maPhieuXuat" HorizontalContentAlignment="Center" 
                   Background="White" FontFamily="Arial" IsReadOnly="True"
+                  VerticalScrollBarVisibility="Auto"
                   SelectionChanged="dgDSPhieuXuat_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã phiếu xuất" Binding="{Binding maPhieuXuat}" Width="1*"/>

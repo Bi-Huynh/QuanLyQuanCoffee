@@ -57,7 +57,7 @@
                         <DataGrid  Name="dgChiTietNguyenLieu" FontSize="12" 
                                    Margin="0,0,0,-0.2" AutoGenerateColumns="False" 
                                     ColumnWidth="0.3*" IsReadOnly="True" Grid.ColumnSpan="2"
-                                   SelectedValuePath="maChiTietNguyenLieu">
+                                   SelectedValuePath="maChiTietNguyenLieu" SelectionChanged="dgChiTietNguyenLieu_SelectionChanged">
                             <DataGrid.Columns>
                                
                                 <DataGridTextColumn Header="Mã chi tiết nguyên liệu" Binding="{Binding maChiTietNguyenLieu}"/>

@@ -25,8 +25,8 @@
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="1" Grid.Column="1" Content="QUẢN LÝ LOẠI TÀI KHOẢN" FontSize="18" FontFamily="Arial"></Label>
-            <Button Grid.Row="1" Grid.Column="3" Content="" FontSize="12" />
-            <Button Grid.Row="1" Grid.Column="5" Content="Trở về"  FontSize="12"/>
+            <!--<Button Grid.Row="1" Grid.Column="3" Content="" FontSize="12" />
+            <Button Grid.Row="1" Grid.Column="5" Content="Trở về"  FontSize="12"/>-->
         </Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -37,15 +37,16 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="582*"/>
                 <ColumnDefinition Width="15"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="171*"/>
+                <ColumnDefinition Width="412*"/>
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="1" Grid.Column="1" Content="Mã loại tài khoản" FontSize="12"></Label>
-            <Label Grid.Row="1" Grid.Column="3" Content="Tên loại tài khoản" FontSize="12"></Label>
-            <TextBox Grid.Row="2" Grid.Column="1" FontSize="12" Name="txtmaLoaitaikhoan" Text="{Binding maloai,Mode=TwoWay}"/>
-            <TextBox Grid.Row="2" Grid.Column="3" FontSize="12" Name="txttenLoaitaikhoan" Text="{Binding tenloai,Mode=TwoWay}"></TextBox>
+            <Label Grid.Row="1" Content="Mã loại tài khoản" FontSize="12" Grid.ColumnSpan="3" Margin="10,0.4,15,0"/>
+            <Label Grid.Row="1" Grid.Column="3" Content="Tên loại tài khoản" FontSize="12" Grid.ColumnSpan="2" Margin="0,0.4,0.4,0"></Label>
+            <TextBox Grid.Row="2" FontSize="12" Name="txtmaLoaitaikhoan" Text="{Binding maloai,Mode=TwoWay}" Grid.ColumnSpan="3" Margin="10,0,15,9" Grid.RowSpan="2"/>
+            <TextBox Grid.Row="2" Grid.Column="3" FontSize="12" Name="txttenLoaitaikhoan" Text="{Binding tenloai,Mode=TwoWay}" Grid.ColumnSpan="3" Margin="0,0,9,9" Grid.RowSpan="2"></TextBox>
         </Grid>
 
 
@@ -83,7 +84,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Row="0" Grid.Column="3" FontSize="12"></TextBox>
+            <!--<TextBox Grid.Row="0" Grid.Column="3" FontSize="12"></TextBox>-->
             <Button Grid.Row="0" Grid.Column="5" Click="btnBochon_Click" x:Name="btnBochon" Content="Bỏ chọn"  FontSize="12"/>
         </Grid>
 

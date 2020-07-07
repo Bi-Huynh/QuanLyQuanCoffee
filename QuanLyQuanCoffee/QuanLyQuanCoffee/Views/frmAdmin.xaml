@@ -64,6 +64,8 @@
 
                 </MenuItem>
             </MenuItem>
+            <MenuItem x:Name="quanLyKetCa" Header="Quản lý Kết Ca" Click="quanLyKetCa_Click">
+            </MenuItem>
             <MenuItem x:Name="ketCa" Header="Kết Ca" Click="ketCa_Click">
             </MenuItem>
             <MenuItem x:Name="dangXuat" Header="Đăng xuất" Click="dangXuat_Click">
