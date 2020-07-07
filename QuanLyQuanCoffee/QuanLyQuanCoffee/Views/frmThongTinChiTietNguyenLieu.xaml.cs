@@ -23,8 +23,10 @@ namespace QuanLyQuanCoffee.Views
         public frmThongTinChiTietNguyenLieu(NguyenLieu nguyenLieu)
         {
             InitializeComponent();
-            List<ChiTietNguyenLieu> list = CChiTietNguyenLieu_BUS.find(nguyenLieu.maNguyenLieu);
+            //List<ChiTietNguyenLieu> list = CChiTietNguyenLieu_BUS.find(nguyenLieu.maNguyenLieu);
+            List<ChiTietPhieuNhap> list = CChiTietPhieuNhapNguyenLieu_BUS.findList(nguyenLieu.maNguyenLieu);
             txtMaNguyenLieu.Text = nguyenLieu.maNguyenLieu;
+            txtTenNguyenLieu.Text = nguyenLieu.tenNguyenLieu;
             txtTenLoai.Text = nguyenLieu.LoaiNguyenLieu.tenLoaiNguyenLieu;
             if (list.Count() > 0)
             {
@@ -32,14 +34,17 @@ namespace QuanLyQuanCoffee.Views
             }
         }
 
-        public void hienThi(List<ChiTietNguyenLieu> list)
+        public void hienThi(List<ChiTietPhieuNhap> list)
         {
             dgDSChiTietNguyenLieu.ItemsSource = list.Select(x => new
             {
                 soLuong = x.soLuong,
-                ngayHetHan = x.ngayHetHan,
-                soNgayConLai = CChiTietNguyenLieu_BUS.soNgayConLai(x.ngayHetHan.Value),
-                donViTinh = x.donViTinh
+                ngayHetHan = x.ChiTietNguyenLieu.ngayHetHan.Value.ToString("dd/MM/yyyy"),
+                soNgayConLai = CChiTietNguyenLieu_BUS.soNgayConLai(x.ChiTietNguyenLieu.ngayHetHan.Value),
+                donGia = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.donGia),
+                donViTinh = x.ChiTietNguyenLieu.donViTinh,
+                ngayNhap = x.PhieuNhapNguyenLieu.ngayNhap.Value.ToString("dd/MM/yyyy"),
+                ngayXuat = CChiTietPhieuXuat_BUS.findNgayXuat(x.maChitietNguyenLieu)
             });
         }
     }

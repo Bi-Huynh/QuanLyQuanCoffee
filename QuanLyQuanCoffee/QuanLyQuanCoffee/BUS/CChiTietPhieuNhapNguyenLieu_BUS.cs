@@ -24,6 +24,39 @@ namespace QuanLyQuanCoffee.BUS
             List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
                 .Where(x => x.maPhieuNhap == maPhieuNhap).ToList();
             return list == null ? new List<ChiTietPhieuNhap>() : list;
+            //List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
+            //    .Include("ChiTietNguyenLieux").Include("NguyenLieux")
+            //    .Select(x => new ChiTietPhieuNhap()
+            //    {
+            //        maChiTietPhieuNhap = x.maChiTietPhieuNhap,
+            //        maChitietNguyenLieu = x.maChitietNguyenLieu,
+            //        soLuong = x.soLuong,
+            //        donGia = x.donGia,
+            //        thanhTien = x.thanhTien,
+            //        maPhieuNhap = x.maPhieuNhap,
+            //        ChiTietNguyenLieu = x.ChiTietNguyenLieu == null ? null : new ChiTietNguyenLieu()
+            //        {
+            //            maChiTietNguyenLieu = x.ChiTietNguyenLieu.maChiTietNguyenLieu,
+            //            maNguyenLieu = x.ChiTietNguyenLieu.maNguyenLieu,
+            //            soLuong = x.ChiTietNguyenLieu.soLuong,
+            //            ngayHetHan = x.ChiTietNguyenLieu.ngayHetHan,
+            //            donViTinh = x.ChiTietNguyenLieu.donViTinh,
+            //            NguyenLieu = x.ChiTietNguyenLieu.NguyenLieu == null ? null : new NguyenLieu()
+            //            {
+            //                maNguyenLieu = x.ChiTietNguyenLieu.NguyenLieu.maNguyenLieu,
+            //                tenNguyenLieu = x.ChiTietNguyenLieu.NguyenLieu.tenNguyenLieu,
+            //                maLoaiNguyenLieu = x.ChiTietNguyenLieu.NguyenLieu.maLoaiNguyenLieu,
+            //                trangThai = x.ChiTietNguyenLieu.NguyenLieu.trangThai
+            //            }
+            //        }
+            //    }).ToList<ChiTietPhieuNhap>();
+            //return list == null ? new List<ChiTietPhieuNhap>() : list;
+        }
+
+        public static List<ChiTietPhieuNhap> toListAll()
+        {
+            List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps.ToList();
+            return list == null ? new List<ChiTietPhieuNhap>() : list;
         }
 
         public static List<ChiTietPhieuNhap> toListTenNguyenLieu(string tenNguyenLieu)
@@ -39,7 +72,25 @@ namespace QuanLyQuanCoffee.BUS
             return chiTietPhieuNhapNguyenLieu == null ? new ChiTietPhieuNhap() : chiTietPhieuNhapNguyenLieu;
         }
 
-       
+        public static List<ChiTietPhieuNhap> findList(string maNguyenLieu)
+        {
+            List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
+                .Where(x => x.ChiTietNguyenLieu.maNguyenLieu == maNguyenLieu).ToList();
+            return list == null ? new List<ChiTietPhieuNhap>() : list;
+        }
+
+        public static double tongThanhTien(string maNguyenLieu)
+        {
+            double tongThanhTien = 0;
+            List<ChiTietPhieuNhap> list = findList(maNguyenLieu);
+            foreach (var item in list)
+            {
+                tongThanhTien += item.thanhTien.Value;
+            }
+
+            return tongThanhTien;
+        }
+
 
         public static bool add(ChiTietPhieuNhap chiTietPhieuNhapNguyenLieu)
         {
@@ -74,9 +125,9 @@ namespace QuanLyQuanCoffee.BUS
             return true;
         }
 
-        public static bool remove(ChiTietPhieuNhap ChiTietPhieuNhapNguyenLieu)
+        public static bool remove(string maChiTietPhieuNhap)
         {
-            ChiTietPhieuNhap temp = find(ChiTietPhieuNhapNguyenLieu.maChiTietPhieuNhap);
+            ChiTietPhieuNhap temp = find(maChiTietPhieuNhap);
             if (temp == null)
             {
                 MessageBox.Show("Không tìm thấy chi tiết phiếu nhập nguyên liệu để xóa");
@@ -92,11 +143,18 @@ namespace QuanLyQuanCoffee.BUS
             return true;
         }
 
+
         //ham danh cho phiếu xuất
         public static ChiTietPhieuNhap findMaChiTietNguyenLieu(string maChiTietNguyenLieu)
         {
             ChiTietPhieuNhap chiTietPhieuNhapNguyenLieu = quanLyQuanCoffee.ChiTietPhieuNhaps.Find(maChiTietNguyenLieu);
             return chiTietPhieuNhapNguyenLieu == null ? new ChiTietPhieuNhap() : chiTietPhieuNhapNguyenLieu;
+        }
+
+
+        public static bool remove(ChiTietPhieuNhap chiTietPhieuNhap)
+        {
+            return remove(chiTietPhieuNhap.maChiTietPhieuNhap);
         }
 
     }

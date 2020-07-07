@@ -20,24 +20,11 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<ChiTietPhieuXuat>() : list;
         }
 
-        //Ham dùng cho sau khi xuất nguyên liệu thì sẽ tìm nguyên liêu theo mã chi tiết nguyên liệu và cập nhập số lượng lại bằng 0
-        //public static bool CapNhapSoLuong_PhieuNhap(ChiTietPhieuXuat chiTietPhieuXuatNguyenLieu)
-        //{
-        //    ChiTietNguyenLieu temp = CChiTietNguyenLieu_BUS.findChiTietNguyenLieu(chiTietPhieuXuatNguyenLieu.maChitietNguyenLieu);
-        //    if (temp == null)
-        //    {
-        //        MessageBox.Show("Không tìm thấy nguyên liệu để xuất");
-        //        return false;
-        //    }
-        //    temp.soLuong = 0; 
-        //    quanLyQuanCoffee.SaveChanges();
-        //    return true;
-        //}
         public static bool CapNhapSoLuong_CTNguyenLieu(List<ChiTietPhieuXuat> list)
         {
-            if(list.Count>0)
+            if (list.Count > 0)
             {
-                foreach(var temp in list)
+                foreach (var temp in list)
                 {
                     ChiTietNguyenLieu chiTietNL = CChiTietNguyenLieu_BUS.findChiTietNguyenLieu(temp.maChitietNguyenLieu);
                     chiTietNL.soLuong = 0;
@@ -56,12 +43,33 @@ namespace QuanLyQuanCoffee.BUS
                         MessageBox.Show("Lỗi không Lưu được dữ liệu");
                     }
                 }
-                
+
 
             }
-            
+
 
             return true;
+        }
+        public static string findNgayXuat(string maChiTietNguyenLieu)
+        {
+            string ngayXuat = "NULL";
+            var list = toList();
+            foreach (var x in list)
+            {
+                try
+                {
+                    if (x.maChitietNguyenLieu == maChiTietNguyenLieu)
+                    {
+                        ngayXuat = x.PhieuXuatNguyenLieu.ngayXuat.Value.ToString("dd/MM/yyyy");
+                        break;
+                    }
+                }
+                catch (ArgumentNullException)
+                {
+                    MessageBox.Show("Không tìm thấy Phiếu xuất nguyên liệu trong chi tiết phiếu xuất");
+                }
+            }
+            return ngayXuat;
         }
     }
 }

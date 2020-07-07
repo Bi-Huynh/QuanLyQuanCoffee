@@ -37,7 +37,7 @@ namespace QuanLyQuanCoffee.BUS
                 try
                 {
                     string maCTNguyenLieu = list[list.Count() - 1].maChiTietNguyenLieu;
-                    string maLast = maCTNguyenLieu.Substring(maCTNguyenLieu.Length - 10);
+                    string maLast = maCTNguyenLieu.Substring(0, 10);
                     double thuTu = int.Parse(maLast.ToString());
                     ++thuTu;
                     if (thuTu == 9999999999)
@@ -60,7 +60,7 @@ namespace QuanLyQuanCoffee.BUS
                     MessageBox.Show("Lỗi tạo mã chi tiết nguyên liệu, giá trị vượt quá giới hạn cho phép");
                 }
             }
-            result = ma + temp;
+            result = temp + ma;
             return result;
         }
 
@@ -82,6 +82,12 @@ namespace QuanLyQuanCoffee.BUS
             ChiTietNguyenLieu chiTiet = new ChiTietNguyenLieu();
             chiTiet = quanLyQuanCoffee.ChiTietNguyenLieux.Where(x => x.maChiTietNguyenLieu == maChiTietNguyenLieu).FirstOrDefault();
             return chiTiet;
+        }
+
+        public static ChiTietNguyenLieu findCT(string maChiTietNguyenLieu)
+        {
+            ChiTietNguyenLieu chiTietNguyenLieu = quanLyQuanCoffee.ChiTietNguyenLieux.Find(maChiTietNguyenLieu);
+            return chiTietNguyenLieu == null ? new ChiTietNguyenLieu() : chiTietNguyenLieu;
         }
 
         public static int tongSoLuong(string maNguyenLieu)
@@ -132,6 +138,32 @@ namespace QuanLyQuanCoffee.BUS
             }
             return true;
         }
-       
+
+        public static bool remove(string maChiTietNguyenLieu)
+        {
+            ChiTietNguyenLieu chiTietNguyenLieu = findCT(maChiTietNguyenLieu);
+            if (chiTietNguyenLieu.ChiTietPhieuNhaps.Count() > 0 || 
+                chiTietNguyenLieu.ChiTietPhieuXuats.Count() > 0)
+            {
+                MessageBox.Show("Không thể xóa chi tiết nguyên liệu này");
+                return false;
+            }
+            try
+            {
+                quanLyQuanCoffee.ChiTietNguyenLieux.Remove(chiTietNguyenLieu);
+                quanLyQuanCoffee.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show("Lỗi! Không thể xóa chi tiết nguyên liệu");
+                return false;
+            }
+            catch (DbEntityValidationException)
+            {
+                MessageBox.Show("Lỗi! Kiểu dữ liệu không hợp lệ");
+                return false;
+            }
+            return true;
+        }
     }
 }

@@ -41,6 +41,7 @@
                 <DataGridTextColumn Header="Mã nguyên liệu" Binding="{Binding maNguyenLieu}" Width="1*"/>
                 <DataGridTextColumn Header="Tên nguyên liệu" Binding="{Binding tenNguyenLieu}" Width="1*"/>
                 <DataGridTextColumn Header="Tổng số lượng" Binding="{Binding tongSoLuong}" Width="1*"/>
+                <DataGridTextColumn Header="Thành tiền" Binding="{Binding tongThanhTien}" Width="1*"/>
                 <DataGridTextColumn Header="Loại nguyên liệu" Binding="{Binding tenLoaiNguyenLieu}" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>

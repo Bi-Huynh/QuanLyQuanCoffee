@@ -38,6 +38,7 @@ namespace QuanLyQuanCoffee.Views
                     maNguyenLieu = x.maNguyenLieu,
                     tenNguyenLieu = x.tenNguyenLieu,
                     tongSoLuong = CChiTietNguyenLieu_BUS.tongSoLuong(x.maNguyenLieu),
+                    tongThanhTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", CChiTietPhieuNhapNguyenLieu_BUS.tongThanhTien(x.maNguyenLieu)),
                     tenLoaiNguyenLieu = x.LoaiNguyenLieu.tenLoaiNguyenLieu
                 });
             }
@@ -69,6 +70,7 @@ namespace QuanLyQuanCoffee.Views
         {
             if (dgDSNguyenLieu.SelectedItem != null)
             {
+                nguyenLieuSelect = new NguyenLieu();
                 nguyenLieuSelect = CNguyenLieu_BUS.find(dgDSNguyenLieu.SelectedValue.ToString());
             }
         }

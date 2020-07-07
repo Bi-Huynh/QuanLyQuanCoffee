@@ -216,6 +216,7 @@ namespace QuanLyQuanCoffee.Views
                     //phieuXuat.NhanVien = nhanVienSelected;
                     dc.PhieuXuatNguyenLieux.Add(phieuXuat);
                     dc.SaveChanges();
+                    MessageBox.Show("Xuất Nguyên Liệu Thành Công");
                     txtMaPhieuXuat.Text = CServices.taoMa<PhieuXuatNguyenLieu>(CPhieuXuatNguyenLieu_BUS.toList());
                     CChiTietPhieuXuat_BUS.CapNhapSoLuong_CTNguyenLieu(chiTietPhieuXuats);
                     //dc.SaveChanges();
