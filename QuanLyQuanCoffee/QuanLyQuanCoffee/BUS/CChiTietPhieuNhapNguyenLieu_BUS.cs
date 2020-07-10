@@ -1,6 +1,8 @@
 ﻿using QuanLyQuanCoffee.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +19,12 @@ namespace QuanLyQuanCoffee.BUS
             List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
                 .Where(x => x.soLuong > 0).ToList();
             return list == null ? new List<ChiTietPhieuNhap>() : list;
+            //using (QuanLyQuanCoffeeEntities1 temp = new QuanLyQuanCoffeeEntities1())
+            //{
+            //    List<ChiTietPhieuNhap> list;
+            //    list = temp.ChiTietPhieuNhaps.Where(x => x.soLuong > 0).ToList();
+            //    return list == null ? new List<ChiTietPhieuNhap>() : list;
+            //}
         }
 
         public static List<ChiTietPhieuNhap> toList(string maPhieuNhap)
@@ -69,6 +77,12 @@ namespace QuanLyQuanCoffee.BUS
         public static ChiTietPhieuNhap find(string maChiTietPhieuNhap)
         {
             ChiTietPhieuNhap chiTietPhieuNhapNguyenLieu = quanLyQuanCoffee.ChiTietPhieuNhaps.Find(maChiTietPhieuNhap);
+            return chiTietPhieuNhapNguyenLieu == null ? new ChiTietPhieuNhap() : chiTietPhieuNhapNguyenLieu;
+        }
+
+        public static ChiTietPhieuNhap findTheoMachiTietNL(string maChiTietNguyenLieu)
+        {
+            ChiTietPhieuNhap chiTietPhieuNhapNguyenLieu = quanLyQuanCoffee.ChiTietPhieuNhaps.Where(x=> x.maChitietNguyenLieu==maChiTietNguyenLieu).FirstOrDefault();
             return chiTietPhieuNhapNguyenLieu == null ? new ChiTietPhieuNhap() : chiTietPhieuNhapNguyenLieu;
         }
 
@@ -155,6 +169,38 @@ namespace QuanLyQuanCoffee.BUS
         public static bool remove(ChiTietPhieuNhap chiTietPhieuNhap)
         {
             return remove(chiTietPhieuNhap.maChiTietPhieuNhap);
+        }
+
+        public static bool CapNhapSoLuong_CTPhieuNhap(List<ChiTietPhieuXuat> list)
+        {
+            if (list.Count > 0)
+            {
+                foreach (var temp in list)
+                {
+                    ChiTietPhieuNhap chiTietNL = findTheoMachiTietNL(temp.maChitietNguyenLieu);
+                    chiTietNL.soLuong = 0;
+                    try
+                    {
+                        quanLyQuanCoffee.SaveChanges();
+                    }
+
+                    catch (DbUpdateException)
+                    {
+
+                        MessageBox.Show("Lỗi không Lưu được dữ liệu");
+                    }
+                    catch (DbEntityValidationException)
+                    {
+
+                        MessageBox.Show("Lỗi không Lưu được dữ liệu");
+                    }
+                }
+
+
+            }
+
+
+            return true;
         }
 
     }

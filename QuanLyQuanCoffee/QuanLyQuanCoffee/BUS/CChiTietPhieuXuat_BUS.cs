@@ -50,6 +50,9 @@ namespace QuanLyQuanCoffee.BUS
 
             return true;
         }
+
+
+        
         public static string findNgayXuat(string maChiTietNguyenLieu)
         {
             string ngayXuat = "NULL";

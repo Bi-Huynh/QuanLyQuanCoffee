@@ -53,18 +53,30 @@ namespace QuanLyQuanCoffee.Views
         }
         public void HienthiNguyenLieu(List<ChiTietPhieuNhap> list)
         {
-
+           
+            
             if (list.Count() > 0)
             {
+                foreach (var item in list)
+                {
+                    if (item.ChiTietNguyenLieu == null)
+                    {
+                        item.ChiTietNguyenLieu = CChiTietNguyenLieu_BUS.findCT(item.maChitietNguyenLieu);
+                    }
+                    if (item.PhieuNhapNguyenLieu == null)
+                    {
+                        item.PhieuNhapNguyenLieu = CPhieuNhapNguyenLieu_BUS.find(item.maPhieuNhap);
+                    }
+                }
                 dgChiTietNguyenLieu.ItemsSource = list.Select(x => new
                 {
                     
-                    maChiTietNguyenLieu = x.maChitietNguyenLieu,
-                    tenNguyenLieu = x.ChiTietNguyenLieu.NguyenLieu.tenNguyenLieu,
+                    maChiTietNguyenLieu = x.maChitietNguyenLieu.Substring(10),
+                    tenNguyenLieu = CNguyenLieu_BUS.findTenByMaChiTietNguyenLieu(x.maChitietNguyenLieu),
                     donGia = x.donGia,
                     soLuong = x.soLuong,
-                    ngayNhap = x.PhieuNhapNguyenLieu.ngayNhap,
-                    ngayHetHan = x.ChiTietNguyenLieu.ngayHetHan
+                    ngayNhap = x.PhieuNhapNguyenLieu.ngayNhap.Value.ToString("dd/MM/yyyy"),
+                    ngayHetHan = x.ChiTietNguyenLieu.ngayHetHan.Value.ToString("dd/MM/yyyy")    
                 });
             }
         }
@@ -219,6 +231,7 @@ namespace QuanLyQuanCoffee.Views
                     MessageBox.Show("Xuất Nguyên Liệu Thành Công");
                     txtMaPhieuXuat.Text = CServices.taoMa<PhieuXuatNguyenLieu>(CPhieuXuatNguyenLieu_BUS.toList());
                     CChiTietPhieuXuat_BUS.CapNhapSoLuong_CTNguyenLieu(chiTietPhieuXuats);
+                    CChiTietPhieuNhapNguyenLieu_BUS.CapNhapSoLuong_CTPhieuNhap(chiTietPhieuXuats);
                     //dc.SaveChanges();
                     chiTietPhieuXuats.Clear();
                     hienThiDSChiTietPX(chiTietPhieuXuats);
