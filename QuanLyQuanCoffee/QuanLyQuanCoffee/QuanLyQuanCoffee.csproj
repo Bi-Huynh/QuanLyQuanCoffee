@@ -180,6 +180,9 @@
     <Compile Include="Views\frmQuanLyChiTietHoaDon.xaml.cs">
       <DependentUpon>frmQuanLyChiTietHoaDon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmQuanLyChiTietThongKe.xaml.cs">
+      <DependentUpon>frmQuanLyChiTietThongKe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmQuanLyHoaDon.xaml.cs">
       <DependentUpon>frmQuanLyHoaDon.xaml</DependentUpon>
     </Compile>
@@ -216,6 +219,9 @@
     <Compile Include="Views\frmQuanLyTaiKhoan.xaml.cs">
       <DependentUpon>frmQuanLyTaiKhoan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmQuanLyThongKe.xaml.cs">
+      <DependentUpon>frmQuanLyThongKe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmThongTinChiTietNguyenLieu.xaml.cs">
       <DependentUpon>frmThongTinChiTietNguyenLieu.xaml</DependentUpon>
     </Compile>
@@ -245,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\frmQuanLyChiTietHoaDon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmQuanLyChiTietThongKe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -289,6 +299,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\frmQuanLyTaiKhoan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmQuanLyThongKe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

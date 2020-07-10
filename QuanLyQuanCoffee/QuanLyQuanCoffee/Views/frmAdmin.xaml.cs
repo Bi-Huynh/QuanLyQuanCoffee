@@ -129,5 +129,10 @@ namespace QuanLyQuanCoffee.Views
         {
             Main.Content = new frmQuanLyKetCa();
         }
+
+        private void gd_QuanLyThongKe_Click(object sender, RoutedEventArgs e)
+        {
+           Main.Content=new frmQuanLyThongKe();
+        }
     }
 }
