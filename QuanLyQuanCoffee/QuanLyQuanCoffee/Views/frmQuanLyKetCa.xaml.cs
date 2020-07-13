@@ -33,22 +33,27 @@ namespace QuanLyQuanCoffee.Views
         {
             if (listKetCa.Count() > 0)
             {
-                dgDSKetCa.ItemsSource = listKetCa.Select(x => new
+                try
                 {
+                    dgDSKetCa.ItemsSource = listKetCa.Select(x => new
+                    {
+                        maKetCa = x.maKetCa,
+                        maNhanVien = x.maNhanVien,
+                        tenNhanVien = x.NhanVien.hoNhanVien + " " + x.NhanVien.tenNhanVien,
+                        gioBatDau = x.gioBatDau.Value.ToString("hh:MM:ss"),
+                        gioKetThuc = x.gioKetThuc.Value.ToString("hh:MM:ss"),
+                        ngayLap = x.ngayLap.Value.ToString("dd/MM/yyyy"),
+                        soLuong = x.soLuong,
+                        tienDauCa = x.tienDauCa,
+                        tongTienBan = x.tongTienBan,
+                        tongDoanhThu = x.tongDoanhThu
+                    });
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Sai định dạng giờ");
+                }
 
-                    maKetCa = x.maKetCa,
-                    maNhanVien = x.maNhanVien,
-                    tenNhanVien = x.NhanVien.hoNhanVien+" "+x.NhanVien.tenNhanVien,
-                    gioBatDau = x.gioBatDau,
-                    gioKetThuc = x.gioKetThuc,
-                    ngayLap=x.ngayLap.Value.ToString("dd/MM/yyyy"),
-                    soLuong=x.soLuong,
-                    tienDauCa=x.tienDauCa,
-                    tongTienBan=x.tongTienBan,
-                    tongDoanhThu=x.tongDoanhThu
-
-
-                });
             }
         }
     }

@@ -10,55 +10,57 @@
     Title="frmKetCa">
 
     <StackPanel>
-       
+
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="50*"></RowDefinition>
+                <RowDefinition Height="40*"></RowDefinition>
+                <RowDefinition Height="50*"></RowDefinition>
+                <RowDefinition Height="50*"></RowDefinition>
+                <RowDefinition Height="50*"></RowDefinition>
+                <RowDefinition Height="50*"></RowDefinition>
+                <RowDefinition Height="50*"></RowDefinition>
+                <RowDefinition Height="50*"></RowDefinition>
+                <RowDefinition Height="50*"></RowDefinition>
+                <RowDefinition Height="38*"></RowDefinition>
+                <RowDefinition Height="25*"></RowDefinition>
+                <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
-                
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition/>
+
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Phiếu Kết Ca" FontSize="20" FontWeight="Bold"/>
-            
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Phiếu Kết Ca" FontSize="20" FontWeight="Bold"/>
+
             <Label Grid.Row="1" Grid.Column="0"  VerticalContentAlignment="Center" Height="40" Content="Mã nhân viên: " FontSize="15" Margin="10,0,0,0"/>
-            <TextBox x:Name="txtMaNhanVien" Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="10,0,10,0" IsEnabled="False"/>
+            <TextBox x:Name="txtMaNhanVien" Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="10,0,10,0" IsEnabled="False" Grid.ColumnSpan="2"/>
 
             <Label Grid.Row="2" Grid.Column="0"  VerticalContentAlignment="Center" Height="40" Content="Tên nhân viên: " FontSize="15" Margin="10,10,0,0"/>
-            <TextBox x:Name="txtTenNhanVien" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0" IsEnabled="False"/>
+            <TextBox x:Name="txtTenNhanVien" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0" IsEnabled="False" Grid.ColumnSpan="2"/>
 
             <Label Grid.Row="3" Grid.Column="0"  VerticalContentAlignment="Center" Height="40" Content="Giờ bắt đầu: " FontSize="15" Margin="10,10,0,0"/>
-            <TextBox x:Name="txtGioBatDau" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0" IsEnabled="False"/>
+            <TextBox x:Name="txtGioBatDau" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0" IsEnabled="False" Grid.ColumnSpan="2"/>
 
             <Label Grid.Row="4" Grid.Column="0"  VerticalContentAlignment="Center" Height="40" Content="Giờ kết thúc: " FontSize="15" Margin="10,10,0,0"/>
-            <TextBox x:Name="txtGioKetThuc" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0" IsEnabled="False"/>
+            <TextBox x:Name="txtGioKetThuc" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0" IsEnabled="False" Grid.ColumnSpan="2"/>
 
 
-            <Label Grid.Row="5" Grid.Column="0"  VerticalContentAlignment="Center" Height="40" Content="Số lượng bán : " FontSize="15" Margin="10,10,0,0"/>
-            <TextBox x:Name="txtSoLuongBan" Grid.Row="5" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0" IsEnabled="False"/>
+            <Label Grid.Row="5" Grid.Column="0"  VerticalContentAlignment="Center" Height="40" Content="Tổng số hóa đơn: " FontSize="15" Margin="10,10,0,0"/>
+            <TextBox x:Name="txtTongSoHoaDon" Grid.Row="5" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0" IsEnabled="False" Grid.ColumnSpan="2"/>
 
 
             <Label Grid.Row="7" Grid.Column="0"  VerticalContentAlignment="Center" Height="40" Content="Số tiền ban đầu: " FontSize="15" Margin="10,10,0,0"/>
-            <TextBox x:Name="txtSoTienBanDau" Grid.Row="7" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0" KeyUp="txtSoTienBanDau_KeyUp"/>
+            <TextBox x:Name="txtSoTienBanDau" Grid.Row="7" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0" KeyUp="txtSoTienBanDau_KeyUp" Grid.ColumnSpan="2"/>
 
 
             <Label Grid.Row="6" Grid.Column="0"  VerticalContentAlignment="Center" Height="40" Content="Tiền bán: " FontSize="15" Margin="10,10,0,0"/>
-            <TextBox x:Name="txtTienBanDuoc" Grid.Row="6" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0" IsEnabled="False"/>
+            <TextBox x:Name="txtTienBanDuoc" Grid.Row="6" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="15" Margin="10,10,10,0" IsEnabled="False" Grid.ColumnSpan="2"/>
 
             <Label Grid.Row="8" Grid.Column="0"  VerticalContentAlignment="Center" Height="40" Content="Tổng doanh thu: " FontSize="15" Margin="10,10,0,0"/>
-            <TextBox x:Name="txtTongDoanhThu" Grid.Row="8" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" Margin="10,10,10,0" IsEnabled="False"/>
+            <TextBox x:Name="txtTongDoanhThu" Grid.Row="8" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" Margin="10,10,10,0" IsEnabled="False" Grid.ColumnSpan="2"/>
         </Grid>
         <Grid Margin="10,10,10,0">
             <Grid.RowDefinitions>

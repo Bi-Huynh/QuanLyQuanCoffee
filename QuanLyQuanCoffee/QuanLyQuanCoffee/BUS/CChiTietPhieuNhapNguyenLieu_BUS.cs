@@ -89,7 +89,7 @@ namespace QuanLyQuanCoffee.BUS
         public static List<ChiTietPhieuNhap> findList(string maNguyenLieu)
         {
             List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
-                .Where(x => x.ChiTietNguyenLieu.maNguyenLieu == maNguyenLieu).ToList();
+                .Where(x => x.ChiTietNguyenLieu.maNguyenLieu == maNguyenLieu && x.soLuong > 0).ToList();
             return list == null ? new List<ChiTietPhieuNhap>() : list;
         }
 

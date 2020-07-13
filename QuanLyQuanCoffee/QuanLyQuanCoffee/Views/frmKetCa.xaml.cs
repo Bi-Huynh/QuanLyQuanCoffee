@@ -49,10 +49,11 @@ namespace QuanLyQuanCoffee.Views
             ketCa.gioBatDau = ca.GioBatDau;
             ketCa.gioKetThuc = gioKetThuc;
             ketCa.ngayLap = gioKetThuc;
-            ketCa.soLuong = CHoaDon_BUS.demSoLuongBanDuoc(ca.GioBatDau, gioKetThuc);
-            ketCa.tongTienBan = CHoaDon_BUS.tongTienBan(ca.GioBatDau, gioKetThuc);
+            ketCa.soLuong = CHoaDon_BUS.DsHoaDon(ca.GioBatDau, gioKetThuc).Count();
+            double tongTienBan = CHoaDon_BUS.tongTienBan(ca.GioBatDau, gioKetThuc);
+            ketCa.tongTienBan = tongTienBan;
             ketCa.tienDauCa = 0;
-            ketCa.tongDoanhThu = 0;
+            ketCa.tongDoanhThu = tongTienBan;
 
             hienThiThongTin(ketCa);
         }
@@ -63,9 +64,9 @@ namespace QuanLyQuanCoffee.Views
             txtTenNhanVien.Text = nhanVien.hoNhanVien + " " + nhanVien.tenNhanVien;
             txtGioBatDau.Text = String.Format("{0:hh:mm:ss tt}", ca.gioBatDau);
             txtGioKetThuc.Text = String.Format("{0:hh:mm:ss tt}", ca.gioKetThuc);
-            txtSoLuongBan.Text = ca.soLuong.ToString();
+            txtTongSoHoaDon.Text = ca.soLuong.ToString();
             txtTienBanDuoc.Text = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", ca.tongTienBan);
-            txtTongDoanhThu.Text = "0 VND";
+            txtTongDoanhThu.Text = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", ca.tongDoanhThu);
         }
 
         private void txtSoTienBanDau_KeyUp(object sender, KeyEventArgs e)

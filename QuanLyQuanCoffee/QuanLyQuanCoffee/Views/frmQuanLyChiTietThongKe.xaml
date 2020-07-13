@@ -5,139 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
         mc:Ignorable="d"
-        Title="frmQuanLyChiTietThongKe" Height="685" Width="1200" WindowState="Maximized">
+        Title="Thông Tin Chi Tiết Thống Kê" Height="685" Width="1200">
     <StackPanel>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="10"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="10"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="1" Content="QUẢN LÝ CHI TIẾT THỐNG KÊ" FontSize="12"></Label>
-            <!--<Button Grid.Row="0" Grid.Column="3" Content="Đăng xuất" FontSize="12" />
-            <Button Grid.Row="0" Grid.Column="5" Content="Trở về"  FontSize="12"/>-->
-        </Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="10"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="10"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Label Grid.Row="0" Grid.Column="1" Content="THÔNG TIN PHIẾU THỐNG KÊ" FontSize="12"></Label>
-        </Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25" ></RowDefinition>
-                <RowDefinition Height="25"> </RowDefinition>
-               
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="2" Content="Ngày Bắt Đầu"></Label>
-            <Label Grid.Row="0" Grid.Column="4" Content="Ngày Kết Thúc"></Label>
-            <DatePicker Grid.Row="1" Grid.Column="2" x:Name="dateNgayBatDau" ></DatePicker>
-            <DatePicker Grid.Row="1" Grid.Column="4" x:Name="dateNgayKetThuc" ></DatePicker>
-
-
-        </Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="10"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
-                <!--<ColumnDefinition/>-->
-                <ColumnDefinition Width="10"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Row="1" Grid.Column="1" Content="Mã thống kê" FontSize="12"></Label>
-            <Label Grid.Row="1" Grid.Column="3" Content="Ngày lập thống kê" FontSize="12"></Label>
-            <Label Grid.Row="1" Grid.Column="5" Content="Tổng thành tiền" FontSize="12" ></Label>
-            <!--<Label Grid.Row="1" Grid.Column="7" Content="Người lâp thống kê" FontSize="12" ></Label>-->
-            <TextBlock Grid.Row="2" Grid.Column="1" FontSize="12" Name="txtMathongke" ></TextBlock>
-            <TextBlock Grid.Row="2" Grid.Column="3" FontSize="12" Name="txtNgaylapthongke" ></TextBlock>
-            <TextBlock Grid.Row="2" Grid.Column="5" FontSize="12" Name="txtTongthanhtien" ></TextBlock>
-            <!--<TextBlock Grid.Row="2" Grid.Column="7" FontSize="12" Name="txtNguoilaphoadon" ></TextBlock>-->
-        </Grid>
-        <!--<Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="10"/>
-            </Grid.ColumnDefinitions>
-            --><!--<Button Grid.Row="0" Grid.Column="0" Content="Thêm"  FontSize="30"/>
-            <Button Grid.Row="0" Grid.Column="1" Content="Xóa"  FontSize="30"/>
-            <Button Grid.Row="0" Grid.Column="2" Content="Sửa"  FontSize="30"/>--><!--
-        </Grid>-->
-
-
-        <!--<Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <TextBox Grid.Row="0" Grid.Column="0" FontSize="30"></TextBox>
-            <Button Grid.Row="0" Grid.Column="1" Content="TÌM"  FontSize="30"/>
-        </Grid>-->
-
-        <StackPanel>
-            <Grid Height="465">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"></RowDefinition>
-                    <RowDefinition Height="435"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition Width="10"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="1" Content="Chi tiết thống kê" FontSize="12"/>
-                <Grid Grid.Row="1" Grid.Column="1">
-                    <DataGrid  Name="dgQlchitiethoadon" AutoGenerateColumns="False" FontSize="12" IsReadOnly="True">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien,Mode=TwoWay}"/>
-                            <DataGridTextColumn Header="Mã họ nhân viên" Binding="{Binding hoNhanVien}"/>
-                            <DataGridTextColumn Header="Tên Nhân Viên" Binding="{Binding tenNhanVien}"/>
-                            <DataGridTextColumn Header="Số lượng hóa đơn" Binding="{Binding soLuongHoaDon}"/>
-                            <DataGridTextColumn Header="Số lượng bán" Binding="{Binding soLuongBan}"/>
-                            <DataGridTextColumn Header="Ngày lập" Binding="{Binding ngayLap}"/>
-                            <DataGridTextColumn Header="Thành tiền" Binding="{Binding thanhTien}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-            </Grid>
+        <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Right">
+            <Label Grid.Row="0" Grid.Column="0" Content="Ngày Bắt Đầu:"></Label>
+            <DatePicker Grid.Row="0" Grid.Column="1" x:Name="dateNgayBatDau" Width="150"></DatePicker>
+            <Label Grid.Row="0" Grid.Column="2" Content="Ngày Kết Thúc:" Margin="10,0,0,0"></Label>
+            <DatePicker Grid.Row="0" Grid.Column="3" x:Name="dateNgayKetThuc" Width="150"></DatePicker>
         </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <Label Grid.Row="1" Grid.Column="0" Content="Mã thống kê:" FontSize="12"></Label>
+            <TextBlock Grid.Row="1" Grid.Column="1" FontSize="12" Width="150" Margin="10,0,10,0" Name="txtMathongke"></TextBlock>
+            <Label Grid.Row="1" Grid.Column="2" Content="Ngày lập:" FontSize="12"></Label>
+            <TextBlock Grid.Row="1" Grid.Column="3" FontSize="12" Width="150" Margin="10,0,10,0" Name="txtNgaylapthongke"></TextBlock>
+            <Label Grid.Row="1" Grid.Column="4" Content="Tổng thành tiền:" FontSize="12"></Label>
+            <TextBlock Grid.Row="1" Grid.Column="5" FontSize="12" Width="200" Margin="10,0,10,0" Name="txtTongthanhtien"></TextBlock>
+        </StackPanel>
+        <DataGrid  Name="dgQlchitiethoadon" AutoGenerateColumns="False" FontSize="12" IsReadOnly="True" MaxHeight="300" Margin="10,0,10,10"
+                   VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}" Width="1*"/>
+                <DataGridTextColumn Header="Họ" Binding="{Binding hoNhanVien}" Width="1*"/>
+                <DataGridTextColumn Header="Tên" Binding="{Binding tenNhanVien}" Width="1*"/>
+                <DataGridTextColumn Header="Số lượng hóa đơn" Binding="{Binding soLuongHoaDon}" Width="1*"/>
+                <DataGridTextColumn Header="Số lượng bán" Binding="{Binding soLuongBan}" Width="1*"/>
+                <DataGridTextColumn Header="Ngày lập" Binding="{Binding ngayLap}" Width="1*"/>
+                <DataGridTextColumn Header="Thành tiền" Binding="{Binding thanhTien}" Width="1*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </StackPanel>
 </Window>
+    

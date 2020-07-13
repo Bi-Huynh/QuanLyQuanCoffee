@@ -23,7 +23,6 @@ namespace QuanLyQuanCoffee.Views
         public frmThongTinChiTietNguyenLieu(NguyenLieu nguyenLieu)
         {
             InitializeComponent();
-            //List<ChiTietNguyenLieu> list = CChiTietNguyenLieu_BUS.find(nguyenLieu.maNguyenLieu);
             List<ChiTietPhieuNhap> list = CChiTietPhieuNhapNguyenLieu_BUS.findList(nguyenLieu.maNguyenLieu);
             txtMaNguyenLieu.Text = nguyenLieu.maNguyenLieu;
             txtTenNguyenLieu.Text = nguyenLieu.tenNguyenLieu;

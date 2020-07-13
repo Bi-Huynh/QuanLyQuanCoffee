@@ -28,9 +28,10 @@ namespace QuanLyQuanCoffee.BUS
         public static List<HoaDon> DsHoaDon(DateTime gioBatDau, DateTime gioKetThuc)
         {
             List<HoaDon> list = new List<HoaDon>();
-            foreach(var item in toList())
+            foreach (var item in toList())
             {
-                if (item.ngayLap.TimeOfDay >= gioBatDau.TimeOfDay && 
+                // không thể truy vấn bằng cách sử dụng where vì nó không hỗ trợ timeofday
+                if (item.ngayLap.TimeOfDay >= gioBatDau.TimeOfDay &&
                     item.ngayLap.TimeOfDay <= gioKetThuc.TimeOfDay)
                 {
                     list.Add(item);
@@ -38,6 +39,81 @@ namespace QuanLyQuanCoffee.BUS
             }
             return list;
         }
+
+        public static int demSoLuongHoaDon(DateTime gioBatDau, DateTime gioKetThuc)
+        {
+            int soLuongHoaDon = 0;
+            try
+            {
+                soLuongHoaDon = DsHoaDon(gioBatDau, gioKetThuc).Count();
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Đếm số lượng hóa đơn lỗi, CHoaDon, ArgNull");
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Đếm số lượng hóa đơn lỗi, CHoaDon, Overflow");
+            }
+            return soLuongHoaDon;
+        }
+
+        public static int demSoLuongHoaDon(string maNhanVien, int thang)
+        {
+            int soLuongHoaDon = 0;
+            foreach (var hoaDon in toList())
+            {
+                if (hoaDon.maNhanVien == maNhanVien && hoaDon.ngayLap.Month == thang)
+                {
+                    soLuongHoaDon++;
+                }
+            }
+            return soLuongHoaDon;
+        }
+
+        public static int demSoLuongLyBanDuoc(DateTime gioBatDau, DateTime gioKetThuc)
+        {
+            int soLuongHoaDon = 0;
+            try
+            {
+                List<HoaDon> hoaDons = DsHoaDon(gioBatDau, gioKetThuc);
+                hoaDons.ForEach(x => soLuongHoaDon += x.ChiTietHoaDons.Count());
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Đếm số lượng chi tiết hóa đơn lỗi, CHoaDon, ArgNull");
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Đếm số lượng chi tiết hóa đơn lỗi, CHoaDon, Overflow");
+            }
+            return soLuongHoaDon;
+        }
+
+        public static int demSoLuongLyBanDuoc(string maNhanVien, int thang)
+        {
+            int soLuongHoaDon = 0;
+            try
+            {
+                foreach (var hoaDon in toList())
+                {
+                    if (hoaDon.maNhanVien == maNhanVien && hoaDon.ngayLap.Month == thang)
+                    {
+                        soLuongHoaDon += hoaDon.ChiTietHoaDons.Count();
+                    }
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Đếm số lượng chi tiết hóa đơn lỗi, CHoaDon, ArgNull");
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Đếm số lượng chi tiết hóa đơn lỗi, CHoaDon, Overflow");
+            }
+            return soLuongHoaDon;
+        }
+
         public static Boolean add(HoaDon hoaDon)
         {
             if (CServices.kiemTraThongTin(hoaDon))
@@ -66,30 +142,33 @@ namespace QuanLyQuanCoffee.BUS
             return true;
         }
 
-        public static int demSoLuongBanDuoc(DateTime gioBatDau, DateTime gioKetThuc)
-        {
-            int result = 0;
-            List<HoaDon> list = DsHoaDon(gioBatDau, gioKetThuc);
-            if (list != null && list.Count() > 0)
-            {
-                foreach (var item in list)
-                {
-                    foreach (var i in item.ChiTietHoaDons)
-                    {
-                        result += i.soLuong.Value;
-                    }
-                }
-            }
-            return result;
-        }
-
         public static double tongTienBan(DateTime gioBatDau, DateTime gioKetThuc)
         {
             double result = 0;
-            List<HoaDon> list = DsHoaDon(gioBatDau, gioKetThuc);
-            foreach(var item in list)
+            DsHoaDon(gioBatDau, gioKetThuc).ForEach(x => result += x.tongThanhTien);
+            return result;
+        }
+
+        public static double tongTienBan(string maNhanVien, int thang)
+        {
+            double result = 0;
+            try
             {
-                result += item.tongThanhTien;
+                foreach (var hoaDon in toList())
+                {
+                    if (hoaDon.maNhanVien == maNhanVien && hoaDon.ngayLap.Month == thang)
+                    {
+                        result += hoaDon.tongThanhTien;
+                    }
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Đếm số lượng chi tiết hóa đơn lỗi, CHoaDon, ArgNull");
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Đếm số lượng chi tiết hóa đơn lỗi, CHoaDon, Overflow");
             }
             return result;
         }

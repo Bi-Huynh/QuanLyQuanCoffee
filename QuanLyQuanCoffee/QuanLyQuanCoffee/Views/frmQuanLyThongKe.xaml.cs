@@ -1,4 +1,6 @@
-﻿using System;
+﻿using QuanLyQuanCoffee.BUS;
+using QuanLyQuanCoffee.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,12 +25,45 @@ namespace QuanLyQuanCoffee.Views
         public frmQuanLyThongKe()
         {
             InitializeComponent();
+            labThang.Content = DateTime.Now.Month;
+            showBangXepHang();
         }
 
         private void btnThemPhieuTK_Click(object sender, RoutedEventArgs e)
         {
             frmQuanLyChiTietThongKe f = new frmQuanLyChiTietThongKe();
             f.Show();
+        }
+
+        private void showBangXepHang()
+        {
+            List<NhanVien> nhanViens = CNhanVien_BUS.toList();
+            List<CBangXepHang> bangXepHangs = new List<CBangXepHang>();
+            if (nhanViens.Count() > 0)
+            {
+                int stt = 0;
+                foreach (var nhanVien in nhanViens)
+                {
+                    int soLuongHoaDon = CHoaDon_BUS.demSoLuongHoaDon(nhanVien.maNhanVien, DateTime.Now.Month);
+                    int soLuongBan = CHoaDon_BUS.demSoLuongLyBanDuoc(nhanVien.maNhanVien, DateTime.Now.Month);
+                    double tongThanhTien = CHoaDon_BUS.tongTienBan(nhanVien.maNhanVien, DateTime.Now.Month);
+                    stt++;
+                    bangXepHangs.Add(new CBangXepHang(
+                        stt,
+                        nhanVien.hoNhanVien + " " + nhanVien.tenNhanVien,
+                        soLuongHoaDon,
+                        soLuongBan,
+                        tongThanhTien));
+                }
+                dgBangXepHang.ItemsSource = bangXepHangs.Select(x => new
+                {
+                    stt = x.Stt,
+                    hoTen = x.HoTen,
+                    soLuongHoaDon = x.SoLuongHoaDon,
+                    soLuongBan = x.SoLuongBan,
+                    tongTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.TongTien)
+                });
+            }
         }
     }
 }
