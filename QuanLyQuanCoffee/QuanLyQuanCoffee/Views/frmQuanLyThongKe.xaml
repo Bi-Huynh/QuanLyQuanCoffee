@@ -30,7 +30,7 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
                 <Label Grid.Row="0" Grid.Column="0" Content="Tháng "></Label>
-                <Label Grid.Column="1" Grid.Row="0" x:Name="labThang" FontStyle="Italic" FontWeight="Bold"></Label>
+                <Label Grid.Column="1" Grid.Row="0" x:Name="labThang" FontStyle="Italic" FontWeight="Bold" FontSize="20"></Label>
             </StackPanel>
             <Grid Grid.Row="2" Grid.Column="3">
                 <Grid.ColumnDefinitions>
@@ -60,7 +60,8 @@
             <DataGrid x:Name="dgPhieuThongKe" Grid.Row="5" Grid.Column="3"
                       AutoGenerateColumns="False"
                       HorizontalContentAlignment="Center" HorizontalScrollBarVisibility="Auto"
-                      Background="White" FontFamily="Arial" >
+                      Background="White" FontFamily="Arial" 
+                      SelectionChanged="dgPhieuThongKe_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Mã Thống Kê" Binding="{Binding maThongKe}" Width="1*"/>
                     <DataGridTextColumn Header="Ngày Thống Kê" Binding="{Binding ngayThongKe}" Width="1*"/>
@@ -76,13 +77,12 @@
                     <ColumnDefinition Width="7*"></ColumnDefinition>
                     <ColumnDefinition Width ="0.5*"></ColumnDefinition>
                     <ColumnDefinition Width="7*"></ColumnDefinition>
-                    <ColumnDefinition Width ="10"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Button Grid.Column="3" Grid.Row="0" x:Name="btnThemPhieuTK" Content="Thêm Phiếu Thống Kê" Click="btnThemPhieuTK_Click"></Button>
-                <Button Grid.Column="1" Grid.Row="0" x:Name="btnXemChiTiet" Content="Xem Chi Tiết" Click="btnThemPhieuTK_Click"></Button>
+                <Button Grid.Column="3" Grid.Row="0" x:Name="btnThemPhieuTK" Height="25" Content="Tạo Phiếu Thống Kê" Click="btnThemPhieuTK_Click"></Button>
+                <Button Grid.Column="1" Grid.Row="0" x:Name="btnXemChiTiet" Content="Xem Chi Tiết" Click="btnXemChiTiet_Click"></Button>
             </Grid>
             
         </Grid>

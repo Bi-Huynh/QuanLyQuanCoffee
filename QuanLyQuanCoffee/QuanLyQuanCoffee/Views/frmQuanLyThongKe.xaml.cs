@@ -22,6 +22,8 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmQuanLyThongKe : Page
     {
+        private ThongKe thongKeSelect = new ThongKe();
+
         public frmQuanLyThongKe()
         {
             InitializeComponent();
@@ -33,6 +35,28 @@ namespace QuanLyQuanCoffee.Views
         {
             frmQuanLyChiTietThongKe f = new frmQuanLyChiTietThongKe();
             f.Show();
+        }
+
+        private void btnXemChiTiet_Click(object sender, RoutedEventArgs e)
+        {
+            if (thongKeSelect != null && thongKeSelect.ChiTietThongKe != null)
+            {
+                frmQuanLyChiTietThongKe f = new frmQuanLyChiTietThongKe(thongKeSelect);
+                f.Show();
+            }
+            else
+            {
+                MessageBox.Show("Không thể xem chi tiết của bản thống kê này");
+            }
+        }
+
+        private void dgPhieuThongKe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgBangXepHang.SelectedItem != null)
+            {
+                thongKeSelect = new ThongKe();
+                thongKeSelect = dgBangXepHang.SelectedItem as ThongKe;
+            }
         }
 
         private void showBangXepHang()

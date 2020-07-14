@@ -1,0 +1,53 @@
+﻿using QuanLyQuanCoffee.Services;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+
+namespace QuanLyQuanCoffee.BUS
+{
+    class CThongKe
+    {
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+
+        public static List<ThongKe> toList()
+        {
+            List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes.ToList();
+            return thongKes == null ? new List<ThongKe>() : thongKes;
+        }
+
+        public static List<ThongKe> toList(DateTime ngayBatDau, DateTime ngayKetThuc)
+        {
+            List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes
+                .Where(x => x.ngayLap >= ngayBatDau && x.ngayLap <= ngayKetThuc).ToList();
+            return thongKes == null ? new List<ThongKe>() : thongKes;
+        }
+
+        public static bool add(ThongKe thongKe)
+        {
+            if (CServices.kiemTraThongTin(thongKe))
+            {
+                try
+                {
+                    quanLyQuanCoffee.ThongKes.Add(thongKe);
+                    quanLyQuanCoffee.SaveChanges();
+                }
+                catch (DbUpdateException)
+                {
+                    MessageBox.Show("Lỗi! Không thể thêm dữ liệu");
+                    return false;
+                }
+                catch (DbEntityValidationException)
+                {
+                    MessageBox.Show("Lỗi! Kiểu dữ liệu được truyền vào không hợp lệ");
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+}

@@ -20,6 +20,13 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<HoaDon>() : list;
         }
 
+        public static List<HoaDon> toList(DateTime ngayBatDau, DateTime ngayKetThuc)
+        {
+            List<HoaDon> list = quanLyQuanCoffee.HoaDons
+                .Where(x => x.ngayLap >= ngayBatDau && x.ngayLap <= ngayKetThuc).ToList();
+            return list == null ? new List<HoaDon>() : list;
+        }
+
         public static HoaDon find(string maHoaDon)
         {
             HoaDon hoaDon = quanLyQuanCoffee.HoaDons.Find(maHoaDon);

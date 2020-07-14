@@ -21,6 +21,14 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<KetCa>() : list;
         }
 
+        public static List<KetCa> toList(DateTime ngayBatDau, DateTime ngayKetThuc)
+        {
+            List<KetCa> list = quanLyQuanCoffee.KetCas
+                .Where(x => x.ngayLap >= ngayBatDau && x.ngayLap <= ngayKetThuc)
+                .ToList();
+            return list == null ? new List<KetCa>() : list;
+        }
+
         public static bool add(KetCa ketCa)
         {
             try

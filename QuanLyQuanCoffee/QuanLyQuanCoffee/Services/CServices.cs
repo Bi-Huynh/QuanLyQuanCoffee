@@ -205,6 +205,16 @@ namespace QuanLyQuanCoffee.Services
             }
             return true;
         }
+        
+        public static bool kiemTraThongTin(ThongKe thongKe)
+        {
+            if (thongKe.ngayLap != DateTime.Now)
+            {
+                MessageBox.Show("Ngày lập phiếu thống kê phải là ngày hiện tại");
+                return false;
+            }
+            return true;
+        }
 
         public static bool kiemTraThongTin(LoaiNhanVien loaiNhanVien)
         {

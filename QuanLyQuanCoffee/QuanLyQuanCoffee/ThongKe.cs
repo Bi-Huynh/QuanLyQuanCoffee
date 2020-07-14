@@ -20,5 +20,10 @@ namespace QuanLyQuanCoffee
         public string maChiTietThongKe { get; set; }
     
         public virtual ChiTietThongKe ChiTietThongKe { get; set; }
+
+        public override string ToString()
+        {
+            return maThongKe;
+        }
     }
 }

@@ -9,19 +9,20 @@
     <StackPanel>
         <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Right">
             <Label Grid.Row="0" Grid.Column="0" Content="Ngày Bắt Đầu:"></Label>
-            <DatePicker Grid.Row="0" Grid.Column="1" x:Name="dateNgayBatDau" Width="150"></DatePicker>
+            <DatePicker Grid.Row="0" Grid.Column="1" x:Name="dateNgayBatDau" Width="150" KeyUp="dateNgayBatDau_KeyUp"></DatePicker>
             <Label Grid.Row="0" Grid.Column="2" Content="Ngày Kết Thúc:" Margin="10,0,0,0"></Label>
-            <DatePicker Grid.Row="0" Grid.Column="3" x:Name="dateNgayKetThuc" Width="150"></DatePicker>
+            <DatePicker Grid.Row="0" Grid.Column="3" x:Name="dateNgayKetThuc" Width="150" KeyUp="dateNgayKetThuc_KeyUp"></DatePicker>
+            <Button x:Name="btnTao" Content="Xem" Width="150" Margin="10,0,0,0" Click="btnTao_Click"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="10">
             <Label Grid.Row="1" Grid.Column="0" Content="Mã thống kê:" FontSize="12"></Label>
-            <TextBlock Grid.Row="1" Grid.Column="1" FontSize="12" Width="150" Margin="10,0,10,0" Name="txtMathongke"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="1" FontSize="12" Width="150" Margin="10,0,10,0" Name="txtMaThongKe"></TextBlock>
             <Label Grid.Row="1" Grid.Column="2" Content="Ngày lập:" FontSize="12"></Label>
-            <TextBlock Grid.Row="1" Grid.Column="3" FontSize="12" Width="150" Margin="10,0,10,0" Name="txtNgaylapthongke"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="3" FontSize="12" Width="150" Margin="10,0,10,0" Name="txtNgayLapThongKe"></TextBlock>
             <Label Grid.Row="1" Grid.Column="4" Content="Tổng thành tiền:" FontSize="12"></Label>
-            <TextBlock Grid.Row="1" Grid.Column="5" FontSize="12" Width="200" Margin="10,0,10,0" Name="txtTongthanhtien"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="5" FontSize="12" Width="200" Margin="10,0,10,0" Name="txtTongThanhTien"></TextBlock>
         </StackPanel>
-        <DataGrid  Name="dgQlchitiethoadon" AutoGenerateColumns="False" FontSize="12" IsReadOnly="True" MaxHeight="300" Margin="10,0,10,10"
+        <DataGrid  Name="dgChiTietThongKe" AutoGenerateColumns="False" FontSize="12" IsReadOnly="True" MaxHeight="300" Margin="10,0,10,10"
                    VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}" Width="1*"/>
@@ -29,10 +30,11 @@
                 <DataGridTextColumn Header="Tên" Binding="{Binding tenNhanVien}" Width="1*"/>
                 <DataGridTextColumn Header="Số lượng hóa đơn" Binding="{Binding soLuongHoaDon}" Width="1*"/>
                 <DataGridTextColumn Header="Số lượng bán" Binding="{Binding soLuongBan}" Width="1*"/>
-                <DataGridTextColumn Header="Ngày lập" Binding="{Binding ngayLap}" Width="1*"/>
+                <!--<DataGridTextColumn Header="Ngày lập" Binding="{Binding ngayLap}" Width="1*"/>-->
                 <DataGridTextColumn Header="Thành tiền" Binding="{Binding thanhTien}" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="btnTaoThongKe" Content="Tạo thống kê" Height="25" Margin="10"/>
     </StackPanel>
 </Window>
     

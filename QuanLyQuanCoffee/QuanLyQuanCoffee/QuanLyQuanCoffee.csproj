@@ -86,6 +86,7 @@
     <Compile Include="BUS\CChiTietPhieuNhapNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CChiTietPhieuXuatNguyenLieu.cs" />
     <Compile Include="BUS\CChiTietPhieuXuat_BUS.cs" />
+    <Compile Include="BUS\CChiTietThongKe.cs" />
     <Compile Include="BUS\CHoaDon_BUS.cs" />
     <Compile Include="BUS\CLoaiNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CLoaiNhanVien_BUS.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="BUS\CPhieuXuatNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CSanPham_BUS.cs" />
     <Compile Include="BUS\CTaiKhoan_BUS.cs" />
+    <Compile Include="BUS\CThongKe.cs" />
     <Compile Include="ChiTietChamCong.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
@@ -110,6 +112,9 @@
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
     <Compile Include="ChiTietPhieuXuat.cs">
+      <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChiTietThongKe.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
     <Compile Include="DTO\CBangXepHang.cs" />
@@ -167,6 +172,9 @@
     </Compile>
     <Compile Include="Services\CServices.cs" />
     <Compile Include="TaiKhoan.cs">
+      <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ThongKe.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
     <Compile Include="Views\frmDangNhap.xaml.cs">
