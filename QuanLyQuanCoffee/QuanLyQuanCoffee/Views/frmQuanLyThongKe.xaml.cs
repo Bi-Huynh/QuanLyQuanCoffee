@@ -29,6 +29,20 @@ namespace QuanLyQuanCoffee.Views
             InitializeComponent();
             labThang.Content = DateTime.Now.Month;
             showBangXepHang();
+            hienThi(CThongKe.toList());
+        }
+
+        private void hienThi(List<ThongKe> thongKes)
+        {
+            if (thongKes != null)
+            {
+                dgPhieuThongKe.ItemsSource = thongKes.Select(x => new
+                {
+                    maThongKe = x.maThongKe,
+                    ngayThongKe = x.ngayLap,
+                    tongThanhTien = x.tongThanhTien
+                });
+            }
         }
 
         private void btnThemPhieuTK_Click(object sender, RoutedEventArgs e)
@@ -39,23 +53,23 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnXemChiTiet_Click(object sender, RoutedEventArgs e)
         {
-            if (thongKeSelect != null && thongKeSelect.ChiTietThongKe != null)
+            if (thongKeSelect != null && thongKeSelect.ChiTietThongKes != null)
             {
                 frmQuanLyChiTietThongKe f = new frmQuanLyChiTietThongKe(thongKeSelect);
                 f.Show();
             }
             else
             {
-                MessageBox.Show("Không thể xem chi tiết của bản thống kê này");
+                MessageBox.Show("Không tìm thấy thống kê này trong csdl");
             }
         }
 
         private void dgPhieuThongKe_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dgBangXepHang.SelectedItem != null)
+            if (dgPhieuThongKe.SelectedItem != null)
             {
                 thongKeSelect = new ThongKe();
-                thongKeSelect = dgBangXepHang.SelectedItem as ThongKe;
+                thongKeSelect = CThongKe.find(dgPhieuThongKe.SelectedValue.ToString());
             }
         }
 
@@ -88,6 +102,11 @@ namespace QuanLyQuanCoffee.Views
                     tongTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.TongTien)
                 });
             }
+        }
+
+        private void btnRefect_Click(object sender, RoutedEventArgs e)
+        {
+            hienThi(CThongKe.toList());
         }
     }
 }

@@ -14,12 +14,18 @@ namespace QuanLyQuanCoffee
     
     public partial class ThongKe
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ThongKe()
+        {
+            this.ChiTietThongKes = new HashSet<ChiTietThongKe>();
+        }
+    
         public string maThongKe { get; set; }
         public Nullable<System.DateTime> ngayLap { get; set; }
         public Nullable<double> tongThanhTien { get; set; }
-        public string maChiTietThongKe { get; set; }
     
-        public virtual ChiTietThongKe ChiTietThongKe { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietThongKe> ChiTietThongKes { get; set; }
 
         public override string ToString()
         {

@@ -4,27 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bee3ca1f7a8b4f67918a425b92880384" Name="Diagram1">
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ChiTietChamCong" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ChiTietHoaDon" Width="1.5" PointX="7.5" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ChiTietNguyenLieu" Width="1.5" PointX="5.25" PointY="32.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ChiTietPhieuNhap" Width="1.5" PointX="7.5" PointY="21.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ChiTietPhieuXuat" Width="1.5" PointX="7.5" PointY="26" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ChiTietThongKe" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.HoaDon" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.KetCa" Width="1.5" PointX="5.25" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.LoaiNguyenLieu" Width="1.5" PointX="0.75" PointY="33.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.LoaiNhanVien" Width="1.5" PointX="0.75" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.LoaiSanPham" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.LoaiTaiKhoan" Width="1.5" PointX="6" PointY="30.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.Luong" Width="1.5" PointX="5.25" PointY="18.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.NguyenLieu" Width="1.5" PointX="3" PointY="33" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.NhanVien" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.PhieuNhapNguyenLieu" Width="1.5" PointX="5.25" PointY="22" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.PhieuXuatNguyenLieu" Width="1.5" PointX="5.25" PointY="25.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.SanPham" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.TaiKhoan" Width="1.5" PointX="8.25" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ThongKe" Width="1.5" PointX="7.5" PointY="8.875" IsExpanded="true" />
+      <Diagram DiagramId="a0dbfc93430942b388d34214e821aeb4" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ChiTietChamCong" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ChiTietHoaDon" Width="1.5" PointX="7.5" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ChiTietNguyenLieu" Width="1.5" PointX="5.25" PointY="37" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ChiTietPhieuNhap" Width="1.5" PointX="7.5" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ChiTietPhieuXuat" Width="1.5" PointX="7.5" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ChiTietThongKe" Width="1.5" PointX="8.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.HoaDon" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.KetCa" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.LoaiNguyenLieu" Width="1.5" PointX="0.75" PointY="37.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.LoaiNhanVien" Width="1.5" PointX="0.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.LoaiSanPham" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.LoaiTaiKhoan" Width="1.5" PointX="6" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.Luong" Width="1.5" PointX="5.25" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.NguyenLieu" Width="1.5" PointX="3" PointY="37.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.NhanVien" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.PhieuNhapNguyenLieu" Width="1.5" PointX="5.25" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.PhieuXuatNguyenLieu" Width="1.5" PointX="5.25" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.SanPham" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.TaiKhoan" Width="1.5" PointX="8.25" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ThongKe" Width="1.5" PointX="6" PointY="31.5" IsExpanded="true" />
         <AssociationConnector Association="QuanLyQuanCoffeeModel.FK_ChiTietChamCong_NhanVien" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyQuanCoffeeModel.FK_ChiTietHoaDon_HoaDon" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyQuanCoffeeModel.FK_ChiTietHoaDon_SanPham" ManuallyRouted="false" />
@@ -34,7 +34,7 @@
         <AssociationConnector Association="QuanLyQuanCoffeeModel.FK_ChiTietPhieuNhap_PhieuNhapNguyenLieu" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyQuanCoffeeModel.FK_ChiTietPhieuXuat_PhieuXuatNguyenLieu" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyQuanCoffeeModel.FK_ChiTietThongKe_NhanVien" ManuallyRouted="false" />
-        <AssociationConnector Association="QuanLyQuanCoffeeModel.FK_ThongKe_ChiTietThongKe" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyQuanCoffeeModel.FK_ChiTietThongKe_ThongKe" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyQuanCoffeeModel.FK_HoaDon_NhanVien" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyQuanCoffeeModel.FK_KetCa_NhanVien" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyQuanCoffeeModel.FK_NguyenLieu_LoaiNguyenLieu" ManuallyRouted="false" />

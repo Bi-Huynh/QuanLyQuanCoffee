@@ -27,6 +27,12 @@ namespace QuanLyQuanCoffee.BUS
             return thongKes == null ? new List<ThongKe>() : thongKes;
         }
 
+        public static ThongKe find(string maThongKe)
+        {
+            ThongKe thongKe = quanLyQuanCoffee.ThongKes.Find(maThongKe);
+            return thongKe;
+        }
+
         public static bool add(ThongKe thongKe)
         {
             if (CServices.kiemTraThongTin(thongKe))

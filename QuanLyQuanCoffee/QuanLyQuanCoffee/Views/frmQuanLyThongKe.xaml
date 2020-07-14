@@ -58,7 +58,7 @@
             </DataGrid>
 
             <DataGrid x:Name="dgPhieuThongKe" Grid.Row="5" Grid.Column="3"
-                      AutoGenerateColumns="False"
+                      AutoGenerateColumns="False" SelectedValuePath="maThongKe"
                       HorizontalContentAlignment="Center" HorizontalScrollBarVisibility="Auto"
                       Background="White" FontFamily="Arial" 
                       SelectionChanged="dgPhieuThongKe_SelectionChanged">
@@ -73,15 +73,15 @@
             
             <Grid Grid.Row="7" Grid.Column="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width ="3*"></ColumnDefinition>
-                    <ColumnDefinition Width="7*"></ColumnDefinition>
-                    <ColumnDefinition Width ="0.5*"></ColumnDefinition>
-                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Button Grid.Column="3" Grid.Row="0" x:Name="btnThemPhieuTK" Height="25" Content="Tạo Phiếu Thống Kê" Click="btnThemPhieuTK_Click"></Button>
+                <Button Grid.Column="0" Grid.Row="0" x:Name="btnRefect" Height="25" Content="Refect" Margin="0,0,10,0" Click="btnRefect_Click"></Button>
+                <Button Grid.Column="2" Grid.Row="0" x:Name="btnThemPhieuTK" Height="25" Content="Tạo Phiếu Thống Kê" Margin="10,0,0,0" Click="btnThemPhieuTK_Click"></Button>
                 <Button Grid.Column="1" Grid.Row="0" x:Name="btnXemChiTiet" Content="Xem Chi Tiết" Click="btnXemChiTiet_Click"></Button>
             </Grid>
             

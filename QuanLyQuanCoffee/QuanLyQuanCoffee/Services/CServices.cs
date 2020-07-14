@@ -208,7 +208,7 @@ namespace QuanLyQuanCoffee.Services
         
         public static bool kiemTraThongTin(ThongKe thongKe)
         {
-            if (thongKe.ngayLap != DateTime.Now)
+            if (thongKe.ngayLap.Value.ToString("dd/MM/yyyy") != DateTime.Now.ToString("dd/MM/yyyy"))
             {
                 MessageBox.Show("Ngày lập phiếu thống kê phải là ngày hiện tại");
                 return false;

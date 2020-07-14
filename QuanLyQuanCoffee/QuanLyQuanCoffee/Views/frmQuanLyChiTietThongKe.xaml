@@ -34,7 +34,7 @@
                 <DataGridTextColumn Header="Thành tiền" Binding="{Binding thanhTien}" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnTaoThongKe" Content="Tạo thống kê" Height="25" Margin="10"/>
+        <Button x:Name="btnTaoThongKe" Content="Tạo thống kê" Height="25" Margin="10" Click="btnTaoThongKe_Click"/>
     </StackPanel>
 </Window>
     
