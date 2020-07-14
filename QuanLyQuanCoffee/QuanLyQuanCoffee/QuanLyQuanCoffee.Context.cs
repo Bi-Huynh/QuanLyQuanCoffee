@@ -30,6 +30,7 @@ namespace QuanLyQuanCoffee
         public virtual DbSet<ChiTietNguyenLieu> ChiTietNguyenLieux { get; set; }
         public virtual DbSet<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
         public virtual DbSet<ChiTietPhieuXuat> ChiTietPhieuXuats { get; set; }
+        public virtual DbSet<ChiTietThongKe> ChiTietThongKes { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<KetCa> KetCas { get; set; }
         public virtual DbSet<LoaiNguyenLieu> LoaiNguyenLieux { get; set; }
@@ -43,5 +44,6 @@ namespace QuanLyQuanCoffee
         public virtual DbSet<PhieuXuatNguyenLieu> PhieuXuatNguyenLieux { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
+        public virtual DbSet<ThongKe> ThongKes { get; set; }
     }
 }

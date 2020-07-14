@@ -18,6 +18,7 @@ namespace QuanLyQuanCoffee
         public NhanVien()
         {
             this.ChiTietChamCongs = new HashSet<ChiTietChamCong>();
+            this.ChiTietThongKes = new HashSet<ChiTietThongKe>();
             this.HoaDons = new HashSet<HoaDon>();
             this.KetCas = new HashSet<KetCa>();
             this.Luongs = new HashSet<Luong>();
@@ -42,6 +43,8 @@ namespace QuanLyQuanCoffee
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietChamCong> ChiTietChamCongs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietThongKe> ChiTietThongKes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDon> HoaDons { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KetCa> KetCas { get; set; }
@@ -53,10 +56,5 @@ namespace QuanLyQuanCoffee
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuXuatNguyenLieu> PhieuXuatNguyenLieux { get; set; }
         public virtual TaiKhoan TaiKhoan { get; set; }
-
-        public override string ToString()
-        {
-            return maNhanVien;
-        }
     }
 }
