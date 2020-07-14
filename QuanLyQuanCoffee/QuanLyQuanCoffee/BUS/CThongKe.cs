@@ -12,19 +12,26 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CThongKe
     {
-        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee;/* = new QuanLyQuanCoffeeEntities1();*/
 
         public static List<ThongKe> toList()
         {
-            List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes.ToList();
-            return thongKes == null ? new List<ThongKe>() : thongKes;
+            using (QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1())
+            {
+                List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes.ToList();
+                return thongKes == null ? new List<ThongKe>() : thongKes;
+            }
         }
 
         public static List<ThongKe> toList(DateTime ngayBatDau, DateTime ngayKetThuc)
         {
-            List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes
-                .Where(x => x.ngayLap >= ngayBatDau && x.ngayLap <= ngayKetThuc).ToList();
-            return thongKes == null ? new List<ThongKe>() : thongKes;
+            using (quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1())
+            {
+                List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes
+                    .Where(x => x.ngayLap >= ngayBatDau && x.ngayLap <= ngayKetThuc).ToList();
+                return thongKes == null ? new List<ThongKe>() : thongKes;
+
+            }
         }
 
         public static ThongKe find(string maThongKe)

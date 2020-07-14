@@ -22,9 +22,15 @@ namespace QuanLyQuanCoffee.BUS
 
         public static List<HoaDon> toList(DateTime ngayBatDau, DateTime ngayKetThuc)
         {
-            List<HoaDon> list = quanLyQuanCoffee.HoaDons
-                .Where(x => x.ngayLap >= ngayBatDau && x.ngayLap <= ngayKetThuc).ToList();
-            return list == null ? new List<HoaDon>() : list;
+            List<HoaDon> hoaDons = new List<HoaDon>();
+            foreach (var hoaDon in quanLyQuanCoffee.HoaDons.ToList())
+            {
+                if (hoaDon.ngayLap.Date >= ngayBatDau.Date && hoaDon.ngayLap.Date <= ngayKetThuc.Date)
+                {
+                    hoaDons.Add(hoaDon);
+                }
+            }
+            return hoaDons;
         }
 
         public static HoaDon find(string maHoaDon)
