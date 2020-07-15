@@ -26,7 +26,6 @@ namespace QuanLyQuanCoffee
         public Nullable<int> trangThai { get; set; }
     
         public virtual NhanVien NhanVien { get; set; }
-
         public override string ToString()
         {
             return maChamCong;

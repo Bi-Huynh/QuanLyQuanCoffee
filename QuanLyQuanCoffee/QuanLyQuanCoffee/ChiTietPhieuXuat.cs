@@ -23,7 +23,6 @@ namespace QuanLyQuanCoffee
     
         public virtual ChiTietNguyenLieu ChiTietNguyenLieu { get; set; }
         public virtual PhieuXuatNguyenLieu PhieuXuatNguyenLieu { get; set; }
-
         public override string ToString()
         {
             return maChiTietPhieuXuat;
