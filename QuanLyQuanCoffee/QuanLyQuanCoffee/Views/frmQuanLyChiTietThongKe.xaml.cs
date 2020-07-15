@@ -127,7 +127,7 @@ namespace QuanLyQuanCoffee.Views
                 try
                 {
                     string ngayBatDau = dateNgayBatDau.Text;
-                    if (DateTime.Parse(ngayBatDau) > DateTime.Now)
+                    if (DateTime.Parse(ngayBatDau).Date > DateTime.Now.Date)
                     {
                         MessageBox.Show("Ngày bắt đầu không thể lớn hơn ngày hiện tại");
                     }
@@ -154,7 +154,7 @@ namespace QuanLyQuanCoffee.Views
                 try
                 {
                     string ngayKetThuc = dateNgayKetThuc.Text;
-                    if (DateTime.Parse(ngayKetThuc) > DateTime.Now)
+                    if (DateTime.Parse(ngayKetThuc).Date > DateTime.Now.Date)
                     {
                         MessageBox.Show("Ngày kết thúc không thể lớn hơn ngày hiện tại");
                     }
