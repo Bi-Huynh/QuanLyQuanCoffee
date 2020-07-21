@@ -24,16 +24,16 @@ namespace QuanLyQuanCoffee.DTO
             Stt = 0;
             HoTen = "";
             SoLuongHoaDon = 0;
-            SoLuongBan = 0;
+            //SoLuongBan = 0;
             TongTien = 0;
         }
 
-        public CBangXepHang(int stt, string hoTen, int soLuongHoaDon, int soLuongBan, double tongTien)
+        public CBangXepHang(int stt, string hoTen, int soLuongHoaDon, double tongTien)
         {
             this.Stt = stt;
             this.HoTen = hoTen;
             this.SoLuongHoaDon = soLuongHoaDon;
-            this.SoLuongBan = soLuongBan;
+            //this.SoLuongBan = soLuongBan;
             this.TongTien = tongTien;
         }
     }

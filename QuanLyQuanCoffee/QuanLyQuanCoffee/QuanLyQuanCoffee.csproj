@@ -186,11 +186,17 @@
     <Compile Include="Views\frmOrder.xaml.cs">
       <DependentUpon>frmOrder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmQuanLyChiTietChiTieu.xaml.cs">
+      <DependentUpon>frmQuanLyChiTietChiTieu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmQuanLyChiTietHoaDon.xaml.cs">
       <DependentUpon>frmQuanLyChiTietHoaDon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\frmQuanLyChiTietThongKe.xaml.cs">
       <DependentUpon>frmQuanLyChiTietThongKe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmQuanLyChiTieu.xaml.cs">
+      <DependentUpon>frmQuanLyChiTieu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\frmQuanLyHoaDon.xaml.cs">
       <DependentUpon>frmQuanLyHoaDon.xaml</DependentUpon>
@@ -259,11 +265,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\frmQuanLyChiTietChiTieu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\frmQuanLyChiTietHoaDon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\frmQuanLyChiTietThongKe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmQuanLyChiTieu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

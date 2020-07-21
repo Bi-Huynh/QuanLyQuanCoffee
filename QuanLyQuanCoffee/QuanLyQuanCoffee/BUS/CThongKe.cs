@@ -12,26 +12,29 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CThongKe
     {
-        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee;/* = new QuanLyQuanCoffeeEntities1();*/
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
 
         public static List<ThongKe> toList()
         {
-            using (QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1())
-            {
-                List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes.ToList();
-                return thongKes == null ? new List<ThongKe>() : thongKes;
-            }
+            List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes.ToList();
+            return thongKes == null ? new List<ThongKe>() : thongKes;
+
+        }
+
+        public static List<ThongKe> toList(string maThongKe)
+        {
+            List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes
+                .Where(x => x.maThongKe.Contains(maThongKe)).ToList();
+            return thongKes == null ? new List<ThongKe>() : thongKes;
+
         }
 
         public static List<ThongKe> toList(DateTime ngayBatDau, DateTime ngayKetThuc)
         {
-            using (quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1())
-            {
-                List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes
-                    .Where(x => x.ngayLap >= ngayBatDau && x.ngayLap <= ngayKetThuc).ToList();
-                return thongKes == null ? new List<ThongKe>() : thongKes;
+            List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes
+                .Where(x => x.ngayLap >= ngayBatDau && x.ngayLap <= ngayKetThuc).ToList();
+            return thongKes == null ? new List<ThongKe>() : thongKes;
 
-            }
         }
 
         public static ThongKe find(string maThongKe)
@@ -61,6 +64,19 @@ namespace QuanLyQuanCoffee.BUS
                 }
             }
             return true;
+        }
+
+        public static List<ThongKe> toList(int thang)
+        {
+            List<ThongKe> thongKes = new List<ThongKe>();
+            foreach (var thongKe in toList())
+            {
+                if (thongKe.ngayLap.Value.Month == thang)
+                {
+                    thongKes.Add(thongKe);
+                }
+            }
+            return thongKes;
         }
     }
 }

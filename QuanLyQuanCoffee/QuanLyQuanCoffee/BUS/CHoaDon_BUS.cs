@@ -112,7 +112,10 @@ namespace QuanLyQuanCoffee.BUS
                 {
                     if (hoaDon.maNhanVien == maNhanVien && hoaDon.ngayLap.Month == thang)
                     {
-                        soLuongHoaDon += hoaDon.ChiTietHoaDons.Count();
+                        foreach (var chiTietHoaDon in hoaDon.ChiTietHoaDons)
+                        {
+                            soLuongHoaDon += chiTietHoaDon.soLuong.Value;
+                        }
                     }
                 }
             }
@@ -125,6 +128,36 @@ namespace QuanLyQuanCoffee.BUS
                 MessageBox.Show("Đếm số lượng chi tiết hóa đơn lỗi, CHoaDon, Overflow");
             }
             return soLuongHoaDon;
+        }
+
+        public static int demSoLuongSanPham(string maSanPham, int thang)
+        {
+            int soLuongSanPham = 0;
+            try
+            {
+                foreach (var hoaDon in toList())
+                {
+                    if (hoaDon.ngayLap.Month == thang)
+                    {
+                        foreach (var chiTietHoaDon in CChiTietHoaDon_BUS.toList())
+                        {
+                            if (chiTietHoaDon.maSanPham == maSanPham)
+                            {
+                                soLuongSanPham += chiTietHoaDon.soLuong.Value;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Đếm số lượng chi tiết hóa đơn lỗi, CHoaDon, ArgNull");
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Đếm số lượng chi tiết hóa đơn lỗi, CHoaDon, Overflow");
+            }
+            return soLuongSanPham;
         }
 
         public static Boolean add(HoaDon hoaDon)
@@ -182,6 +215,36 @@ namespace QuanLyQuanCoffee.BUS
             catch (OverflowException)
             {
                 MessageBox.Show("Đếm số lượng chi tiết hóa đơn lỗi, CHoaDon, Overflow");
+            }
+            return result;
+        }
+
+        public static double tongTienBanSanPham(string maSanPham, int thang)
+        {
+            double result = 0;
+            try
+            {
+                foreach (var hoaDon in toList())
+                {
+                    if (hoaDon.ngayLap.Month == thang)
+                    {
+                        foreach (var chiTietHoaDon in hoaDon.ChiTietHoaDons)
+                        {
+                            if (chiTietHoaDon.maSanPham == maSanPham)
+                            {
+                                result += chiTietHoaDon.thanhTien.Value;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Đếm tổng tiền bán của sản phẩm lỗi, CHoaDon, ArgNull");
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Đếm tổng tiền bán của sản phẩm lỗi, CHoaDon, Overflow");
             }
             return result;
         }

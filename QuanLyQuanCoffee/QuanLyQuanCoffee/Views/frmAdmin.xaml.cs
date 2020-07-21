@@ -47,6 +47,8 @@ namespace QuanLyQuanCoffee.Views
             }
 
             ca = new CCa_DTO(nhanVien.maNhanVien, DateTime.Now);
+
+            Main.Content = new frmOrder(nhanVien);
         }
 
         public void kiemTraQuyen(TaiKhoan taiKhoan1)

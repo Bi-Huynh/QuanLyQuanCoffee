@@ -29,6 +29,7 @@ namespace QuanLyQuanCoffee.Views
             InitializeComponent();
             labThang.Content = DateTime.Now.Month;
             showBangXepHang();
+            showBangXepHangSanPham();
             hienThi(CThongKe.toList());
         }
 
@@ -39,7 +40,7 @@ namespace QuanLyQuanCoffee.Views
                 dgPhieuThongKe.ItemsSource = thongKes.Select(x => new
                 {
                     maThongKe = x.maThongKe,
-                    ngayThongKe = x.ngayLap,
+                    ngayThongKe = x.ngayLap.Value.ToString("dd/MM/yyyy"),
                     tongThanhTien = x.tongThanhTien
                 });
             }
@@ -83,14 +84,14 @@ namespace QuanLyQuanCoffee.Views
                 foreach (var nhanVien in nhanViens)
                 {
                     int soLuongHoaDon = CHoaDon_BUS.demSoLuongHoaDon(nhanVien.maNhanVien, DateTime.Now.Month);
-                    int soLuongBan = CHoaDon_BUS.demSoLuongLyBanDuoc(nhanVien.maNhanVien, DateTime.Now.Month);
+                    //int soLuongBan = CHoaDon_BUS.demSoLuongLyBanDuoc(nhanVien.maNhanVien, DateTime.Now.Month);
                     double tongThanhTien = CHoaDon_BUS.tongTienBan(nhanVien.maNhanVien, DateTime.Now.Month);
                     stt++;
                     bangXepHangs.Add(new CBangXepHang(
                         stt,
                         nhanVien.hoNhanVien + " " + nhanVien.tenNhanVien,
                         soLuongHoaDon,
-                        soLuongBan,
+                        //soLuongBan,
                         tongThanhTien));
                 }
                 dgBangXepHang.ItemsSource = bangXepHangs.Select(x => new
@@ -104,9 +105,84 @@ namespace QuanLyQuanCoffee.Views
             }
         }
 
+        private void showBangXepHangSanPham()
+        {
+            List<SanPham> sanPhams = CSanPham_BUS.toList();
+            List<CBangXepHang> bangXepHangs = new List<CBangXepHang>();
+            if (sanPhams.Count() > 0)
+            {
+                int stt = 0;
+                foreach (var sanPham in sanPhams)
+                {
+                    //int soLuongHoaDon = CHoaDon_BUS.demSoLuongHoaDon(nhanVien.maNhanVien, DateTime.Now.Month);
+                    int soLuongBan = CHoaDon_BUS.demSoLuongSanPham(sanPham.maSanPham, DateTime.Now.Month);
+                    double tongThanhTien = CHoaDon_BUS.tongTienBanSanPham(sanPham.maSanPham, DateTime.Now.Month);
+                    stt++;
+                    bangXepHangs.Add(new CBangXepHang(
+                        stt,
+                        sanPham.tenSanPham,
+                        //soLuongHoaDon,
+                        soLuongBan,
+                        tongThanhTien));
+                }
+                dgBangXepHangSanPham.ItemsSource = bangXepHangs.Select(x => new
+                {
+                    stt = x.Stt,
+                    tenSanPham = x.HoTen,
+                    soLuongBan = x.SoLuongHoaDon,
+                    //soLuongBan = x.SoLuongBan,
+                    tongTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.TongTien)
+                });
+            }
+        }
+
         private void btnRefect_Click(object sender, RoutedEventArgs e)
         {
             hienThi(CThongKe.toList());
+        }
+
+        private void txtTimKiem_KeyUp(object sender, KeyEventArgs e)
+        {
+
+            if (txtTimKiem.Text == "")
+            {
+                hienThi(CThongKe.toList());
+                return;
+            }
+
+            // nếu combox tìm kiếm là 0 tức là tìm theo tên nhân viên
+            if (cmbTimKiem.SelectedIndex == 0)
+            {
+                try
+                {
+                    List<ThongKe> thongKes = new List<ThongKe>();
+                    int thang = int.Parse(txtTimKiem.Text);
+                    thongKes = CThongKe.toList(thang);
+                    dgPhieuThongKe.ItemsSource = thongKes;
+                }
+                catch (ArgumentNullException)
+                {
+                    MessageBox.Show("Lỗi Thống kê - tìm kiếm - ArgNull");
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Lỗi Thống kê - tìm kiếm - Format");
+                }
+                catch (OverflowException)
+                {
+                    MessageBox.Show("Lỗi Thống kê - tìm kiếm - Overflow");
+                }
+            }
+            else
+            {
+                List<ThongKe> thongKes = new List<ThongKe>();
+                thongKes = CThongKe.toList(txtTimKiem.Text);
+                if (thongKes.Count() > 0)
+                {
+                    dgPhieuThongKe.ItemsSource = thongKes;
+                }
+            }
+
         }
     }
 }
