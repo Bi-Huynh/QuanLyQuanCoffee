@@ -32,7 +32,11 @@ namespace QuanLyQuanCoffee.BUS
             }
             return hoaDons;
         }
-
+        public static List<HoaDon> toListTK(string maHoaDon)
+        {
+            List<HoaDon> list = quanLyQuanCoffee.HoaDons.Where(x => x.trangThai == 0 && x.maHoaDon.Contains(maHoaDon) == true).ToList();
+            return list == null ? new List<HoaDon>() : list;
+        }
         public static HoaDon find(string maHoaDon)
         {
             HoaDon hoaDon = quanLyQuanCoffee.HoaDons.Find(maHoaDon);

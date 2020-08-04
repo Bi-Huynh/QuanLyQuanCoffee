@@ -28,9 +28,5 @@ namespace QuanLyQuanCoffee
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietNguyenLieu> ChiTietNguyenLieux { get; set; }
         public virtual LoaiNguyenLieu LoaiNguyenLieu { get; set; }
-        public override string ToString()
-        {
-            return maNguyenLieu;
-        }
     }
 }

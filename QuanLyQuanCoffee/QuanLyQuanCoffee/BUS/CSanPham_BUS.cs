@@ -25,6 +25,11 @@ namespace QuanLyQuanCoffee.BUS
             List<SanPham> list = quanLyQuanCoffee.SanPhams.Where(x => x.trangThai == 0).ToList();
             return list == null ? new List<SanPham>() : list;
         }
+        public static List<SanPham> toListTK(string maSP)
+        {
+            List<SanPham> list = quanLyQuanCoffee.SanPhams.Where(x => x.trangThai == 0&&x.maSanPham.Contains(maSP)==true).ToList();
+            return list == null ? new List<SanPham>() : list;
+        }
         public static List<SanPham> DsSanPham()
         {
             List<SanPham> list = quanLyQuanCoffee.SanPhams.ToList();

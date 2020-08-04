@@ -12,26 +12,20 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CThongKe
     {
-        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee;/* = new QuanLyQuanCoffeeEntities1();*/
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
 
         public static List<ThongKe> toList()
         {
-            using (QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1())
-            {
-                List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes.ToList();
-                return thongKes == null ? new List<ThongKe>() : thongKes;
-            }
+            List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes.ToList();
+            return thongKes == null ? new List<ThongKe>() : thongKes;
+
         }
 
         public static List<ThongKe> toList(DateTime ngayBatDau, DateTime ngayKetThuc)
         {
-            using (quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1())
-            {
-                List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes
-                    .Where(x => x.ngayLap >= ngayBatDau && x.ngayLap <= ngayKetThuc).ToList();
-                return thongKes == null ? new List<ThongKe>() : thongKes;
-
-            }
+            List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes
+                .Where(x => x.ngayLap.Value.Date >= ngayBatDau.Date && x.ngayLap.Value.Date <= ngayKetThuc.Date).ToList();
+            return thongKes == null ? new List<ThongKe>() : thongKes;
         }
 
         public static ThongKe find(string maThongKe)

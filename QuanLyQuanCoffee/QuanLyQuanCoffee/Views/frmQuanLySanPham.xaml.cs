@@ -42,6 +42,17 @@ namespace QuanLyQuanCoffee.Views
             }
 
         }
+        public void HienTHiTK(string maSP)
+        {
+            try
+            {
+                dgQlsanpham.ItemsSource = CSanPham_BUS.toListTK(maSP);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi: " + ex.Message);
+            }
+        }
         private void cboLoaisanpham_Loaded(object sender, RoutedEventArgs e)
         {
             try
@@ -253,6 +264,21 @@ namespace QuanLyQuanCoffee.Views
             txtTensanpham.Text = "";
             txtDongia.Text = "";
             sanPhamSelect = null;
+        }
+
+        private void TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (txtTK.Text == "")
+            {
+                hienthiSP();
+                return;
+            }
+
+            // nếu combox tìm kiếm là 0 tức là tìm theo mã phiếu nhập
+           
+            HienTHiTK(txtTK.Text);
+           
+            
         }
     }
 }
