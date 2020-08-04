@@ -16,7 +16,7 @@ namespace QuanLyQuanCoffee.BUS
 
         public static List<TaiKhoan> toList()
         {
-            List<TaiKhoan> list = quanLyQuanCoffee.TaiKhoans.Where(x => x.trangThai == 0).ToList();
+            List<TaiKhoan> list = quanLyQuanCoffee.TaiKhoans.ToList();
             return list == null ? new List<TaiKhoan>() : list;
         }
 
@@ -87,8 +87,16 @@ namespace QuanLyQuanCoffee.BUS
                 TaiKhoan temp = find(taiKhoan.maNhanVien);
                 if (temp != null)
                 {
-                    temp.trangThai = 1;
-                    quanLyQuanCoffee.SaveChanges();
+                    if (temp.trangThai == 0)
+                    {
+                        temp.trangThai = 1;
+                        quanLyQuanCoffee.SaveChanges();
+                    }
+                    else
+                    {
+                        temp.trangThai = 0;
+                        quanLyQuanCoffee.SaveChanges();
+                    }    
                 }
             }
             catch (DbUpdateException)
