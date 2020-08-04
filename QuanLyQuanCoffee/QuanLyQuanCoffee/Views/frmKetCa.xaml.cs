@@ -27,11 +27,11 @@ namespace QuanLyQuanCoffee.Views
         private CCa_DTO ca;
         private NhanVien nhanVien;
         private KetCa ketCa;
-        public frmKetCa(CCa_DTO caLam = null, NhanVien nv = null)
+        public frmKetCa(NhanVien nv = null)
         {
             InitializeComponent();
 
-            ca = caLam;
+            ca = CCa_BUS.CaLamViec;
             nhanVien = nv;
             if (ca == null)
             {

@@ -9,12 +9,33 @@
       Title="frmOder" MinWidth="1200" MinHeight="685">
 
     <StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-            <Label Content="Tên nhân viên thu ngân: "/>
-            <TextBlock x:Name="txtTenNhanVien" Width="200" Height="25" 
-                       VerticalAlignment="Center" HorizontalAlignment="Center"
-                       Loaded="txtTenNhanVien_Loaded"/>
-        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <Label Grid.Row="0" Grid.Column="0" Content="Tên nhân viên thu ngân: "
+                   Margin="10,10,0,10" FontSize="18"/>
+
+            <Label  Grid.Row="0" Grid.Column="1" x:Name="txtTenNhanVien" 
+                    FontSize="18" Margin="0,10,0,10"
+                    Loaded="txtTenNhanVien_Loaded"/>
+
+            <Button Grid.Row="0" Grid.Column="3" x:Name="btnTreoHoaDon"
+                    Content="Treo hóa đơn" FontSize="18" Margin="10,10,0,10"
+                    Click="btnTreoHoaDon_Click"/>
+
+            <Button Grid.Row="0" Grid.Column="4" x:Name="btnHoanTac"
+                    Content="Hoàn tác" FontSize="18" Margin="10,10,0,10"
+                    Click="btnHoanTac_Click"/>
+        </Grid>
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -51,7 +72,7 @@
             </DataGrid>
 
             <DataGrid Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Background="White"
-                      Name="dgChitiethoadon" FontSize="15" Margin="5,0,0,0" Height="365" MaxHeight="365"
+                      Name="dgChitiethoadon" FontSize="15" Margin="5,0,0,0" Height="350" MaxHeight="365"
                       VerticalScrollBarVisibility="Auto" IsReadOnly="True"
                       SelectedValuePath="maSanPham" AutoGenerateColumns="False">
                 <DataGrid.Columns>
@@ -68,7 +89,8 @@
                     Click="btnBochon_Click"/>
 
             <Button x:Name="btnHuy" Grid.Column="3" Grid.Row="1"
-                    Margin="5,10,0,0" Height="30" Content="Hủy"/>
+                    Margin="5,10,0,0" Height="30" Content="Hủy"
+                    Click="btnHuy_Click"/>
 
             <Label Grid.Row="2" Grid.Column="2" Content="Mã hóa đơn: "
                    Margin="5,10,0,0" FontSize="20"/>

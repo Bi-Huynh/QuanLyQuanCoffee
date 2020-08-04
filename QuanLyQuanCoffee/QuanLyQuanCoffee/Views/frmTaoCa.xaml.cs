@@ -38,6 +38,18 @@ namespace QuanLyQuanCoffee.Views
         {
             if (cmbCaLam.SelectedIndex == 0)
             {
+                //if (DateTime.Now >= new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 6, 0, 0) &&
+                //    DateTime.Now <= new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 10, 0, 0))
+                //{
+                //    DateTime gioBatDau = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
+                //    DateTime gioKetThuc = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 0, 0);
+                //    CCa_BUS.CaLamViec = new DTO.CCa_DTO(nhanVienSelect.maNhanVien, gioBatDau, gioKetThuc);
+                //    this.Close();
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Không thể tạo ca 1, ca 1 chỉ có thể tạo từ 6am tới 10am");
+                //}
                 DateTime gioBatDau = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
                 DateTime gioKetThuc = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 0, 0);
                 CCa_BUS.CaLamViec = new DTO.CCa_DTO(nhanVienSelect.maNhanVien, gioBatDau, gioKetThuc);
@@ -45,6 +57,18 @@ namespace QuanLyQuanCoffee.Views
             }
             else if (cmbCaLam.SelectedIndex == 1)
             {
+                //if (DateTime.Now >= new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 13, 0, 0) &&
+                //    DateTime.Now <= new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 17, 0, 0))
+                //{
+                //    DateTime gioBatDau = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 0, 0);
+                //    DateTime gioKetThuc = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 21, 0, 0);
+                //    CCa_BUS.CaLamViec = new DTO.CCa_DTO(nhanVienSelect.maNhanVien, gioBatDau, gioKetThuc);
+                //    this.Close();
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Không thể tạo ca 1, ca 1 chỉ có thể tạo từ 13am tới 17am");
+                //}
                 DateTime gioBatDau = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 0, 0);
                 DateTime gioKetThuc = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 21, 0, 0);
                 CCa_BUS.CaLamViec = new DTO.CCa_DTO(nhanVienSelect.maNhanVien, gioBatDau, gioKetThuc);
