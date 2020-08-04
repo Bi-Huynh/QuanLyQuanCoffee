@@ -43,6 +43,7 @@ namespace QuanLyQuanCoffee
         public virtual DbSet<PhieuNhapNguyenLieu> PhieuNhapNguyenLieux { get; set; }
         public virtual DbSet<PhieuXuatNguyenLieu> PhieuXuatNguyenLieux { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<ThongKe> ThongKes { get; set; }
     }

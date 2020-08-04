@@ -87,7 +87,7 @@
                 <ColumnDefinition  Width="10"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Row="1" Grid.Column="1" Content="Thêm" FontSize="12" x:Name="btnThem" Click="btnThem_Click" Grid.ColumnSpan="3" Margin="0.6,0.4,0.4,0"/>
-            <Button Grid.Row="1" Grid.Column="5" Content="Xóa" FontSize="12" x:Name="btnXoa" Click="btnXoa_Click" Margin="0.4,0.4,0.4,0"/>
+            <Button Grid.Row="1" Grid.Column="5" Content="Đổi trạng thái" FontSize="12" x:Name="btnXoa" Click="btnXoa_Click" Margin="0.4,0.4,0.4,0"/>
             <Button Grid.Row="1" Grid.Column="7" Content="Sửa" FontSize="12" x:Name="btnSua" Click="btnSua_Click" Margin="0.4,0.4,0.4,0"/>
         </Grid>
         <Grid>
@@ -103,7 +103,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
-            <!--<TextBox Grid.Row="0" Grid.Column="1" FontSize="12"></TextBox>-->
+            <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTK" FontSize="12" KeyUp="TextBox_KeyUp"></TextBox>
             <Button Grid.Row="0" Grid.Column="3" Content="Bỏ chọn" Name="btnBochon" Click="btnBochon_Click" FontSize="12"/>
         </Grid>
 
@@ -127,6 +127,7 @@
                             <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding donViTinh,Mode=TwoWay}"/>
                             <DataGridTextColumn Header="Đơn giá" Binding="{Binding donGia,Mode=TwoWay}"/>
                             <DataGridTextColumn Header="Mã loại sản phẩm" Binding="{Binding maLoaiSanPham}"/>
+                            <DataGridTextColumn Header="Trạng thái" Binding="{Binding trangThai}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

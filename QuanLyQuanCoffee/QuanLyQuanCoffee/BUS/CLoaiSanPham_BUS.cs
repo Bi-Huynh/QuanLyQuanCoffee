@@ -16,7 +16,7 @@ namespace QuanLyQuanCoffee.BUS
         private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
         public static List<LoaiSanPham> toList()
         {
-            List<LoaiSanPham> list = quanLyQuanCoffee.LoaiSanPhams.Where(x => x.trangThai == 0).ToList();
+            List<LoaiSanPham> list = quanLyQuanCoffee.LoaiSanPhams.ToList();
             return list == null ? new List<LoaiSanPham>() : list;
         }
         public static List<LoaiSanPham> DSLoaiSP()
@@ -71,9 +71,19 @@ namespace QuanLyQuanCoffee.BUS
                 LoaiSanPham temp = find(loaisanPham.maLoaiSanPham);
                 if (temp != null)
                 {
-                    temp.trangThai = 1;
-                    quanLyQuanCoffee.SaveChanges();
+                    if (temp.trangThai == 0)
+                    {
+                        temp.trangThai = 1;
+
+                        quanLyQuanCoffee.SaveChanges();
+                    }
+                    else
+                    {
+                        temp.trangThai = 0;
+                        quanLyQuanCoffee.SaveChanges();
+                    }    
                 }
+
             }
             catch (DbUpdateException)
             {

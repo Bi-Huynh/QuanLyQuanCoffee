@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Project\PhanTich_DoAn\Quản lý quán coffee (tiếp theo) - luận văn\source\QuanLyQuanCoffee\QuanLyQuanCoffee\QuanLyQuanCoffee.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\HK2_Nam4\New folder\QuanLyQuanCoffee\QuanLyQuanCoffee\QuanLyQuanCoffee\QuanLyQuanCoffee.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

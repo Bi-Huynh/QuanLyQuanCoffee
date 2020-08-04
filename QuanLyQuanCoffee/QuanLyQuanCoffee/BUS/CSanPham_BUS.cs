@@ -22,7 +22,12 @@ namespace QuanLyQuanCoffee.BUS
 
         public static List<SanPham> toList()
         {
-            List<SanPham> list = quanLyQuanCoffee.SanPhams.Where(x => x.trangThai == 0).ToList();
+            List<SanPham> list = quanLyQuanCoffee.SanPhams.ToList();
+            return list == null ? new List<SanPham>() : list;
+        }
+        public static List<SanPham> toListTK(string maSP)
+        {
+            List<SanPham> list = quanLyQuanCoffee.SanPhams.Where(x => x.trangThai == 0&&x.maSanPham.Contains(maSP)==true).ToList();
             return list == null ? new List<SanPham>() : list;
         }
         public static List<SanPham> DsSanPham()
@@ -32,7 +37,7 @@ namespace QuanLyQuanCoffee.BUS
         }
         public static List<string> toListByMaSP()
         {
-            List<string> list = quanLyQuanCoffee.LoaiSanPhams.Select(x => x.maLoaiSanPham).ToList();
+            List<string> list = quanLyQuanCoffee.LoaiSanPhams.Select(x => x.maLoaiSanPham ).ToList();
             return list == null ? new List<string>() : list;
         }
         public static List<SanPham> hienthiTheoMa(string maLoai)
@@ -68,7 +73,27 @@ namespace QuanLyQuanCoffee.BUS
             }
             return true;
         }
-
+        public static bool thaydoiLoai(LoaiSanPham loaiSanPham)
+        {
+            string maLoai = loaiSanPham.maLoaiSanPham;
+            int trangthai = int.Parse(loaiSanPham.trangThai.ToString());
+            List<SanPham> list = quanLyQuanCoffee.SanPhams.Where(x => x.maLoaiSanPham == maLoai).ToList();
+            if (list.Count > 0)
+            {
+                foreach (var a in list)
+                {
+                    a.trangThai = trangthai;
+                    quanLyQuanCoffee.SaveChanges(); 
+                }
+                
+                return true;
+            }
+            else
+            {
+                return false;
+            }    
+           
+        }
         public static bool remove(SanPham sanPham)
         {
             try
@@ -76,8 +101,16 @@ namespace QuanLyQuanCoffee.BUS
                 SanPham temp = find(sanPham.maSanPham);
                 if (temp != null)
                 {
-                    temp.trangThai = 1;
-                    quanLyQuanCoffee.SaveChanges();
+                    if (temp.trangThai == 0)
+                    {
+                        temp.trangThai = 1;
+                        quanLyQuanCoffee.SaveChanges();
+                    }
+                    else
+                    {
+                        temp.trangThai = 0;
+                        quanLyQuanCoffee.SaveChanges();
+                    }    
                 }
             }
             catch (DbUpdateException)

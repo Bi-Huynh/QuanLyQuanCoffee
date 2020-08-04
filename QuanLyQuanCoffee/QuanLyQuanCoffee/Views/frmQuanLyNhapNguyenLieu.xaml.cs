@@ -164,7 +164,7 @@ namespace QuanLyQuanCoffee.Views
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn nhân viên");
+                MessageBox.Show("Vui lòng chọn phiếu nhập");
             }
         }
 

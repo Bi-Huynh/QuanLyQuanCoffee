@@ -13,6 +13,7 @@ namespace QuanLyQuanCoffee.BUS
         {
             List<ChiTietPhieuXuat> list = quanLyQuanCoffee.ChiTietPhieuXuats.Where(x => x.maPhieuXuat == maPhieuXuat).ToList();
             return list == null ? new List<ChiTietPhieuXuat>() : list;
+
         }
     }
 }

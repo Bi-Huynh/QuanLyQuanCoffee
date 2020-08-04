@@ -70,5 +70,29 @@ namespace QuanLyQuanCoffee.Views
 
             }
         }
+
+        private void txtTK_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (txtTK.Text == "")
+            {
+                hienthiHoaDon();
+                return;
+            }
+
+            // nếu combox tìm kiếm là 0 tức là tìm theo mã phiếu nhập
+
+            HienThiTK(txtTK.Text);
+        }
+        public void HienThiTK(string maHoadon)
+        {
+            try
+            {
+                dgQlhoadon.ItemsSource = CHoaDon_BUS.toListTK(maHoadon);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi: " + ex.Message);
+            }
+        }
     }
 }

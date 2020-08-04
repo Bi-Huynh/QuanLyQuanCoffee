@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a0dbfc93430942b388d34214e821aeb4" Name="Diagram1">
+      <Diagram DiagramId="171d6edc7b77490f967bc90b46215e0c" Name="Diagram1">
         <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ChiTietChamCong" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ChiTietHoaDon" Width="1.5" PointX="7.5" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ChiTietNguyenLieu" Width="1.5" PointX="5.25" PointY="37" IsExpanded="true" />
@@ -23,6 +23,7 @@
         <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.PhieuNhapNguyenLieu" Width="1.5" PointX="5.25" PointY="23.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.PhieuXuatNguyenLieu" Width="1.5" PointX="5.25" PointY="26.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.SanPham" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.sysdiagram" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.TaiKhoan" Width="1.5" PointX="8.25" PointY="18.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyQuanCoffeeModel.ThongKe" Width="1.5" PointX="6" PointY="31.5" IsExpanded="true" />
         <AssociationConnector Association="QuanLyQuanCoffeeModel.FK_ChiTietChamCong_NhanVien" ManuallyRouted="false" />

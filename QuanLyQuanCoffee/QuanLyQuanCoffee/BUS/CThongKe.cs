@@ -19,6 +19,7 @@ namespace QuanLyQuanCoffee.BUS
             List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes.ToList();
             return thongKes == null ? new List<ThongKe>() : thongKes;
 
+
         }
 
         public static List<ThongKe> toList(string maThongKe)
@@ -27,13 +28,19 @@ namespace QuanLyQuanCoffee.BUS
                 .Where(x => x.maThongKe.Contains(maThongKe)).ToList();
             return thongKes == null ? new List<ThongKe>() : thongKes;
 
+
         }
 
         public static List<ThongKe> toList(DateTime ngayBatDau, DateTime ngayKetThuc)
         {
             List<ThongKe> thongKes = quanLyQuanCoffee.ThongKes
-                .Where(x => x.ngayLap >= ngayBatDau && x.ngayLap <= ngayKetThuc).ToList();
+
+                .Where(x => x.ngayLap.Value.Date >= ngayBatDau.Date && x.ngayLap.Value.Date <= ngayKetThuc.Date).ToList();
             return thongKes == null ? new List<ThongKe>() : thongKes;
+
+            //    .Where(x => x.ngayLap >= ngayBatDau && x.ngayLap <= ngayKetThuc).ToList();
+            //return thongKes == null ? new List<ThongKe>() : thongKes;
+
 
         }
 
