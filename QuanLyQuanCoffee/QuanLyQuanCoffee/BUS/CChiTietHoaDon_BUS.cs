@@ -16,6 +16,11 @@ namespace QuanLyQuanCoffee.BUS
             List<ChiTietHoaDon> list = quanLyQuanCoffee.ChiTietHoaDons.Where(x => x.maHoaDon == maHoaDon).ToList();
             return list == null ? new List<ChiTietHoaDon>() : list;
         }
+        public static List<ChiTietHoaDon> toList()
+        {
+            List<ChiTietHoaDon> list = quanLyQuanCoffee.ChiTietHoaDons.ToList();
+            return list == null ? new List<ChiTietHoaDon>() : list;
+        }
         public static ChiTietHoaDon find(string maHoaDon)
         {
             return quanLyQuanCoffee.ChiTietHoaDons.Find(maHoaDon);

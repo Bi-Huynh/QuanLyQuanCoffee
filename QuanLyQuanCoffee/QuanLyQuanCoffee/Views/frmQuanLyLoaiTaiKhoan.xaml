@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
       mc:Ignorable="d" 
       d:DesignHeight="685" d:DesignWidth="1200"
-      Title="frmQuanLyLoaiTaiKhoan">
+      Title="Quản lý loại tài khoản">
 
     <StackPanel>
         <Grid >
@@ -25,8 +25,6 @@
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="1" Grid.Column="1" Content="QUẢN LÝ LOẠI TÀI KHOẢN" FontSize="18" FontFamily="Arial"></Label>
-            <!--<Button Grid.Row="1" Grid.Column="3" Content="" FontSize="12" />
-            <Button Grid.Row="1" Grid.Column="5" Content="Trở về"  FontSize="12"/>-->
         </Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -49,7 +47,6 @@
             <TextBox Grid.Row="2" Grid.Column="3" FontSize="12" Name="txttenLoaitaikhoan" Text="{Binding tenloai,Mode=TwoWay}" Grid.ColumnSpan="3" Margin="0,0,9,9" Grid.RowSpan="2"></TextBox>
         </Grid>
 
-
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
@@ -68,7 +65,6 @@
             <Button Grid.Row="0" Grid.Column="3" Content="Xóa" x:Name="btnXoaLoaiTK" Click="btnXoaLoaiTK_Click" FontSize="12"/>
             <Button Grid.Row="0" Grid.Column="5" Content="Sửa" x:Name="btnSuaLoaiTK" Click="btnSuaLoaiTK_Click" FontSize="12"/>
         </Grid>
-
 
         <Grid>
             <Grid.RowDefinitions>

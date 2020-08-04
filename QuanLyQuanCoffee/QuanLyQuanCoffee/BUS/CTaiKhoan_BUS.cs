@@ -19,30 +19,35 @@ namespace QuanLyQuanCoffee.BUS
             List<TaiKhoan> list = quanLyQuanCoffee.TaiKhoans.Where(x => x.trangThai == 0).ToList();
             return list == null ? new List<TaiKhoan>() : list;
         }
-        public static TaiKhoan find(string maTaiKhoan)
+
+        public static TaiKhoan find(string maNhanVien)
         {
-            TaiKhoan taiKhoan = quanLyQuanCoffee.TaiKhoans.Find(maTaiKhoan);
+            TaiKhoan taiKhoan = quanLyQuanCoffee.TaiKhoans.Find(maNhanVien);
             return taiKhoan;
         }
+
         public static Boolean findTrangThai(string maTaiKhoan)
         {
             TaiKhoan taiKhoan = quanLyQuanCoffee.TaiKhoans.Find(maTaiKhoan);
-            if(taiKhoan.trangThai==0)
+            if (taiKhoan.trangThai == 0)
             {
                 return false;
-            }    
+            }
             return true;
         }
+
         public static string KTtaiKhoanDaXoa(TaiKhoan taiKhoan)
         {
             string a = MessageBox.Show("Nhân viên này đã có tài khoản nhưng đã được xóa, bạn có muốn phục hồi không", "Thông báo", MessageBoxButton.YesNo).ToString();
             return a;
         }
+
         public static List<string> toListByMaLoaiTK()
         {
             List<string> list = quanLyQuanCoffee.LoaiTaiKhoans.Select(x => x.maLoaiTaiKhoan).ToList();
             return list == null ? new List<string>() : list;
         }
+
         public static List<string> toListByMaLoaiNV()
         {
             List<string> list = quanLyQuanCoffee.NhanViens.Select(x => x.maNhanVien).ToList();
@@ -74,6 +79,7 @@ namespace QuanLyQuanCoffee.BUS
             }
             return true;
         }
+
         public static bool remove(TaiKhoan taiKhoan)
         {
             try
@@ -97,6 +103,7 @@ namespace QuanLyQuanCoffee.BUS
             }
             return true;
         }
+
         public static bool edit(TaiKhoan taiKhoan)
         {
             TaiKhoan temp = find(taiKhoan.maNhanVien);
@@ -123,6 +130,7 @@ namespace QuanLyQuanCoffee.BUS
             }
             return true;
         }
+
         public static bool hoiPhucTK(TaiKhoan taiKhoan)
         {
             TaiKhoan temp = find(taiKhoan.maNhanVien);
@@ -149,6 +157,7 @@ namespace QuanLyQuanCoffee.BUS
             }
             return true;
         }
+
         public static bool KTRong(TaiKhoan taiKhoan)
         {
 
@@ -167,6 +176,24 @@ namespace QuanLyQuanCoffee.BUS
             }
 
             return true;
+        }
+
+        public static bool doiMatKhau(TaiKhoan tk, string matKhauMoi)
+        {
+            try
+            {
+                TaiKhoan taiKhoan = quanLyQuanCoffee.TaiKhoans.Find(tk.maNhanVien);
+                taiKhoan.matKhau = matKhauMoi;
+
+                quanLyQuanCoffee.SaveChanges();
+                return true;
+            }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show("Không thể lưu vào cơ sở dữ liệu");
+            }
+
+            return false;
         }
     }
 }

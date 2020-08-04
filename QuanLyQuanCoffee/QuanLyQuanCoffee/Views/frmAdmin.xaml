@@ -9,7 +9,6 @@
     <StackPanel>
         <Menu Height="30" 
               Name="Menu" VerticalAlignment="Top">
-            <MenuItem x:Name="order" Header="Order" Click="order_Click"/>
             <MenuItem x:Name="nhanSu" Header="Nhân Sự" Height="30">
                 <MenuItem Header="Quản Lý Nhân Viên"
                           Name="gd_QuanLyNhanVien" 
@@ -54,13 +53,10 @@
             </MenuItem>
             <MenuItem x:Name="taiKhoan" Header="Tài Khoản">
                 <MenuItem Header="Quản lý tài khoản" Name="gd_quanlyTaiKhoan" Click="gd_quanlyTaiKhoan_Click"></MenuItem>
-                <MenuItem Header="Quản lý loại tài khoản" Name="gd_quanlyLoaiTaiKhoan" Click="gd_quanlyLoaiTaiKhoan_Click">
-
-                </MenuItem>
+                <MenuItem Header="Quản lý loại tài khoản" Name="gd_quanlyLoaiTaiKhoan" Click="gd_quanlyLoaiTaiKhoan_Click"></MenuItem>
+                <MenuItem Header="Đổi mật khẩu" Name="gd_doiMatKhau" Click="gd_doiMatKhau_Click"></MenuItem>
             </MenuItem>
             <MenuItem x:Name="quanLyKetCa" Header="Quản lý Kết Ca" Click="quanLyKetCa_Click">
-            </MenuItem>
-            <MenuItem x:Name="ketCa" Header="Kết Ca" Click="ketCa_Click">
             </MenuItem>
             <MenuItem x:Name="dangXuat" Header="Đăng xuất" Click="dangXuat_Click">
 

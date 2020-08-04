@@ -102,8 +102,8 @@ namespace QuanLyQuanCoffee.Views
             {
                 try
                 {
-                    Uri uri = new Uri(url, UriKind.Relative);
-                    //Uri uri = new Uri(url);
+                    //Uri uri = new Uri(url, UriKind.Relative);
+                    Uri uri = new Uri(url);
                     imgAnh.Source = new BitmapImage(uri);
                 }
                 catch (ArgumentNullException)
@@ -180,7 +180,7 @@ namespace QuanLyQuanCoffee.Views
 
             if (result == MessageBoxResult.Yes)
             {
-                string phai = cmbPhai.SelectedValue.ToString();
+                //string phai = cmbPhai.SelectedValue.ToString();
                 NhanVien nhanVien = new NhanVien();
                 nhanVien.maNhanVien = txtMaNhanVien.Text;
                 nhanVien.hoNhanVien = txtHoNhanVien.Text;
@@ -212,9 +212,9 @@ namespace QuanLyQuanCoffee.Views
             openFileDialog.RestoreDirectory = true;
             if (openFileDialog.ShowDialog() == true)
             {
-                string url = "";
-                url = openFileDialog.FileName;
-                
+                //string url = "";
+                urlAnh = openFileDialog.FileName;
+
 
                 hienThiHinh(urlAnh);
             }

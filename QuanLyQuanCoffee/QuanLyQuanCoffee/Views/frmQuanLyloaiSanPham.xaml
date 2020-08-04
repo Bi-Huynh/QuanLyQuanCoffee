@@ -66,7 +66,7 @@
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Row="0" Grid.Column="1" Content="Thêm" x:Name="btnThemLoaiSP" Click="btnThemLoaiSP_Click"   FontSize="12"/>
-            <Button Grid.Row="0" Grid.Column="3" Content="Xóa"  x:Name="btnXoaLoaiSP"  Click="btnXoaLoaiSP_Click" FontSize="12"/>
+            <Button Grid.Row="0" Grid.Column="3" Content="Đổi trạng thái"  x:Name="btnXoaLoaiSP"  Click="btnXoaLoaiSP_Click" FontSize="12"/>
             <Button Grid.Row="0" Grid.Column="5" Content="Sửa"  x:Name="btnSuaLoaiSP"  Click="btnSuaLoaiSP_Click" FontSize="12"/>
         </Grid>
 
@@ -104,7 +104,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Mã Loại" Binding="{Binding maLoaiSanPham}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Tên Loại" Binding="{Binding tenLoai}"></DataGridTextColumn>
-                            <!--<DataGridTextColumn Header="Trạng Thái" Binding="{Binding trangThai}"></DataGridTextColumn>-->
+                            <DataGridTextColumn Header="Trạng Thái" Binding="{Binding trangThai}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

@@ -293,10 +293,10 @@ namespace QuanLyQuanCoffee.Services
             {
                 return false;
             }
-            if(hoaDon.maNhanVien==null)
-            {
-                return false;
-            }    
+            //if(hoaDon.maNhanVien == null)
+            //{
+            //    return false;
+            //}    
             return true;
         }
         public static bool kiemTraThongTin(LoaiNguyenLieu loaiNguyenLieu)

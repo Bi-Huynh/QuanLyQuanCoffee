@@ -1,4 +1,5 @@
-﻿using QuanLyQuanCoffee.Services;
+﻿using QuanLyQuanCoffee.DTO;
+using QuanLyQuanCoffee.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
@@ -32,11 +33,42 @@ namespace QuanLyQuanCoffee.BUS
             }
             return hoaDons;
         }
+
         public static List<HoaDon> toListTK(string maHoaDon)
         {
             List<HoaDon> list = quanLyQuanCoffee.HoaDons.Where(x => x.trangThai == 0 && x.maHoaDon.Contains(maHoaDon) == true).ToList();
             return list == null ? new List<HoaDon>() : list;
         }
+
+
+        public static List<HoaDon> toList(CCa_DTO caLam)
+        {
+            List<HoaDon> hoaDons = new List<HoaDon>();
+            foreach (var hoaDon in quanLyQuanCoffee.HoaDons.ToList())
+            {
+                if (caLam.GioBatDau.Hour == 8)
+                {
+                    if (caLam.GioBatDau.Date == hoaDon.ngayLap.Date
+                        && hoaDon.ngayLap.Hour >= caLam.GioBatDau.Hour
+                        && hoaDon.ngayLap.Hour <= 15)
+                    {
+                        hoaDons.Add(hoaDon);
+                    }
+                }
+                else
+                {
+                    if (caLam.GioBatDau.Date == hoaDon.ngayLap.Date
+                        && hoaDon.ngayLap.Hour >= caLam.GioBatDau.Hour
+                        && hoaDon.ngayLap.Hour <= 21)
+                    {
+                        hoaDons.Add(hoaDon);
+                    }
+                }
+            }
+            return hoaDons;
+        }
+
+
         public static HoaDon find(string maHoaDon)
         {
             HoaDon hoaDon = quanLyQuanCoffee.HoaDons.Find(maHoaDon);
@@ -116,7 +148,10 @@ namespace QuanLyQuanCoffee.BUS
                 {
                     if (hoaDon.maNhanVien == maNhanVien && hoaDon.ngayLap.Month == thang)
                     {
-                        soLuongHoaDon += hoaDon.ChiTietHoaDons.Count();
+                        foreach (var chiTietHoaDon in hoaDon.ChiTietHoaDons)
+                        {
+                            soLuongHoaDon += chiTietHoaDon.soLuong.Value;
+                        }
                     }
                 }
             }
@@ -129,6 +164,36 @@ namespace QuanLyQuanCoffee.BUS
                 MessageBox.Show("Đếm số lượng chi tiết hóa đơn lỗi, CHoaDon, Overflow");
             }
             return soLuongHoaDon;
+        }
+
+        public static int demSoLuongSanPham(string maSanPham, int thang)
+        {
+            int soLuongSanPham = 0;
+            try
+            {
+                foreach (var hoaDon in toList())
+                {
+                    if (hoaDon.ngayLap.Month == thang)
+                    {
+                        foreach (var chiTietHoaDon in CChiTietHoaDon_BUS.toList())
+                        {
+                            if (chiTietHoaDon.maSanPham == maSanPham)
+                            {
+                                soLuongSanPham += chiTietHoaDon.soLuong.Value;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Đếm số lượng chi tiết hóa đơn lỗi, CHoaDon, ArgNull");
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Đếm số lượng chi tiết hóa đơn lỗi, CHoaDon, Overflow");
+            }
+            return soLuongSanPham;
         }
 
         public static Boolean add(HoaDon hoaDon)
@@ -186,6 +251,36 @@ namespace QuanLyQuanCoffee.BUS
             catch (OverflowException)
             {
                 MessageBox.Show("Đếm số lượng chi tiết hóa đơn lỗi, CHoaDon, Overflow");
+            }
+            return result;
+        }
+
+        public static double tongTienBanSanPham(string maSanPham, int thang)
+        {
+            double result = 0;
+            try
+            {
+                foreach (var hoaDon in toList())
+                {
+                    if (hoaDon.ngayLap.Month == thang)
+                    {
+                        foreach (var chiTietHoaDon in hoaDon.ChiTietHoaDons)
+                        {
+                            if (chiTietHoaDon.maSanPham == maSanPham)
+                            {
+                                result += chiTietHoaDon.thanhTien.Value;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Đếm tổng tiền bán của sản phẩm lỗi, CHoaDon, ArgNull");
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Đếm tổng tiền bán của sản phẩm lỗi, CHoaDon, Overflow");
             }
             return result;
         }

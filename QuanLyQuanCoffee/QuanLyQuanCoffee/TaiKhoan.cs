@@ -22,5 +22,9 @@ namespace QuanLyQuanCoffee
     
         public virtual LoaiTaiKhoan LoaiTaiKhoan { get; set; }
         public virtual NhanVien NhanVien { get; set; }
+        public override string ToString()
+        {
+            return maNhanVien;
+        }
     }
 }

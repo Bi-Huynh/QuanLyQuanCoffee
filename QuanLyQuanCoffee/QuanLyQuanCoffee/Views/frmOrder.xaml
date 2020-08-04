@@ -9,129 +9,96 @@
       Title="frmOder" MinWidth="1200" MinHeight="685">
 
     <StackPanel>
-        <StackPanel>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.05*"></ColumnDefinition>
-                    <ColumnDefinition Width="4*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.05*"></ColumnDefinition>
-                    <ColumnDefinition Width="5*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.05*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition MinHeight="685"></RowDefinition>
-                </Grid.RowDefinitions>
-                <ListBox Grid.Column="5" Grid.Row="1" Name="LstBoxLoaisanpham"  BorderBrush="Blue" Background="White" FontFamily="Arial" MouseDoubleClick="LstBoxLoaisanpham_MouseDoubleClick" FontSize="20" Loaded="LstBoxLoaisanpham_Loaded">
-
-                </ListBox>
-                <Grid Grid.Row="0" Grid.Column="3">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition ></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition Height="585"></RowDefinition>
-                        <RowDefinition Height="50"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" Grid.Column="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="10"></RowDefinition>
-                            <RowDefinition Height="30"></RowDefinition>
-                            <RowDefinition Height="10"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <TextBox Grid.Row="1" Grid.Column="1" BorderBrush="Black" Name="txtTmkiemsanpham" FontFamily="Arial" VerticalContentAlignment="Center"/>
-                        <Button Grid.Row="1" Grid.Column="3" Name="btnTimkiemsanpham" Content="Tìm kiếm"/>
-                    </Grid>
-                    <Grid Grid.Row="1" Grid.Column="0">
-                        <DataGrid  Name="dgDanhsachsanpham" FontSize="20" 
-                                   Margin="0,0,0.2,-0.2" AutoGenerateColumns="False" 
-                                   SelectedValuePath="maSanPham" ColumnWidth="0.3*" IsReadOnly="True">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Mã sản phẩm" Binding="{Binding maSanPham}"/>
-                                <DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding tenSanPham}"/>
-                                <DataGridTextColumn Header="Đơn Giá" Binding="{Binding donGia}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
-                    <Grid Grid.Row="2" Grid.Column="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="10"></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Button Grid.Column="1" Grid.Row="1" Content="Chọn" Click="btnChonsanpham_Click" Name="btnChonsanpham" Background="#FF70C5C3"></Button>
-                    </Grid>
-
-                </Grid>
-                <Grid Grid.Row="0" Grid.Column="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="7*"></RowDefinition>
-                        <RowDefinition Height="60"></RowDefinition>
-                        <RowDefinition Height="50"></RowDefinition>
-                        <RowDefinition Height="50"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="2" Grid.Column="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="2*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0" Content="Tổng tiền:" VerticalAlignment="Center" FontFamily="Arial" FontSize="24" ></Label>
-                        <TextBlock Grid.Row="1" Grid.Column="1" Background="#FFEBD5D5" FontFamily="Arial" FontSize="24" Name="txtBoxTongtien" ></TextBlock>
-                    </Grid>
-                    <Grid Grid.Row="1" Grid.Column="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="15"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="15"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-
-
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition Height="5"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Label Content="Nhân Viên Thu Ngân" Grid.Row="0" Grid.Column="0" FontSize="14"></Label>
-                        <Label Content="Mã hóa đơn" Grid.Row="0" Grid.Column="2" FontSize="14"></Label>
-                        <TextBlock Loaded="txtBoxNv_Loaded" Grid.Row="1" Grid.Column="0" Background="#FF71E6E8" FontSize="12" Name="txtBoxNv"></TextBlock>
-
-                        <TextBox Grid.Row="1" Grid.Column="2" Name="txtMahoadon" FontSize="15" IsEnabled="False"></TextBox>
-                        <Button Grid.Column="4" Grid.Row="1" Content="Bỏ Chọn" Name="btnBochon" Click="btnBochon_Click"></Button>
-                    </Grid>
-                    <Button Content="Tính tiền" Grid.Column="0" Grid.Row="3" Name="btnTinhtien"  Background="#FF0056FF" FontFamily="Arial" FontSize="24" Click="btnTinhtien_Click"></Button>
-                    <DataGrid Grid.Row="0" Grid.Column="0"  Background="White" 
-                              FontFamily="Arial" Name="dgChitiethoadon" 
-                              SelectedValuePath="maSanPham" AutoGenerateColumns="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã sản phẩm" Binding="{Binding maSanPham}"/>
-                            <DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding tenSanPham}"/>
-                            <DataGridTextColumn Header="Đơn giá" Binding="{Binding donGia}"/>
-                            <DataGridTextColumn Header="Số lượng" Binding="{Binding soLuong}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Thành tiền" Binding="{Binding thanhTien}"></DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-            </Grid>
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+            <Label Content="Tên nhân viên thu ngân: "/>
+            <TextBlock x:Name="txtTenNhanVien" Width="200" Height="25" 
+                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                       Loaded="txtTenNhanVien_Loaded"/>
         </StackPanel>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width= "1.5*"/>
+                <ColumnDefinition Width="1.5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ListBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Name="LstBoxLoaisanpham"
+                     BorderBrush="Blue" Background="White" MaxHeight="640"
+                     FontSize="15" Loaded="LstBoxLoaisanpham_Loaded"
+                     MouseDoubleClick="LstBoxLoaisanpham_MouseDoubleClick">
+            </ListBox>
+
+            <DataGrid Grid.Row="0" Grid.Column="1" Grid.RowSpan="7" MaxHeight="640"
+                      Name="dgDanhsachsanpham" Background="White" Margin="5,0,0,0"
+                      FontSize="15" VerticalScrollBarVisibility="Auto" IsReadOnly="True" 
+                      SelectedValuePath="maSanPham" AutoGenerateColumns="False"
+                      Loaded="dgDanhsachsanpham_Loaded" MouseDoubleClick="dgDanhsachsanpham_MouseDoubleClick">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã sản phẩm" Binding="{Binding maSanPham}" Visibility="Hidden"/>
+                    <DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding tenSanPham}" Width=".2*"/>
+                    <DataGridTextColumn Header="Đơn giá" Binding="{Binding donGia}" Width=".1*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <DataGrid Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Background="White"
+                      Name="dgChitiethoadon" FontSize="15" Margin="5,0,0,0" Height="365" MaxHeight="365"
+                      VerticalScrollBarVisibility="Auto" IsReadOnly="True"
+                      SelectedValuePath="maSanPham" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã sản phẩm" Binding="{Binding maSanPham}" Visibility="Hidden"/>
+                    <DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding tenSanPham}" Width=".4*"/>
+                    <DataGridTextColumn Header="Đơn giá" Binding="{Binding donGia}" Width=".2*"/>
+                    <DataGridTextColumn Header="Số lượng" Binding="{Binding soLuong}" Width=".12*"/>
+                    <DataGridTextColumn Header="Thành tiền" Binding="{Binding thanhTien}" Width=".2*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button x:Name="btnBoChon" Grid.Column="2" Grid.Row="1"
+                    Margin="5,10,0,0" Height="30" Content="Bỏ Chọn"
+                    Click="btnBochon_Click"/>
+
+            <Button x:Name="btnHuy" Grid.Column="3" Grid.Row="1"
+                    Margin="5,10,0,0" Height="30" Content="Hủy"/>
+
+            <Label Grid.Row="2" Grid.Column="2" Content="Mã hóa đơn: "
+                   Margin="5,10,0,0" FontSize="20"/>
+
+            <TextBlock x:Name="txtMaHoaDon" Grid.Row="2" Grid.Column="3"
+                       Margin="5,10,0,0" FontSize="20"/>
+
+            <Label Grid.Row="3" Grid.Column="2" Content="Tổng tiền: "
+                   Margin="5,10,0,0" FontSize="20"/>
+
+            <TextBlock x:Name="txtTongTien" Grid.Row="3" Grid.Column="3"
+                       Margin="5,10,0,0" FontSize="20"/>
+
+            <Label Grid.Row="4" Grid.Column="2" Content="Tiền khách đưa: "
+                   Margin="5,10,0,0" FontSize="20"/>
+
+            <TextBox x:Name="txtTienKhachDua" Grid.Row="4" Grid.Column="3"
+                     Margin="5,10,0,0" FontSize="20"
+                     KeyDown="txtTienKhachDua_KeyDown"/>
+
+            <Label Grid.Row="5" Grid.Column="2" Content="Tiền thối lại: "
+                   Margin="5,10,0,0" FontSize="20"/>
+
+            <TextBlock x:Name="txtTienThoiLai" Grid.Row="5" Grid.Column="3"
+                       Margin="5,10,0,0" FontSize="20"/>
+
+            <Button Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2"
+                    x:Name="btnTinhTien" Content="Tính tiền"
+                    Margin="5,10,0,0" FontSize="15" Height="35"
+                    Click="btnTinhtien_Click"/>
+        </Grid>
     </StackPanel>
 </Page>

@@ -21,43 +21,14 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmAdmin : Window
     {
-        private QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
-        private TaiKhoan taiKhoan1;
-        private LoaiTaiKhoan ltk;
-        private NhanVien nhanVien;
-        private CCa_DTO ca;
+        private TaiKhoan taiKhoanSelect;
 
         public frmAdmin(TaiKhoan taiKhoan = null)
         {
             InitializeComponent();
-            taiKhoan1 = taiKhoan;
-            if (taiKhoan == null)
+            if (taiKhoan != null)
             {
-                taiKhoan1 = new TaiKhoan();
-            }
-            else
-            {
-                ltk = quanLyQuanCoffee.LoaiTaiKhoans.Find(taiKhoan.maLoaiTaiKhoan);
-            }
-            kiemTraQuyen(taiKhoan1);
-            nhanVien = quanLyQuanCoffee.NhanViens.Find(taiKhoan1.maNhanVien);
-            if (nhanVien == null)
-            {
-                nhanVien = new NhanVien();
-            }
-
-            ca = new CCa_DTO(nhanVien.maNhanVien, DateTime.Now);
-        }
-
-        public void kiemTraQuyen(TaiKhoan taiKhoan1)
-        {
-            if (taiKhoan1.maLoaiTaiKhoan != "00001" && taiKhoan1.maLoaiTaiKhoan != null)
-            {
-                nhanSu.IsEnabled = false;
-                nguyenLieu.IsEnabled = false;
-                sanPham.IsEnabled = false;
-                hoaDon.IsEnabled = false;
-                taiKhoan.IsEnabled = false;
+                taiKhoanSelect = taiKhoan;
             }
         }
 
@@ -78,7 +49,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void gd_QuanLyNhapNguyenLieu_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new frmQuanLyNhapNguyenLieu(nhanVien);
+            Main.Content = new frmQuanLyNhapNguyenLieu();
         }
 
         private void gd_quanlyTaiKhoan_Click(object sender, RoutedEventArgs e)
@@ -89,11 +60,6 @@ namespace QuanLyQuanCoffee.Views
         private void gd_quanlyLoaiTaiKhoan_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new frmQuanLyLoaiTaiKhoan();
-        }
-
-        private void order_Click(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new frmOrder(nhanVien);
         }
 
         public void dangXuat_Click(object sender, RoutedEventArgs e)
@@ -116,13 +82,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void gd_QuanLyXuatNguyenLieu_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new frmQuanLyPhieuXuatNguyenLieu(nhanVien);
-        }
-
-        private void ketCa_Click(object sender, RoutedEventArgs e)
-        {
-            frmKetCa _frmKetCa = new frmKetCa(ca, nhanVien);
-            _frmKetCa.Show();
+            Main.Content = new frmQuanLyPhieuXuatNguyenLieu();
         }
 
         private void quanLyKetCa_Click(object sender, RoutedEventArgs e)
@@ -133,6 +93,11 @@ namespace QuanLyQuanCoffee.Views
         private void gd_QuanLyThongKe_Click(object sender, RoutedEventArgs e)
         {
            Main.Content=new frmQuanLyThongKe();
+        }
+
+        private void gd_doiMatKhau_Click(object sender, RoutedEventArgs e)
+        {
+            new frmDoiTaiKhoan(taiKhoanSelect).Show();
         }
     }
 }

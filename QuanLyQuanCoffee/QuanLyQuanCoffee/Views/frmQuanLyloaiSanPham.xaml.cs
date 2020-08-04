@@ -85,15 +85,19 @@ namespace QuanLyQuanCoffee.Views
                     string maloai = a.maLoaiSanPham.ToString();
                     if (maloai == null)
                     {
-                        MessageBox.Show("Khong tim thay");
+                        MessageBox.Show("Không tìm thấy");
                     }
                     else
                     {
                         a = CLoaiSanPham_BUS.find(maloai);
                         if (CLoaiSanPham_BUS.remove(a))
                         {
-                            MessageBox.Show("Xóa thành công " + maloai + " khỏi danh sách");
-
+                            if (CSanPham_BUS.thaydoiLoai(a))
+                            {
+                                MessageBox.Show("Đã thay đổi trạng thái " + maloai + " thành công.");
+                                HienThiDSLoaiSanPham();
+                                load();
+                            }
                         }
                     }
                 }
@@ -106,8 +110,10 @@ namespace QuanLyQuanCoffee.Views
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn sản phẩm cần xóa");
+                MessageBox.Show("Vui lòng chọn sản phẩm cần thay đổi trạng thái");
             }
+            HienThiDSLoaiSanPham();
+            load();
         }
 
         private void btnSuaLoaiSP_Click(object sender, RoutedEventArgs e)

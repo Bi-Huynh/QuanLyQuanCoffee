@@ -21,36 +21,49 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmQuanLyPhieuXuatNguyenLieu : Page
     {
-        NhanVien nhanVienSelected;
-        private PhieuXuatNguyenLieu phieuXuatnguyenlieuSelect= new PhieuXuatNguyenLieu();
 
-        public frmQuanLyPhieuXuatNguyenLieu(NhanVien nhanVien)
+        private NhanVien nhanVienSelected;
+        private PhieuXuatNguyenLieu phieuXuatnguyenlieuSelect = new PhieuXuatNguyenLieu();
+
+
+        public frmQuanLyPhieuXuatNguyenLieu(NhanVien nhanVien = null)
         {
             InitializeComponent();
+
             nhanVienSelected = nhanVien;
+            if (nhanVienSelected == null)
+            {
+                nhanVienSelected = new NhanVien();
+            }
+
             hienThiPhieuXuat(CPhieuXuatNguyenLieu_BUS.toList());
+
+            //hienThiPhieuXuat();
+
+            // r đó
+
         }
-        //public void hienThiPhieuXuat()
-        //{
-        //    List<PhieuXuatNguyenLieu> list= CPhieuXuatNguyenLieu_BUS.toList();
-        //    dgDSPhieuXuat.ItemsSource = list;
-        //    //dgDSPhieuXuat.ItemsSource = list.Select(x => new
-        //    //     {
-        //    //         maPhieuXuat = x.maPhieuXuat,
-        //    //         ngayXuat = x.ngayXuat.Value.ToString("dd/MM/yyyy"),
-        //    //         tongThanhTien = x.tongThanhTien
-        //    //     });
-        //}
+        public void hienThiPhieuXuat()
+        {
+            List<PhieuXuatNguyenLieu> list = CPhieuXuatNguyenLieu_BUS.toList();
+            dgDSPhieuXuat.ItemsSource = list;
+            //dgDSPhieuXuat.ItemsSource = list.Select(x => new
+            //     {
+            //         maPhieuXuat = x.maPhieuXuat,
+            //         ngayXuat = x.ngayXuat.Value.ToString("dd/MM/yyyy"),
+            //         tongThanhTien = x.tongThanhTien
+            //     });
+        }
         public void hienThiPhieuXuat(List<PhieuXuatNguyenLieu> list)
         {
-           
+
             //dgDSPhieuXuat.ItemsSource = list;
             dgDSPhieuXuat.ItemsSource = list.Select(x => new
-                 {
-                     maPhieuXuat = x.maPhieuXuat,
-                     ngayXuat = x.ngayXuat.Value.ToString("dd/MM/yyyy"),
-                     tongThanhTien = x.tongThanhTien
-                 });
+            {
+                maPhieuXuat = x.maPhieuXuat,
+                ngayXuat = x.ngayXuat.Value.ToString("dd/MM/yyyy"),
+                tongThanhTien = x.tongThanhTien
+            });
         }
 
         //private void hienThiDSPhieuNhap(List<PhieuNhapNguyenLieu> list)
@@ -150,12 +163,12 @@ namespace QuanLyQuanCoffee.Views
             //if (cmbTimKiem.SelectedIndex == 1)
             //{
             //    txtTimKiem.Visibility = Visibility.Hidden;
-               
+
             //}
             //else
             //{
             //    txtTimKiem.Visibility = Visibility.Visible;
-               
+
             //}
         }
     }

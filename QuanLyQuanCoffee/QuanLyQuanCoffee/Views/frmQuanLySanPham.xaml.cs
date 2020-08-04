@@ -178,13 +178,13 @@ namespace QuanLyQuanCoffee.Views
             {
                 if (CSanPham_BUS.remove(sanPhamSelect))
                 {
-                    MessageBox.Show("Xóa thành công");
+                    MessageBox.Show("Thay đổi trạng thái thành công");
                     hienthiSP();
                     load();
                 }
                 else
                 {
-                    MessageBox.Show("Sản phẩm đã tồn tại trong chi tiết hóa đơn");
+                    MessageBox.Show("Không thể thay đổi, có lỗi");
                 }
             }
             else
