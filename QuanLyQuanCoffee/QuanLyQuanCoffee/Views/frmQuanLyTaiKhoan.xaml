@@ -75,14 +75,19 @@
                 <ColumnDefinition  Width="0.05*"/>
                 <ColumnDefinition/>
                 <ColumnDefinition  Width="10"/>
+                <ColumnDefinition/>
+                <ColumnDefinition  Width="0.05*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition  Width="10"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Row="1" Grid.Column="1" Content="Thêm" x:Name="btnThemTK" Click="btnThemTK_Click"  FontSize="12"/>
             <Button Grid.Row="1" Grid.Column="3" Content="Thay đổi trạng thái" x:Name="btnXoaTK" Click="btnXoaTK_Click" FontSize="12"/>
             <Button Grid.Row="1" Grid.Column="5" Content="Sửa"  x:Name="btnSuaTK" Click="btnSuaTK_Click" FontSize="12"/>
+            <Button Grid.Row="1" Grid.Column="7" Content="Khóa tài khoản"  x:Name="btnKhoaTaiKhoan" Click="btnKhoaTaiKhoan_Click" FontSize="12"/>
+            <Button Grid.Row="1" Grid.Column="9" Content="Mở tài khoản"  x:Name="btnMoTaiKhoan" Click="btnMoTaiKhoan_Click" FontSize="12"/>
         </Grid>
         <Grid>
             <Grid.RowDefinitions>
-
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
@@ -111,12 +116,13 @@
                 <Label Grid.Row="0" Grid.Column="0" Content="Danh sách sản phẩm" FontSize="12" Height="30" FontFamily="Arial"/>
                 <Grid Grid.Row="1" Grid.Column="1" Height="405">
                     <DataGrid  Name="dgQltaikhoan" 
-                               AutoGenerateColumns="False" IsReadOnly="True" SelectedValuePath="maNhanVien" SelectionChanged="dgQltaikhoan_SelectionChanged"  FontSize="20" ColumnWidth="0.2*">
+                               AutoGenerateColumns="False" IsReadOnly="True" SelectedValuePath="maNhanVien" 
+                               SelectionChanged="dgQltaikhoan_SelectionChanged"  FontSize="20" ColumnWidth="0.2*">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien,Mode=TwoWay}" />
-                            <DataGridTextColumn Header="Tên tài khoản" Binding="{Binding taiKhoan1}" />
+                            <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}" />
+                            <DataGridTextColumn Header="Tên tài khoản" Binding="{Binding taiKhoan}" />
                             <DataGridTextColumn Header="Mật Khẩu" Binding="{Binding matKhau}"/>
-                            <DataGridTextColumn Header="Loại Tài Khoản" Binding="{Binding maLoaiTaiKhoan}" />
+                            <DataGridTextColumn Header="Loại Tài Khoản" Binding="{Binding maLoaiTaiKhoan}"/>
                             <DataGridTextColumn Header="Trạng thái" Binding="{Binding trangThai}"/>
                         </DataGrid.Columns>
                     </DataGrid>

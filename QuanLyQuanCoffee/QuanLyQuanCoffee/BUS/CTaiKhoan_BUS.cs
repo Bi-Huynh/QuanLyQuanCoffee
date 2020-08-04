@@ -203,5 +203,39 @@ namespace QuanLyQuanCoffee.BUS
 
             return false;
         }
+
+        public static bool khoaTaiKhoan(string maNhanVien)
+        {
+            try
+            {
+                TaiKhoan taiKhoan = find(maNhanVien);
+                taiKhoan.trangThai = 1;
+                quanLyQuanCoffee.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show("lỗi khóa tài khoản ,Không thể cập nhập database");
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool moKhoaTaiKhoan(string maNhanVien)
+        {
+            try
+            {
+                TaiKhoan taiKhoan = find(maNhanVien);
+                taiKhoan.trangThai = 0;
+                quanLyQuanCoffee.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show("lỗi mở khóa tài khoản ,Không thể cập nhập database");
+                return false;
+            }
+
+            return true;
+        }
     }
 }
