@@ -28,21 +28,39 @@ namespace QuanLyQuanCoffee.Views
             InitializeComponent();
         }
 
-        private void btnDangNhap_Click(object sender, RoutedEventArgs e)
+        private void kiemTraTaiKhoan()
         {
-            tk = dc.TaiKhoans.Where(x => x.taiKhoan1 == txtTaikhoan.Text && x.matKhau == txtMatkhau.Password && x.trangThai == 0).FirstOrDefault();
+            tk = dc.TaiKhoans.Where(x =>
+                x.taiKhoan1 == txtTaikhoan.Text &&
+                x.matKhau == txtMatkhau.Password &&
+                x.trangThai == 0 &&
+                x.maLoaiTaiKhoan == "00001").FirstOrDefault();
             if (tk != null)
             {
-                frmAdmin f = new frmAdmin(tk);
-                f.Show();
+                new frmAdmin(tk).Show();
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Sai tài khoản hoặc mật khẩu");
+                tk = dc.TaiKhoans.Where(x =>
+                x.taiKhoan1 == txtTaikhoan.Text &&
+                x.matKhau == txtMatkhau.Password &&
+                x.trangThai == 0).FirstOrDefault();
+                if (tk != null)
+                {
+                    new frmNhanVien(null, tk).Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Sai tài khoản hoặc mật khẩu");
+                }
             }
+        }
 
-
+        private void btnDangNhap_Click(object sender, RoutedEventArgs e)
+        {
+            kiemTraTaiKhoan();
         }
     }
 }

@@ -22,16 +22,11 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmQuanLyNhapNguyenLieu : Page
     {
         private PhieuNhapNguyenLieu PhieuNhapNguyenLieuSelect = new PhieuNhapNguyenLieu();
-        private NhanVien nhanVienSelect;
+        private NhanVien nhanVienSelect = new NhanVien();
 
-        public frmQuanLyNhapNguyenLieu(NhanVien nhanVien = null)
+        public frmQuanLyNhapNguyenLieu()
         {
             InitializeComponent();
-            nhanVienSelect = nhanVien;
-            if (nhanVienSelect == null)
-            {
-                nhanVienSelect = new NhanVien();
-            }
             hienThiDSPhieuNhap(CPhieuNhapNguyenLieu_BUS.toList());
         }
 

@@ -87,6 +87,7 @@
     <Compile Include="BUS\CChiTietPhieuXuatNguyenLieu.cs" />
     <Compile Include="BUS\CChiTietPhieuXuat_BUS.cs" />
     <Compile Include="BUS\CChiTietThongKe.cs" />
+    <Compile Include="BUS\CDangNhap_BUS.cs" />
     <Compile Include="BUS\CHoaDon_BUS.cs" />
     <Compile Include="BUS\CLoaiNguyenLieu_BUS.cs" />
     <Compile Include="BUS\CLoaiNhanVien_BUS.cs" />
@@ -180,8 +181,14 @@
     <Compile Include="Views\frmDangNhap.xaml.cs">
       <DependentUpon>frmDangNhap.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmDoiTaiKhoan.xaml.cs">
+      <DependentUpon>frmDoiTaiKhoan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmKetCa.xaml.cs">
       <DependentUpon>frmKetCa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmNhanVien.xaml.cs">
+      <DependentUpon>frmNhanVien.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\frmOrder.xaml.cs">
       <DependentUpon>frmOrder.xaml</DependentUpon>
@@ -237,6 +244,9 @@
     <Compile Include="Views\frmQuanLyThongKe.xaml.cs">
       <DependentUpon>frmQuanLyThongKe.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmTaoCa.xaml.cs">
+      <DependentUpon>frmTaoCa.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmThongTinChiTietNguyenLieu.xaml.cs">
       <DependentUpon>frmThongTinChiTietNguyenLieu.xaml</DependentUpon>
     </Compile>
@@ -249,6 +259,12 @@
     <Compile Include="Views\frmThongTinNhanVien.xaml.cs">
       <DependentUpon>frmThongTinNhanVien.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Test.xaml.cs">
+      <DependentUpon>Test.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\XemHoaDonTrongNgay.xaml.cs">
+      <DependentUpon>XemHoaDonTrongNgay.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\frmAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -257,7 +273,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\frmDoiTaiKhoan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\frmKetCa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\frmNhanVien.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -329,6 +353,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\frmTaoCa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\frmThongTinChiTietNguyenLieu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -375,6 +403,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\frmThongTinNhanVien.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Test.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\XemHoaDonTrongNgay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

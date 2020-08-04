@@ -1,0 +1,27 @@
+﻿<Window x:Class="QuanLyQuanCoffee.Views.frmNhanVien"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
+        mc:Ignorable="d"
+        Title="Giao diện nhân viên" Height="450" Width="800" WindowState="Maximized">
+    <StackPanel>
+        <Menu Height="30" 
+              Name="Menu" VerticalAlignment="Top">
+            <MenuItem x:Name="order" Header="Order" Click="order_Click"/>
+
+            <MenuItem x:Name="gd_QuanLyHoaDon" Header="Hóa Đơn" Click="gd_QuanLyHoaDon_Click"></MenuItem>
+            
+            <MenuItem x:Name="doiTaiKhoan" Header="Đổi tài khoản" Click="doiTaiKhoan_Click"></MenuItem>
+
+            <MenuItem x:Name="taoCa" Header="Tạo Ca" Click="taoCa_Click"></MenuItem>
+            
+            <MenuItem x:Name="ketCa" Header="Kết Ca" Click="ketCa_Click"></MenuItem>
+
+            <MenuItem x:Name="dangXuat" Header="Đăng xuất" Click="dangXuat_Click"></MenuItem>
+        </Menu>
+        <Frame x:Name="MainNhanVien" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" ScrollViewer.VerticalScrollBarVisibility="Auto" 
+               NavigationUIVisibility="Hidden" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+    </StackPanel>
+</Window>

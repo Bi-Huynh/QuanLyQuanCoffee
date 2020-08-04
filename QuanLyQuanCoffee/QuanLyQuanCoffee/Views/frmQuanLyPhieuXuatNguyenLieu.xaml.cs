@@ -21,13 +21,12 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmQuanLyPhieuXuatNguyenLieu : Page
     {
-        NhanVien nhanVienSelected;
+        NhanVien nhanVienSelected = new NhanVien();
         PhieuXuatNguyenLieu phieuXuatnguyenlieuSelect;
 
-        public frmQuanLyPhieuXuatNguyenLieu(NhanVien nhanVien)
+        public frmQuanLyPhieuXuatNguyenLieu()
         {
             InitializeComponent();
-            nhanVienSelected = nhanVien;
             hienThiPhieuXuat();
         }
         public void hienThiPhieuXuat()

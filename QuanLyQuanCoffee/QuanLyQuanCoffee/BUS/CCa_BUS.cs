@@ -14,6 +14,11 @@ namespace QuanLyQuanCoffee.BUS
     public class CCa_BUS
     {
         private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+        private static bool daKetCa = false;
+        private static CCa_DTO caLamViec;
+
+        public static bool isDaKetCa { get => daKetCa; set => daKetCa = value; }
+        public static CCa_DTO CaLamViec { get => caLamViec; set => caLamViec = value; }
 
         public static List<KetCa> toList()
         {
@@ -37,6 +42,7 @@ namespace QuanLyQuanCoffee.BUS
                 {
                     quanLyQuanCoffee.KetCas.Add(ketCa);
                     quanLyQuanCoffee.SaveChanges();
+                    isDaKetCa = true;
                 }
             }
             catch (DbUpdateException)

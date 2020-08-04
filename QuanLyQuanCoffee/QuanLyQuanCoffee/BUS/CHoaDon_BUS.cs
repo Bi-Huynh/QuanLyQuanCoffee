@@ -1,4 +1,5 @@
-﻿using QuanLyQuanCoffee.Services;
+﻿using QuanLyQuanCoffee.DTO;
+using QuanLyQuanCoffee.Services;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
@@ -28,6 +29,33 @@ namespace QuanLyQuanCoffee.BUS
                 if (hoaDon.ngayLap.Date >= ngayBatDau.Date && hoaDon.ngayLap.Date <= ngayKetThuc.Date)
                 {
                     hoaDons.Add(hoaDon);
+                }
+            }
+            return hoaDons;
+        }
+
+        public static List<HoaDon> toList(CCa_DTO caLam)
+        {
+            List<HoaDon> hoaDons = new List<HoaDon>();
+            foreach (var hoaDon in quanLyQuanCoffee.HoaDons.ToList())
+            {
+                if (caLam.GioBatDau.Hour == 8)
+                {
+                    if (caLam.GioBatDau.Date == hoaDon.ngayLap.Date
+                        && hoaDon.ngayLap.Hour >= caLam.GioBatDau.Hour
+                        && hoaDon.ngayLap.Hour <= 15)
+                    {
+                        hoaDons.Add(hoaDon);
+                    }
+                }
+                else
+                {
+                    if (caLam.GioBatDau.Date == hoaDon.ngayLap.Date
+                        && hoaDon.ngayLap.Hour >= caLam.GioBatDau.Hour
+                        && hoaDon.ngayLap.Hour <= 21)
+                    {
+                        hoaDons.Add(hoaDon);
+                    }
                 }
             }
             return hoaDons;

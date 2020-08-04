@@ -1,0 +1,49 @@
+﻿<Page x:Class="QuanLyQuanCoffee.Views.XemHoaDonTrongNgay"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="685" d:DesignWidth="1200"
+      Title="XemHoaDonTrongNgay">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <GroupBox Grid.Column="0" Grid.Row="0"
+                  Header="Danh Sách Hóa Đơn" Margin="0,0,5,0">
+            <DataGrid x:Name="dgHoaDonTrongNgay" VerticalScrollBarVisibility="Auto"
+                      Height="660" MaxHeight="660" IsReadOnly="True" SelectedValuePath="maHoaDon"
+                      AutoGenerateColumns="False"
+                      SelectionChanged="dgHoaDonTrongNgay_SelectionChanged"
+                      MouseDoubleClick="dgHoaDonTrongNgay_MouseDoubleClick">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding maHoaDon}" Width="1*"/>
+                    <DataGridTextColumn Header="Tên nhân viên" Binding="{Binding tenNhanVien}" Width="1.5*"/>
+                    <DataGridTextColumn Header="Ngày lập" Binding="{Binding ngayLap}" Width="1*"/>
+                    <DataGridTextColumn Header="Tổng thành tiền" Binding="{Binding tongThanhTien}" Width="1*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        
+        <GroupBox Grid.Column="1" Grid.Row="0"
+                  Header="Chi Tiết Hóa Đơn" Margin="5,0,0,0">
+            <DataGrid x:Name="dgChiTietHoaDonTrongNgay" VerticalScrollBarVisibility="Auto" SelectedValue="maHoaDon" 
+                      IsReadOnly="True" Height="660" MaxHeight="660" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding maHoaDon}" Width="1*" Visibility="Hidden"/>
+                    <DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding tenSanPham}" Width="1.5*"/>
+                    <DataGridTextColumn Header="Số lượng" Binding="{Binding soLuong}" Width="1*"/>
+                    <DataGridTextColumn Header="Thành tiền" Binding="{Binding thanhTien}" Width="1*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+    </Grid>
+</Page>

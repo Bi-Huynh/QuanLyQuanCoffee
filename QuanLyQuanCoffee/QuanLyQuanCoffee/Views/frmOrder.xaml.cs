@@ -25,36 +25,25 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmOrder : Page
     {
         NhanVien nhanVienSelect;
-        //private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
         private List<ChiTietHoaDon> chiTietHoaDons;
+        private double tongThanhTien;
 
-        public frmOrder(NhanVien nhanVien)
+        public frmOrder(NhanVien nhanVien = null)
         {
             InitializeComponent();
             nhanVienSelect = nhanVien;
-            HienthiSP();
+            if (nhanVienSelect == null)
+            {
+                nhanVienSelect = new NhanVien();
+            }
             chiTietHoaDons = new List<ChiTietHoaDon>();
             taoma();
+            txtTenNhanVien.Text = nhanVienSelect.hoNhanVien + " " + nhanVienSelect.tenNhanVien;
         }
 
         public void taoma()
         {
-            txtMahoadon.Text = CServices.taoMa<HoaDon>(CHoaDon_BUS.toList());
-        }
-        //public string randomMa()
-        //{
-        //    Random random = new Random();
-        //    string ma = "";
-        //    for (int i = 0; i < 10; i++)
-        //    {
-        //        ma += Convert.ToString((char)random.Next(65, 90));
-        //    }
-        //    return ma;
-        //}
-
-        public void HienthiSP()
-        {
-            dgDanhsachsanpham.ItemsSource = CSanPham_BUS.toList();
+            txtMaHoaDon.Text = CServices.taoMa<HoaDon>(CHoaDon_BUS.toList());
         }
 
         public void hienthitheoListBOX(string maloai)
@@ -70,6 +59,7 @@ namespace QuanLyQuanCoffee.Views
             }
 
         }
+
         private void LstBoxLoaisanpham_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             int dongthu = LstBoxLoaisanpham.SelectedIndex;
@@ -78,11 +68,15 @@ namespace QuanLyQuanCoffee.Views
                 MessageBox.Show("Chưa có loại sản phẩm nào được cập nhập");
                 return;
             }
-            //string maLoai = dc.LoaiSanPhams.ToList()[dongthu].maLoaiSanPham;
-            //string maLoai = CLoaiSanPham_BUS.DSLoaiSPtheoTen()[dongthu];
             string maLoai = CLoaiSanPham_BUS.layMaloaitheoSo(dongthu);
             hienthitheoListBOX(maLoai);
         }
+
+        private void LstBoxLoaisanpham_Loaded(object sender, RoutedEventArgs e)
+        {
+            LstBoxLoaisanpham.ItemsSource = CLoaiSanPham_BUS.DSLoaiSPtheoTen();//hien thi ra list ten do uong
+        }
+
         private void hienThiDSChiTietHD(List<ChiTietHoaDon> chiTietHoaDons)
         {
             if (chiTietHoaDons != null)
@@ -93,10 +87,11 @@ namespace QuanLyQuanCoffee.Views
                     maSanPham = x.maSanPham,
                     tenSanPham = x.SanPham.tenSanPham,
                     soLuong = x.soLuong,
-                    donGia = x.SanPham.donGia,
-                    thanhTien = CChiTietHoaDon_BUS.tinhThanhTien(x)
+                    donGia = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.SanPham.donGia),
+                    thanhTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", CChiTietHoaDon_BUS.tinhThanhTien(x))
                 }).ToList();
-                txtBoxTongtien.Text = tinhTongThanhTien(chiTietHoaDons).ToString();
+                tongThanhTien = tinhTongThanhTien(chiTietHoaDons);
+                txtTongTien.Text = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", tongThanhTien);
             }
         }
 
@@ -107,28 +102,10 @@ namespace QuanLyQuanCoffee.Views
             return tongThanhTien;
         }
 
-        //public string taoMaTangDan()
-        //{
-        //    string ma = dc.ChiTietHoaDons.LastOrDefault().maChiTietHoaDon;
-        //    if (ma == null)
-        //    {
-        //        ma = "Ct"+;
-        //    }
-        //    return ma;
-        //}
-
-        private void txtBoxNv_Loaded(object sender, RoutedEventArgs e)
+        private void txtTenNhanVien_Loaded(object sender, RoutedEventArgs e)
         {
-            txtBoxNv.Text = nhanVienSelect.hoNhanVien + " " + nhanVienSelect.tenNhanVien;
+            txtTenNhanVien.Text = nhanVienSelect.hoNhanVien + " " + nhanVienSelect.tenNhanVien;
         }
-
-        private void LstBoxLoaisanpham_Loaded(object sender, RoutedEventArgs e)
-        {
-            //LstBoxLoaisanpham.ItemsSource = dc.LoaiSanPhams.Select(x => x.tenLoai).ToList();//hien thi ra list ten do uong
-            LstBoxLoaisanpham.ItemsSource = CLoaiSanPham_BUS.DSLoaiSPtheoTen();//hien thi ra list ten do uong
-        }
-
-
 
         private void btnChonsanpham_Click(object sender, RoutedEventArgs e)
         {
@@ -160,11 +137,9 @@ namespace QuanLyQuanCoffee.Views
                     a.soLuong += 1;
                     hienThiDSChiTietHD(chiTietHoaDons);
                 }
-                //chiTietHoaDon.tinhThanhTien();
 
-                HienthiSP();
+                //HienthiSP();
             }
-
         }
 
         private void btnBochon_Click(object sender, RoutedEventArgs e)
@@ -173,9 +148,10 @@ namespace QuanLyQuanCoffee.Views
             {
                 return;
             }
+
             string maSanPham = dgChitiethoadon.SelectedValue.ToString();
-            //MessageBox.Show(maSanPham);
             ChiTietHoaDon chiTietHoaDon = chiTietHoaDons.Where(x => x.maSanPham == maSanPham).FirstOrDefault();
+
             if (chiTietHoaDon == null)
             {
                 MessageBox.Show("chua chon san pham trong chi tiet hoa don");
@@ -204,21 +180,20 @@ namespace QuanLyQuanCoffee.Views
                 MessageBox.Show("Hóa Đơn chưa có chi tiết hóa đơn");
                 return;
             }
-            if (CHoaDon_BUS.find(txtMahoadon.Text) == null)
+            if (CHoaDon_BUS.find(txtMaHoaDon.Text) == null)
             {
                 try
                 {
                     HoaDon hoaDon = new HoaDon();
-                    hoaDon.maHoaDon = txtMahoadon.Text;
+                    hoaDon.maHoaDon = txtMaHoaDon.Text;
                     hoaDon.maNhanVien = nhanVienSelect.maNhanVien;
                     hoaDon.ngayLap = DateTime.Now;
-                    hoaDon.tongThanhTien = double.Parse(txtBoxTongtien.Text);
+                    hoaDon.tongThanhTien = double.Parse(txtTongTien.Text);
 
                     hoaDon.trangThai = 0;
 
                     foreach (var item in chiTietHoaDons)
                     {
-                        //item.HoaDon = hoaDon;
                         ChiTietHoaDon a = new ChiTietHoaDon();
                         a.maHoaDon = hoaDon.maHoaDon;
                         a.maSanPham = item.maSanPham;
@@ -227,17 +202,11 @@ namespace QuanLyQuanCoffee.Views
                         hoaDon.ChiTietHoaDons.Add(a);
                     }
 
-                    if(CHoaDon_BUS.add(hoaDon))
+                    if (CHoaDon_BUS.add(hoaDon))
                     {
                         MessageBox.Show("Xuất hóa đơn thành công");
                     }
-                    else
-                    {
-                        MessageBox.Show("Hóa đơn bị lỗi");
-                    }    
 
-                    //themChiTietHoaDon();
-                    
                     taoma();
 
                     chiTietHoaDons.Clear();
@@ -263,7 +232,6 @@ namespace QuanLyQuanCoffee.Views
                 {
                     MessageBox.Show("Đơn giá vượt quá giới hạn lưu trữ");
                 }
-
             }
             else
             {
@@ -278,7 +246,49 @@ namespace QuanLyQuanCoffee.Views
             {
                 CChiTietHoaDon_BUS.add(item);
             }
+        }
 
+        private void dgDanhsachsanpham_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            btnChonsanpham_Click(sender, e);
+        }
+
+        private void dgDanhsachsanpham_Loaded(object sender, RoutedEventArgs e)
+        {
+            dgDanhsachsanpham.ItemsSource = CSanPham_BUS.toList().Select(x => new
+            {
+                maSanPham = x.maSanPham,
+                tenSanPham = x.tenSanPham,
+                donGia = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.donGia)
+            }).ToList();
+        }
+
+        private void txtTienKhachDua_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == Key.Enter)
+                {
+                    double tienKhachDua = int.Parse(txtTienKhachDua.Text);
+                    double tienThoiLai = tienKhachDua - tongThanhTien;
+                    if (tienThoiLai > 0)
+                    {
+                        txtTienThoiLai.Text = tienThoiLai.ToString();
+                    }
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Tiền khách đưa null");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Nhập vào phải là số");
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Số nhập vào dài quá giới hạn cho phép");
+            }
         }
     }
 }
