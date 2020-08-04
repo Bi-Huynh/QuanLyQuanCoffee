@@ -36,7 +36,14 @@ namespace QuanLyQuanCoffee.Views
         {
             try
             {
-                dgQltaikhoan.ItemsSource = CTaiKhoan_BUS.toList();
+                dgQltaikhoan.ItemsSource = CTaiKhoan_BUS.toList().Select(x => new 
+                {
+                    maNhanVien = x.maNhanVien,
+                    taiKhoan = x.taiKhoan1,
+                    matKhau = x.matKhau,
+                    tenLoaiTaiKhoan = x.LoaiTaiKhoan.tenLoaiTaiKhoan,
+                    trangThai = x.trangThai == 0 ? "Mở khóa" : "Đã khóa"
+                });
             }
             catch (Exception ex)
             {
@@ -50,7 +57,7 @@ namespace QuanLyQuanCoffee.Views
 
             try
             {
-                cboManhanvien.ItemsSource = CTaiKhoan_BUS.toListByMaLoaiNV();
+                cboManhanvien.ItemsSource = CLoaiTaiKhoan_BUS.toListTenLoai();
             }
             catch (Exception ex)
             {
@@ -91,7 +98,7 @@ namespace QuanLyQuanCoffee.Views
                     tk1.maNhanVien = cboManhanvien.SelectedItem.ToString();
                     tk1.taiKhoan1 = txtTaikhoan.Text;
                     tk1.matKhau = txtMatkhau.Text;
-                    tk1.maLoaiTaiKhoan = cboLoaitaikhoan.SelectedItem.ToString();
+                    tk1.maLoaiTaiKhoan = CLoaiTaiKhoan_BUS.findTen(cboLoaitaikhoan.SelectedItem.ToString()).maLoaiTaiKhoan;
                     tk1.trangThai = 0;
                     string makt = cboManhanvien.SelectedItem.ToString();
                     if (CServices.kiemTraThongTin(tk1))///Kiểm tra thông tin tài khoản hợp lệ
@@ -105,7 +112,6 @@ namespace QuanLyQuanCoffee.Views
                         {
                             if (CTaiKhoan_BUS.findTrangThai(tk1.maNhanVien))//kiểm tra  trạng thái=1(đã được cấp và đã bị xóa)
                             {
-
                                 //MessageBox.Show("Nhân viên này đã có tài khoản nhưng đã được xóa, bạn có muốn phục hồi không","Thông báo",MessageBoxButton.YesNo);
                                 if (CTaiKhoan_BUS.KTtaiKhoanDaXoa(tk1) == "Yes")// tài khoản đã được xóa và hỏi người dùng có muốn phục hồi tài khoản cho nhân viên Không//Người dùng chọn "Yes"
                                 {
@@ -238,6 +244,21 @@ namespace QuanLyQuanCoffee.Views
                 txtTaikhoan.Text = "";
                 txtMatkhau.Text = "";
             }
+        }
+
+        private void btnKhoaTaiKhoan_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgQltaikhoan.SelectedItem != null)
+            {
+                TaiKhoan taiKhoan = CTaiKhoan_BUS.find(dgQltaikhoan.SelectedValue.ToString());
+                taiKhoan.trangThai = 1;
+                hienthiDStaikhoan();
+            }
+        }
+
+        private void btnMoTaiKhoan_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

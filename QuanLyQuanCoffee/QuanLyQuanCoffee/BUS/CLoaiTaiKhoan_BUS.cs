@@ -12,11 +12,19 @@ namespace QuanLyQuanCoffee.BUS
     class CLoaiTaiKhoan_BUS
     {
         private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+
         public static List<LoaiTaiKhoan> toList()
         {
             List<LoaiTaiKhoan> list = quanLyQuanCoffee.LoaiTaiKhoans.Where(x => x.trangThai == 0).ToList();
             return list == null ? new List<LoaiTaiKhoan>() : list;
         }
+
+        public static List<string> toListTenLoai()
+        {
+            List<string> list = quanLyQuanCoffee.LoaiTaiKhoans.Select(x => x.tenLoaiTaiKhoan).ToList();
+            return list == null ? new List<string>() : list;
+        }
+
         public static List<LoaiTaiKhoan> DSLoaiTK()
         {
             List<LoaiTaiKhoan> list = quanLyQuanCoffee.LoaiTaiKhoans.ToList();
@@ -28,9 +36,15 @@ namespace QuanLyQuanCoffee.BUS
             LoaiTaiKhoan loaiTaiKhoan = quanLyQuanCoffee.LoaiTaiKhoans.Find(maLoaiTaiKhoan);
             return loaiTaiKhoan;
         }
+
+        public static LoaiTaiKhoan findTen(string tenLoaiTaiKhoan)
+        {
+            LoaiTaiKhoan loaiTaiKhoan = quanLyQuanCoffee.LoaiTaiKhoans.Where(x => x.tenLoaiTaiKhoan == tenLoaiTaiKhoan).FirstOrDefault();
+            return loaiTaiKhoan;
+        }
+
         public static bool add(LoaiTaiKhoan loaiTaiKhoan)
         {
-
             try
             {
 

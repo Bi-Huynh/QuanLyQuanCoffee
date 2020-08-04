@@ -66,7 +66,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void ketCa_Click(object sender, RoutedEventArgs e)
         {
-            new frmKetCa().Show();
+            new frmKetCa(nhanVienSelect).Show();
         }
 
         private void dangXuat_Click(object sender, RoutedEventArgs e)
