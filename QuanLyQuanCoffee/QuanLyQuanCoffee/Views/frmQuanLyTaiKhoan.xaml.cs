@@ -36,7 +36,7 @@ namespace QuanLyQuanCoffee.Views
         {
             try
             {
-                dgQltaikhoan.ItemsSource = CTaiKhoan_BUS.toList().Select(x => new 
+                dgQltaikhoan.ItemsSource = CTaiKhoan_BUS.toList().Select(x => new
                 {
                     maNhanVien = x.maNhanVien,
                     taiKhoan = x.taiKhoan1,
@@ -250,15 +250,22 @@ namespace QuanLyQuanCoffee.Views
         {
             if (dgQltaikhoan.SelectedItem != null)
             {
-                TaiKhoan taiKhoan = CTaiKhoan_BUS.find(dgQltaikhoan.SelectedValue.ToString());
-                taiKhoan.trangThai = 1;
-                hienthiDStaikhoan();
+                if (CTaiKhoan_BUS.khoaTaiKhoan(dgQltaikhoan.SelectedValue.ToString()))
+                {
+                    hienthiDStaikhoan();
+                }
             }
         }
 
         private void btnMoTaiKhoan_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dgQltaikhoan.SelectedItem != null)
+            {
+                if (CTaiKhoan_BUS.moKhoaTaiKhoan(dgQltaikhoan.SelectedValue.ToString()))
+                {
+                    hienthiDStaikhoan();
+                }
+            }
         }
     }
 }
