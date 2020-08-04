@@ -209,8 +209,15 @@ namespace QuanLyQuanCoffee.BUS
             try
             {
                 TaiKhoan taiKhoan = find(maNhanVien);
-                taiKhoan.trangThai = 1;
-                quanLyQuanCoffee.SaveChanges();
+                if (taiKhoan.LoaiTaiKhoan.maLoaiTaiKhoan == "00001")
+                {
+                    MessageBox.Show("Không thể khóa tài khoản này");
+                }
+                else
+                {
+                    taiKhoan.trangThai = 1;
+                    quanLyQuanCoffee.SaveChanges();
+                }
             }
             catch (DbUpdateException)
             {
