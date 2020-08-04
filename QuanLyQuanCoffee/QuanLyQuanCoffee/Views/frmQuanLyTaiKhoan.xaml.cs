@@ -69,7 +69,7 @@ namespace QuanLyQuanCoffee.Views
         {
             try
             {
-                cboLoaitaikhoan.ItemsSource = CTaiKhoan_BUS.toListByMaLoaiTK();
+                cboLoaitaikhoan.ItemsSource = CLoaiTaiKhoan_BUS.toListTenLoai();
             }
             catch (Exception ex)
             {
@@ -234,7 +234,7 @@ namespace QuanLyQuanCoffee.Views
                 tk = CTaiKhoan_BUS.find(dgQltaikhoan.SelectedValue.ToString());
                 txtTaikhoan.Text = tk.taiKhoan1;
                 txtMatkhau.Text = tk.matKhau;
-                cboLoaitaikhoan.Text = tk.maLoaiTaiKhoan;
+                cboLoaitaikhoan.Text = tk.LoaiTaiKhoan.tenLoaiTaiKhoan;
                 cboManhanvien.Text = tk.maNhanVien;
             }
             else

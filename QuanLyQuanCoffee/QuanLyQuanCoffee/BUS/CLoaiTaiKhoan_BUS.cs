@@ -15,7 +15,8 @@ namespace QuanLyQuanCoffee.BUS
 
         public static List<LoaiTaiKhoan> toList()
         {
-            List<LoaiTaiKhoan> list = quanLyQuanCoffee.LoaiTaiKhoans.Where(x => x.trangThai == 0).ToList();
+            List<LoaiTaiKhoan> list = quanLyQuanCoffee.LoaiTaiKhoans
+                .Where(x => x.trangThai == 0 && x.maLoaiTaiKhoan != "00001").ToList();
             return list == null ? new List<LoaiTaiKhoan>() : list;
         }
 
