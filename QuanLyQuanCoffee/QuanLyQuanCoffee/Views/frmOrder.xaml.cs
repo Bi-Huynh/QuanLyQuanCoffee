@@ -338,6 +338,9 @@ namespace QuanLyQuanCoffee.Views
                         a.thanhTien = CChiTietHoaDon_BUS.tinhThanhTien(item);
                         hoaDonTreo.ChiTietHoaDons.Add(a);
                     }
+                    taoma();
+                    chiTietHoaDons.Clear();
+                    hienThiDSChiTietHD(chiTietHoaDons);
                 }
                 catch (ArgumentNullException)
                 {
@@ -363,10 +366,13 @@ namespace QuanLyQuanCoffee.Views
             if (hoaDonTreo != null)
             {
                 txtMaHoaDon.Text = hoaDonTreo.maHoaDon;
-                txtTenNhanVien.Content = hoaDonTreo.NhanVien.tenNhanVien;
                 txtTongTien.Text = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", hoaDonTreo.tongThanhTien);
 
-                chiTietHoaDons = (List<ChiTietHoaDon>)hoaDonTreo.ChiTietHoaDons;
+                //chiTietHoaDons = (List<ChiTietHoaDon>)hoaDonTreo.ChiTietHoaDons;
+                foreach(var item in hoaDonTreo.ChiTietHoaDons)
+                {
+                    chiTietHoaDons.Add(item);
+                }
                 hienThiDSChiTietHD(chiTietHoaDons);
                 hoaDonTreo = null;
             }

@@ -122,7 +122,7 @@
                             <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}" />
                             <DataGridTextColumn Header="Tên tài khoản" Binding="{Binding taiKhoan}" />
                             <DataGridTextColumn Header="Mật Khẩu" Binding="{Binding matKhau}"/>
-                            <DataGridTextColumn Header="Loại Tài Khoản" Binding="{Binding maLoaiTaiKhoan}"/>
+                            <DataGridTextColumn Header="Loại Tài Khoản" Binding="{Binding tenLoaiTaiKhoan}"/>
                             <DataGridTextColumn Header="Trạng thái" Binding="{Binding trangThai}"/>
                         </DataGrid.Columns>
                     </DataGrid>

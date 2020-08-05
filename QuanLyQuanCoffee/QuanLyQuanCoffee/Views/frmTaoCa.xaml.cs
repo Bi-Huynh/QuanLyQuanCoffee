@@ -67,7 +67,7 @@ namespace QuanLyQuanCoffee.Views
                 //}
                 //else
                 //{
-                //    MessageBox.Show("Không thể tạo ca 1, ca 1 chỉ có thể tạo từ 13am tới 17am");
+                //    MessageBox.Show("Không thể tạo ca 2, ca 2 chỉ có thể tạo từ 13am tới 17am");
                 //}
                 DateTime gioBatDau = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 0, 0);
                 DateTime gioKetThuc = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 21, 0, 0);
