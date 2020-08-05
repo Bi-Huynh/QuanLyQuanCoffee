@@ -81,7 +81,7 @@
                 <ColumnDefinition  Width="10"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Row="1" Grid.Column="1" Content="Thêm" x:Name="btnThemTK" Click="btnThemTK_Click"  FontSize="12"/>
-            <Button Grid.Row="1" Grid.Column="3" Content="Thay đổi trạng thái" x:Name="btnXoaTK" Click="btnXoaTK_Click" FontSize="12"/>
+            <!--<Button Grid.Row="1" Grid.Column="3" Content="Thay đổi trạng thái" x:Name="btnXoaTK" Click="btnXoaTK_Click" FontSize="12"/>-->
             <Button Grid.Row="1" Grid.Column="5" Content="Sửa"  x:Name="btnSuaTK" Click="btnSuaTK_Click" FontSize="12"/>
             <Button Grid.Row="1" Grid.Column="7" Content="Khóa tài khoản"  x:Name="btnKhoaTaiKhoan" Click="btnKhoaTaiKhoan_Click" FontSize="12"/>
             <Button Grid.Row="1" Grid.Column="9" Content="Mở tài khoản"  x:Name="btnMoTaiKhoan" Click="btnMoTaiKhoan_Click" FontSize="12"/>
