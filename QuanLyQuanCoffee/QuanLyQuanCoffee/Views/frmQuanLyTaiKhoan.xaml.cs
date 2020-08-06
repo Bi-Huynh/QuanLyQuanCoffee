@@ -57,7 +57,7 @@ namespace QuanLyQuanCoffee.Views
 
             try
             {
-                cboManhanvien.ItemsSource = CLoaiTaiKhoan_BUS.toListTenLoai();
+                cboManhanvien.ItemsSource = CTaiKhoan_BUS.toListByMaLoaiNV();
             }
             catch (Exception ex)
             {
