@@ -24,10 +24,19 @@ namespace QuanLyQuanCoffee.Views
         private PhieuNhapNguyenLieu PhieuNhapNguyenLieuSelect = new PhieuNhapNguyenLieu();
         private NhanVien nhanVienSelect = new NhanVien();
 
-        public frmQuanLyNhapNguyenLieu()
+        public frmQuanLyNhapNguyenLieu(NhanVien nhanVien = null)
         {
             InitializeComponent();
             hienThiDSPhieuNhap(CPhieuNhapNguyenLieu_BUS.toList());
+
+            if (nhanVien != null)
+            {
+                nhanVienSelect = nhanVien;
+            }
+            else
+            {
+                nhanVienSelect = new NhanVien();
+            }
         }
 
         private void hienThiDSPhieuNhap(List<PhieuNhapNguyenLieu> list)

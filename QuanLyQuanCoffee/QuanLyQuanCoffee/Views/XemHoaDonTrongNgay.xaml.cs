@@ -65,15 +65,25 @@ namespace QuanLyQuanCoffee.Views
 
         private void dgHoaDonTrongNgay_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (hoaDonSelect != null)
+            try
             {
-                dgChiTietHoaDonTrongNgay.ItemsSource = hoaDonSelect.ChiTietHoaDons.Select(x => new
+                if (hoaDonSelect != null)
                 {
-                    maHoaDon = x.maHoaDon,
-                    tenSanPham = x.SanPham.tenSanPham,
-                    soLuong = x.soLuong,
-                    thanhTien = x.thanhTien
-                });
+                    HoaDon hoaDon = CHoaDon_BUS.find(hoaDonSelect.maHoaDon);
+
+                    // Lỗi NullReferenceException vẫn chưa bắt được
+                    dgChiTietHoaDonTrongNgay.ItemsSource = hoaDon.ChiTietHoaDons.Select(x => new
+                    {
+                        maHoaDon = x.maHoaDon,
+                        tenSanPham = x.SanPham.tenSanPham,
+                        soLuong = x.soLuong,
+                        thanhTien = x.thanhTien
+                    });
+                }
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Chưa load được dữ liệu");
             }
         }
     }

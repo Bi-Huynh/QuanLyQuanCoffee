@@ -38,7 +38,7 @@ namespace QuanLyQuanCoffee.BUS
         // tìm kiếm nhân viên theo mã nhân viên
         public static NhanVien find(string maNhanVien)
         {
-            maNhanVien = maNhanVien.ToUpper();
+            //maNhanVien = maNhanVien.ToUpper();
             NhanVien nhanVien = quanLyQuanCoffee.NhanViens
                 .Where(x => x.maNhanVien == maNhanVien && x.trangThai == 0).FirstOrDefault();
             return nhanVien == null ? new NhanVien() : nhanVien;

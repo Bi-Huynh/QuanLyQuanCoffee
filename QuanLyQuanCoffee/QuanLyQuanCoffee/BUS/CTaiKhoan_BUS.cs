@@ -87,8 +87,16 @@ namespace QuanLyQuanCoffee.BUS
                 TaiKhoan temp = find(taiKhoan.maNhanVien);
                 if (temp != null)
                 {
-                    temp.trangThai = 1;
-                    quanLyQuanCoffee.SaveChanges();
+                    if (temp.trangThai == 0)
+                    {
+                        temp.trangThai = 1;
+                        quanLyQuanCoffee.SaveChanges();
+                    }
+                    else
+                    {
+                        temp.trangThai = 0;
+                        quanLyQuanCoffee.SaveChanges();
+                    }    
                 }
             }
             catch (DbUpdateException)
