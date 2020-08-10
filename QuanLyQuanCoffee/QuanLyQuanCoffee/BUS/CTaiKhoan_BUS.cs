@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -54,6 +55,24 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<string>() : list;
         }
 
+        public static string maHoaMatKhau(string matKhau)   // không được vì mỗi lần nó tạo ra 1 mật khẩu mới
+        {
+            //Tạo MD5 
+            MD5 mD5 = MD5.Create();
+            //Chuyển kiểu chuổi thành kiểu byte
+            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(matKhau.ToArray());
+            //mã hóa chuỗi đã chuyển
+            byte[] hash = mD5.ComputeHash(inputBytes);
+            //tạo đối tượng StringBuilder (làm việc với kiểu dữ liệu lớn)
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("X2"));
+            }
+            //nếu bạn muốn các chữ cái in thường thay vì in hoa thì bạn thay chữ "X" in hoa trong "X2" thành "x"
+            return sb.ToString();
+        }
+
         public static bool add(TaiKhoan taiKhoan)
         {
             if (CServices.kiemTraThongTin(taiKhoan))
@@ -96,7 +115,7 @@ namespace QuanLyQuanCoffee.BUS
                     {
                         temp.trangThai = 0;
                         quanLyQuanCoffee.SaveChanges();
-                    }    
+                    }
                 }
             }
             catch (DbUpdateException)
@@ -191,7 +210,7 @@ namespace QuanLyQuanCoffee.BUS
             try
             {
                 TaiKhoan taiKhoan = quanLyQuanCoffee.TaiKhoans.Find(tk.maNhanVien);
-                taiKhoan.matKhau = matKhauMoi;
+                taiKhoan.matKhau = maHoaMatKhau(matKhauMoi);
 
                 quanLyQuanCoffee.SaveChanges();
                 return true;

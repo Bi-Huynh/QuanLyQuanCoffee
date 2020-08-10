@@ -30,9 +30,11 @@ namespace QuanLyQuanCoffee.Views
 
         private void kiemTraTaiKhoan()
         {
+            string matKhau = CTaiKhoan_BUS.maHoaMatKhau("hai");
+
             tk = dc.TaiKhoans.Where(x =>
                 x.taiKhoan1 == txtTaikhoan.Text &&
-                x.matKhau == txtMatkhau.Password &&
+                x.matKhau == matKhau &&
                 x.trangThai == 0 &&
                 x.maLoaiTaiKhoan == "00001").FirstOrDefault();
             if (tk != null)
@@ -44,7 +46,7 @@ namespace QuanLyQuanCoffee.Views
             {
                 tk = dc.TaiKhoans.Where(x =>
                 x.taiKhoan1 == txtTaikhoan.Text &&
-                x.matKhau == txtMatkhau.Password).FirstOrDefault();
+                x.matKhau == matKhau).FirstOrDefault();
                 if (tk != null)
                 {
                     if (tk.trangThai == 0)
