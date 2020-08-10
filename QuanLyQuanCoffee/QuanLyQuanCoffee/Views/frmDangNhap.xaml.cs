@@ -44,12 +44,18 @@ namespace QuanLyQuanCoffee.Views
             {
                 tk = dc.TaiKhoans.Where(x =>
                 x.taiKhoan1 == txtTaikhoan.Text &&
-                x.matKhau == txtMatkhau.Password &&
-                x.trangThai == 0).FirstOrDefault();
+                x.matKhau == txtMatkhau.Password).FirstOrDefault();
                 if (tk != null)
                 {
-                    new frmNhanVien(null, tk).Show();
-                    this.Close();
+                    if (tk.trangThai == 0)
+                    {
+                        new frmNhanVien(null, tk).Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tài khoản này đã bị khóa");
+                    }
                 }
                 else
                 {

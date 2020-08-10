@@ -11,123 +11,47 @@
     <StackPanel>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="10"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="1.5*"/>
-                <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <!--<ColumnDefinition/>-->
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="1" Grid.Column="1" Content="QUẢN LÝ TÀI KHOẢN" FontSize="18" FontFamily="Arial"></Label>
-            <!--<Button Grid.Row="1" Grid.Column="3" Content="Đăng xuất" FontSize="12" />
-            <Button Grid.Row="1" Grid.Column="5" Content="Trở về"  FontSize="12"/>-->
 
+            <Label Grid.Row="0" Grid.Column="0" Content="Tên nhân viên" FontSize="18" Margin="10,0,5,0"/>
+            <ComboBox Grid.Row="1" Grid.Column="0" x:Name="cmbTenNhanVien" Margin="10,0,5,0" Height="30" FontSize="18" Loaded="cmbTenNhanVien_Loaded"></ComboBox>
+            <Label Grid.Row="0" Grid.Column="1" Content="Tài khoản" FontSize="18" Margin="5,0,5,0"/>
+            <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtTaiKhoan" Margin="10,0,5,0" FontSize="18" Height="30" VerticalContentAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="2" Content="Mật khẩu" FontSize="18"/>
+            <TextBox Grid.Row="1" Grid.Column="2" x:Name="txtMatKhau" Text="1" FontSize="18" VerticalContentAlignment="Center" Margin="5,0,5,0"/>
+            <Label Grid.Row="0" Grid.Column="3" Content="Loại tài khoản" FontSize="18"/>
+            <ComboBox Grid.Row="1" Grid.Column="3" x:Name="cmbLoaiTaiKhoan" Margin="5,0,10,0" FontSize="18" Loaded="cmbLoaiTaiKhoan_Loaded"></ComboBox>
+
+            <Button Grid.Row="2" Grid.Column="0" Content="Thêm" x:Name="btnThemTK" Click="btnThemTK_Click"  FontSize="18" Margin="10,10,5,0" Height="35"/>
+            <!--<Button Grid.Row="2" Grid.Column="1" Content="Refect" x:Name="btnRefect" FontSize="18" Margin="5,10,5,0" Click="btnRefect_Click"/>-->
+            <Button Grid.Row="2" Grid.Column="2" Content="Khóa tài khoản" x:Name="btnKhoaTaiKhoan" Click="btnKhoaTaiKhoan_Click" FontSize="18" Margin="5,10,5,0"/>
+            <Button Grid.Row="2" Grid.Column="3" Content="Mở tài khoản" x:Name="btnMoTaiKhoan" Click="btnMoTaiKhoan_Click" FontSize="18" Margin="5,10,10,0"/>
+
+            <GroupBox Header="Danh Sách tài khoản" Grid.Row="3" Grid.ColumnSpan="4" Height="570" Margin="10">
+                <DataGrid  Name="dgQltaikhoan" 
+                           AutoGenerateColumns="False" IsReadOnly="True"
+                           SelectedValuePath="maNhanVien"  FontSize="18">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}" Width="1*"/>
+                        <DataGridTextColumn Header="Tên nhân viên" Binding="{Binding tenNhanVien}" Width="1*"/>
+                        <DataGridTextColumn Header="Tên tài khoản" Binding="{Binding taiKhoan}" Width="1*"/>
+                        <DataGridTextColumn Header="Loại Tài Khoản" Binding="{Binding tenLoaiTaiKhoan}" Width="1*"/>
+                        <DataGridTextColumn Header="Trạng thái" Binding="{Binding trangThai}" Width="1*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
         </Grid>
-        <Grid >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="10"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition  />
-                <ColumnDefinition Width="0.1*" />
-                <ColumnDefinition/>
-                <ColumnDefinition  Width="0.1*"/>
-                <ColumnDefinition />
-                <ColumnDefinition  Width="0.1*"/>
-                <ColumnDefinition/>
-                <ColumnDefinition  Width="10"/>
-
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="1"  Grid.Row="1" Content="Mã nhân viên" FontSize="12" />
-            <Label Grid.Column="3"  Grid.Row="1" Content="Tài khoản" FontSize="12" />
-            <Label Grid.Column="5"  Grid.Row="1" Content="Mật Khẩu" FontSize="12" />
-            <Label Grid.Column="7"  Grid.Row="1" Content="Loại nhân viên" FontSize="12" Margin="0,10,0.4,9.4" Grid.RowSpan="3"/>
-            <ComboBox Grid.Row="2" Grid.Column="1" FontSize="12" Name="cboManhanvien" Loaded="cboManhanvien_Loaded"  Grid.ColumnSpan="2" Margin="0.4,9.2,20.6,9.4" Grid.RowSpan="3"></ComboBox>
-            <TextBox Grid.Row="2" Grid.Column="3" FontSize="12" Name="txtTaikhoan"  Grid.ColumnSpan="2" Margin="0.4,9.2,19.8,9.4" Grid.RowSpan="3"></TextBox>
-            <TextBox Grid.Row="2" Grid.Column="5" FontSize="12" Name="txtMatkhau"  Grid.ColumnSpan="2" Margin="0.2,9.2,20.8,9.4" Grid.RowSpan="3">
-            </TextBox>
-            <ComboBox Grid.Row="2" Grid.Column="7" FontSize="12" x:Name="cboLoaitaikhoan" Loaded="cboLoaitaikhoan_Loaded"  Grid.ColumnSpan="3" Margin="0,9.2,0.4,9.4" Grid.RowSpan="3">
-            </ComboBox>
-        </Grid>
-
-
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="10"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition/>
-                <ColumnDefinition  Width="0.05*"/>
-                <ColumnDefinition/>
-                <ColumnDefinition  Width="0.05*"/>
-                <ColumnDefinition/>
-                <ColumnDefinition  Width="10"/>
-                <ColumnDefinition/>
-                <ColumnDefinition  Width="0.05*"/>
-                <ColumnDefinition/>
-                <ColumnDefinition  Width="10"/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Row="1" Grid.Column="1" Content="Thêm" x:Name="btnThemTK" Click="btnThemTK_Click"  FontSize="12"/>
-            <!--<Button Grid.Row="1" Grid.Column="3" Content="Thay đổi trạng thái" x:Name="btnXoaTK" Click="btnXoaTK_Click" FontSize="12"/>-->
-            <Button Grid.Row="1" Grid.Column="5" Content="Sửa"  x:Name="btnSuaTK" Click="btnSuaTK_Click" FontSize="12"/>
-            <Button Grid.Row="1" Grid.Column="7" Content="Khóa tài khoản"  x:Name="btnKhoaTaiKhoan" Click="btnKhoaTaiKhoan_Click" FontSize="12"/>
-            <Button Grid.Row="1" Grid.Column="9" Content="Mở tài khoản"  x:Name="btnMoTaiKhoan" Click="btnMoTaiKhoan_Click" FontSize="12"/>
-        </Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="10"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="0.1*"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="10"/>
-            </Grid.ColumnDefinitions>
-            <!--<TextBox Grid.Row="0" Grid.Column="1" FontSize="12"></TextBox>
-            <Button Grid.Row="0" Grid.Column="3" Content="TÌM"  FontSize="12"/>-->
-        </Grid>
-
-        <StackPanel  VerticalAlignment="Center">
-            <Grid Height="435">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"></RowDefinition>
-                    <RowDefinition Height="405"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition Width="10"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="Danh sách sản phẩm" FontSize="12" Height="30" FontFamily="Arial"/>
-                <Grid Grid.Row="1" Grid.Column="1" Height="405">
-                    <DataGrid  Name="dgQltaikhoan" 
-                               AutoGenerateColumns="False" IsReadOnly="True" SelectedValuePath="maNhanVien" 
-                               SelectionChanged="dgQltaikhoan_SelectionChanged"  FontSize="20" ColumnWidth="0.2*">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}" />
-                            <DataGridTextColumn Header="Tên tài khoản" Binding="{Binding taiKhoan}" />
-                            <DataGridTextColumn Header="Mật Khẩu" Binding="{Binding matKhau}"/>
-                            <DataGridTextColumn Header="Loại Tài Khoản" Binding="{Binding tenLoaiTaiKhoan}"/>
-                            <DataGridTextColumn Header="Trạng thái" Binding="{Binding trangThai}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-            </Grid>
-        </StackPanel>
     </StackPanel>
 </Page>

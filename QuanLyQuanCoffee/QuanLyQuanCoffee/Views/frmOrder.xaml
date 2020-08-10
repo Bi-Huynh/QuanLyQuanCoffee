@@ -53,13 +53,13 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ListBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" Name="LstBoxLoaisanpham"
+            <ListBox Grid.Row="0" Grid.Column="0" Grid.RowSpan="6" Name="LstBoxLoaisanpham"
                      BorderBrush="Blue" Background="White" MaxHeight="640"
                      FontSize="15" Loaded="LstBoxLoaisanpham_Loaded"
                      MouseDoubleClick="LstBoxLoaisanpham_MouseDoubleClick">
             </ListBox>
 
-            <DataGrid Grid.Row="0" Grid.Column="1" Grid.RowSpan="7" MaxHeight="640"
+            <DataGrid Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" MaxHeight="640"
                       Name="dgDanhsachsanpham" Background="White" Margin="5,0,0,0"
                       FontSize="15" VerticalScrollBarVisibility="Auto" IsReadOnly="True" 
                       SelectedValuePath="maSanPham" AutoGenerateColumns="False"
@@ -72,7 +72,7 @@
             </DataGrid>
 
             <DataGrid Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Background="White"
-                      Name="dgChitiethoadon" FontSize="15" Margin="5,0,0,0" Height="350" MaxHeight="365"
+                      Name="dgChitiethoadon" FontSize="15" Margin="5,0,0,0" Height="400" MaxHeight="450"
                       VerticalScrollBarVisibility="Auto" IsReadOnly="True"
                       SelectedValuePath="maSanPham" AutoGenerateColumns="False">
                 <DataGrid.Columns>
@@ -92,34 +92,28 @@
                     Margin="5,10,0,0" Height="30" Content="Hủy"
                     Click="btnHuy_Click"/>
 
-            <Label Grid.Row="2" Grid.Column="2" Content="Mã hóa đơn: "
+            <Label Grid.Row="2" Grid.Column="2" Content="Tổng tiền: "
                    Margin="5,10,0,0" FontSize="20"/>
 
-            <TextBlock x:Name="txtMaHoaDon" Grid.Row="2" Grid.Column="3"
+            <TextBlock x:Name="txtTongTien" Grid.Row="2" Grid.Column="3"
                        Margin="5,10,0,0" FontSize="20"/>
 
-            <Label Grid.Row="3" Grid.Column="2" Content="Tổng tiền: "
+            <Label Grid.Row="3" Grid.Column="2" Content="Tiền khách đưa: "
                    Margin="5,10,0,0" FontSize="20"/>
 
-            <TextBlock x:Name="txtTongTien" Grid.Row="3" Grid.Column="3"
-                       Margin="5,10,0,0" FontSize="20"/>
-
-            <Label Grid.Row="4" Grid.Column="2" Content="Tiền khách đưa: "
-                   Margin="5,10,0,0" FontSize="20"/>
-
-            <TextBox x:Name="txtTienKhachDua" Grid.Row="4" Grid.Column="3"
+            <TextBox x:Name="txtTienKhachDua" Grid.Row="3" Grid.Column="3"
                      Margin="5,10,0,0" FontSize="20"
                      KeyDown="txtTienKhachDua_KeyDown"/>
 
-            <Label Grid.Row="5" Grid.Column="2" Content="Tiền thối lại: "
+            <Label Grid.Row="4" Grid.Column="2" Content="Tiền thối lại: "
                    Margin="5,10,0,0" FontSize="20"/>
 
-            <TextBlock x:Name="txtTienThoiLai" Grid.Row="5" Grid.Column="3"
+            <TextBlock x:Name="txtTienThoiLai" Grid.Row="4" Grid.Column="3"
                        Margin="5,10,0,0" FontSize="20"/>
 
-            <Button Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2"
+            <Button Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2"
                     x:Name="btnTinhTien" Content="Tính tiền"
-                    Margin="5,10,0,0" FontSize="15" Height="35"
+                    Margin="5,10,0,0" FontSize="15" Height="40"
                     Click="btnTinhtien_Click"/>
         </Grid>
     </StackPanel>

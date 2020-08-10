@@ -28,6 +28,7 @@
                     <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding maHoaDon}" Width="1*"/>
                     <DataGridTextColumn Header="Tên nhân viên" Binding="{Binding tenNhanVien}" Width="1.5*"/>
                     <DataGridTextColumn Header="Ngày lập" Binding="{Binding ngayLap}" Width="1*"/>
+                    <DataGridTextColumn Header="Thời gian" Binding="{Binding thoiGian}" Width="1*"/>
                     <DataGridTextColumn Header="Tổng thành tiền" Binding="{Binding tongThanhTien}" Width="1*"/>
                 </DataGrid.Columns>
             </DataGrid>

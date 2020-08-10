@@ -22,6 +22,28 @@ namespace QuanLyQuanCoffee.BUS
         }
 
         // Trả về toàn bộ danh sách nhân viên
+        public static List<NhanVien> toListNotAccount()
+        {
+            List<NhanVien> nhanViens = new List<NhanVien>();
+            foreach (NhanVien nhanVien in toList())
+            {
+                bool flag = false;
+                foreach (TaiKhoan taiKhoan in CTaiKhoan_BUS.toList())
+                {
+                    if (taiKhoan.maNhanVien == nhanVien.maNhanVien)
+                    {
+                        flag = true;
+                    }
+                }
+                if (flag == false)
+                {
+                    nhanViens.Add(nhanVien);
+                }
+            }
+            return nhanViens;
+        }
+
+        // Trả về toàn bộ danh sách nhân viên
         public static List<NhanVien> toListAll()
         {
             List<NhanVien> list = quanLyQuanCoffee.NhanViens.ToList();
@@ -60,6 +82,24 @@ namespace QuanLyQuanCoffee.BUS
             List<NhanVien> list = toList().Where(x => x.tenNhanVien.
                 ToLower().Contains(tenNhanVien) == true && x.trangThai == 0).ToList();
             return list == null ? new List<NhanVien>() : list;
+        }
+
+        // tìm kiếm nhân viên theo tên nhân viên
+        public static string findTenbyMa(string tenNhanVien)
+        {
+            //tenNhanVien = CServices.formatChuoi(tenNhanVien).ToLower();
+            //NhanVien nhanVien = toList().Where(x => x.tenNhanVien.
+            //    ToLower().Contains(tenNhanVien) == true && x.trangThai == 0).ToList().FirstOrDefault();
+            //string maNhanVien = "";
+            foreach (NhanVien nhanVien in toList())
+            {
+                string hoTen = nhanVien.hoNhanVien + " " + nhanVien.tenNhanVien;
+                if (hoTen == tenNhanVien)
+                {
+                    return nhanVien.maNhanVien;
+                }
+            }
+            return "";
         }
 
         // tìm kiếm nhân viên theo tên nhân viên

@@ -48,8 +48,9 @@ namespace QuanLyQuanCoffee.Views
             {
                 maHoaDon = x.maHoaDon,
                 tenNhanVien = x.NhanVien.hoNhanVien + " " + x.NhanVien.tenNhanVien,
-                ngayLap = x.ngayLap,
-                tongThanhTien = x.tongThanhTien
+                ngayLap = x.ngayLap.ToString("dd/MM/yyyy"),
+                thoiGian = x.ngayLap.ToString("hh:mm:ss"),
+                tongThanhTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.tongThanhTien)
             });
         }
 
@@ -77,7 +78,7 @@ namespace QuanLyQuanCoffee.Views
                         maHoaDon = x.maHoaDon,
                         tenSanPham = x.SanPham.tenSanPham,
                         soLuong = x.soLuong,
-                        thanhTien = x.thanhTien
+                        thanhTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.thanhTien)
                     });
                 }
             }

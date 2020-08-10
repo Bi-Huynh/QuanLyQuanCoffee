@@ -38,14 +38,14 @@ namespace QuanLyQuanCoffee.Views
                 nhanVienSelect = new NhanVien();
             }
             chiTietHoaDons = new List<ChiTietHoaDon>();
-            taoma();
+            //taoma();
             txtTenNhanVien.Content = nhanVienSelect.hoNhanVien + " " + nhanVienSelect.tenNhanVien;
         }
 
-        public void taoma()
-        {
-            txtMaHoaDon.Text = CServices.taoMa<HoaDon>(CHoaDon_BUS.toList());
-        }
+        //public void taoma()
+        //{
+        //    txtMaHoaDon.Text = CServices.taoMa<HoaDon>(CHoaDon_BUS.toList());
+        //}
 
         public void hienthitheoListBOX(string maloai)
         {
@@ -200,12 +200,14 @@ namespace QuanLyQuanCoffee.Views
                 MessageBox.Show("Hóa Đơn chưa có chi tiết hóa đơn");
                 return;
             }
-            if (CHoaDon_BUS.find(txtMaHoaDon.Text) == null)
+
+            string maHoaDon = CServices.taoMa<HoaDon>(CHoaDon_BUS.toList());
+            if (CHoaDon_BUS.find(maHoaDon) == null)
             {
                 try
                 {
                     HoaDon hoaDon = new HoaDon();
-                    hoaDon.maHoaDon = txtMaHoaDon.Text;
+                    hoaDon.maHoaDon = maHoaDon;
                     hoaDon.maNhanVien = nhanVienSelect.maNhanVien;
                     hoaDon.ngayLap = DateTime.Now;
                     hoaDon.tongThanhTien = tongThanhTien;
@@ -227,12 +229,12 @@ namespace QuanLyQuanCoffee.Views
                         MessageBox.Show("Xuất hóa đơn thành công");
                     }
 
-                    taoma();
+                    //taoma();
 
                     chiTietHoaDons.Clear();
                     hienThiDSChiTietHD(chiTietHoaDons);
 
-                    hoaDonTreo = null;
+                    //hoaDonTreo = null;
                     tongThanhTien = 0;
                     txtTongTien.Text = "";
                 }
@@ -322,7 +324,7 @@ namespace QuanLyQuanCoffee.Views
                 try
                 {
                     hoaDonTreo = new HoaDon();
-                    hoaDonTreo.maHoaDon = txtMaHoaDon.Text;
+                    //hoaDonTreo.maHoaDon = txtMaHoaDon.Text;
                     hoaDonTreo.maNhanVien = nhanVienSelect.maNhanVien;
                     hoaDonTreo.ngayLap = DateTime.Now;
                     hoaDonTreo.tongThanhTien = tongThanhTien;
@@ -334,11 +336,17 @@ namespace QuanLyQuanCoffee.Views
                         ChiTietHoaDon a = new ChiTietHoaDon();
                         a.maHoaDon = hoaDonTreo.maHoaDon;
                         a.maSanPham = item.maSanPham;
+                        a.SanPham = CSanPham_BUS.find(item.maSanPham);
+                        if (a.SanPham == null)
+                        {
+                            MessageBox.Show("Lỗi, không thể treo hóa đơn");
+                            return;
+                        }
                         a.soLuong = item.soLuong;
                         a.thanhTien = CChiTietHoaDon_BUS.tinhThanhTien(item);
                         hoaDonTreo.ChiTietHoaDons.Add(a);
                     }
-                    taoma();
+                    //taoma();
                     chiTietHoaDons.Clear();
                     hienThiDSChiTietHD(chiTietHoaDons);
                 }
@@ -365,7 +373,7 @@ namespace QuanLyQuanCoffee.Views
         {
             if (hoaDonTreo != null)
             {
-                txtMaHoaDon.Text = hoaDonTreo.maHoaDon;
+                //txtMaHoaDon.Text = hoaDonTreo.maHoaDon;
                 txtTongTien.Text = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", hoaDonTreo.tongThanhTien);
 
                 //chiTietHoaDons = (List<ChiTietHoaDon>)hoaDonTreo.ChiTietHoaDons;
