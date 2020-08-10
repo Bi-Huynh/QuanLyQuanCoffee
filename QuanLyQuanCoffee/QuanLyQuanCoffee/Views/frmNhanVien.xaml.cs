@@ -71,11 +71,12 @@ namespace QuanLyQuanCoffee.Views
 
         private void dangXuat_Click(object sender, RoutedEventArgs e)
         {
-            if (CCa_BUS.isDaKetCa)
+            if (CCa_BUS.isDaKetCa == false && CCa_BUS.CaLamViec == null)
             {
                 frmDangNhap f = new frmDangNhap();
                 f.Show();
                 CCa_BUS.isDaKetCa = false;
+                CCa_BUS.CaLamViec = null;
                 this.Close();
             }
             else

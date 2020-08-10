@@ -13,7 +13,7 @@
 
             <MenuItem x:Name="gd_QuanLyHoaDon" Header="Hóa Đơn" Click="gd_QuanLyHoaDon_Click"></MenuItem>
             
-            <MenuItem x:Name="doiTaiKhoan" Header="Đổi tài khoản" Click="doiTaiKhoan_Click"></MenuItem>
+            <MenuItem x:Name="doiTaiKhoan" Header="Đổi mật khẩu" Click="doiTaiKhoan_Click"></MenuItem>
 
             <MenuItem x:Name="taoCa" Header="Tạo Ca" Click="taoCa_Click"></MenuItem>
             
