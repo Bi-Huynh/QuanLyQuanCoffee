@@ -171,16 +171,14 @@ namespace QuanLyQuanCoffee.BUS
             int soLuongSanPham = 0;
             try
             {
-                foreach (var hoaDon in toList())
+                List<HoaDon> hoaDons = toList().Where(x => x.ngayLap.Month == thang && x.ngayLap.Year == DateTime.Now.Year).ToList();
+                foreach (var hoaDon in hoaDons)
                 {
-                    if (hoaDon.ngayLap.Month == thang)
+                    foreach (var chiTietHoaDon in hoaDon.ChiTietHoaDons)
                     {
-                        foreach (var chiTietHoaDon in CChiTietHoaDon_BUS.toList())
+                        if (chiTietHoaDon.maSanPham == maSanPham)
                         {
-                            if (chiTietHoaDon.maSanPham == maSanPham)
-                            {
-                                soLuongSanPham += chiTietHoaDon.soLuong.Value;
-                            }
+                            soLuongSanPham += chiTietHoaDon.soLuong.Value;
                         }
                     }
                 }
@@ -260,16 +258,14 @@ namespace QuanLyQuanCoffee.BUS
             double result = 0;
             try
             {
-                foreach (var hoaDon in toList())
+                List<HoaDon> hoaDons = toList().Where(x => x.ngayLap.Month == thang && x.ngayLap.Year == DateTime.Now.Year).ToList();
+                foreach (var hoaDon in hoaDons)
                 {
-                    if (hoaDon.ngayLap.Month == thang)
+                    foreach (var chiTietHoaDon in hoaDon.ChiTietHoaDons)
                     {
-                        foreach (var chiTietHoaDon in hoaDon.ChiTietHoaDons)
+                        if (chiTietHoaDon.maSanPham == maSanPham)
                         {
-                            if (chiTietHoaDon.maSanPham == maSanPham)
-                            {
-                                result += chiTietHoaDon.thanhTien.Value;
-                            }
+                            result += chiTietHoaDon.thanhTien.Value;
                         }
                     }
                 }
@@ -281,6 +277,25 @@ namespace QuanLyQuanCoffee.BUS
             catch (OverflowException)
             {
                 MessageBox.Show("Đếm tổng tiền bán của sản phẩm lỗi, CHoaDon, Overflow");
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("Giá trị vượt qua giới hạn, CHoaDon, Invali");
+            }
+            return result;
+        }
+
+        public static double tongTienBanSanPham_(string maSanPham, int soLuong)
+        {
+            double result = 0;
+            SanPham sanPham = CSanPham_BUS.find(maSanPham);
+            if (sanPham != null)
+            {
+                result = sanPham.donGia.Value * soLuong;
+            }
+            else
+            {
+                result = tongTienBanSanPham(maSanPham, DateTime.Now.Month);
             }
             return result;
         }

@@ -119,6 +119,7 @@
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
     <Compile Include="DTO\CBangXepHang.cs" />
+    <Compile Include="DTO\CBangXepHangSanPham.cs" />
     <Compile Include="DTO\CCa_DTO.cs" />
     <Compile Include="HoaDon.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>

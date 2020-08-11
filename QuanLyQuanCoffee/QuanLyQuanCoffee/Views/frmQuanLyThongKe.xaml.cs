@@ -41,7 +41,7 @@ namespace QuanLyQuanCoffee.Views
                 {
                     maThongKe = x.maThongKe,
                     ngayThongKe = x.ngayLap.Value.ToString("dd/MM/yyyy"),
-                    tongThanhTien = x.tongThanhTien
+                    tongThanhTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.tongThanhTien)
                 });
             }
         }
@@ -90,6 +90,7 @@ namespace QuanLyQuanCoffee.Views
                     bangXepHangs.Add(new CBangXepHang(
                         stt,
                         nhanVien.hoNhanVien + " " + nhanVien.tenNhanVien,
+                        nhanVien.LoaiNhanVien.tenLoai,
                         soLuongHoaDon,
                         //soLuongBan,
                         tongThanhTien));
@@ -98,6 +99,7 @@ namespace QuanLyQuanCoffee.Views
                 {
                     stt = x.Stt,
                     hoTen = x.HoTen,
+                    chucVu = x.ChuVu,
                     soLuongHoaDon = x.SoLuongHoaDon,
                     soLuongBan = x.SoLuongBan,
                     tongTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.TongTien)
@@ -108,17 +110,18 @@ namespace QuanLyQuanCoffee.Views
         private void showBangXepHangSanPham()
         {
             List<SanPham> sanPhams = CSanPham_BUS.toList();
-            List<CBangXepHang> bangXepHangs = new List<CBangXepHang>();
+            List<CBangXepHangSanPham> bangXepHangs = new List<CBangXepHangSanPham>();
             if (sanPhams.Count() > 0)
             {
                 int stt = 0;
+
                 foreach (var sanPham in sanPhams)
                 {
                     //int soLuongHoaDon = CHoaDon_BUS.demSoLuongHoaDon(nhanVien.maNhanVien, DateTime.Now.Month);
                     int soLuongBan = CHoaDon_BUS.demSoLuongSanPham(sanPham.maSanPham, DateTime.Now.Month);
-                    double tongThanhTien = CHoaDon_BUS.tongTienBanSanPham(sanPham.maSanPham, DateTime.Now.Month);
+                    double tongThanhTien = CHoaDon_BUS.tongTienBanSanPham_(sanPham.maSanPham, soLuongBan);
                     stt++;
-                    bangXepHangs.Add(new CBangXepHang(
+                    bangXepHangs.Add(new CBangXepHangSanPham(
                         stt,
                         sanPham.tenSanPham,
                         //soLuongHoaDon,
@@ -128,8 +131,8 @@ namespace QuanLyQuanCoffee.Views
                 dgBangXepHangSanPham.ItemsSource = bangXepHangs.Select(x => new
                 {
                     stt = x.Stt,
-                    tenSanPham = x.HoTen,
-                    soLuongBan = x.SoLuongHoaDon,
+                    tenSanPham = x.TenSanPham,
+                    soLuongBan = x.SoLuongBan,
                     tongTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.TongTien)
                 });
             }
@@ -157,7 +160,13 @@ namespace QuanLyQuanCoffee.Views
                     List<ThongKe> thongKes = new List<ThongKe>();
                     int thang = int.Parse(txtTimKiem.Text);
                     thongKes = CThongKe.toList(thang);
-                    dgPhieuThongKe.ItemsSource = thongKes;
+
+                    dgPhieuThongKe.ItemsSource = thongKes.Select(x => new
+                    {
+                        maThongKe = x.maThongKe,
+                        ngayThongKe = x.ngayLap.Value.ToString("dd/MM/yyyy"),
+                        tongThanhTien = x.tongThanhTien
+                    });
                 }
                 catch (ArgumentNullException)
                 {
