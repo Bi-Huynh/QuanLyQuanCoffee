@@ -28,47 +28,47 @@ namespace QuanLyQuanCoffee.Views
             InitializeComponent();
         }
 
-        private void kiemTraTaiKhoan()
-        {
-            string matKhau = CTaiKhoan_BUS.maHoaMatKhau("hai");
+        //private void kiemTraTaiKhoan()
+        //{
+        //    string matKhau = CTaiKhoan_BUS.maHoaMatKhau("hai");
 
-            tk = dc.TaiKhoans.Where(x =>
-                x.taiKhoan1 == txtTaikhoan.Text &&
-                x.matKhau == matKhau &&
-                x.trangThai == 0 &&
-                x.maLoaiTaiKhoan == "00001").FirstOrDefault();
-            if (tk != null)
-            {
-                new frmAdmin(tk).Show();
-                this.Close();
-            }
-            else
-            {
-                tk = dc.TaiKhoans.Where(x =>
-                x.taiKhoan1 == txtTaikhoan.Text &&
-                x.matKhau == matKhau).FirstOrDefault();
-                if (tk != null)
-                {
-                    if (tk.trangThai == 0)
-                    {
-                        new frmNhanVien(null, tk).Show();
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Tài khoản này đã bị khóa");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Sai tài khoản hoặc mật khẩu");
-                }
-            }
-        }
+        //    tk = dc.TaiKhoans.Where(x =>
+        //        x.taiKhoan1 == txtTaikhoan.Text &&
+        //        x.matKhau == matKhau &&
+        //        x.trangThai == 0 &&
+        //        x.maLoaiTaiKhoan == "00001").FirstOrDefault();
+        //    if (tk != null)
+        //    {
+        //        new frmAdmin(tk).Show();
+        //        this.Close();
+        //    }
+        //    else
+        //    {
+        //        tk = dc.TaiKhoans.Where(x =>
+        //        x.taiKhoan1 == txtTaikhoan.Text &&
+        //        x.matKhau == matKhau).FirstOrDefault();
+        //        if (tk != null)
+        //        {
+        //            if (tk.trangThai == 0)
+        //            {
+        //                new frmNhanVien(null, tk).Show();
+        //                this.Close();
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Tài khoản này đã bị khóa");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Sai tài khoản hoặc mật khẩu");
+        //        }
+        //    }
+        //}
 
         private void btnDangNhap_Click(object sender, RoutedEventArgs e)
         {
-            kiemTraTaiKhoan();
+            //kiemTraTaiKhoan();
         }
     }
 }
