@@ -32,8 +32,15 @@ namespace QuanLyQuanCoffee.Views
         {
             string matKhau = CTaiKhoan_BUS.Encrypt(txtMatkhau.Password);
 
-            taiKhoan = dc.TaiKhoans.Where(x => x.taiKhoan1 == txtTaikhoan.Text &&
-                                                x.matKhau == txtMatkhau.Password).FirstOrDefault();
+            taiKhoan = dc.TaiKhoans.Where(x => x.taiKhoan1.Trim() == txtTaikhoan.Text &&
+                                                x.matKhau.Trim() == matKhau).FirstOrDefault();
+
+            if (taiKhoan == null)
+            {
+                taiKhoan = dc.TaiKhoans.Where(x => x.taiKhoan1.Trim() == txtTaikhoan.Text &&
+                                                x.matKhau.Trim() == txtMatkhau.Password && 
+                                                x.trangThai == 3).FirstOrDefault();
+            }
 
             if (taiKhoan != null)
             {

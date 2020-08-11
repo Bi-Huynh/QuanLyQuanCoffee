@@ -130,7 +130,6 @@ namespace QuanLyQuanCoffee.Views
                     stt = x.Stt,
                     tenSanPham = x.HoTen,
                     soLuongBan = x.SoLuongHoaDon,
-                    //soLuongBan = x.SoLuongBan,
                     tongTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.TongTien)
                 });
             }
