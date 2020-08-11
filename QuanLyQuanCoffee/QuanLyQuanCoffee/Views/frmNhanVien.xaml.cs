@@ -39,12 +39,12 @@ namespace QuanLyQuanCoffee.Views
             {
                 taiKhoanSelect = new TaiKhoan();
             }
-            else
+
+            if (taiKhoanSelect.trangThai == 3)
             {
-                nhanVienSelect = CNhanVien_BUS.find(taiKhoan.maNhanVien);
+                MessageBox.Show("Vui lòng đổi mật khẩu");
+                new frmDoiTaiKhoan(taiKhoanSelect).Show();
             }
-            
-            //MainNhanVien.Content = new frmOrder(nhanVienSelect);
         }
 
         private void order_Click(object sender, RoutedEventArgs e)

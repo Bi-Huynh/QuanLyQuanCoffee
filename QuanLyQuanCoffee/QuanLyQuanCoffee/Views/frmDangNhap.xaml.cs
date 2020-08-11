@@ -20,7 +20,7 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmDangNhap : Window
     {
-        private TaiKhoan tk;
+        private TaiKhoan taiKhoan;
         private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
 
         public frmDangNhap()
@@ -28,47 +28,50 @@ namespace QuanLyQuanCoffee.Views
             InitializeComponent();
         }
 
-        //private void kiemTraTaiKhoan()
-        //{
-        //    string matKhau = CTaiKhoan_BUS.maHoaMatKhau("hai");
+        private void kiemTraTaiKhoan()
+        {
+            string matKhau = CTaiKhoan_BUS.Encrypt(txtMatkhau.Password);
 
-        //    tk = dc.TaiKhoans.Where(x =>
-        //        x.taiKhoan1 == txtTaikhoan.Text &&
-        //        x.matKhau == matKhau &&
-        //        x.trangThai == 0 &&
-        //        x.maLoaiTaiKhoan == "00001").FirstOrDefault();
-        //    if (tk != null)
-        //    {
-        //        new frmAdmin(tk).Show();
-        //        this.Close();
-        //    }
-        //    else
-        //    {
-        //        tk = dc.TaiKhoans.Where(x =>
-        //        x.taiKhoan1 == txtTaikhoan.Text &&
-        //        x.matKhau == matKhau).FirstOrDefault();
-        //        if (tk != null)
-        //        {
-        //            if (tk.trangThai == 0)
-        //            {
-        //                new frmNhanVien(null, tk).Show();
-        //                this.Close();
-        //            }
-        //            else
-        //            {
-        //                MessageBox.Show("Tài khoản này đã bị khóa");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show("Sai tài khoản hoặc mật khẩu");
-        //        }
-        //    }
-        //}
+            taiKhoan = dc.TaiKhoans.Where(x => x.taiKhoan1 == txtTaikhoan.Text &&
+                                                x.matKhau == txtMatkhau.Password).FirstOrDefault();
+
+            if (taiKhoan != null)
+            {
+                if (taiKhoan.maLoaiTaiKhoan == "00001")
+                {
+                    new frmAdmin(taiKhoan).Show();
+                    this.Close();
+                }
+                else
+                {
+                    if (taiKhoan.trangThai == 0 || taiKhoan.trangThai == 3)
+                    {
+                        NhanVien nhanVien = CNhanVien_BUS.find(taiKhoan.maNhanVien);
+                        if (nhanVien != null)
+                        {
+                            new frmNhanVien(nhanVien, taiKhoan).Show();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không tìm thấy nhân viên sở hữu tài khoản này");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tài khoản này đã bị khóa");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Sai tài khoản hoặc mật khẩu");
+            }
+        }
 
         private void btnDangNhap_Click(object sender, RoutedEventArgs e)
         {
-            //kiemTraTaiKhoan();
+            kiemTraTaiKhoan();
         }
     }
 }

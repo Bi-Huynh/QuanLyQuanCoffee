@@ -81,7 +81,7 @@ namespace QuanLyQuanCoffee.Views
                     MessageBox.Show("Không lấy được mã loại tài khoản");
                     return;
                 }
-                taiKhoan.trangThai = 0;
+                taiKhoan.trangThai = 3;
 
                 if (CServices.kiemTraThongTin(taiKhoan))//Kiểm tra thông tin tài khoản hợp lệ
                 {

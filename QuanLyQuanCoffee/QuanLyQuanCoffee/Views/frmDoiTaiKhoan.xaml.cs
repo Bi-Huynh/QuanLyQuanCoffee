@@ -25,35 +25,20 @@ namespace QuanLyQuanCoffee.Views
         public frmDoiTaiKhoan(TaiKhoan taiKhoan = null)
         {
             InitializeComponent();
-            if (taiKhoan != null)
+            TaiKhoan taiKhoanSelect = taiKhoan;
+            if (taiKhoan == null)
             {
-                taiKhoanSelect = taiKhoan;
+                taiKhoanSelect = new TaiKhoan();
             }
         }
 
         private void btnXacNhan_Click(object sender, RoutedEventArgs e)
         {
-            //if (taiKhoanSelect.matKhau == "1")
-            //{
-            //    if (CTaiKhoan_BUS.doiMatKhau(taiKhoanSelect, txtMatKhauMoi.Password))
-            //    {
-            //        MessageBox.Show("Thay đổi mật khẩu thành công");
-            //        this.Close();
-            //    };
-            //}
-            //else
-            //{
-            //    string matKhauCu = CTaiKhoan_BUS.maHoaMatKhau(txtMatKhauCu.Password);
-            //    if (taiKhoanSelect.matKhau == matKhauCu)
-            //    {
-            //        if (CTaiKhoan_BUS.doiMatKhau(taiKhoanSelect, txtMatKhauMoi.Password))
-            //        {
-            //            MessageBox.Show("Thay đổi mật khẩu thành công");
-            //            this.Close();
-            //        };
-            //    }
-            //}
-            MessageBox.Show("Đang fix");
+            if (CTaiKhoan_BUS.doiMatKhau(taiKhoanSelect, txtMatKhauMoi.Password))
+            {
+                MessageBox.Show("Thay đổi mật khẩu thành công");
+                this.Close();
+            };
         }
     }
 }

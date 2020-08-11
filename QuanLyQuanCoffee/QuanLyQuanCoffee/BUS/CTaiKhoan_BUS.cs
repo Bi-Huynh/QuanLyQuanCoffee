@@ -14,6 +14,7 @@ namespace QuanLyQuanCoffee.BUS
     class CTaiKhoan_BUS
     {
         private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+        private static string key = "2giotoitaigoccayda";
 
         public static List<TaiKhoan> toList()
         {
@@ -55,22 +56,34 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<string>() : list;
         }
 
-        public static string maHoaMatKhau(string matKhau)   // không được vì mỗi lần nó tạo ra 1 mật khẩu mới
+        /// <summary>
+        /// Mã hóa chuỗi có mật khẩu
+        /// </summary>
+        /// <param name="toEncrypt">Chuỗi cần mã hóa</param>
+        /// <returns>Chuỗi đã mã hóa</returns>
+        public static string Encrypt(string toEncrypt)
         {
-            //Tạo MD5 
-            MD5 mD5 = MD5.Create();
-            //Chuyển kiểu chuổi thành kiểu byte
-            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(matKhau.ToArray());
-            //mã hóa chuỗi đã chuyển
-            byte[] hash = mD5.ComputeHash(inputBytes);
-            //tạo đối tượng StringBuilder (làm việc với kiểu dữ liệu lớn)
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < hash.Length; i++)
+            bool useHashing = true;
+            byte[] keyArray;
+            byte[] toEncryptArray = UTF8Encoding.UTF8.GetBytes(toEncrypt);
+
+            if (useHashing)
             {
-                sb.Append(hash[i].ToString("X2"));
+                MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
+                keyArray = hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
             }
-            //nếu bạn muốn các chữ cái in thường thay vì in hoa thì bạn thay chữ "X" in hoa trong "X2" thành "x"
-            return sb.ToString();
+            else
+                keyArray = UTF8Encoding.UTF8.GetBytes(key);
+
+            TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider();
+            tdes.Key = keyArray;
+            tdes.Mode = CipherMode.ECB;
+            tdes.Padding = PaddingMode.PKCS7;
+
+            ICryptoTransform cTransform = tdes.CreateEncryptor();
+            byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
+
+            return Convert.ToBase64String(resultArray, 0, resultArray.Length);
         }
 
         public static bool add(TaiKhoan taiKhoan)
@@ -79,9 +92,6 @@ namespace QuanLyQuanCoffee.BUS
             {
                 try
                 {
-                    //taiKhoan.taiKhoan1 = CServices.formatTK_MT(taiKhoan.taiKhoan1);
-                    //taiKhoan.matKhau = CServices.formatTK_MT(taiKhoan.matKhau);
-
                     quanLyQuanCoffee.TaiKhoans.Add(taiKhoan);
                     quanLyQuanCoffee.SaveChanges();
                 }
@@ -205,15 +215,24 @@ namespace QuanLyQuanCoffee.BUS
             return true;
         }
 
-        public static bool doiMatKhau(TaiKhoan tk, string matKhauMoi)
+        public static bool doiMatKhau(TaiKhoan tk = null, string matKhauMoi = "")
         {
             try
             {
                 TaiKhoan taiKhoan = quanLyQuanCoffee.TaiKhoans.Find(tk.maNhanVien);
-                taiKhoan.matKhau = maHoaMatKhau(matKhauMoi);
+                if (taiKhoan == null)
+                {
+                    MessageBox.Show("Lỗi! Không tìm được tài khoản");
+                    return false;
+                }
+                else
+                {
+                    taiKhoan.matKhau = Encrypt(matKhauMoi);
+                    taiKhoan.trangThai = 0;
 
-                quanLyQuanCoffee.SaveChanges();
-                return true;
+                    quanLyQuanCoffee.SaveChanges();
+                    return true;
+                }
             }
             catch (DbUpdateException)
             {
