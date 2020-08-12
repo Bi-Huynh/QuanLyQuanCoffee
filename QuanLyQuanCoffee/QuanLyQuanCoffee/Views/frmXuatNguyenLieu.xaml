@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
         mc:Ignorable="d"
         d:DesignHeight="685" d:DesignWidth="1200"
-      Title="frmOder" MinWidth="1200" MinHeight="725" WindowState="Maximized">
+      Title="Quản lý phiếu xuất" MinWidth="1200" MinHeight="725" WindowState="Maximized">
 
     <StackPanel>
         <StackPanel>

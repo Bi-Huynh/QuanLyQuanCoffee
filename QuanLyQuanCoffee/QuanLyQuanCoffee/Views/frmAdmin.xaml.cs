@@ -85,7 +85,8 @@ namespace QuanLyQuanCoffee.Views
 
         private void gd_QuanLyXuatNguyenLieu_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new frmQuanLyPhieuXuatNguyenLieu();
+            NhanVien nhanVien = CNhanVien_BUS.find(taiKhoanSelect.maNhanVien);
+            Main.Content = new frmQuanLyPhieuXuatNguyenLieu(nhanVien);
         }
 
         private void quanLyKetCa_Click(object sender, RoutedEventArgs e)
