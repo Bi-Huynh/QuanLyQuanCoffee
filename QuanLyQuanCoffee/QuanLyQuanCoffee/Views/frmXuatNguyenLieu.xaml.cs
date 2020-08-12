@@ -29,10 +29,15 @@ namespace QuanLyQuanCoffee.Views
         private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
         int i = 0;
         ChiTietPhieuNhap chiTietPhieuNhapselect;
+
         public frmXuatNguyenLieu(NhanVien nhanVien)
         {
             InitializeComponent();
             nhanVienSelected = nhanVien;
+            if (nhanVienSelected == null)
+            {
+                nhanVienSelected = new NhanVien();
+            }
             chiTietPhieuXuats = new List<ChiTietPhieuXuat>();
             chiTietPhieuNhaps = CChiTietPhieuNhapNguyenLieu_BUS.toList();
             HienthiNguyenLieu(chiTietPhieuNhaps);
@@ -53,8 +58,6 @@ namespace QuanLyQuanCoffee.Views
         }
         public void HienthiNguyenLieu(List<ChiTietPhieuNhap> list)
         {
-           
-            
             if (list.Count() > 0)
             {
                 foreach (var item in list)
