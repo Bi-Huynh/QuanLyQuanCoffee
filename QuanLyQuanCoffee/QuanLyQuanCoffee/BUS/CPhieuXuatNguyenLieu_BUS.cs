@@ -18,7 +18,7 @@ namespace QuanLyQuanCoffee.BUS
         }
         public static PhieuXuatNguyenLieu find(string maPhieuXuat)
         {
-            PhieuXuatNguyenLieu PhieuXuatNguyenLieu = quanLyQuanCoffee.PhieuXuatNguyenLieux.Find(maPhieuXuat);
+            PhieuXuatNguyenLieu PhieuXuatNguyenLieu = quanLyQuanCoffee.PhieuXuatNguyenLieux.Where(x=>x.maPhieuXuat==maPhieuXuat).FirstOrDefault();
             return PhieuXuatNguyenLieu;/*==null?new PhieuXuatNguyenLieu():PhieuXuatNguyenLieu;*/
          
         }

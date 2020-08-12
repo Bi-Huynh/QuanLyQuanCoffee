@@ -206,7 +206,8 @@ namespace QuanLyQuanCoffee.Views
                     phieuXuat.maPhieuXuat = txtMaPhieuXuat.Text;
                     phieuXuat.ngayXuat = DateTime.Now;
                     phieuXuat.tongThanhTien = double.Parse(txtBoxTongtien.Text);
-                    phieuXuat.maNhanVien = nhanVienSelected.maNhanVien;
+                    //phieuXuat.maNhanVien = nhanVienSelected.maNhanVien;
+                    phieuXuat.NhanVien = nhanVienSelected;
                     phieuXuat.trangThai = 0;
 
                     foreach (var item in chiTietPhieuXuats)

@@ -22,6 +22,7 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmAdmin : Window
     {
         private TaiKhoan taiKhoanSelect;
+        private NhanVien nhanVienSelect;
 
         public frmAdmin(TaiKhoan taiKhoan = null)
         {
@@ -30,6 +31,7 @@ namespace QuanLyQuanCoffee.Views
             {
                 taiKhoanSelect = taiKhoan;
             }
+            
         }
 
         private void gd_QuanLyNhanVien_Click(object sender, RoutedEventArgs e)

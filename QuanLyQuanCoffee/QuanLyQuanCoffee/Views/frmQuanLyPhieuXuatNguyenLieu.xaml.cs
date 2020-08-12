@@ -119,7 +119,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void dgDSPhieuXuat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            phieuXuatnguyenlieuSelect = CPhieuXuatNguyenLieu_BUS.find(dgDSPhieuXuat.SelectedItem.ToString());
+            phieuXuatnguyenlieuSelect = CPhieuXuatNguyenLieu_BUS.find(dgDSPhieuXuat.SelectedValue.ToString());
         }
 
         private void btnRefesh_Click(object sender, RoutedEventArgs e)
