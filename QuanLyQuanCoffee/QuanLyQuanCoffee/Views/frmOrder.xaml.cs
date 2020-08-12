@@ -26,7 +26,7 @@ namespace QuanLyQuanCoffee.Views
     {
         NhanVien nhanVienSelect;
         private List<ChiTietHoaDon> chiTietHoaDons;
-        private HoaDon hoaDonTreo;
+        //private HoaDon hoaDonTreo;
         private double tongThanhTien;
 
         public frmOrder(NhanVien nhanVien = null)
@@ -138,8 +138,6 @@ namespace QuanLyQuanCoffee.Views
                     a.soLuong += 1;
                     hienThiDSChiTietHD(chiTietHoaDons);
                 }
-
-                //HienthiSP();
             }
         }
 
@@ -229,14 +227,12 @@ namespace QuanLyQuanCoffee.Views
                         MessageBox.Show("Xuất hóa đơn thành công");
                     }
 
-                    //taoma();
-
                     chiTietHoaDons.Clear();
                     hienThiDSChiTietHD(chiTietHoaDons);
 
-                    //hoaDonTreo = null;
                     tongThanhTien = 0;
                     txtTongTien.Text = "";
+                    txtTienKhachDua.Text = "";
                 }
                 catch (DbEntityValidationException)
                 {
@@ -319,22 +315,21 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnTreoHoaDon_Click(object sender, RoutedEventArgs e)
         {
-            if (hoaDonTreo == null)
+            if (CHoaDon_BUS.hoaDonTreo == null)
             {
                 try
                 {
-                    hoaDonTreo = new HoaDon();
-                    //hoaDonTreo.maHoaDon = txtMaHoaDon.Text;
-                    hoaDonTreo.maNhanVien = nhanVienSelect.maNhanVien;
-                    hoaDonTreo.ngayLap = DateTime.Now;
-                    hoaDonTreo.tongThanhTien = tongThanhTien;
+                    CHoaDon_BUS.hoaDonTreo = new HoaDon();
+                    CHoaDon_BUS.hoaDonTreo.maNhanVien = nhanVienSelect.maNhanVien;
+                    CHoaDon_BUS.hoaDonTreo.ngayLap = DateTime.Now;
+                    CHoaDon_BUS.hoaDonTreo.tongThanhTien = tongThanhTien;
 
-                    hoaDonTreo.trangThai = 0;
+                    CHoaDon_BUS.hoaDonTreo.trangThai = 0;
 
                     foreach (var item in chiTietHoaDons)
                     {
                         ChiTietHoaDon a = new ChiTietHoaDon();
-                        a.maHoaDon = hoaDonTreo.maHoaDon;
+                        a.maHoaDon = CHoaDon_BUS.hoaDonTreo.maHoaDon;
                         a.maSanPham = item.maSanPham;
                         a.SanPham = CSanPham_BUS.find(item.maSanPham);
                         if (a.SanPham == null)
@@ -344,7 +339,7 @@ namespace QuanLyQuanCoffee.Views
                         }
                         a.soLuong = item.soLuong;
                         a.thanhTien = CChiTietHoaDon_BUS.tinhThanhTien(item);
-                        hoaDonTreo.ChiTietHoaDons.Add(a);
+                        CHoaDon_BUS.hoaDonTreo.ChiTietHoaDons.Add(a);
                     }
                     //taoma();
                     chiTietHoaDons.Clear();
@@ -371,18 +366,16 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnHoanTac_Click(object sender, RoutedEventArgs e)
         {
-            if (hoaDonTreo != null)
+            if (CHoaDon_BUS.hoaDonTreo != null)
             {
-                //txtMaHoaDon.Text = hoaDonTreo.maHoaDon;
-                txtTongTien.Text = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", hoaDonTreo.tongThanhTien);
+                txtTongTien.Text = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", CHoaDon_BUS.hoaDonTreo.tongThanhTien);
 
-                //chiTietHoaDons = (List<ChiTietHoaDon>)hoaDonTreo.ChiTietHoaDons;
-                foreach(var item in hoaDonTreo.ChiTietHoaDons)
+                foreach(var item in CHoaDon_BUS.hoaDonTreo.ChiTietHoaDons)
                 {
                     chiTietHoaDons.Add(item);
                 }
                 hienThiDSChiTietHD(chiTietHoaDons);
-                hoaDonTreo = null;
+                CHoaDon_BUS.hoaDonTreo = null;
             }
         }
     }

@@ -14,6 +14,7 @@ namespace QuanLyQuanCoffee.BUS
     class CHoaDon_BUS
     {
         private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+        public static HoaDon hoaDonTreo = null;
 
         public static List<HoaDon> toList()
         {
