@@ -53,6 +53,7 @@ namespace QuanLyQuanCoffee.Views
                 DateTime gioBatDau = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
                 DateTime gioKetThuc = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 0, 0);
                 CCa_BUS.CaLamViec = new DTO.CCa_DTO(nhanVienSelect.maNhanVien, gioBatDau, gioKetThuc);
+                //CCa_BUS.isDaKetCa = true;
                 this.Close();
             }
             else if (cmbCaLam.SelectedIndex == 1)
@@ -72,6 +73,7 @@ namespace QuanLyQuanCoffee.Views
                 DateTime gioBatDau = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 0, 0);
                 DateTime gioKetThuc = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 21, 0, 0);
                 CCa_BUS.CaLamViec = new DTO.CCa_DTO(nhanVienSelect.maNhanVien, gioBatDau, gioKetThuc);
+                //CCa_BUS.isDaKetCa = true;
                 this.Close();
             }
         }
