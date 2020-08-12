@@ -71,17 +71,27 @@ namespace QuanLyQuanCoffee.Views
 
         private void dangXuat_Click(object sender, RoutedEventArgs e)
         {
-            if (CCa_BUS.isDaKetCa == false && CCa_BUS.CaLamViec == null)
+            if (CCa_BUS.CaLamViec == null)
+                // chưa tạo ca thì có thể đăng xuất
             {
-                frmDangNhap f = new frmDangNhap();
-                f.Show();
-                CCa_BUS.isDaKetCa = false;
-                CCa_BUS.CaLamViec = null;
+                new frmDangNhap().Show();
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Phải kết ca mới có thể đăng xuất");
+                if (CCa_BUS.isDaKetCa)
+                    // đã kết ca rồi thì mới có thể đăng xuất
+                {
+                    frmDangNhap f = new frmDangNhap();
+                    f.Show();
+                    CCa_BUS.isDaKetCa = false;
+                    CCa_BUS.CaLamViec = null;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Phải kết ca mới có thể đăng xuất");
+                }
             }
         }
 
