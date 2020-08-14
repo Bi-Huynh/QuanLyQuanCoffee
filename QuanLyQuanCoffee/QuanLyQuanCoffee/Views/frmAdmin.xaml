@@ -13,10 +13,10 @@
                 <MenuItem Header="Quản Lý Nhân Viên"
                           Name="gd_QuanLyNhanVien" 
                           Click="gd_QuanLyNhanVien_Click"></MenuItem>
-                <MenuItem Header="Quản Lý Chấm Công"
+                <!--<MenuItem Header="Quản Lý Chấm Công"
                           Name="gd_QuanLyChamCong"></MenuItem>
                 <MenuItem Header="Quản Lý Lương"
-                          Name="gd_QuanLyLuong"></MenuItem>
+                          Name="gd_QuanLyLuong"></MenuItem>-->
             </MenuItem>
             <MenuItem x:Name="nguyenLieu" Header="Nguyên Liệu">
                 <MenuItem Header="Quản Lý Nguyên Liệu"

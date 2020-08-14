@@ -40,11 +40,14 @@ namespace QuanLyQuanCoffee.Views
                 taiKhoanSelect = new TaiKhoan();
             }
 
-            if (taiKhoanSelect.trangThai == 3)
-            {
-                MessageBox.Show("Vui lòng đổi mật khẩu");
-                new frmDoiTaiKhoan(taiKhoanSelect).Show();
-            }
+            //if (taiKhoanSelect.trangThai == 3)
+            //{
+            //    MessageBox.Show("Vui lòng đổi mật khẩu");
+            //    frmDoiTaiKhoan frmDoiTaiKhoan = new frmDoiTaiKhoan(taiKhoanSelect);
+            //    frmDoiTaiKhoan.Show();
+            //    frmDoiTaiKhoan.Activate();
+            //    //new frmDoiTaiKhoan(taiKhoanSelect).Show();
+            //}
         }
 
         private void order_Click(object sender, RoutedEventArgs e)
@@ -103,6 +106,12 @@ namespace QuanLyQuanCoffee.Views
         private void taoCa_Click(object sender, RoutedEventArgs e)
         {
             new frmTaoCa(nhanVienSelect).Show();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBox.Show("keets");
+            //e.Cancel = true;
         }
     }
 }

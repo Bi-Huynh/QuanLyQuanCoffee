@@ -30,7 +30,7 @@ namespace QuanLyQuanCoffee.Views
         int i = 0;
         ChiTietPhieuNhap chiTietPhieuNhapselect;
 
-        public frmXuatNguyenLieu(NhanVien nhanVien)
+        public frmXuatNguyenLieu(NhanVien nhanVien = null)
         {
             InitializeComponent();
             nhanVienSelected = nhanVien;

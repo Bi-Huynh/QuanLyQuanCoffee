@@ -38,7 +38,7 @@ namespace QuanLyQuanCoffee.Views
             if (taiKhoan == null)
             {
                 taiKhoan = dc.TaiKhoans.Where(x => x.taiKhoan1.Trim() == txtTaikhoan.Text &&
-                                                x.matKhau.Trim() == txtMatkhau.Password && 
+                                                x.matKhau.Trim() == txtMatkhau.Password &&
                                                 x.trangThai == 3).FirstOrDefault();
             }
 
@@ -57,6 +57,16 @@ namespace QuanLyQuanCoffee.Views
                         if (nhanVien != null)
                         {
                             new frmNhanVien(nhanVien, taiKhoan).Show();
+
+                            //if (taiKhoanSelect.trangThai == 3)
+                            //{
+                            MessageBox.Show("Vui lòng đổi mật khẩu");
+                            frmDoiTaiKhoan frmDoiTaiKhoan = new frmDoiTaiKhoan(taiKhoan);
+                            frmDoiTaiKhoan.Show();
+                            //frmDoiTaiKhoan.Activate();
+                            //new frmDoiTaiKhoan(taiKhoanSelect).Show();
+                            //}
+
                             this.Close();
                         }
                         else

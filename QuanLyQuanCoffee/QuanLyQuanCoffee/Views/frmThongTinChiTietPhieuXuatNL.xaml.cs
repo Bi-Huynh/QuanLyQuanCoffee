@@ -22,10 +22,14 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmThongTinChiTietPhieuXuatNL : Window
     {
         PhieuXuatNguyenLieu phieuXuatSelected;
-        public frmThongTinChiTietPhieuXuatNL(PhieuXuatNguyenLieu phieuXuat)
+        public frmThongTinChiTietPhieuXuatNL(PhieuXuatNguyenLieu phieuXuat = null)
         {
             InitializeComponent();
-            phieuXuatSelected = phieuXuat;
+            phieuXuatSelected = CPhieuXuatNguyenLieu_BUS.find(phieuXuat.maPhieuXuat);
+            if (phieuXuatSelected == null)
+            {
+                phieuXuatSelected = new PhieuXuatNguyenLieu();
+            }
             hienThiChitietPX();
         }
         public void hienThiChitietPX()

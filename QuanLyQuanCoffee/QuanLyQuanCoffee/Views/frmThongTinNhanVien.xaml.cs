@@ -214,7 +214,7 @@ namespace QuanLyQuanCoffee.Views
             {
                 //string url = "";
                 urlAnh = openFileDialog.FileName;
-
+                //Application.Current.StartupUri.AbsolutePath
 
                 hienThiHinh(urlAnh);
             }
