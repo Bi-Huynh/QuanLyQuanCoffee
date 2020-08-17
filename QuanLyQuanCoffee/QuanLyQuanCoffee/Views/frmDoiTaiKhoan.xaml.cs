@@ -1,4 +1,5 @@
 ﻿using QuanLyQuanCoffee.BUS;
+using QuanLyQuanCoffee.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,29 +39,34 @@ namespace QuanLyQuanCoffee.Views
             if (taiKhoanSelect.matKhau == "1" && taiKhoanSelect.trangThai == 3)
             // Lần đầu đổi mật khẩu
             {
-                if (CTaiKhoan_BUS.doiMatKhau(taiKhoanSelect, txtMatKhauMoi.Password))
+                if (CServices.kiemTraMatKhau(txtMatKhauMoi.Password))
                 {
-                    MessageBox.Show("Thay đổi mật khẩu thành công");
-                    flag = true;
-                    this.Close();
+                    if (CTaiKhoan_BUS.doiMatKhau(taiKhoanSelect, txtMatKhauMoi.Password))
+                    {
+                        MessageBox.Show("Thay đổi mật khẩu thành công");
+                        flag = true;
+                        this.Close();
+                    }
                 }
             }
             else
             // Lần thứ 2 trở lên đổi mật khẩu
             {
-                string matKhau = CTaiKhoan_BUS.Encrypt(txtMatKhauCu.Password);
-                if (taiKhoanSelect.matKhau == matKhau)
+                if (CServices.kiemTraMatKhau(txtMatKhauMoi.Password))
                 {
-                    if (CTaiKhoan_BUS.doiMatKhau(taiKhoanSelect, txtMatKhauMoi.Password))
+                    string matKhau = CTaiKhoan_BUS.Encrypt(txtMatKhauCu.Password);
+                    if (taiKhoanSelect.matKhau == matKhau)
                     {
-                        MessageBox.Show("Thay đổi mật khẩu thành công");
-                        //flag = true;
-                        this.Close();
+                        if (CTaiKhoan_BUS.doiMatKhau(taiKhoanSelect, txtMatKhauMoi.Password))
+                        {
+                            MessageBox.Show("Thay đổi mật khẩu thành công");
+                            this.Close();
+                        }
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Mật khẩu cũ không đúng. Vui lòng nhập lại");
+                    else
+                    {
+                        MessageBox.Show("Mật khẩu cũ không đúng. Vui lòng nhập lại");
+                    }
                 }
             }
         }

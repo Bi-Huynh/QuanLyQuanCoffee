@@ -21,7 +21,7 @@ namespace QuanLyQuanCoffee.BUS
                 .Where(x => x.trangThai == 0).ToList();
             return list == null ? new List<PhieuNhapNguyenLieu>() : list;
         }
-       
+
         public static List<PhieuNhapNguyenLieu> toListAll()
         {
             List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieux.ToList();
@@ -68,36 +68,32 @@ namespace QuanLyQuanCoffee.BUS
 
         public static bool add(PhieuNhapNguyenLieu PhieuNhapNguyenLieu)
         {
-            if (CServices.kiemTraThongTin(PhieuNhapNguyenLieu))
+            try
             {
-                try
-                {
-                    quanLyQuanCoffee.PhieuNhapNguyenLieux.Add(PhieuNhapNguyenLieu);
-                    quanLyQuanCoffee.SaveChanges();
-                    return true;
-                }
-                catch (DbUpdateException)
-                {
-                    MessageBox.Show("Lỗi! Không thể thêm dữ liệu");
-                    return false;
-                }
-                catch (DbEntityValidationException)
-                {
-                    MessageBox.Show("Lỗi! Kiểu dữ liệu được truyền vào không hợp lệ");
-                    return false;
-                }
-                catch (InvalidOperationException)
-                {
-                    MessageBox.Show("Lỗi! InvalidOperationException");
-                    return false;
-                }
-                catch (NotSupportedException)
-                {
-                    MessageBox.Show("Lỗi! NotSupportedException");
-                    return false;
-                }
+                quanLyQuanCoffee.PhieuNhapNguyenLieux.Add(PhieuNhapNguyenLieu);
+                quanLyQuanCoffee.SaveChanges();
+                return true;
             }
-            return false;
+            catch (DbUpdateException)
+            {
+                MessageBox.Show("Lỗi! Không thể thêm dữ liệu");
+                return false;
+            }
+            catch (DbEntityValidationException)
+            {
+                MessageBox.Show("Lỗi! Kiểu dữ liệu được truyền vào không hợp lệ");
+                return false;
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("Lỗi! InvalidOperationException");
+                return false;
+            }
+            catch (NotSupportedException)
+            {
+                MessageBox.Show("Lỗi! NotSupportedException");
+                return false;
+            }
         }
 
         public static bool edit(PhieuNhapNguyenLieu phieuNhapNguyenLieu)

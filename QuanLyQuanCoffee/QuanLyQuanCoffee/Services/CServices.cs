@@ -378,5 +378,15 @@ namespace QuanLyQuanCoffee.Services
             }
             return true;
         }
+
+        public static bool kiemTraMatKhau(string matKhau)
+        {
+            if (matKhau.Length < 10)
+            {
+                MessageBox.Show("Mật khẩu tối thiểu là 10 ký tự");
+                return false;
+            }
+            return true;
+        }
     }
 }
