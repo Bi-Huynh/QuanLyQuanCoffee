@@ -66,7 +66,7 @@ namespace QuanLyQuanCoffee.Views
         private void dangXuat_Click(object sender, RoutedEventArgs e)
         {
             if (CCa_BUS.CaLamViec == null)
-                // chưa tạo ca thì có thể đăng xuất
+            // chưa tạo ca thì có thể đăng xuất
             {
                 new frmDangNhap().Show();
                 this.Close();
@@ -74,7 +74,7 @@ namespace QuanLyQuanCoffee.Views
             else
             {
                 if (CCa_BUS.isDaKetCa)
-                    // đã kết ca rồi thì mới có thể đăng xuất
+                // đã kết ca rồi thì mới có thể đăng xuất
                 {
                     frmDangNhap f = new frmDangNhap();
                     f.Show();
@@ -96,7 +96,15 @@ namespace QuanLyQuanCoffee.Views
 
         private void taoCa_Click(object sender, RoutedEventArgs e)
         {
-            new frmTaoCa(nhanVienSelect).Show();
+            if (CCa_BUS.CaLamViec == null)
+            {
+                frmTaoCa frmTaoCa = new frmTaoCa(nhanVienSelect);
+                frmTaoCa.Show();
+            }
+            else
+            {
+                MessageBox.Show("Bạn đã tạo ca làm việc, không thể tạo ca nữa");
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -108,7 +116,7 @@ namespace QuanLyQuanCoffee.Views
                 MessageBox.Show("Không thể tắt ứng dụng khi chưa kết ca");
             }
             else
-                // Ngược lại là ca làm việc chưa được tạo hoặc đã được kết ca thì có thể đăng xuất
+            // Ngược lại là ca làm việc chưa được tạo hoặc đã được kết ca thì có thể đăng xuất
             {
                 e.Cancel = false;
             }
