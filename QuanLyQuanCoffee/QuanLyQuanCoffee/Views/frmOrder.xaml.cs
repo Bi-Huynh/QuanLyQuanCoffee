@@ -233,6 +233,7 @@ namespace QuanLyQuanCoffee.Views
                     tongThanhTien = 0;
                     txtTongTien.Text = "";
                     txtTienKhachDua.Text = "";
+                    txtTienThoiLai.Text = "";
                 }
                 catch (DbEntityValidationException)
                 {
@@ -296,6 +297,10 @@ namespace QuanLyQuanCoffee.Views
                     if (tienThoiLai > 0)
                     {
                         txtTienThoiLai.Text = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", tienThoiLai);
+                    }
+                    else
+                    {
+                        txtTienThoiLai.Text = "";
                     }
                 }
             }
