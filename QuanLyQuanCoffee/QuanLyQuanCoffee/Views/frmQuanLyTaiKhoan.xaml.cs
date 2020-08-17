@@ -75,8 +75,7 @@ namespace QuanLyQuanCoffee.Views
                 }
                 if ((txtTaiKhoan.Text == null || txtTaiKhoan.Text == "") && 
                     (txtMatKhau.Text == null || txtMatKhau.Text == "") && 
-                    (cmbLoaiTaiKhoan.SelectedItem == null) && 
-                    (cmbTenNhanVien.SelectedItem == null))
+                    (cmbLoaiTaiKhoan.SelectedItem == null))
                 {
                     MessageBox.Show("Điền đầy đủ thông tin tài khoản");
                     return;

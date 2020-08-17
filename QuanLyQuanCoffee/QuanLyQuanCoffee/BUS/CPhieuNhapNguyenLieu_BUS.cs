@@ -86,6 +86,16 @@ namespace QuanLyQuanCoffee.BUS
                     MessageBox.Show("Lỗi! Kiểu dữ liệu được truyền vào không hợp lệ");
                     return false;
                 }
+                catch (InvalidOperationException)
+                {
+                    MessageBox.Show("Lỗi! InvalidOperationException");
+                    return false;
+                }
+                catch (NotSupportedException)
+                {
+                    MessageBox.Show("Lỗi! NotSupportedException");
+                    return false;
+                }
             }
             return false;
         }

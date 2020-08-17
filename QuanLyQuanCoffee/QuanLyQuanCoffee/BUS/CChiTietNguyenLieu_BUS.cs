@@ -124,6 +124,7 @@ namespace QuanLyQuanCoffee.BUS
                 {
                     quanLyQuanCoffee.ChiTietNguyenLieux.Add(chiTiet);
                     quanLyQuanCoffee.SaveChanges();
+                    return true;
                 }
                 catch (DbUpdateException)
                 {
@@ -136,7 +137,7 @@ namespace QuanLyQuanCoffee.BUS
                     return false;
                 }
             }
-            return true;
+            return false;
         }
 
         public static bool remove(string maChiTietNguyenLieu)

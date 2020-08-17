@@ -205,91 +205,55 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnTaoPhieuNhap_Click(object sender, RoutedEventArgs e)
         {
-            int flag = 0;
-            if (chiTietPhieuNhaps.Count() == 0)
+            foreach (ChiTietPhieuNhap chiTietPhieuNhap in chiTietPhieuNhaps)
             {
-                MessageBox.Show("Không thể tạo phiếu nhập rỗng");
+                if (!CServices.kiemTraThongTin(chiTietPhieuNhap))
+                {
+                    return;
+                }
             }
-            else
+
+            PhieuNhapNguyenLieu phieuNhapNguyenLieu = new PhieuNhapNguyenLieu();
+            phieuNhapNguyenLieu.maPhieuNhap = txtMaPhieuNhap.Text;
+            phieuNhapNguyenLieu.maNhanVien = nhanVienSelect.maNhanVien;
+            phieuNhapNguyenLieu.ngayNhap = dateNgayNhap.SelectedDate.Value;
+            phieuNhapNguyenLieu.tongThanhTien = double.Parse(txtTongThanhTien.Text);
+            phieuNhapNguyenLieu.trangThai = 0;
+            phieuNhapNguyenLieu.ChiTietPhieuNhaps = chiTietPhieuNhaps;
+
+            if (CPhieuNhapNguyenLieu_BUS.add(phieuNhapNguyenLieu))
             {
-                PhieuNhapNguyenLieu phieuNhapNguyenLieu = new PhieuNhapNguyenLieu();
-                phieuNhapNguyenLieu.maPhieuNhap = txtMaPhieuNhap.Text;
-                phieuNhapNguyenLieu.maNhanVien = nhanVienSelect.maNhanVien;
-                phieuNhapNguyenLieu.ngayNhap = dateNgayNhap.SelectedDate.Value;
-                phieuNhapNguyenLieu.tongThanhTien = double.Parse(txtTongThanhTien.Text);
-                phieuNhapNguyenLieu.trangThai = 0;
-
-                if (CPhieuNhapNguyenLieu_BUS.add(phieuNhapNguyenLieu))
-                {
-                    foreach (var x in chiTietPhieuNhaps)
-                    {
-                        ChiTietNguyenLieu chiTietNguyenLieu = new ChiTietNguyenLieu();
-                        chiTietNguyenLieu.maChiTietNguyenLieu = x.maChitietNguyenLieu;
-                        chiTietNguyenLieu.maNguyenLieu = x.ChiTietNguyenLieu.maNguyenLieu;
-                        chiTietNguyenLieu.ngayHetHan = x.ChiTietNguyenLieu.ngayHetHan.Value;
-                        chiTietNguyenLieu.soLuong = x.soLuong;
-                        chiTietNguyenLieu.donViTinh = x.ChiTietNguyenLieu.donViTinh;
-
-                        if (CChiTietNguyenLieu_BUS.add(chiTietNguyenLieu))
-                        {
-                            ChiTietPhieuNhap chiTiet = new ChiTietPhieuNhap();
-                            chiTiet.maChiTietPhieuNhap = x.maChiTietPhieuNhap;
-                            chiTiet.maPhieuNhap = x.maPhieuNhap;
-                            chiTiet.maChitietNguyenLieu = x.maChitietNguyenLieu;
-                            chiTiet.soLuong = x.soLuong;
-                            chiTiet.donGia = x.donGia;
-                            chiTiet.thanhTien = x.thanhTien;
-                            if (!CChiTietPhieuNhapNguyenLieu_BUS.add(chiTiet))
-                            {
-                                flag = 1;
-                            }
-                        }
-                        else
-                        {
-                            flag = 1;
-                        }
-                    }
-                }
-                else
-                {
-                    flag = 1;
-                }
-
-                if (flag == 1)
-                {
-                    rollback(chiTietPhieuNhaps);
-                }
-                MessageBox.Show("Thêm thành công");
+                MessageBox.Show("Thêm phiếu nhập thành công");
                 this.Close();
             }
         }
 
-        private static bool rollback(List<ChiTietPhieuNhap> list)
-        {
-            foreach (var item in list)
-            {
-                if (!CChiTietNguyenLieu_BUS.remove(item.maChitietNguyenLieu))
-                {
-                    MessageBox.Show("Lỗi rollback, xóa chi tiết nguyên liệu");
-                    return false;
-                }
-            }
-            foreach (var item in list)
-            {
-                if (!CChiTietPhieuNhapNguyenLieu_BUS.remove(item.maChiTietPhieuNhap))
-                {
-                    MessageBox.Show("Lỗi rollback, xóa chi tiết phiêu nhập");
-                    return false;
-                }
-            }
-            if (CPhieuNhapNguyenLieu_BUS.remove(list[0].maPhieuNhap))
-            {
-                MessageBox.Show("Lỗi rollback, xóa phiếu nhập");
-                return false;
-            }
+        //private static bool rollback(List<ChiTietPhieuNhap> list)
+        //{
+        //    foreach (var item in list)
+        //    {
+        //        if (!CChiTietNguyenLieu_BUS.remove(item.maChitietNguyenLieu))
+        //        {
+        //            MessageBox.Show("Lỗi rollback, xóa chi tiết nguyên liệu");
+        //            return false;
+        //        }
+        //    }
+        //    foreach (var item in list)
+        //    {
+        //        if (!CChiTietPhieuNhapNguyenLieu_BUS.remove(item.maChiTietPhieuNhap))
+        //        {
+        //            MessageBox.Show("Lỗi rollback, xóa chi tiết phiêu nhập");
+        //            return false;
+        //        }
+        //    }
+        //    if (CPhieuNhapNguyenLieu_BUS.remove(list[0].maPhieuNhap))
+        //    {
+        //        MessageBox.Show("Lỗi rollback, xóa phiếu nhập");
+        //        return false;
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
