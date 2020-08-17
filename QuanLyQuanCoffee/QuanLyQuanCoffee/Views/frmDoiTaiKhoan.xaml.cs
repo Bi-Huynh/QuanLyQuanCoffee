@@ -21,6 +21,7 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmDoiTaiKhoan : Window
     {
         private TaiKhoan taiKhoanSelect;
+        private bool flag = false;
 
         public frmDoiTaiKhoan(TaiKhoan taiKhoan = null)
         {
@@ -40,6 +41,7 @@ namespace QuanLyQuanCoffee.Views
                 if (CTaiKhoan_BUS.doiMatKhau(taiKhoanSelect, txtMatKhauMoi.Password))
                 {
                     MessageBox.Show("Thay đổi mật khẩu thành công");
+                    flag = true;
                     this.Close();
                 }
             }
@@ -52,6 +54,7 @@ namespace QuanLyQuanCoffee.Views
                     if (CTaiKhoan_BUS.doiMatKhau(taiKhoanSelect, txtMatKhauMoi.Password))
                     {
                         MessageBox.Show("Thay đổi mật khẩu thành công");
+                        //flag = true;
                         this.Close();
                     }
                 }
@@ -59,6 +62,24 @@ namespace QuanLyQuanCoffee.Views
                 {
                     MessageBox.Show("Mật khẩu cũ không đúng. Vui lòng nhập lại");
                 }
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (taiKhoanSelect.matKhau == "1" && taiKhoanSelect.trangThai == 3)
+            {
+                //MessageBox.Show("Tài khoản đăng nhập lần đầu. Bạn phải đổi mật khẩu");
+                e.Cancel = true;
+            }
+            else
+            {
+                e.Cancel = false;
+            }
+
+            if (flag)
+            {
+                e.Cancel = false;
             }
         }
     }

@@ -51,22 +51,30 @@ namespace QuanLyQuanCoffee.Views
                 }
                 else
                 {
-                    if (taiKhoan.trangThai == 0 || taiKhoan.trangThai == 3)
+                    if (taiKhoan.trangThai == 3)
                     {
                         NhanVien nhanVien = CNhanVien_BUS.find(taiKhoan.maNhanVien);
                         if (nhanVien != null)
                         {
                             new frmNhanVien(nhanVien, taiKhoan).Show();
 
-                            //if (taiKhoanSelect.trangThai == 3)
-                            //{
                             MessageBox.Show("Vui lòng đổi mật khẩu");
                             frmDoiTaiKhoan frmDoiTaiKhoan = new frmDoiTaiKhoan(taiKhoan);
                             frmDoiTaiKhoan.Show();
-                            //frmDoiTaiKhoan.Activate();
-                            //new frmDoiTaiKhoan(taiKhoanSelect).Show();
-                            //}
 
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không tìm thấy nhân viên sở hữu tài khoản này");
+                        }
+                    }
+                    else if (taiKhoan.trangThai == 0)
+                    {
+                        NhanVien nhanVien = CNhanVien_BUS.find(taiKhoan.maNhanVien);
+                        if (nhanVien != null)
+                        {
+                            new frmNhanVien(nhanVien, taiKhoan).Show();
                             this.Close();
                         }
                         else
