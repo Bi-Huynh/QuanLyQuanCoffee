@@ -38,14 +38,8 @@ namespace QuanLyQuanCoffee.Views
                 nhanVienSelect = new NhanVien();
             }
             chiTietHoaDons = new List<ChiTietHoaDon>();
-            //taoma();
             txtTenNhanVien.Content = nhanVienSelect.hoNhanVien + " " + nhanVienSelect.tenNhanVien;
         }
-
-        //public void taoma()
-        //{
-        //    txtMaHoaDon.Text = CServices.taoMa<HoaDon>(CHoaDon_BUS.toList());
-        //}
 
         public void hienthitheoListBOX(string maloai)
         {
@@ -178,7 +172,7 @@ namespace QuanLyQuanCoffee.Views
             {
                 string maSanPham = dgChitiethoadon.SelectedValue.ToString();
                 ChiTietHoaDon chiTietHoaDon = chiTietHoaDons.Where(x => x.maSanPham == maSanPham).FirstOrDefault();
-                
+
                 if (chiTietHoaDon == null)
                 {
                     MessageBox.Show("chua chon san pham trong chi tiet hoa don");
@@ -346,7 +340,6 @@ namespace QuanLyQuanCoffee.Views
                         a.thanhTien = CChiTietHoaDon_BUS.tinhThanhTien(item);
                         CHoaDon_BUS.hoaDonTreo.ChiTietHoaDons.Add(a);
                     }
-                    //taoma();
                     chiTietHoaDons.Clear();
                     hienThiDSChiTietHD(chiTietHoaDons);
                 }
@@ -371,16 +364,23 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnHoanTac_Click(object sender, RoutedEventArgs e)
         {
-            if (CHoaDon_BUS.hoaDonTreo != null)
+            if (dgChitiethoadon.Items.Count == 0)
             {
-                txtTongTien.Text = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", CHoaDon_BUS.hoaDonTreo.tongThanhTien);
-
-                foreach(var item in CHoaDon_BUS.hoaDonTreo.ChiTietHoaDons)
+                if (CHoaDon_BUS.hoaDonTreo != null)
                 {
-                    chiTietHoaDons.Add(item);
+                    txtTongTien.Text = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", CHoaDon_BUS.hoaDonTreo.tongThanhTien);
+
+                    foreach (var item in CHoaDon_BUS.hoaDonTreo.ChiTietHoaDons)
+                    {
+                        chiTietHoaDons.Add(item);
+                    }
+                    hienThiDSChiTietHD(chiTietHoaDons);
+                    CHoaDon_BUS.hoaDonTreo = null;
                 }
-                hienThiDSChiTietHD(chiTietHoaDons);
-                CHoaDon_BUS.hoaDonTreo = null;
+            }
+            else
+            {
+                MessageBox.Show("Không thể hoàn tác hóa đơn khi đang lập hóa đơn mới");
             }
         }
     }
