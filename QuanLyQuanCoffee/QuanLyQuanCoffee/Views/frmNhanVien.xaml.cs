@@ -39,15 +39,6 @@ namespace QuanLyQuanCoffee.Views
             {
                 taiKhoanSelect = new TaiKhoan();
             }
-
-            //if (taiKhoanSelect.trangThai == 3)
-            //{
-            //    MessageBox.Show("Vui lòng đổi mật khẩu");
-            //    frmDoiTaiKhoan frmDoiTaiKhoan = new frmDoiTaiKhoan(taiKhoanSelect);
-            //    frmDoiTaiKhoan.Show();
-            //    frmDoiTaiKhoan.Activate();
-            //    //new frmDoiTaiKhoan(taiKhoanSelect).Show();
-            //}
         }
 
         private void order_Click(object sender, RoutedEventArgs e)
@@ -110,8 +101,17 @@ namespace QuanLyQuanCoffee.Views
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MessageBox.Show("keets");
-            //e.Cancel = true;
+            if (CCa_BUS.CaLamViec != null && CCa_BUS.isDaKetCa == false)
+            {
+                e.Cancel = true;
+                // không thể tắt ứng dụng khi chưa kết ca
+                MessageBox.Show("Không thể tắt ứng dụng khi chưa kết ca");
+            }
+            else
+                // Ngược lại là ca làm việc chưa được tạo hoặc đã được kết ca thì có thể đăng xuất
+            {
+                e.Cancel = false;
+            }
         }
     }
 }

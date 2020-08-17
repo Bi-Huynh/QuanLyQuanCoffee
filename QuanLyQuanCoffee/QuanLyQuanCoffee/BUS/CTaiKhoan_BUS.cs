@@ -227,6 +227,11 @@ namespace QuanLyQuanCoffee.BUS
                 }
                 else
                 {
+                    if (matKhauMoi == "1")
+                    {
+                        MessageBox.Show("Bạn không thể đổi mật khẩu mới là mật khẩu mặc định");
+                        return false;
+                    }
                     taiKhoan.matKhau = Encrypt(matKhauMoi);
                     taiKhoan.trangThai = 0;
 
