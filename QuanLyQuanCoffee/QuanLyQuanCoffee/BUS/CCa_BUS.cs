@@ -13,7 +13,7 @@ namespace QuanLyQuanCoffee.BUS
 {
     public class CCa_BUS
     {
-        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = LoadDatabase.Instance();
         private static bool daKetCa = false;
         private static CCa_DTO caLamViec = null;
 
@@ -40,6 +40,7 @@ namespace QuanLyQuanCoffee.BUS
             {
                 if (CServices.kiemTraThongTin(ketCa))
                 {
+                    ketCa.gioKetThuc = DateTime.Now;
                     quanLyQuanCoffee.KetCas.Add(ketCa);
                     quanLyQuanCoffee.SaveChanges();
                     isDaKetCa = true;

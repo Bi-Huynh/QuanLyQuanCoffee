@@ -13,7 +13,7 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CHoaDon_BUS
     {
-        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = LoadDatabase.Instance();
         public static HoaDon hoaDonTreo = null;
 
         public static List<HoaDon> toList()
@@ -47,23 +47,29 @@ namespace QuanLyQuanCoffee.BUS
             List<HoaDon> hoaDons = new List<HoaDon>();
             foreach (var hoaDon in quanLyQuanCoffee.HoaDons.ToList())
             {
-                if (caLam.GioBatDau.Hour == 8)
+                //if (caLam.GioBatDau.Hour == 8)
+                //{
+                //    if (caLam.GioBatDau.Date == hoaDon.ngayLap.Date
+                //        && hoaDon.ngayLap.Hour >= caLam.GioBatDau.Hour
+                //        && hoaDon.ngayLap.Hour <= 15)
+                //    {
+                //        hoaDons.Add(hoaDon);
+                //    }
+                //}
+                //else
+                //{
+                //    if (caLam.GioBatDau.Date == hoaDon.ngayLap.Date
+                //        && hoaDon.ngayLap.Hour >= caLam.GioBatDau.Hour
+                //        && hoaDon.ngayLap.Hour <= 21)
+                //    {
+                //        hoaDons.Add(hoaDon);
+                //    }
+                //}
+
+                if (caLam.GioBatDau.Date == hoaDon.ngayLap.Date
+                        && hoaDon.ngayLap.TimeOfDay >= caLam.GioBatDau.TimeOfDay)
                 {
-                    if (caLam.GioBatDau.Date == hoaDon.ngayLap.Date
-                        && hoaDon.ngayLap.Hour >= caLam.GioBatDau.Hour
-                        && hoaDon.ngayLap.Hour <= 15)
-                    {
-                        hoaDons.Add(hoaDon);
-                    }
-                }
-                else
-                {
-                    if (caLam.GioBatDau.Date == hoaDon.ngayLap.Date
-                        && hoaDon.ngayLap.Hour >= caLam.GioBatDau.Hour
-                        && hoaDon.ngayLap.Hour <= 21)
-                    {
-                        hoaDons.Add(hoaDon);
-                    }
+                    hoaDons.Add(hoaDon);
                 }
             }
             return hoaDons;

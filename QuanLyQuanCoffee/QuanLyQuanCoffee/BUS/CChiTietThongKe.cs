@@ -12,7 +12,7 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CChiTietThongKe
     {
-        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = LoadDatabase.Instance();
 
         public static List<ChiTietThongKe> toList()
         {

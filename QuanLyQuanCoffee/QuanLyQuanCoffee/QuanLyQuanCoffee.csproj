@@ -173,6 +173,7 @@
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\CServices.cs" />
+    <Compile Include="Services\LoadDatabase.cs" />
     <Compile Include="sysdiagram.cs">
       <DependentUpon>QuanLyQuanCoffee.tt</DependentUpon>
     </Compile>

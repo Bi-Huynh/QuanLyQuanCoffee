@@ -15,7 +15,7 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CLoaiNhanVien_BUS
     {
-        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = LoadDatabase.Instance();
 
         public static LoaiNhanVien find(string maLoaiNhanVien)
         {

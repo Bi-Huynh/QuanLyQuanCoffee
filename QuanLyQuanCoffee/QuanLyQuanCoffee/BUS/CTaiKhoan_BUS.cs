@@ -13,7 +13,7 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CTaiKhoan_BUS
     {
-        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = LoadDatabase.Instance();
         private static string key = "2giotoitaigoccayda";
 
         public static List<TaiKhoan> toList()
