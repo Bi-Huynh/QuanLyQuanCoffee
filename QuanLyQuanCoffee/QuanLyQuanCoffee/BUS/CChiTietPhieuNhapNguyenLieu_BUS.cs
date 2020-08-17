@@ -12,7 +12,7 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CChiTietPhieuNhapNguyenLieu_BUS
     {
-        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = LoadDatabase.Instance();
 
         public static List<ChiTietPhieuNhap> toList()
         {
@@ -82,7 +82,7 @@ namespace QuanLyQuanCoffee.BUS
 
         public static ChiTietPhieuNhap findTheoMachiTietNL(string maChiTietNguyenLieu)
         {
-            ChiTietPhieuNhap chiTietPhieuNhapNguyenLieu = quanLyQuanCoffee.ChiTietPhieuNhaps.Where(x=> x.maChitietNguyenLieu==maChiTietNguyenLieu).FirstOrDefault();
+            ChiTietPhieuNhap chiTietPhieuNhapNguyenLieu = quanLyQuanCoffee.ChiTietPhieuNhaps.Where(x => x.maChitietNguyenLieu == maChiTietNguyenLieu).FirstOrDefault();
             return chiTietPhieuNhapNguyenLieu == null ? new ChiTietPhieuNhap() : chiTietPhieuNhapNguyenLieu;
         }
 
@@ -110,9 +110,16 @@ namespace QuanLyQuanCoffee.BUS
         {
             if (CServices.kiemTraThongTin(chiTietPhieuNhapNguyenLieu))
             {
-                quanLyQuanCoffee.ChiTietPhieuNhaps.Add(chiTietPhieuNhapNguyenLieu);
-                quanLyQuanCoffee.SaveChanges();
-                return true;
+                try
+                {
+                    quanLyQuanCoffee.ChiTietPhieuNhaps.Add(chiTietPhieuNhapNguyenLieu);
+                    quanLyQuanCoffee.SaveChanges();
+                    return true;
+                }
+                catch (DbUpdateException)
+                {
+                    MessageBox.Show("Lỗi kiểu dữ liệu, không thể lưu vào trong CSDL");
+                }
             }
             return false;
         }

@@ -44,6 +44,11 @@ namespace QuanLyQuanCoffee.Views
 
         public void hienThi()
         {
+            foreach (HoaDon hoaDon in hoaDons)
+            {
+                hoaDon.NhanVien = CNhanVien_BUS.find(hoaDon.maNhanVien);
+            }
+
             dgHoaDonTrongNgay.ItemsSource = hoaDons.Select(x => new
             {
                 maHoaDon = x.maHoaDon,

@@ -73,6 +73,13 @@ namespace QuanLyQuanCoffee.Views
                     MessageBox.Show("Không lấy được mã nhân viên");
                     return;
                 }
+                if ((txtTaiKhoan.Text == null || txtTaiKhoan.Text == "") && 
+                    (txtMatKhau.Text == null || txtMatKhau.Text == "") && 
+                    (cmbLoaiTaiKhoan.SelectedItem == null))
+                {
+                    MessageBox.Show("Điền đầy đủ thông tin tài khoản");
+                    return;
+                }
                 taiKhoan.taiKhoan1 = txtTaiKhoan.Text;
                 taiKhoan.matKhau = txtMatKhau.Text;
                 taiKhoan.maLoaiTaiKhoan = CLoaiTaiKhoan_BUS.findTen(cmbLoaiTaiKhoan.SelectedItem.ToString()).maLoaiTaiKhoan;

@@ -331,6 +331,11 @@ namespace QuanLyQuanCoffee.Services
 
         public static bool kiemTraThongTin(ChiTietPhieuNhap chiTietPhieuNhap)
         {
+            if (chiTietPhieuNhap.maChitietNguyenLieu.Length != 23) // phải là 13 ký tự trừ 10 ký tự đầu tiên
+            {
+                MessageBox.Show("Độ dài mã nhà sản xuất phải là 13 ký tự");
+                return false;
+            }
             if (chiTietPhieuNhap.soLuong < 0)
             {
                 MessageBox.Show("Số lượng phải lớn hơn 0");
@@ -341,11 +346,11 @@ namespace QuanLyQuanCoffee.Services
                 MessageBox.Show("đơn giá phải tối thiểu có 4 chữ số");
                 return false;
             }
-            //if (chiTietPhieuNhap.ChiTietNguyenLieu.ngayHetHan < DateTime.Now)
-            //{
-            //    MessageBox.Show("Ngày hết hạn phải lớn hơn hoặc bằng ngày hiện tại");
-            //    return false;
-            //}
+            if (chiTietPhieuNhap.ChiTietNguyenLieu.ngayHetHan < DateTime.Now)
+            {
+                MessageBox.Show("Ngày hết hạn phải lớn hơn hoặc bằng ngày hiện tại");
+                return false;
+            }
             return true;
         }
 
@@ -369,6 +374,16 @@ namespace QuanLyQuanCoffee.Services
             if (ketCa.tienDauCa < 0)
             {
                 MessageBox.Show("tiền đầu ca phải lớn hơn hoặc bằng 0");
+                return false;
+            }
+            return true;
+        }
+
+        public static bool kiemTraMatKhau(string matKhau)
+        {
+            if (matKhau.Length < 10)
+            {
+                MessageBox.Show("Mật khẩu tối thiểu là 10 ký tự");
                 return false;
             }
             return true;

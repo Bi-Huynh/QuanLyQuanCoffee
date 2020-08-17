@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="530" d:DesignWidth="500"
       MaxHeight="530" MaxWidth="500"
-    Title="frmKetCa">
+      Title="frmKetCa">
 
     <StackPanel>
 

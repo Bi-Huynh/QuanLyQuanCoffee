@@ -76,6 +76,9 @@ namespace QuanLyQuanCoffee.Views
                         {
                             new frmNhanVien(nhanVien, taiKhoan).Show();
                             this.Close();
+
+                            frmTaoCa frmTaoCa = new frmTaoCa(nhanVien);
+                            frmTaoCa.Show();
                         }
                         else
                         {

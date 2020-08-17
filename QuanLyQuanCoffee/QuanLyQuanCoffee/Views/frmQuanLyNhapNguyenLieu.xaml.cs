@@ -181,7 +181,5 @@ namespace QuanLyQuanCoffee.Views
         {
             new frmThongTinPhieuNhap(nhanVienSelect).Show();
         }
-
-        
     }
 }

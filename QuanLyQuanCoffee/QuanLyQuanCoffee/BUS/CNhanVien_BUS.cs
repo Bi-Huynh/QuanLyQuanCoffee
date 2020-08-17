@@ -12,7 +12,7 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CNhanVien_BUS
     {
-        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = LoadDatabase.Instance();
 
         // Trả về toàn bộ danh sách nhân viên
         public static List<NhanVien> toList()

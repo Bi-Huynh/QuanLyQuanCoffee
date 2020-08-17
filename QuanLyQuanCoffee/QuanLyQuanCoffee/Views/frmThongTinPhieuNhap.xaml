@@ -76,7 +76,7 @@
                   SelectionChanged="dgDSChiTietPhieuNhap_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã chi tiết phiếu nhập" Binding="{Binding maChiTietPhieuNhap}" Width="1*"/>
-                <DataGridTextColumn Header="Mã chi tiết nguyên liệu" Binding="{Binding maChiTietNguyenLieu}" Width="1*"/>
+                <DataGridTextColumn Header="Mã nhà sản xuất" Binding="{Binding maChiTietNguyenLieu}" Width="1*"/>
                 <DataGridTextColumn Header="Tên nguyên liệu" Binding="{Binding tenNguyenLieu}" Width="1*"/>
                 <DataGridTextColumn Header="Ngày hết hạn" Binding="{Binding ngayHetHan}" Width="1*"/>
                 <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding donViTinh}" Width="1*"/>

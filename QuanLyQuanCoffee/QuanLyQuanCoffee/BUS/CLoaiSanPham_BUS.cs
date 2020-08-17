@@ -13,7 +13,7 @@ namespace QuanLyQuanCoffee.BUS
 
     class CLoaiSanPham_BUS
     {
-        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = LoadDatabase.Instance();
         public static List<LoaiSanPham> toList()
         {
             List<LoaiSanPham> list = quanLyQuanCoffee.LoaiSanPhams.ToList();

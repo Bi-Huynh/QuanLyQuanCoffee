@@ -24,17 +24,17 @@
         <Label Grid.Row="1" Grid.Column="1" Content="Chọn ca: " HorizontalContentAlignment="Center" 
                VerticalContentAlignment="Center" FontSize="18"/>
 
-        <ComboBox Grid.Row="1" Grid.Column="2" x:Name="cmbCaLam" FontSize="18"
-                  SelectionChanged="cmbCaLam_SelectionChanged">
+        <ComboBox Grid.Row="1" Grid.Column="2" x:Name="cmbCaLam" FontSize="18">
+            <!--SelectionChanged="cmbCaLam_SelectionChanged">-->
             <ComboBoxItem x:Name="ca1" Content="Ca 1"/>
             <ComboBoxItem x:Name="ca2" Content="Ca 2"/>
         </ComboBox>
 
-        <Label Grid.Row="2" Grid.Column="1" Content="Giờ bắt đầu: " FontSize="18"
+        <!--<Label Grid.Row="2" Grid.Column="1" Content="Giờ bắt đầu: " FontSize="18"
                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
         <TextBlock Grid.Row="2" Grid.Column="2" x:Name="txtGioBatDau" 
-                   FontSize="18" VerticalAlignment="Center"/>
+                   FontSize="18" VerticalAlignment="Center"/>-->
 
         <Button x:Name="btnTaoCa" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 
                 Content="Tạo Ca" FontSize="18" Margin="0,5,0,0" Click="btnTaoCa_Click"/>

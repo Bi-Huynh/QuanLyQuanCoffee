@@ -50,11 +50,21 @@ namespace QuanLyQuanCoffee.Views
                 //{
                 //    MessageBox.Show("Không thể tạo ca 1, ca 1 chỉ có thể tạo từ 6am tới 10am");
                 //}
-                DateTime gioBatDau = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
-                DateTime gioKetThuc = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 0, 0);
-                CCa_BUS.CaLamViec = new DTO.CCa_DTO(nhanVienSelect.maNhanVien, gioBatDau, gioKetThuc);
-                //CCa_BUS.isDaKetCa = true;
-                this.Close();
+
+                //DateTime gioBatDau = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
+                //DateTime gioKetThuc = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 0, 0);
+                //CCa_BUS.CaLamViec = new DTO.CCa_DTO(nhanVienSelect.maNhanVien, gioBatDau, gioKetThuc);
+
+                DateTime gioBatDau = DateTime.Now;
+                if (gioBatDau.TimeOfDay >= new TimeSpan(7, 45, 0) && gioBatDau.TimeOfDay <= new TimeSpan(14, 45, 0))
+                {
+                    CCa_BUS.CaLamViec = new DTO.CCa_DTO(nhanVienSelect.maNhanVien, gioBatDau);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Ca 1 chỉ có thể tạo từ 7h45 tới 14h45");
+                }
             }
             else if (cmbCaLam.SelectedIndex == 1)
             {
@@ -70,24 +80,34 @@ namespace QuanLyQuanCoffee.Views
                 //{
                 //    MessageBox.Show("Không thể tạo ca 2, ca 2 chỉ có thể tạo từ 13am tới 17am");
                 //}
-                DateTime gioBatDau = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 0, 0);
-                DateTime gioKetThuc = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 21, 0, 0);
-                CCa_BUS.CaLamViec = new DTO.CCa_DTO(nhanVienSelect.maNhanVien, gioBatDau, gioKetThuc);
-                //CCa_BUS.isDaKetCa = true;
-                this.Close();
+
+                //DateTime gioBatDau = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 15, 0, 0);
+                //DateTime gioKetThuc = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 21, 0, 0);
+                //CCa_BUS.CaLamViec = new DTO.CCa_DTO(nhanVienSelect.maNhanVien, gioBatDau, gioKetThuc);
+
+                DateTime gioBatDau = DateTime.Now;
+                if (gioBatDau.TimeOfDay >= new TimeSpan(14, 45, 0) && gioBatDau.TimeOfDay <= new TimeSpan(22,0,0))
+                {
+                    CCa_BUS.CaLamViec = new DTO.CCa_DTO(nhanVienSelect.maNhanVien, gioBatDau);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Ca 2 chỉ có thể tạo từ 14h45 tới 22h");
+                }
             }
         }
 
-        private void cmbCaLam_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cmbCaLam.SelectedIndex == 0)
-            {
-                txtGioBatDau.Text = "08:00:00";
-            }
-            else if (cmbCaLam.SelectedIndex == 1)
-            {
-                txtGioBatDau.Text = "15:00:00";
-            }
-        }
+        //private void cmbCaLam_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (cmbCaLam.SelectedIndex == 0)
+        //    {
+        //        txtGioBatDau.Text = "08:00:00";
+        //    }
+        //    else if (cmbCaLam.SelectedIndex == 1)
+        //    {
+        //        txtGioBatDau.Text = "15:00:00";
+        //    }
+        //}
     }
 }

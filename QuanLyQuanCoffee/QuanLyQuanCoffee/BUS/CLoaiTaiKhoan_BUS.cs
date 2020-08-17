@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyQuanCoffee.Services;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
@@ -11,7 +12,7 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CLoaiTaiKhoan_BUS
     {
-        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+        private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = LoadDatabase.Instance();
 
         public static List<LoaiTaiKhoan> toList()
         {

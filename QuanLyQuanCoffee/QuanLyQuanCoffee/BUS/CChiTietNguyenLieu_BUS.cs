@@ -15,7 +15,7 @@ namespace QuanLyQuanCoffee.BUS
 {
     class CChiTietNguyenLieu_BUS
     {
-        public static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = new QuanLyQuanCoffeeEntities1();
+        public static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = LoadDatabase.Instance();
 
         public static List<ChiTietNguyenLieu> toList()
         {
@@ -124,6 +124,7 @@ namespace QuanLyQuanCoffee.BUS
                 {
                     quanLyQuanCoffee.ChiTietNguyenLieux.Add(chiTiet);
                     quanLyQuanCoffee.SaveChanges();
+                    return true;
                 }
                 catch (DbUpdateException)
                 {
@@ -136,7 +137,7 @@ namespace QuanLyQuanCoffee.BUS
                     return false;
                 }
             }
-            return true;
+            return false;
         }
 
         public static bool remove(string maChiTietNguyenLieu)
