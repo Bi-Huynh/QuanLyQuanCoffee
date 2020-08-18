@@ -34,7 +34,19 @@ namespace QuanLyQuanCoffee.Views
         }
         public void HienThiDSLoaiSanPham()
         {
-            dgLoaisanpham.ItemsSource = CLoaiSanPham_BUS.toList();
+            List<LoaiSanPham> list = CLoaiSanPham_BUS.toList();
+            if(list.Count>0)
+            {
+                dgLoaisanpham.ItemsSource = list.Select(x => new {
+                    maLoaiSanPham=x.maLoaiSanPham,
+                    tenLoai=x.tenLoai,
+                    trangThai=x.trangThai==0?"Mở":"Khóa"
+                });
+            }    
+            else
+                {
+                    MessageBox.Show("Danh sách loại sản phẩm rỗng, chưa có loại sản phẩm nào");
+                }
             txtmaLoai.Text = CServices.taoMa<LoaiSanPham>(CLoaiSanPham_BUS.toList());
         }
         private void btnThemLoaiSP_Click(object sender, RoutedEventArgs e)

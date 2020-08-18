@@ -19,6 +19,11 @@ namespace QuanLyQuanCoffee.BUS
             SanPham sanPham = quanLyQuanCoffee.SanPhams.Find(maSanPham);
             return sanPham;
         }
+        public static LoaiSanPham findTen(string tenLoaiSP)
+        {
+            LoaiSanPham loaisanPham = quanLyQuanCoffee.LoaiSanPhams.Where(x=> x.tenLoai==tenLoaiSP).FirstOrDefault();
+            return loaisanPham;
+        }
 
         public static List<SanPham> toList()
         {
@@ -38,6 +43,11 @@ namespace QuanLyQuanCoffee.BUS
         public static List<string> toListByMaSP()
         {
             List<string> list = quanLyQuanCoffee.LoaiSanPhams.Select(x => x.maLoaiSanPham ).ToList();
+            return list == null ? new List<string>() : list;
+        }
+        public static List<string> toListByMaTenLoaiSP()
+        {
+            List<string> list = quanLyQuanCoffee.LoaiSanPhams.Select(x => x.tenLoai).ToList();
             return list == null ? new List<string>() : list;
         }
         public static List<SanPham> hienthiTheoMa(string maLoai)
