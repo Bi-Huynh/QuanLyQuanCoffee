@@ -23,7 +23,7 @@ namespace QuanLyQuanCoffee.Views
     {
 
         private NhanVien nhanVienSelected;
-        private PhieuXuatNguyenLieu phieuXuatnguyenlieuSelect = new PhieuXuatNguyenLieu();
+        private PhieuXuatNguyenLieu phieuXuatnguyenlieuSelect;
 
 
         public frmQuanLyPhieuXuatNguyenLieu(NhanVien nhanVien = null)
@@ -124,7 +124,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnRefesh_Click(object sender, RoutedEventArgs e)
         {
-
+            hienThiPhieuXuat();
         }
 
         private void btnSua_Click(object sender, RoutedEventArgs e)

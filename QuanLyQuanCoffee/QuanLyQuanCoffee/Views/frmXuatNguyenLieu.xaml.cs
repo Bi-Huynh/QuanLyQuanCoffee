@@ -26,7 +26,7 @@ namespace QuanLyQuanCoffee.Views
         NhanVien nhanVienSelected;
         private List<ChiTietPhieuXuat> chiTietPhieuXuats;
         private List<ChiTietPhieuNhap> chiTietPhieuNhaps;
-        private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
+        private QuanLyQuanCoffeeEntities1 dc = LoadDatabase.Instance();
         int i = 0;
         ChiTietPhieuNhap chiTietPhieuNhapselect;
 
@@ -239,6 +239,8 @@ namespace QuanLyQuanCoffee.Views
                     //dc.SaveChanges();
                     chiTietPhieuXuats.Clear();
                     hienThiDSChiTietPX(chiTietPhieuXuats);
+                    chiTietPhieuNhaps = CChiTietPhieuNhapNguyenLieu_BUS.toList();
+                    HienthiNguyenLieu(chiTietPhieuNhaps);
                     chiTietPhieuNhapselect = null;
                     i = 0;
                 }
