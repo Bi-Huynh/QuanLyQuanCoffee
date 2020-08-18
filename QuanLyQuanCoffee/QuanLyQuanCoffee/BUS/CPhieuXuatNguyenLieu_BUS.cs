@@ -14,7 +14,7 @@ namespace QuanLyQuanCoffee.BUS
         private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = LoadDatabase.Instance();
         public static List<PhieuXuatNguyenLieu> toList()
         {
-            List<PhieuXuatNguyenLieu> list = quanLyQuanCoffee.PhieuXuatNguyenLieux.Where(x => x.trangThai == 0).ToList();
+            List<PhieuXuatNguyenLieu> list = quanLyQuanCoffee.PhieuXuatNguyenLieux.ToList();
             return list == null ? new List<PhieuXuatNguyenLieu>() : list;
         }
         public static PhieuXuatNguyenLieu find(string maPhieuXuat)

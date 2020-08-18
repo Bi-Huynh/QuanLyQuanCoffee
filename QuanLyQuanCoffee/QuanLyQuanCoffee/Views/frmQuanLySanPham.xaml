@@ -122,11 +122,11 @@
                 <Grid Grid.Row="1" Grid.Column="1" Height="405">
                     <DataGrid  Name="dgQlsanpham" AutoGenerateColumns="False" IsReadOnly="True" SelectedValuePath="maSanPham" SelectionChanged="dgQlsanpham_SelectionChanged"  FontSize="20" ColumnWidth="0.2*">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã sản phẩm" Binding="{Binding maSanPham,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                            <DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding tenSanPham,Mode=TwoWay}"/>
-                            <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding donViTinh,Mode=TwoWay}"/>
-                            <DataGridTextColumn Header="Đơn giá" Binding="{Binding donGia,Mode=TwoWay}"/>
-                            <DataGridTextColumn Header="Mã loại sản phẩm" Binding="{Binding maLoaiSanPham}"/>
+                            <DataGridTextColumn Header="Mã sản phẩm" Binding="{Binding maSanPham}"/>
+                            <DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding tenSanPham}"/>
+                            <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding donViTinh}"/>
+                            <DataGridTextColumn Header="Đơn giá" Binding="{Binding donGia}"/>
+                            <DataGridTextColumn Header="Tên loại sản phẩm" Binding="{Binding tenLoaiSanPham}"/>
                             <DataGridTextColumn Header="Trạng thái" Binding="{Binding trangThai}"/>
                         </DataGrid.Columns>
                     </DataGrid>

@@ -129,7 +129,7 @@
                     <Button Content="Tạo phiếu xuất" Grid.Column="0" Grid.Row="3" Name="btnXuatNguyenLieu"  Background="#FF0056FF" FontFamily="Arial" FontSize="24" Click="btnXuatNguyenLieu_Click" ></Button>
                     <DataGrid Grid.Row="1" Grid.Column="0"  Background="White" 
                               FontFamily="Arial" Name="dgChitietPhieuXuat" 
-                              SelectedValuePath="maNguỵenLieu" AutoGenerateColumns="False">
+                              SelectedValuePath="maNguỵenLieu" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <!--<DataGridTextColumn Header="Mã chi tiết phiếu xuất" Binding="{Binding maChiTietPhieuXuat}"/>-->
                             <DataGridTextColumn Header="Mã chi tiết nguyên liệu" Binding="{Binding maChiTietNguyenLieu}"/>

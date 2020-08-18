@@ -29,13 +29,14 @@ namespace QuanLyQuanCoffee.Views
         }
         public void hienthiHoaDon()
         {
-            if (CHoaDon_BUS.toList().Count()<=0)
+            if (CHoaDon_BUS.toList().Count()>=0)
             {
-                MessageBox.Show("Hiện tại chưa có hóa đơn nào");
+                dgQlhoadon.ItemsSource = CHoaDon_BUS.toList();
             }
             else
             {
-                dgQlhoadon.ItemsSource = CHoaDon_BUS.toList();
+
+                MessageBox.Show("Hiện tại chưa có hóa đơn nào");
             }
 
         }

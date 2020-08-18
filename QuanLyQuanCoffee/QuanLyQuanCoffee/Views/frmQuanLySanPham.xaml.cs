@@ -23,6 +23,7 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmQuanLySanPham : Page
     {
         private SanPham sanPhamSelect;
+        LoaiSanPham loaisanpham;
 
         public frmQuanLySanPham()
         {
@@ -34,7 +35,18 @@ namespace QuanLyQuanCoffee.Views
         {
             try
             {
-                dgQlsanpham.ItemsSource = CSanPham_BUS.toList();
+                List<SanPham> list = CSanPham_BUS.toList();
+                if(list.Count>0)
+                {
+                    dgQlsanpham.ItemsSource = list.Select(x => new {
+                        maSanPham =x.maSanPham,
+                        tenSanPham=x.tenSanPham,
+                        donViTinh=x.donViTinh,
+                        donGia=x.donGia,
+                        tenLoaiSanPham=x.LoaiSanPham.tenLoai,
+                        trangThai=x.trangThai==0?"Mở":"Khóa"
+                    }) ;
+                }    
             }
             catch (Exception ex)
             {
@@ -63,7 +75,7 @@ namespace QuanLyQuanCoffee.Views
                 }
                 else
                 {
-                    cboLoaisanpham.ItemsSource = CSanPham_BUS.toListByMaSP();
+                    cboLoaisanpham.ItemsSource = CSanPham_BUS.toListByMaTenLoaiSP();
                 }
             }
             catch (Exception ex)
@@ -85,7 +97,7 @@ namespace QuanLyQuanCoffee.Views
                         txtMasanpham.Text = sanPhamSelect.maSanPham;
                         txtDonvitinh.Text = sanPhamSelect.donViTinh;
                         txtDongia.Text = sanPhamSelect.donGia.ToString();
-                        cboLoaisanpham.Text = sanPhamSelect.maLoaiSanPham;
+                        cboLoaisanpham.Text = sanPhamSelect.LoaiSanPham.tenLoai;
                     }
                 }
                 else
@@ -114,11 +126,13 @@ namespace QuanLyQuanCoffee.Views
                 //sp1.maLoaiSanPham = cboLoaisanpham.SelectedItem.ToString();
                 if ((cboLoaisanpham.SelectedItem != null))
                 {
-                    sp1.maLoaiSanPham = cboLoaisanpham.SelectedItem.ToString();
+                    //sp1.maLoaiSanPham = cboLoaisanpham.SelectedItem.ToString();
+                    loaisanpham = CSanPham_BUS.findTen(cboLoaisanpham.SelectedItem.ToString());
+                    sp1.maLoaiSanPham = loaisanpham.maLoaiSanPham;
                 }
                 else
                 {
-                    MessageBox.Show("Mã Loại sản phẩm không được để trống");
+                    MessageBox.Show("Loại sản phẩm không được để trống");
                 }
                 sp1.donGia = int.Parse(txtDongia.Text);
                 sp1.trangThai = 0;
@@ -203,11 +217,13 @@ namespace QuanLyQuanCoffee.Views
                 }
                 else
                 {
+                    loaisanpham = CSanPham_BUS.findTen(cboLoaisanpham.Text);
                     SanPham a = new SanPham();
                     a.maSanPham = txtMasanpham.Text;
                     a.tenSanPham = txtTensanpham.Text;
                     a.donViTinh = txtDonvitinh.Text;
-                    a.maLoaiSanPham = cboLoaisanpham.Text;
+                    //a.maLoaiSanPham = cboLoaisanpham.Text;
+                    a.maLoaiSanPham = loaisanpham.maLoaiSanPham;
                     a.donGia = int.Parse(txtDongia.Text);
                     a.trangThai = 0;
                     if (CSanPham_BUS.KTRong(a))
