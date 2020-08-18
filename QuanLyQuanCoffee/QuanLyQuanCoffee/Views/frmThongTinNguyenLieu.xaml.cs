@@ -31,7 +31,7 @@ namespace QuanLyQuanCoffee.Views
             // khi người dùng nhấn thêm thì ấn nút sửa đi
             if (flag == 1)
             {
-                txtMaNguyenLieu.Text = CServices.taoMa<NguyenLieu>(CNguyenLieu_BUS.to_List());
+                txtMaNguyenLieu.Text = CServices.taoMa<NguyenLieu>(CNguyenLieu_BUS.toList());
                 btnSua.IsEnabled = false;
                 btnLuu.IsEnabled = false;
             }

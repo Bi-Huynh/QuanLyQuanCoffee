@@ -31,7 +31,8 @@ namespace QuanLyQuanCoffee.Views
         public frmThongTinNhanVien(NhanVien nhanVien = null, int flag = 1)
         {
             InitializeComponent();
-
+            cmbLoaiNhanVien.ItemsSource = CLoaiNhanVien_BUS.toListTenLoai();
+            dateNgayVaoLam.SelectedDate = DateTime.Now;
             // khi người dùng nhấn thêm thì ấn nút sửa
             if (flag == 1)
             {
@@ -58,8 +59,6 @@ namespace QuanLyQuanCoffee.Views
                 nhanVienSelect = nhanVien;
                 hienThiThongTin(nhanVienSelect);
             }
-            cmbLoaiNhanVien.ItemsSource = CLoaiNhanVien_BUS.toListTenLoai();
-            dateNgayVaoLam.SelectedDate = DateTime.Now;
         }
 
         private void hienThiThongTin(NhanVien nhanVien)

@@ -257,6 +257,17 @@ namespace QuanLyQuanCoffee.Services
                 MessageBox.Show("Bạn chưa nhập mật khẩu");
                 return false;
             }
+            foreach (char item in taiKhoan.taiKhoan1)
+            {
+                if ((item >= 0 && item <= 47) || 
+                    (item >= 58 && item <= 64) || 
+                    (item >= 91 && item <= 96) ||
+                    (item >= 123 && item <= 127))
+                {
+                    MessageBox.Show("Tài khoản chỉ có chữ thường, chữ hoa và chữ số");
+                    return false;
+                }
+            }
             return true;
         }
 

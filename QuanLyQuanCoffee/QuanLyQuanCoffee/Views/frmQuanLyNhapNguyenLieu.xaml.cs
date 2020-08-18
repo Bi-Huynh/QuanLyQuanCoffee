@@ -21,8 +21,8 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmQuanLyNhapNguyenLieu : Page
     {
-        private PhieuNhapNguyenLieu PhieuNhapNguyenLieuSelect = new PhieuNhapNguyenLieu();
-        private NhanVien nhanVienSelect = new NhanVien();
+        private PhieuNhapNguyenLieu PhieuNhapNguyenLieuSelect;
+        private NhanVien nhanVienSelect;
 
         public frmQuanLyNhapNguyenLieu(NhanVien nhanVien = null)
         {
@@ -144,18 +144,6 @@ namespace QuanLyQuanCoffee.Views
         {
             hienThiDSPhieuNhap(CPhieuNhapNguyenLieu_BUS.toList());
         }
-
-        //private void btnSua_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (PhieuNhapNguyenLieuSelect != null)
-        //    {
-        //        new frmThongTinPhieuNhap(nhanVienSelect, PhieuNhapNguyenLieuSelect, 2).Show();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Vui lòng chọn phiếu nhập");
-        //    }
-        //}
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
