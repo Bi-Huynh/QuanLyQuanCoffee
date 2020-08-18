@@ -205,6 +205,12 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnTaoPhieuNhap_Click(object sender, RoutedEventArgs e)
         {
+            if (chiTietPhieuNhaps.Count == 0)
+            {
+                MessageBox.Show("Điền thông tin phiếu nhập");
+                return;
+            }
+
             foreach (ChiTietPhieuNhap chiTietPhieuNhap in chiTietPhieuNhaps)
             {
                 if (!CServices.kiemTraThongTin(chiTietPhieuNhap))
@@ -213,18 +219,33 @@ namespace QuanLyQuanCoffee.Views
                 }
             }
 
-            PhieuNhapNguyenLieu phieuNhapNguyenLieu = new PhieuNhapNguyenLieu();
-            phieuNhapNguyenLieu.maPhieuNhap = txtMaPhieuNhap.Text;
-            phieuNhapNguyenLieu.maNhanVien = nhanVienSelect.maNhanVien;
-            phieuNhapNguyenLieu.ngayNhap = dateNgayNhap.SelectedDate.Value;
-            phieuNhapNguyenLieu.tongThanhTien = double.Parse(txtTongThanhTien.Text);
-            phieuNhapNguyenLieu.trangThai = 0;
-            phieuNhapNguyenLieu.ChiTietPhieuNhaps = chiTietPhieuNhaps;
-
-            if (CPhieuNhapNguyenLieu_BUS.add(phieuNhapNguyenLieu))
+            try
             {
-                MessageBox.Show("Thêm phiếu nhập thành công");
-                this.Close();
+                PhieuNhapNguyenLieu phieuNhapNguyenLieu = new PhieuNhapNguyenLieu();
+                phieuNhapNguyenLieu.maPhieuNhap = txtMaPhieuNhap.Text;
+                phieuNhapNguyenLieu.maNhanVien = nhanVienSelect.maNhanVien;
+                phieuNhapNguyenLieu.ngayNhap = dateNgayNhap.SelectedDate.Value;
+                phieuNhapNguyenLieu.tongThanhTien = double.Parse(txtTongThanhTien.Text);
+                phieuNhapNguyenLieu.trangThai = 0;
+                phieuNhapNguyenLieu.ChiTietPhieuNhaps = chiTietPhieuNhaps;
+
+                if (CPhieuNhapNguyenLieu_BUS.add(phieuNhapNguyenLieu))
+                {
+                    MessageBox.Show("Thêm phiếu nhập thành công");
+                    this.Close();
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("Dữ liệu không được để rỗng");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Dữ liệu phải là số");
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Dữ liệu có độ lớn vượt quá giới hạn cho phép");
             }
         }
 
