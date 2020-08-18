@@ -155,7 +155,7 @@ namespace QuanLyQuanCoffee.Views
                         soLuong = x.soLuong,
                         donGia = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.donGia),
                         thanhTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.thanhTien)
-                    }) ;
+                    });
                 }
                 catch (ArgumentNullException)
                 {
@@ -408,52 +408,82 @@ namespace QuanLyQuanCoffee.Views
 
         private void txtDonGia_KeyUp(object sender, KeyEventArgs e)
         {
-            int soLuong;
-            double donGia;
-            double thanhTien = 0;
-            if (txtSoLuong.Text != null && txtSoLuong.Text != "")
+            try
             {
-                soLuong = int.Parse(txtSoLuong.Text);
+                int soLuong;
+                double donGia;
+                double thanhTien = 0;
+                if (txtSoLuong.Text != null && txtSoLuong.Text != "")
+                {
+                    soLuong = int.Parse(txtSoLuong.Text);
+                }
+                else
+                {
+                    soLuong = 0;
+                }
+                if (txtDonGia.Text != null && txtDonGia.Text != "")
+                {
+                    donGia = double.Parse(txtDonGia.Text);
+                }
+                else
+                {
+                    donGia = 0;
+                }
+                thanhTien = soLuong * donGia;
+                txtThanhTien.Text = thanhTien.ToString();
             }
-            else
+            catch (FormatException)
             {
-                soLuong = 0;
+                MessageBox.Show("Số lượng và đơn giá chỉ được nhập số");
             }
-            if (txtDonGia.Text != null && txtDonGia.Text != "")
+            catch (ArgumentNullException)
             {
-                donGia = double.Parse(txtDonGia.Text);
+                MessageBox.Show("Vui lòng nhập số lượng và đơn giá");
             }
-            else
+            catch (OverflowException)
             {
-                donGia = 0;
+                MessageBox.Show("Giá trị vượt quá giới hạn, vui lòng kiểm tra lại ô số lượng hoặc đơn giá");
             }
-            thanhTien = soLuong * donGia;
-            txtThanhTien.Text = thanhTien.ToString();
         }
 
         private void txtSoLuong_KeyUp(object sender, KeyEventArgs e)
         {
-            int soLuong;
-            double donGia;
-            double thanhTien = 0;
-            if (txtSoLuong.Text != null && txtSoLuong.Text != "")
+            try
             {
-                soLuong = int.Parse(txtSoLuong.Text);
+                int soLuong;
+                double donGia;
+                double thanhTien = 0;
+                if (txtSoLuong.Text != null && txtSoLuong.Text != "")
+                {
+                    soLuong = int.Parse(txtSoLuong.Text);
+                }
+                else
+                {
+                    soLuong = 0;
+                }
+                if (txtDonGia.Text != null && txtDonGia.Text != "")
+                {
+                    donGia = double.Parse(txtDonGia.Text);
+                }
+                else
+                {
+                    donGia = 0;
+                }
+                thanhTien = soLuong * donGia;
+                txtThanhTien.Text = thanhTien.ToString();
             }
-            else
+            catch (FormatException)
             {
-                soLuong = 0;
+                MessageBox.Show("Số lượng và đơn giá chỉ được nhập số");
             }
-            if (txtDonGia.Text != null && txtDonGia.Text != "")
+            catch (ArgumentNullException)
             {
-                donGia = double.Parse(txtDonGia.Text);
+                MessageBox.Show("Vui lòng nhập số lượng và đơn giá");
             }
-            else
+            catch (OverflowException)
             {
-                donGia = 0;
+                MessageBox.Show("Giá trị vượt quá giới hạn, vui lòng kiểm tra lại ô số lượng hoặc đơn giá");
             }
-            thanhTien = soLuong * donGia;
-            txtThanhTien.Text = thanhTien.ToString();
         }
     }
 }
