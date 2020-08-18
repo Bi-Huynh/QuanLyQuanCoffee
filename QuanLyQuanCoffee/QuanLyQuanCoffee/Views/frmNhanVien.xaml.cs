@@ -60,7 +60,20 @@ namespace QuanLyQuanCoffee.Views
 
         private void ketCa_Click(object sender, RoutedEventArgs e)
         {
-            new frmKetCa(nhanVienSelect).Show();
+            if (CCa_BUS.isDaKetCa == false && CCa_BUS.CaLamViec != null)
+            {
+                new frmKetCa(nhanVienSelect).Show();
+            }
+
+            if (CCa_BUS.isDaKetCa == false && CCa_BUS.CaLamViec == null)
+            {
+                MessageBox.Show("Bạn chưa tạo ca làm việc, không thể kết ca");
+            }
+
+            if (CCa_BUS.isDaKetCa && CCa_BUS.CaLamViec != null)
+            {
+                MessageBox.Show("Bạn chỉ được kết ca 1 lần, không thể kết ca thêm lần nữa");
+            }
         }
 
         private void dangXuat_Click(object sender, RoutedEventArgs e)
