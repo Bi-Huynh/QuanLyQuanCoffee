@@ -369,22 +369,25 @@ namespace QuanLyQuanCoffee.Views
                         }
 
                         // tạo mã chi tiết nguyên liệu
-                        if (chiTietNguyenLieus.Count() == 0)
-                        {
-                            List<ChiTietNguyenLieu> temp = new List<ChiTietNguyenLieu>();
-                            foreach (var item in chiTietPhieuNhaps)
-                            {
-                                temp.Add(item.ChiTietNguyenLieu);
-                            }
-                            chiTiet.maChitietNguyenLieu = CChiTietNguyenLieu_BUS
-                                .taoMa(txtMaChiTietNguyenLieu.Text, temp);
-                        }
-                        else
-                        {
-                            chiTiet.maChitietNguyenLieu = CChiTietNguyenLieu_BUS
-                                .taoMa(txtMaChiTietNguyenLieu.Text, chiTietNguyenLieus);
-                            chiTietNguyenLieus = new List<ChiTietNguyenLieu>();
-                        }
+                        //if (chiTietNguyenLieus.Count() == 0)
+                        //{
+                        //    List<ChiTietNguyenLieu> temp = new List<ChiTietNguyenLieu>();
+                        //    foreach (var item in chiTietPhieuNhaps)
+                        //    {
+                        //        temp.Add(item.ChiTietNguyenLieu);
+                        //    }
+                        //    chiTiet.maChitietNguyenLieu = CChiTietNguyenLieu_BUS
+                        //        .taoMa(txtMaChiTietNguyenLieu.Text, temp);
+                        //}
+                        //else
+                        //{
+                        //    chiTiet.maChitietNguyenLieu = CChiTietNguyenLieu_BUS
+                        //        .taoMa(txtMaChiTietNguyenLieu.Text, chiTietNguyenLieus);
+                        //    chiTietNguyenLieus = new List<ChiTietNguyenLieu>();
+                        //}
+                        
+                        chiTiet.maChitietNguyenLieu = chiTiet.maChiTietPhieuNhap + txtMaChiTietNguyenLieu.Text;
+
                         chiTiet.maPhieuNhap = txtMaPhieuNhap.Text;
                         chiTiet.soLuong = int.Parse(txtSoLuong.Text);
                         chiTiet.donGia = double.Parse(txtDonGia.Text);
