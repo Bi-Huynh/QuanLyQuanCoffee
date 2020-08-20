@@ -46,13 +46,13 @@ namespace QuanLyQuanCoffee.Views
         public void hienThiPhieuXuat()
         {
             List<PhieuXuatNguyenLieu> list = CPhieuXuatNguyenLieu_BUS.toList();
-            dgDSPhieuXuat.ItemsSource = list;
-            //dgDSPhieuXuat.ItemsSource = list.Select(x => new
-            //     {
-            //         maPhieuXuat = x.maPhieuXuat,
-            //         ngayXuat = x.ngayXuat.Value.ToString("dd/MM/yyyy"),
-            //         tongThanhTien = x.tongThanhTien
-            //     });
+            //dgDSPhieuXuat.ItemsSource = list;
+            dgDSPhieuXuat.ItemsSource = list.Select(x => new
+            {
+                maPhieuXuat = x.maPhieuXuat,
+                ngayXuat = x.ngayXuat.Value.ToString("dd/MM/yyyy"),
+                tongThanhTien = x.tongThanhTien
+            });
         }
         public void hienThiPhieuXuat(List<PhieuXuatNguyenLieu> list)
         {

@@ -64,6 +64,13 @@ namespace QuanLyQuanCoffee.Views
         {
             try
             {
+                if (txtTaiKhoan.Text == "" || txtTaiKhoan.Text == null||
+                    txtMatKhau.Text == "" || txtMatKhau.Text == null)
+                {
+                    MessageBox.Show("Yêu cầu điền thông tin tài khoản");
+                    return;
+                }
+
                 TaiKhoan taiKhoan = new TaiKhoan();
                 string maNhanVien = CNhanVien_BUS.findTenbyMa(cmbTenNhanVien.SelectedItem.ToString());
                 taiKhoan.maNhanVien = maNhanVien;
@@ -80,6 +87,12 @@ namespace QuanLyQuanCoffee.Views
                     MessageBox.Show("Điền đầy đủ thông tin tài khoản");
                     return;
                 }
+                if (CTaiKhoan_BUS.findTK(txtTaiKhoan.Text))
+                {
+                    MessageBox.Show("Tên tài khoản đã tồn tại");
+                    return;
+                }
+
                 taiKhoan.taiKhoan1 = txtTaiKhoan.Text;
                 taiKhoan.matKhau = txtMatKhau.Text;
                 taiKhoan.maLoaiTaiKhoan = CLoaiTaiKhoan_BUS.findTen(cmbLoaiTaiKhoan.SelectedItem.ToString()).maLoaiTaiKhoan;
