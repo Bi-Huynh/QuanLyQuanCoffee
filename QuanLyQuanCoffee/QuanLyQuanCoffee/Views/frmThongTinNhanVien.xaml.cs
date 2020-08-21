@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -207,15 +208,48 @@ namespace QuanLyQuanCoffee.Views
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Chọn ảnh";
             openFileDialog.Filter = "Image files (*.png;*.jpg)|*.png;*.jpg";
-            openFileDialog.InitialDirectory = @"QuanLyQuanCoffee\Hinh\";
+            //openFileDialog.InitialDirectory = @"QuanLyQuanCoffee\Hinh\";
             openFileDialog.RestoreDirectory = true;
             if (openFileDialog.ShowDialog() == true)
             {
                 //string url = "";
                 urlAnh = openFileDialog.FileName;
-                //Application.Current.StartupUri.AbsolutePath
 
                 hienThiHinh(urlAnh);
+
+                //string sourceDir = openFileDialog.FileName;
+
+                //string exeFile = (new System.Uri(Assembly.GetEntryAssembly().CodeBase)).AbsolutePath;
+                //string exeDir = System.IO.Path.GetDirectoryName(exeFile);
+                //string fullPath = System.IO.Path.Combine(exeDir);
+
+                //try
+                //{
+                //    string[] picList = Directory.GetFiles(sourceDir, "*.jpg");
+
+                //    // Copy picture files.
+                //    foreach (string f in picList)
+                //    {
+                //        // Remove path from the file name.
+                //        string fName = f.Substring(sourceDir.Length + 1);
+
+                //        // Use the Path.Combine method to safely append the file name to the path.
+                //        // Will overwrite if the destination file already exists.
+                //        File.Copy(System.IO.Path.Combine(sourceDir, fName), System.IO.Path.Combine(fullPath, fName), true);
+                //    }
+
+                //    foreach (string f in picList)
+                //    {
+                //        File.Delete(f);
+                //    }
+
+                //    MessageBox.Show("xong");
+                //}
+
+                //catch (DirectoryNotFoundException dirNotFound)
+                //{
+                //    Console.WriteLine(dirNotFound.Message);
+                //}
             }
         }
 
