@@ -43,9 +43,10 @@
         </Grid>
         
         <DataGrid x:Name="dgDSKetCa" MinHeight="565" Margin="10,10" AutoGenerateColumns="False" 
-                  SelectedValuePath="maKetCa" HorizontalContentAlignment="Center" 
+                  SelectedValuePath="maKetCa" HorizontalContentAlignment="Center"
                   Background="White" FontFamily="Arial" IsReadOnly="True" FontSize="13"
-                  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                  SelectionChanged="dgDSKetCa_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã kết ca" Binding="{Binding maKetCa}" Width="1*"/>
                 <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}" Width="1.5*"/>

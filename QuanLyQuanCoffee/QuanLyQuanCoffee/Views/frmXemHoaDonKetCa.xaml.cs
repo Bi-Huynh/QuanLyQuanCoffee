@@ -19,9 +19,19 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmXemHoaDonKetCa : Window
     {
-        public frmXemHoaDonKetCa()
+        private KetCa ketCaSelect;
+
+        public frmXemHoaDonKetCa(KetCa ketCa = null)
         {
             InitializeComponent();
+            if (ketCa == null)
+            {
+                ketCaSelect = new KetCa();
+            }
+            else
+            {
+                ketCaSelect = ketCa;
+            }
         }
 
         private void dgHoaDonTrongNgay_MouseDoubleClick(object sender, MouseButtonEventArgs e)

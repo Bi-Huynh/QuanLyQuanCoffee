@@ -23,6 +23,7 @@ namespace QuanLyQuanCoffee.Views
     {
         private List<KetCa> listDSKetCa;
         private int chosse = 0;
+        private KetCa ketCaSelect;
 
         public frmQuanLyKetCa()
         {
@@ -169,7 +170,23 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnXemChiTietKetCa_Click(object sender, RoutedEventArgs e)
         {
+            if (ketCaSelect != null)
+            {
+                frmXemHoaDonKetCa frmXemHoaDonKetCa = new frmXemHoaDonKetCa(ketCaSelect);
+                frmXemHoaDonKetCa.Show();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm được kết ca đã chọn");
+            }
+        }
 
+        private void dgDSKetCa_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgDSKetCa.SelectedItem != null)
+            {
+                ketCaSelect = dgDSKetCa.SelectedItem as KetCa;
+            }
         }
     }
 }
