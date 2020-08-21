@@ -22,6 +22,8 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<PhieuNhapNguyenLieu>() : list;
         }
 
+        
+
         public static List<PhieuNhapNguyenLieu> toListAll()
         {
             List<PhieuNhapNguyenLieu> list = quanLyQuanCoffee.PhieuNhapNguyenLieux.ToList();

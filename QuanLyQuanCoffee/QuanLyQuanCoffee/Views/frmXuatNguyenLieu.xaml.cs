@@ -160,7 +160,7 @@ namespace QuanLyQuanCoffee.Views
                 chiTietPhieuXuats.Add(chitietPhieuXuat);
                 dgChitietPhieuXuat.ItemsSource = chiTietPhieuXuats.Select(x => new
                 {
-                    maChiTietNguyenLieu = x.maChitietNguyenLieu.Substring(0, 13),
+                    maChiTietPhieuXuat = x.maChitietNguyenLieu.Substring(0, 13),
                     tenNguyenLieu = x.ChiTietNguyenLieu.NguyenLieu.tenNguyenLieu.Trim(),
                     soLuong = x.soLuong,
                     donGia = x.donGia,

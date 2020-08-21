@@ -22,6 +22,18 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<TaiKhoan>() : list;
         }
 
+        public static bool findTK(string tenTaiKhoan)
+        {
+            foreach(TaiKhoan taiKhoan in quanLyQuanCoffee.TaiKhoans)
+            {
+                if (taiKhoan.taiKhoan1 == tenTaiKhoan)
+                {
+                    return true;
+                }
+            }    
+            return false; // chưa tồn tại
+        }
+
         public static TaiKhoan find(string maNhanVien)
         {
             TaiKhoan taiKhoan = quanLyQuanCoffee.TaiKhoans.Find(maNhanVien);

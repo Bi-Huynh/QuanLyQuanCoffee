@@ -67,6 +67,27 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<ChiTietPhieuNhap>() : list;
         }
 
+        public static List<ChiTietPhieuNhap> toListPhieuNhap(string maNguyenLieu)
+        {
+            List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
+                .Where(x => x.ChiTietNguyenLieu.NguyenLieu.maNguyenLieu == maNguyenLieu).ToList();
+            return list == null ? new List<ChiTietPhieuNhap>() : list;
+        }
+
+        public static int tongSoLuong(string maNguyenLieu)
+        {
+            int tong = 0;
+            List<ChiTietPhieuNhap> list = toListPhieuNhap(maNguyenLieu);
+            if (list.Count() > 0)
+            {
+                list.ForEach(item =>
+                {
+                    tong += item.soLuong.Value;
+                });
+            }
+            return tong;
+        }
+
         public static List<ChiTietPhieuNhap> toListTenNguyenLieu(string tenNguyenLieu)
         {
             List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
@@ -99,7 +120,7 @@ namespace QuanLyQuanCoffee.BUS
             List<ChiTietPhieuNhap> list = findList(maNguyenLieu);
             foreach (var item in list)
             {
-                tongThanhTien += item.thanhTien.Value;
+                tongThanhTien += item.donGia.Value * item.soLuong.Value;
             }
 
             return tongThanhTien;

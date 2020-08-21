@@ -35,7 +35,7 @@ namespace QuanLyQuanCoffee.Views
             InitializeComponent();
             nhanVienSelect = nhanVien;
             chiTietNguyenLieus = CChiTietNguyenLieu_BUS.toList();
-            list1 = CChiTietPhieuNhapNguyenLieu_BUS.toList();
+            list1 = CChiTietPhieuNhapNguyenLieu_BUS.toListAll();
             phieuNhapNguyenLieuSelect = phieuNhapNguyenLieu;
             chiTietPhieuNhaps = new List<ChiTietPhieuNhap>();
 
@@ -218,7 +218,6 @@ namespace QuanLyQuanCoffee.Views
                     return;
                 }
             }
-
             try
             {
                 PhieuNhapNguyenLieu phieuNhapNguyenLieu = new PhieuNhapNguyenLieu();
@@ -228,7 +227,6 @@ namespace QuanLyQuanCoffee.Views
                 phieuNhapNguyenLieu.tongThanhTien = double.Parse(txtTongThanhTien.Text);
                 phieuNhapNguyenLieu.trangThai = 0;
                 phieuNhapNguyenLieu.ChiTietPhieuNhaps = chiTietPhieuNhaps;
-
                 if (CPhieuNhapNguyenLieu_BUS.add(phieuNhapNguyenLieu))
                 {
                     MessageBox.Show("Thêm phiếu nhập thành công");

@@ -25,12 +25,16 @@ namespace QuanLyQuanCoffee.Views
         public frmThongTinChiTietPhieuXuatNL(PhieuXuatNguyenLieu phieuXuat = null)
         {
             InitializeComponent();
-            phieuXuatSelected = CPhieuXuatNguyenLieu_BUS.find(phieuXuat.maPhieuXuat);
+            phieuXuatSelected = phieuXuat;
             if (phieuXuatSelected == null)
             {
                 phieuXuatSelected = new PhieuXuatNguyenLieu();
             }
-            hienThiChitietPX();
+            else
+            {
+                hienThiChitietPX();
+                Load();
+            }
         }
         public void hienThiChitietPX()
         {
@@ -38,14 +42,15 @@ namespace QuanLyQuanCoffee.Views
             List<ChiTietPhieuXuat> list = CChiTietPhieuXuatNguyenLieu.toList(phieuXuatSelected.maPhieuXuat);
             if (list.Count() > 0)
             {
-                dgQlchitietphieuxuat.ItemsSource = list.Select(x => new {
+                dgQlchitietphieuxuat.ItemsSource = list.Select(x => new
+                {
 
                     maChiTietPhieuXuat = x.maChiTietPhieuXuat,
                     maNguyenLieu = x.maChitietNguyenLieu.Substring(0, 13),
                     tenNguyenLieu = x.ChiTietNguyenLieu.NguyenLieu.tenNguyenLieu,
                     soLuong = x.soLuong,
                     donGia = x.donGia,
-                    thanhTien=x.thanhTien
+                    thanhTien = x.thanhTien
                 });
             }
             else
@@ -54,12 +59,18 @@ namespace QuanLyQuanCoffee.Views
                 return;
             }
         }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+
+        private void Load()
         {
-            txtMaPhieuXuat.Text = phieuXuatSelected.maPhieuXuat;
-            txtNgayxuat.Text = phieuXuatSelected.ngayXuat.Value.ToString("dd/MM/yyyy");
-            txtTongthanhtien.Text = phieuXuatSelected.tongThanhTien.ToString();
-            txtNguoilapPhieuXuat.Text = phieuXuatSelected.NhanVien.hoNhanVien + phieuXuatSelected.NhanVien.tenNhanVien;
+            if (phieuXuatSelected != null)
+            {
+                txtMaPhieuXuat.Text = phieuXuatSelected.maPhieuXuat;
+                txtNgayxuat.Text = phieuXuatSelected.ngayXuat.Value.ToString("dd/MM/yyyy");
+                txtTongthanhtien.Text = phieuXuatSelected.tongThanhTien.ToString();
+                txtNguoilapPhieuXuat.Text = phieuXuatSelected.NhanVien.hoNhanVien + phieuXuatSelected.NhanVien.tenNhanVien;
+            }
         }
+
+        
     }
 }

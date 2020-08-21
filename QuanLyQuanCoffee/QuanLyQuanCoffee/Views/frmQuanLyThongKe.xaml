@@ -68,7 +68,7 @@
                 <DataGrid x:Name="dgPhieuThongKe" Width="570" MaxHeight="550" MinHeight="346"
                       AutoGenerateColumns="False" SelectedValuePath="maThongKe"
                       HorizontalContentAlignment="Center" HorizontalScrollBarVisibility="Auto"
-                      Background="White" FontFamily="Arial" 
+                      Background="White" FontFamily="Arial" IsReadOnly="True"
                       SelectionChanged="dgPhieuThongKe_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Mã Thống Kê" Binding="{Binding maThongKe}" Width="1*"/>
