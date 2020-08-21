@@ -8,40 +8,47 @@
       d:DesignHeight="685" d:DesignWidth="1200" Title="frmQuanLyNhanVien">
 
     <StackPanel ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" CanHorizontallyScroll="True" CanVerticallyScroll="True">
-        <Grid>
+        <Grid Margin="0,10,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="52.2*"/>
-                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width=".2*"/>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="15*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="17.8*"/>
                 <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width=".7*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="15"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="15"/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label Grid.Row="1" Grid.Column="1" Content="Danh Sách Kết Ca" FontSize="18" VerticalContentAlignment="Center" FontWeight="Bold" FontFamily="Arial"/>
-            <!--<TextBox x:Name="txtTimKiem" Grid.Row="1" Grid.Column="2" FontFamily="Arial" FontSize="15" VerticalContentAlignment="Center" KeyUp="txtTimKiem_KeyUp"/>-->
-            <!--<ComboBox x:Name="cmbTimKiem" Grid.Row="1" Grid.Column="4" FontFamily="Arial" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
-                <ComboBoxItem Content="Tên nhân viên" IsSelected="True"/>
-                <ComboBoxItem Content="Mã nhân viên"/>
-                <ComboBoxItem Content="Loại nhân viên"/>
-            </ComboBox>-->
-            <!--<Button x:Name="btnXemThongTinChiTiet" Grid.Row="1" Grid.Column="6" Content="Xem thông tin chi tiết" FontFamily="Arial" FontSize="13" Click="btnXemThongTinChiTiet_Click"/>-->
+
+            <DatePicker Grid.Row="0" Grid.Column="0" x:Name="dateTu" Margin="10,0,0,0"/>
+            <Label Grid.Row="0" Grid.Column="1" Content="đến" HorizontalContentAlignment="Center"/>
+            <DatePicker Grid.Row="0" Grid.Column="2" x:Name="dateDen"/>
+            <Button Grid.Row="0" Grid.Column="3" x:Name="btnLoc" Content="Lọc" Margin="5,0,5,0" Click="btnLoc_Click"/>
+            <Button Grid.Row="0" Grid.Column="4" x:Name="btnXemChiTietKetCa" Content="Xem chi tiết kết ca" Margin="5,0,5,0" Click="btnXemChiTietKetCa_Click"/>
+            <DatePicker Grid.Row="0" Grid.Column="5" x:Name="dateTimNgay" SelectedDateChanged="dateTimNgay_SelectedDateChanged"/>
+            <TextBox Grid.Row="0" Grid.Column="5" VerticalContentAlignment="Center" x:Name="txtTimKiem" KeyUp="txtTimKiem_KeyUp"/>
+            <ComboBox x:Name="cmbTimKiem" Grid.Row="0" Grid.Column="6" Margin="5,0,10,0"
+                      VerticalContentAlignment="Center" 
+                      HorizontalContentAlignment="Center"
+                      SelectionChanged="cmbTimKiem_SelectionChanged">
+                <ComboBoxItem IsSelected="True" Content="Mã nhân viên"/>
+                <ComboBoxItem Content="Tên nhân viên"/>
+                <ComboBoxItem Content="Ngày lập"/>
+                <ComboBoxItem Content="Tổng tiền bán"/>
+                <ComboBoxItem Content="Tổng doanh thu"/>
+            </ComboBox>
         </Grid>
-        <DataGrid x:Name="dgDSKetCa" MinHeight="565" Margin="10,0" AutoGenerateColumns="False" 
+        
+        <DataGrid x:Name="dgDSKetCa" MinHeight="565" Margin="10,10" AutoGenerateColumns="False" 
                   SelectedValuePath="maKetCa" HorizontalContentAlignment="Center" 
-                  Background="White" FontFamily="Arial" IsReadOnly="True"
-                  >
+                  Background="White" FontFamily="Arial" IsReadOnly="True" FontSize="13"
+                  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã kết ca" Binding="{Binding maKetCa}" Width="1*"/>
                 <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}" Width="1.5*"/>
-
-                <!--<DataGridTextColumn Header="Họ" Binding="{Binding hoNhanVien}" Width="1.5*"/>-->
                 <DataGridTextColumn Header="Tên" Binding="{Binding tenNhanVien}" Width="1*"/>
                 <DataGridTextColumn Header="Giờ bắt đầu" Binding="{Binding gioBatDau}" Width="1*"/>
                 <DataGridTextColumn Header="Giờ kết thúc" Binding="{Binding gioKetThuc}" Width="1*"/>
@@ -50,33 +57,7 @@
                 <DataGridTextColumn Header="Tiền đầu ca" Binding="{Binding tienDauCa}" Width="1*"/>
                 <DataGridTextColumn Header="Tổng tiền bán" Binding="{Binding tongTienBan}" Width="1*"/>
                 <DataGridTextColumn Header="Tổng doanh thu" Binding="{Binding tongDoanhThu}" Width="1*"/>
-
             </DataGrid.Columns>
         </DataGrid>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="35*"/>
-                <ColumnDefinition Width="15*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="15*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="15*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="15*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="15"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="15"/>
-            </Grid.RowDefinitions>
-            <!--<Button x:Name="btnQuanLyLoaiNhanvien" Grid.Row="1" Grid.Column="1" Content="Quản Lý Loại Nhân Viên" FontFamily="Arial" Click="btnQuanLyLoaiNhanvien_Click"/>
-            <Button x:Name="btnRefesh" Grid.Row="1" Grid.Column="3" Content="Refect" FontFamily="Arial" Click="btnRefesh_Click"/>
-            <Button x:Name="btnSua" Grid.Row="1" Grid.Column="5" Content="Sửa" FontFamily="Arial" Click="btnSua_Click"/>
-            <Button x:Name="btnXoa" Grid.Row="1" Grid.Column="7" Content="Xóa" FontFamily="Arial" Click="btnXoa_Click"/>
-            <Button x:Name="btnThem" Grid.Row="1" Grid.Column="9" Content="Thêm" FontFamily="Arial" Height="30" VerticalAlignment="Bottom" Click="btnThem_Click"/>-->
-        </Grid>
     </StackPanel>
 </Page>

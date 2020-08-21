@@ -1,13 +1,11 @@
-﻿<Page x:Class="QuanLyQuanCoffee.Views.XemHoaDonTrongNgay"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
-      mc:Ignorable="d" 
-      d:DesignHeight="685" d:DesignWidth="1200"
-      Title="XemHoaDonTrongNgay">
-
+﻿<Window x:Class="QuanLyQuanCoffee.Views.frmXemHoaDonKetCa"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
+        mc:Ignorable="d"
+        Title="frmXemHoaDonKetCa" d:DesignHeight="685" d:DesignWidth="1200">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*"/>
@@ -16,11 +14,11 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
+
         <GroupBox Grid.Column="0" Grid.Row="0"
-                  Header="Danh Sách Hóa Đơn" Margin="0,0,5,0">
+                  Header="Danh Sách Hóa Đơn Kết Ca" Margin="0,0,5,0">
             <DataGrid x:Name="dgHoaDonTrongNgay" VerticalScrollBarVisibility="Auto"
-                      Height="660" MaxHeight="660" IsReadOnly="True" SelectedValuePath="maHoaDon"
+                      Height="630" MaxHeight="660" IsReadOnly="True" SelectedValuePath="maHoaDon"
                       AutoGenerateColumns="False" HorizontalScrollBarVisibility="Auto"
                       SelectionChanged="dgHoaDonTrongNgay_SelectionChanged"
                       MouseDoubleClick="dgHoaDonTrongNgay_MouseDoubleClick">
@@ -33,12 +31,12 @@
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
-        
+
         <GroupBox Grid.Column="1" Grid.Row="0"
                   Header="Chi Tiết Hóa Đơn" Margin="5,0,0,0">
             <DataGrid x:Name="dgChiTietHoaDonTrongNgay" VerticalScrollBarVisibility="Auto" 
                       SelectedValue="maHoaDon" HorizontalScrollBarVisibility="Auto"
-                      IsReadOnly="True" Height="660" MaxHeight="660" AutoGenerateColumns="False">
+                      IsReadOnly="True" Height="630" MaxHeight="660" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding maHoaDon}" Width="1*" Visibility="Hidden"/>
                     <DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding tenSanPham}" Width="1.5*"/>
@@ -48,4 +46,4 @@
             </DataGrid>
         </GroupBox>
     </Grid>
-</Page>
+</Window>

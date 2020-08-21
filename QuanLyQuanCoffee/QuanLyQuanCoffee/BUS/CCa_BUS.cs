@@ -26,6 +26,148 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<KetCa>() : list;
         }
 
+        public static List<KetCa> toListMaNV(string maNhanVien)
+        {
+            List<KetCa> ketCas = new List<KetCa>();
+
+            try
+            {
+                foreach (KetCa ketCa in quanLyQuanCoffee.KetCas.ToList())
+                {
+                    if (ketCa.maNhanVien.Contains(maNhanVien))
+                    {
+                        ketCas.Add(ketCa);
+                    }
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show("Lỗi: " + ex);
+            }
+
+            return ketCas;
+        }
+
+        public static List<KetCa> toListTenNV(string tenNhanVien)
+        {
+            List<KetCa> ketCas = new List<KetCa>();
+
+            try
+            {
+                foreach (KetCa ketCa in quanLyQuanCoffee.KetCas.ToList())
+                {
+                    string ten = ketCa.NhanVien.hoNhanVien + " " + ketCa.NhanVien.tenNhanVien;
+                    if (ten.ToLower().Contains(tenNhanVien.ToLower()))
+                    {
+                        ketCas.Add(ketCa);
+                    }
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show("Lỗi: " + ex);
+            }
+
+            return ketCas;
+        }
+
+        public static List<KetCa> toListTongTienBan(string tongTienBan)
+        {
+            List<KetCa> ketCas = new List<KetCa>();
+
+            try
+            {
+                foreach (KetCa ketCa in quanLyQuanCoffee.KetCas.ToList())
+                {
+                    if (ketCa.tongTienBan.ToString().Contains(tongTienBan))
+                    {
+                        ketCas.Add(ketCa);
+                    }
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show("Lỗi: " + ex);
+            }
+
+            return ketCas;
+        }
+
+        public static List<KetCa> toListTongDoanhThu(string tongDoanhThu)
+        {
+            List<KetCa> ketCas = new List<KetCa>();
+
+            try
+            {
+                foreach (KetCa ketCa in quanLyQuanCoffee.KetCas.ToList())
+                {
+                    if (ketCa.tongDoanhThu.ToString().Contains(tongDoanhThu))
+                    {
+                        ketCas.Add(ketCa);
+                    }
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show("Lỗi: " + ex);
+            }
+
+            return ketCas;
+        }
+
+        public static List<KetCa> toListNgayLap(DateTime ngayLap)
+        {
+            List<KetCa> ketCas = new List<KetCa>();
+
+            try
+            {
+                foreach (KetCa ketCa in quanLyQuanCoffee.KetCas.ToList())
+                {
+                    if (ketCa.ngayLap.Value.Date == ngayLap.Date)
+                    {
+                        ketCas.Add(ketCa);
+                    }
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show("Lỗi: " + ex);
+            }
+
+            return ketCas;
+        }
+
+        public static List<KetCa> toListNgayLap(DateTime ngayBatDau, DateTime ngayKetThuc)
+        {
+            List<KetCa> ketCas = new List<KetCa>();
+
+            try
+            {
+                foreach (KetCa ketCa in quanLyQuanCoffee.KetCas.ToList())
+                {
+                    if (ketCa.ngayLap.Value.Date >= ngayBatDau.Date && 
+                        ketCa.ngayLap.Value.Date <= ngayKetThuc.Date)
+                    {
+                        ketCas.Add(ketCa);
+                    }
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show("Lỗi: " + ex);
+            }
+
+            return ketCas;
+        }
+
+        public static List<KetCa> toListHoaDonKetCa(string maKetCa)
+        {
+            List<KetCa> ketCas = new List<KetCa>();
+
+
+            return ketCas;
+        }
+
         public static List<KetCa> toList(DateTime ngayBatDau, DateTime ngayKetThuc)
         {
             List<KetCa> list = quanLyQuanCoffee.KetCas
