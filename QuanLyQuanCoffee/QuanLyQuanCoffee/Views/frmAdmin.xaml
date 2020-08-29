@@ -13,10 +13,6 @@
                 <MenuItem Header="Quản Lý Nhân Viên"
                           Name="gd_QuanLyNhanVien" 
                           Click="gd_QuanLyNhanVien_Click"></MenuItem>
-                <!--<MenuItem Header="Quản Lý Chấm Công"
-                          Name="gd_QuanLyChamCong"></MenuItem>
-                <MenuItem Header="Quản Lý Lương"
-                          Name="gd_QuanLyLuong"></MenuItem>-->
             </MenuItem>
             <MenuItem x:Name="nguyenLieu" Header="Nguyên Liệu">
                 <MenuItem Header="Quản Lý Nguyên Liệu"
@@ -34,27 +30,22 @@
                           Click="gd_QuanLySanPham_Click"></MenuItem>
                 <MenuItem  Header="Quản Lý Loại Sản Phẩm"
                           Name="gd_QuanLyLoaiSanPham"
-                           Click="gd_QuanLyLoaiSanPham_Click"
-                          >
-
+                           Click="gd_QuanLyLoaiSanPham_Click">
                 </MenuItem>
             </MenuItem>
             <MenuItem x:Name="hoaDon" Header="Hóa Đơn">
                 <MenuItem Header="Quản Lý Hóa Đơn"
                           Name="gd_QuanLyHoaDon" Click="gd_QuanLyHoaDon_Click"></MenuItem>
             </MenuItem>
-            <!--<MenuItem x:Name="thongKe" Header="Thống kê">
-                <MenuItem Header="Thống Kê Doanh Thu " Click="gd_QuanLyThongKe_Click" x:Name="gd_QuanLyThongKe">
+            <MenuItem x:Name="thongKe" Header="Thống kê">
+                <MenuItem Header="Quản Lý thống Kê" Click="gd_QuanLyThongKe_Click" x:Name="gd_QuanLyThongKe">
                 </MenuItem>
-                <MenuItem Header="Thống Kê Chi Tiêu">
-                    <MenuItem Header="Nguyên Liệu"
-                              Name="gd_ThongKeChiTieuNguyenLieu"></MenuItem>
+                <MenuItem Header="Xem Thống Kê" x:Name="dg_XemThongKe" Click="dg_XemThongKe_Click">
                 </MenuItem>
-            </MenuItem>-->
-            <MenuItem x:Name="gd_QuanLyThongKe" Header="Thống kê" Click="gd_QuanLyThongKe_Click"></MenuItem>
+            </MenuItem>
+            <!--<MenuItem x:Name="gd_QuanLyThongKe" Header="Thống kê" Click="gd_QuanLyThongKe_Click"></MenuItem>-->
             <MenuItem x:Name="taiKhoan" Header="Tài Khoản">
                 <MenuItem Header="Quản lý tài khoản" Name="gd_quanlyTaiKhoan" Click="gd_quanlyTaiKhoan_Click"></MenuItem>
-                <MenuItem Header="Quản lý loại tài khoản" Name="gd_quanlyLoaiTaiKhoan" Click="gd_quanlyLoaiTaiKhoan_Click"></MenuItem>
                 <MenuItem Header="Đổi mật khẩu" Name="gd_doiMatKhau" Click="gd_doiMatKhau_Click"></MenuItem>
             </MenuItem>
             <MenuItem x:Name="quanLyKetCa" Header="Quản lý Kết Ca" Click="quanLyKetCa_Click">
@@ -63,7 +54,23 @@
 
             </MenuItem>
         </Menu>
-        <Frame x:Name="Main" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" ScrollViewer.VerticalScrollBarVisibility="Auto" 
-               NavigationUIVisibility="Hidden" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Grid ScrollViewer.CanContentScroll="True"
+              ScrollViewer.HorizontalScrollBarVisibility="Auto"
+              ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Frame x:Name="Main" UseLayoutRounding="False"
+                   VerticalContentAlignment="Center" 
+                   NavigationUIVisibility="Hidden"
+                   HorizontalContentAlignment="Center"
+                   ScrollViewer.CanContentScroll="True"
+                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                   ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        </Grid>
     </StackPanel>
 </Window>

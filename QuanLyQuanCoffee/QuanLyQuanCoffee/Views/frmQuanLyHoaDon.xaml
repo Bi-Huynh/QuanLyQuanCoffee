@@ -23,73 +23,33 @@
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="1" Content="QUẢN LÝ HÓA ĐƠN" FontSize="12"></Label>
-            <!--<Button Grid.Row="0" Grid.Column="3" Content="Đăng xuất" FontSize="12" />
-            <Button Grid.Row="0" Grid.Column="5" Content="Trở về"  FontSize="12"/>-->
+        </Grid>
 
-        </Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="10"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="10"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="10"/>
-            </Grid.ColumnDefinitions>
-            <!--<Label Grid.Row="1" Grid.Column="1" Content="Mã hóa đơn" FontSize="12"></Label>
-            <Label Grid.Row="1" Grid.Column="3" Content="Ngày lập hóa đơn" FontSize="12"></Label>
-            <Label Grid.Row="1" Grid.Column="5" Content="Tổng thành tiền" FontSize="12"></Label>
-            <Label Grid.Row="1" Grid.Column="7" Content="Người lập hóa đơn" FontSize="12"></Label>
-            <TextBox Grid.Row="2" Grid.Column="1" FontSize="12"></TextBox>
-            <DatePicker Grid.Row="2" Grid.Column="3" FontSize="12"></DatePicker>
-            <TextBox Grid.Row="2" Grid.Column="5" FontSize="12" BorderBrush="Black"></TextBox>
-            <TextBlock Grid.Row="2" Grid.Column="7" FontSize="12" ></TextBlock>-->
-        </Grid>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Row="0" Grid.Column="1" FontSize="12" x:Name="txtTK" KeyUp="txtTK_KeyUp"></TextBox>
-            <Label Grid.Row="0" Grid.Column="3" Content="Nhập mã Hóa Đơn"  FontSize="12"/>
+            <DatePicker Grid.Row="0" Grid.Column="0" x:Name="dateTimKiem" Margin="10,0,0,0"/>
+            <TextBox Grid.Row="0" Grid.Column="0" FontSize="12" Margin="10,0,0,0" x:Name="txtTK" KeyUp="txtTK_KeyUp"></TextBox>
+            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cmbTimKiem"
+                      Margin="10,0,0,0" VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Center" SelectionChanged="cmbTimKiem_SelectionChanged">
+                <ComboBoxItem Content="Mã nhân viên" IsSelected="True"/>
+                <ComboBoxItem Content="Mã hóa đơn"/>
+                <ComboBoxItem Content="Ngày lập"/>
+                <ComboBoxItem Content="Tổng thành tiền"/>
+            </ComboBox>
+            <Button Grid.Row="0" Grid.Column="4" Content="Xem chi tiết hóa đơn" Name="gdQuanLyChitietHoaDon" Click="gdQuanLyChitietHoaDon_Click" Margin="0,0,10,0"/>
         </Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="10"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="15"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="10"/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="6" Content="Xem chi tiết" Name="gdQuanLyChitietHoaDon" Click="gdQuanLyChitietHoaDon_Click" FontSize="12" Grid.ColumnSpan="2" Margin="15,0,0.4,0.4"/>
-            <!--<Button Grid.Row="0" Grid.Column="5" Content="Xóa"  FontSize="12"/>
-            <Button Grid.Row="0" Grid.Column="3" Content="Sửa"  FontSize="12"/>
-            <Button Grid.Row="0" Grid.Column="1" Content="Thêm"  FontSize="12"/>-->
-        </Grid>
+        
         <StackPanel>
             <Grid Height="495">
                 <Grid.RowDefinitions>
@@ -103,12 +63,16 @@
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Grid.Column="1" Content="Danh sách hóa đơn" FontSize="12" />
                 <Grid Grid.Row="1" Grid.Column="1">
-                    <DataGrid  Name="dgQlhoadon" IsReadOnly="True"  FontSize="12" SelectedValuePath="maHoaDon" SelectionChanged="dgQlhoadon_SelectionChanged" AutoGenerateColumns="False">
+                    <DataGrid  Name="dgQlhoadon" IsReadOnly="True"  FontSize="12" SelectedValuePath="maHoaDon" 
+                               SelectionChanged="dgQlhoadon_SelectionChanged" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding maHoaDon}"/>
-                            <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}"/>
-                            <DataGridTextColumn Header="Ngày lập" Binding="{Binding ngayLap}"/>
-                            <DataGridTextColumn Header="Tổng thành tiền" Binding="{Binding tongThanhTien}"/>
+                            <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding maHoaDon}" Width="1*"/>
+                            <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}" Width="1*"/>
+                            <DataGridTextColumn Header="Tên nhân viên" Binding="{Binding tenNhanVien}" Width="1.5*"/>
+                            <DataGridTextColumn Header="Ngày lập" Binding="{Binding ngayLap}" Width="1*"/>
+                            <DataGridTextColumn Header="Tiền khách đưa" Binding="{Binding tienKhachDua}" Width="1*"/>
+                            <DataGridTextColumn Header="Tiền thừa" Binding="{Binding tienThua}" Width="1*"/>
+                            <DataGridTextColumn Header="Tổng thành tiền" Binding="{Binding tongThanhTien}" Width="1*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

@@ -49,16 +49,19 @@ namespace QuanLyQuanCoffee.Views
                         gioKetThuc = x.gioKetThuc.Value.ToString("hh:MM:ss"),
                         ngayLap = x.ngayLap.Value.ToString("dd/MM/yyyy"),
                         soLuong = x.soLuong,
-                        tienDauCa = x.tienDauCa,
-                        tongTienBan = x.tongTienBan,
-                        tongDoanhThu = x.tongDoanhThu
+                        tienDauCa = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.tienDauCa),
+                        tongTienBan = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.tongTienBan),
+                        tongDoanhThu = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.tongDoanhThu)
                     });
                 }
                 catch (FormatException)
                 {
                     MessageBox.Show("Sai định dạng giờ");
                 }
-
+            }
+            else
+            {
+                dgDSKetCa.ItemsSource = new List<KetCa>();
             }
         }
 
@@ -163,7 +166,7 @@ namespace QuanLyQuanCoffee.Views
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn ngày bắt đầu và ngày kết thúc");
+                //MessageBox.Show("Vui lòng chọn ngày bắt đầu và ngày kết thúc");
                 hienthiDSKetCa(CCa_BUS.toList());
             }
         }
@@ -185,7 +188,7 @@ namespace QuanLyQuanCoffee.Views
         {
             if (dgDSKetCa.SelectedItem != null)
             {
-                ketCaSelect = dgDSKetCa.SelectedItem as KetCa;
+                ketCaSelect = CCa_BUS.find(dgDSKetCa.SelectedValue.ToString());
             }
         }
     }

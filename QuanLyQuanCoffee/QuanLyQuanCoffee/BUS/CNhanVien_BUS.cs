@@ -17,7 +17,7 @@ namespace QuanLyQuanCoffee.BUS
         // Trả về toàn bộ danh sách nhân viên
         public static List<NhanVien> toList()
         {
-            List<NhanVien> list = quanLyQuanCoffee.NhanViens.Where(x => x.trangThai == 0).ToList();
+            List<NhanVien> list = quanLyQuanCoffee.NhanViens.Where(x => x.trangThai == 0 && x.maNhanVien != "0000000000").ToList();
             return list == null ? new List<NhanVien>() : list;
         }
 
@@ -79,18 +79,28 @@ namespace QuanLyQuanCoffee.BUS
         public static List<NhanVien> findTen(string tenNhanVien)
         {
             tenNhanVien = CServices.formatChuoi(tenNhanVien).ToLower();
-            List<NhanVien> list = toList().Where(x => x.tenNhanVien.
-                ToLower().Contains(tenNhanVien) == true && x.trangThai == 0).ToList();
-            return list == null ? new List<NhanVien>() : list;
+            List<NhanVien> list = new List<NhanVien>();
+            try
+            {
+                foreach (NhanVien nhanVien in toList())
+                {
+                    if (nhanVien.tenNhanVien.ToLower().Contains(tenNhanVien) &&
+                        nhanVien.trangThai == 0)
+                    {
+                        list.Add(nhanVien);
+                    }
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            return list;
         }
 
         // tìm kiếm nhân viên theo tên nhân viên
         public static string findTenbyMa(string tenNhanVien)
         {
-            //tenNhanVien = CServices.formatChuoi(tenNhanVien).ToLower();
-            //NhanVien nhanVien = toList().Where(x => x.tenNhanVien.
-            //    ToLower().Contains(tenNhanVien) == true && x.trangThai == 0).ToList().FirstOrDefault();
-            //string maNhanVien = "";
             foreach (NhanVien nhanVien in toList())
             {
                 string hoTen = nhanVien.hoNhanVien + " " + nhanVien.tenNhanVien;
@@ -102,13 +112,43 @@ namespace QuanLyQuanCoffee.BUS
             return "";
         }
 
+        // tìm kiếm nhân viên theo tên mã nhân viên trả về tên nhân viên đó
+        public static string findMabyTen(string maNhanVien)
+        {
+            string hoTen = "";
+            foreach (NhanVien nhanVien in toList())
+            {
+                if (nhanVien.maNhanVien == maNhanVien)
+                {
+                    hoTen = nhanVien.hoNhanVien + " " + nhanVien.tenNhanVien;
+                    return hoTen;
+                }
+            }
+            return "";
+        }
+
         // tìm kiếm nhân viên theo tên nhân viên
         public static List<NhanVien> findTenLoai(string tenLoaiNhanVien)
         {
             tenLoaiNhanVien = CServices.formatChuoi(tenLoaiNhanVien).ToLower();
-            List<NhanVien> list = toList().Where(x => x.LoaiNhanVien.tenLoai.
-                ToLower().Contains(tenLoaiNhanVien) == true && x.trangThai == 0).ToList();
-            return list == null ? new List<NhanVien>() : list;
+            List<NhanVien> list = new List<NhanVien>();
+            try
+            {
+                foreach (NhanVien nhanVien in toList())
+                {
+                    if (nhanVien.LoaiNhanVien.tenLoai.ToLower().Contains(tenLoaiNhanVien) &&
+                        nhanVien.trangThai == 0)
+                    {
+                        list.Add(nhanVien);
+                    }
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            return list;
         }
 
         public static int tinhTuoi(DateTime ngaySinh)
@@ -220,12 +260,10 @@ namespace QuanLyQuanCoffee.BUS
             }
             try
             {
-                if (temp.ChiTietChamCongs.Count > 0 ||
-                                temp.Luongs.Count > 0 ||
-                                temp.PhieuNhapNguyenLieux.Count > 0 ||
-                                temp.PhieuXuatNguyenLieux.Count > 0 ||
-                                temp.TaiKhoan != null ||
-                                temp.HoaDons.Count > 0)
+                if (temp.PhieuNhapNguyenLieux.Count > 0 ||
+                    temp.PhieuXuatNguyenLieux.Count > 0 ||
+                    temp.TaiKhoans != null ||
+                    temp.HoaDons.Count > 0)
                 {
                     temp.trangThai = 1;
                     quanLyQuanCoffee.SaveChanges();

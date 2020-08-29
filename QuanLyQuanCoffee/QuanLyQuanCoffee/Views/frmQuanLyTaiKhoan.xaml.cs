@@ -23,39 +23,21 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmQuanLyTaiKhoan : Page
     {
-        private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
-
         public frmQuanLyTaiKhoan()
         {
             InitializeComponent();
-            dc = new QuanLyQuanCoffeeEntities1();
             hienthiDStaikhoan();
         }
 
         public void hienthiDStaikhoan()
         {
-            List<TaiKhoan> taiKhoans = new List<TaiKhoan>();
-            foreach (TaiKhoan tk in CTaiKhoan_BUS.toList())
+            dgQltaikhoan.ItemsSource = CTaiKhoan_BUS.toListNotAdmin().Select(x => new
             {
-                TaiKhoan taiKhoan = new TaiKhoan();
-                taiKhoan.maNhanVien = tk.maNhanVien;
-                taiKhoan.NhanVien = CNhanVien_BUS.find(tk.maNhanVien);
-                taiKhoan.taiKhoan1 = tk.taiKhoan1;
-                taiKhoan.matKhau = tk.matKhau;
-                taiKhoan.maLoaiTaiKhoan = tk.maLoaiTaiKhoan;
-                taiKhoan.LoaiTaiKhoan = CLoaiTaiKhoan_BUS.find(tk.maLoaiTaiKhoan);
-                taiKhoan.trangThai = tk.trangThai;
-
-                taiKhoans.Add(taiKhoan);
-            }
-
-            dgQltaikhoan.ItemsSource = taiKhoans.Select(x => new
-            {
+                maTaiKhoan = x.maTaiKhoan,
                 maNhanVien = x.maNhanVien,
                 tenNhanVien = x.NhanVien.hoNhanVien + " " + x.NhanVien.tenNhanVien,
-                taiKhoan = x.taiKhoan1,
+                taiKhoan = x.tenTaiKhoan,
                 matKhau = x.matKhau,
-                tenLoaiTaiKhoan = x.LoaiTaiKhoan.tenLoaiTaiKhoan,
                 trangThai = x.trangThai == 0 ? "Mở khóa" : "Đã khóa"
             });
         }
@@ -74,15 +56,14 @@ namespace QuanLyQuanCoffee.Views
                 TaiKhoan taiKhoan = new TaiKhoan();
                 string maNhanVien = CNhanVien_BUS.findTenbyMa(cmbTenNhanVien.SelectedItem.ToString());
                 taiKhoan.maNhanVien = maNhanVien;
-                //taiKhoan.NhanVien = CNhanVien_BUS.find(maNhanVien);
+
                 if (taiKhoan.maNhanVien == null || taiKhoan.maNhanVien == "")
                 {
                     MessageBox.Show("Không lấy được mã nhân viên");
                     return;
                 }
                 if ((txtTaiKhoan.Text == null || txtTaiKhoan.Text == "") && 
-                    (txtMatKhau.Text == null || txtMatKhau.Text == "") && 
-                    (cmbLoaiTaiKhoan.SelectedItem == null))
+                    (txtMatKhau.Text == null || txtMatKhau.Text == ""))
                 {
                     MessageBox.Show("Điền đầy đủ thông tin tài khoản");
                     return;
@@ -93,15 +74,11 @@ namespace QuanLyQuanCoffee.Views
                     return;
                 }
 
-                taiKhoan.taiKhoan1 = txtTaiKhoan.Text;
-                taiKhoan.matKhau = txtMatKhau.Text;
-                taiKhoan.maLoaiTaiKhoan = CLoaiTaiKhoan_BUS.findTen(cmbLoaiTaiKhoan.SelectedItem.ToString()).maLoaiTaiKhoan;
-                if (taiKhoan.maLoaiTaiKhoan == null || taiKhoan.maLoaiTaiKhoan == "")
-                {
-                    MessageBox.Show("Không lấy được mã loại tài khoản");
-                    return;
-                }
-                taiKhoan.trangThai = 3;
+                taiKhoan.tenTaiKhoan = txtTaiKhoan.Text;
+                taiKhoan.matKhau = CTaiKhoan_BUS.Encrypt(txtMatKhau.Text);
+                taiKhoan.maTaiKhoan = CServices.taoMa<TaiKhoan>(CTaiKhoan_BUS.toList());
+
+                taiKhoan.trangThai = 0;
 
                 if (CServices.kiemTraThongTin(taiKhoan))//Kiểm tra thông tin tài khoản hợp lệ
                 {
@@ -144,12 +121,6 @@ namespace QuanLyQuanCoffee.Views
                     hienthiDStaikhoan();
                 }
             }
-        }
-
-        private void cmbLoaiTaiKhoan_Loaded(object sender, RoutedEventArgs e)
-        {
-            List<LoaiTaiKhoan> loaiNhanViens = CLoaiTaiKhoan_BUS.toList();
-            cmbLoaiTaiKhoan.ItemsSource = loaiNhanViens.Select(x => x.tenLoaiTaiKhoan).ToList();
         }
 
         private void cmbTenNhanVien_Loaded(object sender, RoutedEventArgs e)

@@ -21,32 +21,18 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmQuanLyPhieuXuatNguyenLieu : Page
     {
-
-        private NhanVien nhanVienSelected;
         private PhieuXuatNguyenLieu phieuXuatnguyenlieuSelect;
 
 
-        public frmQuanLyPhieuXuatNguyenLieu(NhanVien nhanVien = null)
+        public frmQuanLyPhieuXuatNguyenLieu()
         {
             InitializeComponent();
 
-            nhanVienSelected = nhanVien;
-            if (nhanVienSelected == null)
-            {
-                nhanVienSelected = new NhanVien();
-            }
-
             hienThiPhieuXuat(CPhieuXuatNguyenLieu_BUS.toList());
-
-            //hienThiPhieuXuat();
-
-            // r đó
-
         }
         public void hienThiPhieuXuat()
         {
             List<PhieuXuatNguyenLieu> list = CPhieuXuatNguyenLieu_BUS.toList();
-            //dgDSPhieuXuat.ItemsSource = list;
             dgDSPhieuXuat.ItemsSource = list.Select(x => new
             {
                 maPhieuXuat = x.maPhieuXuat,
@@ -54,10 +40,9 @@ namespace QuanLyQuanCoffee.Views
                 tongThanhTien = x.tongThanhTien
             });
         }
+
         public void hienThiPhieuXuat(List<PhieuXuatNguyenLieu> list)
         {
-
-            //dgDSPhieuXuat.ItemsSource = list;
             dgDSPhieuXuat.ItemsSource = list.Select(x => new
             {
                 maPhieuXuat = x.maPhieuXuat,
@@ -66,15 +51,6 @@ namespace QuanLyQuanCoffee.Views
             });
         }
 
-        //private void hienThiDSPhieuNhap(List<PhieuNhapNguyenLieu> list)
-        //{
-        //    dgDSPhieuNhap.ItemsSource = list.Select(x => new
-        //    {
-        //        maPhieuNhap = x.maPhieuNhap,
-        //        ngayNhap = x.ngayNhap.Value.ToString("dd/MM/yyyy"),
-        //        tongThanhTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.tongThanhTien)
-        //    });
-        //}
         private void txtTimKiem_KeyUp(object sender, KeyEventArgs e)
         {
             if (txtTimKiem.Text == "")
@@ -127,11 +103,6 @@ namespace QuanLyQuanCoffee.Views
             hienThiPhieuXuat();
         }
 
-        private void btnSua_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
             if (phieuXuatnguyenlieuSelect != null)
@@ -154,22 +125,39 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            frmXuatNguyenLieu f = new frmXuatNguyenLieu(nhanVienSelected);
+            frmXuatNguyenLieu f = new frmXuatNguyenLieu();
             f.Show();
         }
 
         private void cmbTimKiem_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if (cmbTimKiem.SelectedIndex == 1)
-            //{
-            //    txtTimKiem.Visibility = Visibility.Hidden;
+            if (cmbTimKiem.SelectedIndex == 0)
+            {
+                txtTimKiem.Visibility = Visibility.Visible;
+                dateTimKiem.Visibility = Visibility.Hidden;
+            }
+            else if (cmbTimKiem.SelectedIndex == 1)
+            {
+                txtTimKiem.Visibility = Visibility.Hidden;
+                dateTimKiem.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txtTimKiem.Visibility = Visibility.Visible;
+                dateTimKiem.Visibility = Visibility.Hidden;
+            }
+        }
 
-            //}
-            //else
-            //{
-            //    txtTimKiem.Visibility = Visibility.Visible;
-
-            //}
+        private void dateTimKiem_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dateTimKiem.SelectedDate != null)
+            {
+                hienThiPhieuXuat(CPhieuXuatNguyenLieu_BUS.toList(dateTimKiem.SelectedDate.Value));
+            }
+            if (dateTimKiem.Text == "" || dateTimKiem.Text == null)
+            {
+                hienThiPhieuXuat(CPhieuXuatNguyenLieu_BUS.toList());
+            }
         }
     }
 }

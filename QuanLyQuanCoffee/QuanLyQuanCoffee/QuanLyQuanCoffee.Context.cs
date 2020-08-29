@@ -25,26 +25,27 @@ namespace QuanLyQuanCoffee
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ChiTietChamCong> ChiTietChamCongs { get; set; }
         public virtual DbSet<ChiTietHoaDon> ChiTietHoaDons { get; set; }
         public virtual DbSet<ChiTietNguyenLieu> ChiTietNguyenLieux { get; set; }
         public virtual DbSet<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
         public virtual DbSet<ChiTietPhieuXuat> ChiTietPhieuXuats { get; set; }
         public virtual DbSet<ChiTietThongKe> ChiTietThongKes { get; set; }
+        public virtual DbSet<ChiTietThongKeNguyenLieu> ChiTietThongKeNguyenLieux { get; set; }
+        public virtual DbSet<ChiTietThongKeSanPham> ChiTietThongKeSanPhams { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<KetCa> KetCas { get; set; }
         public virtual DbSet<LoaiNguyenLieu> LoaiNguyenLieux { get; set; }
         public virtual DbSet<LoaiNhanVien> LoaiNhanViens { get; set; }
         public virtual DbSet<LoaiSanPham> LoaiSanPhams { get; set; }
-        public virtual DbSet<LoaiTaiKhoan> LoaiTaiKhoans { get; set; }
-        public virtual DbSet<Luong> Luongs { get; set; }
         public virtual DbSet<NguyenLieu> NguyenLieux { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
         public virtual DbSet<PhieuNhapNguyenLieu> PhieuNhapNguyenLieux { get; set; }
         public virtual DbSet<PhieuXuatNguyenLieu> PhieuXuatNguyenLieux { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
+        public virtual DbSet<ThanhPhan> ThanhPhans { get; set; }
         public virtual DbSet<ThongKe> ThongKes { get; set; }
+        public virtual DbSet<ThongKeNguyenLieu> ThongKeNguyenLieux { get; set; }
+        public virtual DbSet<ThongKeSanPham> ThongKeSanPhams { get; set; }
     }
 }

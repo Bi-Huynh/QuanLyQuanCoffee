@@ -55,36 +55,34 @@ namespace QuanLyQuanCoffee.Views
                 tenNhanVien = x.NhanVien.hoNhanVien + " " + x.NhanVien.tenNhanVien,
                 ngayLap = x.ngayLap.ToString("dd/MM/yyyy"),
                 thoiGian = x.ngayLap.ToString("hh:mm:ss"),
+                tienKhachDua = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.tienKhachDua),
+                tienThua = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.tienThua),
                 tongThanhTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.tongThanhTien)
             });
-        }
-
-        private void dgHoaDonTrongNgay_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (dgHoaDonTrongNgay.SelectedItem != null)
-            {
-                hoaDonSelect = new HoaDon();
-                string maHoaDon = dgHoaDonTrongNgay.SelectedValue.ToString();
-                hoaDonSelect = CHoaDon_BUS.find(maHoaDon);
-            }
         }
 
         private void dgHoaDonTrongNgay_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             try
             {
-                if (hoaDonSelect != null)
+                if (dgHoaDonTrongNgay.SelectedItem != null)
                 {
-                    HoaDon hoaDon = CHoaDon_BUS.find(hoaDonSelect.maHoaDon);
-
-                    // Lỗi NullReferenceException vẫn chưa bắt được
-                    dgChiTietHoaDonTrongNgay.ItemsSource = hoaDon.ChiTietHoaDons.Select(x => new
+                    hoaDonSelect = new HoaDon();
+                    string maHoaDon = dgHoaDonTrongNgay.SelectedValue.ToString();
+                    hoaDonSelect = CHoaDon_BUS.find(maHoaDon);
+                    if (hoaDonSelect != null)
                     {
-                        maHoaDon = x.maHoaDon,
-                        tenSanPham = x.SanPham.tenSanPham,
-                        soLuong = x.soLuong,
-                        thanhTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.thanhTien)
-                    });
+                        HoaDon hoaDon = CHoaDon_BUS.find(hoaDonSelect.maHoaDon);
+
+                        // Lỗi NullReferenceException vẫn chưa bắt được
+                        dgChiTietHoaDonTrongNgay.ItemsSource = hoaDon.ChiTietHoaDons.Select(x => new
+                        {
+                            maHoaDon = x.maHoaDon,
+                            tenSanPham = x.SanPham.tenSanPham,
+                            soLuong = x.soLuong,
+                            thanhTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.thanhTien)
+                        });
+                    }
                 }
             }
             catch (NullReferenceException)

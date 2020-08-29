@@ -25,10 +25,15 @@ namespace QuanLyQuanCoffee
         public System.DateTime ngayLap { get; set; }
         public double tongThanhTien { get; set; }
         public Nullable<int> trangThai { get; set; }
+        public Nullable<double> tienKhachDua { get; set; }
+        public Nullable<double> tienThua { get; set; }
+        public string maKetCa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
+        public virtual KetCa KetCa { get; set; }
         public virtual NhanVien NhanVien { get; set; }
+
         public override string ToString()
         {
             return maHoaDon;

@@ -18,6 +18,8 @@ namespace QuanLyQuanCoffee
         public SanPham()
         {
             this.ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
+            this.ChiTietThongKeSanPhams = new HashSet<ChiTietThongKeSanPham>();
+            this.ThanhPhans = new HashSet<ThanhPhan>();
         }
     
         public string maSanPham { get; set; }
@@ -29,7 +31,12 @@ namespace QuanLyQuanCoffee
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietThongKeSanPham> ChiTietThongKeSanPhams { get; set; }
         public virtual LoaiSanPham LoaiSanPham { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ThanhPhan> ThanhPhans { get; set; }
+
         public override string ToString()
         {
             return maSanPham;

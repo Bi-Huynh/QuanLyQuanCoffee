@@ -36,37 +36,20 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnXacNhan_Click(object sender, RoutedEventArgs e)
         {
-            if (taiKhoanSelect.matKhau == "1" && taiKhoanSelect.trangThai == 3)
-            // Lần đầu đổi mật khẩu
+            if (CServices.kiemTraMatKhau(txtMatKhauMoi.Password))
             {
-                if (CServices.kiemTraMatKhau(txtMatKhauMoi.Password))
+                string matKhau = CTaiKhoan_BUS.Encrypt(txtMatKhauCu.Password);
+                if (taiKhoanSelect.matKhau == matKhau)
                 {
                     if (CTaiKhoan_BUS.doiMatKhau(taiKhoanSelect, txtMatKhauMoi.Password))
                     {
                         MessageBox.Show("Thay đổi mật khẩu thành công");
-                        flag = true;
                         this.Close();
                     }
                 }
-            }
-            else
-            // Lần thứ 2 trở lên đổi mật khẩu
-            {
-                if (CServices.kiemTraMatKhau(txtMatKhauMoi.Password))
+                else
                 {
-                    string matKhau = CTaiKhoan_BUS.Encrypt(txtMatKhauCu.Password);
-                    if (taiKhoanSelect.matKhau == matKhau)
-                    {
-                        if (CTaiKhoan_BUS.doiMatKhau(taiKhoanSelect, txtMatKhauMoi.Password))
-                        {
-                            MessageBox.Show("Thay đổi mật khẩu thành công");
-                            this.Close();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Mật khẩu cũ không đúng. Vui lòng nhập lại");
-                    }
+                    MessageBox.Show("Mật khẩu cũ không đúng. Vui lòng nhập lại");
                 }
             }
         }

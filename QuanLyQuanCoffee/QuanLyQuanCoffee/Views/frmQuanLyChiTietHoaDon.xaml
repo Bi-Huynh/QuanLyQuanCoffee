@@ -104,12 +104,15 @@
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Grid.Column="1" Content="Chi tiết hóa đơn" FontSize="12"/>
                 <Grid Grid.Row="1" Grid.Column="1">
-                    <DataGrid  Name="dgQlchitiethoadon" AutoGenerateColumns="False" FontSize="12" IsReadOnly="True">
+                    <DataGrid  Name="dgQlchitiethoadon" AutoGenerateColumns="False" 
+                               FontSize="12" IsReadOnly="True" VerticalScrollBarVisibility="Auto"
+                               HorizontalScrollBarVisibility="Auto">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding maHoaDon,Mode=TwoWay}"/>
-                            <DataGridTextColumn Header="Mã sản phẩm" Binding="{Binding maSanPham}"/>
-                            <!--<DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding tenSanPham}"/>-->
+                            <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding maHoaDon}"/>
+                            <DataGridTextColumn Header="Mã sản phẩm" Binding="{Binding maSanPham}" Visibility="Hidden"/>
+                            <DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding tenSanPham}"/>
                             <DataGridTextColumn Header="Số lượng" Binding="{Binding soLuong}"/>
+                            <DataGridTextColumn Header="Đơn giá" Binding="{Binding donGia}"/>
                             <DataGridTextColumn Header="Thành tiền" Binding="{Binding thanhTien}"/>
                         </DataGrid.Columns>
                     </DataGrid>

@@ -17,13 +17,12 @@ namespace QuanLyQuanCoffee
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NhanVien()
         {
-            this.ChiTietChamCongs = new HashSet<ChiTietChamCong>();
             this.ChiTietThongKes = new HashSet<ChiTietThongKe>();
             this.HoaDons = new HashSet<HoaDon>();
             this.KetCas = new HashSet<KetCa>();
-            this.Luongs = new HashSet<Luong>();
             this.PhieuNhapNguyenLieux = new HashSet<PhieuNhapNguyenLieu>();
             this.PhieuXuatNguyenLieux = new HashSet<PhieuXuatNguyenLieu>();
+            this.TaiKhoans = new HashSet<TaiKhoan>();
         }
     
         public string maNhanVien { get; set; }
@@ -41,8 +40,6 @@ namespace QuanLyQuanCoffee
         public string urlAnh { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietChamCong> ChiTietChamCongs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietThongKe> ChiTietThongKes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoaDon> HoaDons { get; set; }
@@ -50,12 +47,12 @@ namespace QuanLyQuanCoffee
         public virtual ICollection<KetCa> KetCas { get; set; }
         public virtual LoaiNhanVien LoaiNhanVien { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Luong> Luongs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuNhapNguyenLieu> PhieuNhapNguyenLieux { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuXuatNguyenLieu> PhieuXuatNguyenLieux { get; set; }
-        public virtual TaiKhoan TaiKhoan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaiKhoan> TaiKhoans { get; set; }
+
         public override string ToString()
         {
             return maNhanVien;

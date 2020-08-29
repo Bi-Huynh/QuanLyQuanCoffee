@@ -22,13 +22,14 @@
             <DataGrid x:Name="dgHoaDonTrongNgay" VerticalScrollBarVisibility="Auto"
                       Height="660" MaxHeight="660" IsReadOnly="True" SelectedValuePath="maHoaDon"
                       AutoGenerateColumns="False" HorizontalScrollBarVisibility="Auto"
-                      SelectionChanged="dgHoaDonTrongNgay_SelectionChanged"
                       MouseDoubleClick="dgHoaDonTrongNgay_MouseDoubleClick">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding maHoaDon}" Width="1*"/>
                     <DataGridTextColumn Header="Tên nhân viên" Binding="{Binding tenNhanVien}" Width="1.5*"/>
                     <DataGridTextColumn Header="Ngày lập" Binding="{Binding ngayLap}" Width="1*"/>
                     <DataGridTextColumn Header="Thời gian" Binding="{Binding thoiGian}" Width="1*"/>
+                    <DataGridTextColumn Header="Tiền khách đưa" Binding="{Binding tienKhachDua}" Width="1*"/>
+                    <DataGridTextColumn Header="Tiền thừa" Binding="{Binding tienThua}" Width="1*"/>
                     <DataGridTextColumn Header="Tổng thành tiền" Binding="{Binding tongThanhTien}" Width="1*"/>
                 </DataGrid.Columns>
             </DataGrid>

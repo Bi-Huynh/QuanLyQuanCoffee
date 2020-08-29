@@ -14,17 +14,17 @@ namespace QuanLyQuanCoffee
     
     public partial class TaiKhoan
     {
+        public string maTaiKhoan { get; set; }
         public string maNhanVien { get; set; }
-        public string taiKhoan1 { get; set; }
+        public string tenTaiKhoan { get; set; }
         public string matKhau { get; set; }
-        public string maLoaiTaiKhoan { get; set; }
         public Nullable<int> trangThai { get; set; }
     
-        public virtual LoaiTaiKhoan LoaiTaiKhoan { get; set; }
         public virtual NhanVien NhanVien { get; set; }
+
         public override string ToString()
         {
-            return maNhanVien;
+            return maTaiKhoan;
         }
     }
 }

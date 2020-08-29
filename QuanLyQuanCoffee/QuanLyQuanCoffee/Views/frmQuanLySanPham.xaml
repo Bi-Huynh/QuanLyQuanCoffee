@@ -5,36 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="685" d:DesignWidth="1200" 
-      Loaded="Page_Loaded"
+      d:DesignHeight="685" d:DesignWidth="1200"
       Title="frmQuanLySanPham">
 
     <StackPanel>
+        <Label Content="QUẢN LÝ SẢN PHẨM" FontSize="18" Margin="10,10,10,0"></Label>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="10"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="1.5*"/>
-                <ColumnDefinition Width="0.1*"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="0.1*"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="10"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Row="1" Grid.Column="1" Content="QUẢN LÝ SẢN PHẨM" FontSize="18" FontFamily="Arial"></Label>
-            <!--<Button Grid.Row="1" Grid.Column="3" Content="Đăng xuất" FontSize="12" />
-            <Button Grid.Row="1" Grid.Column="5" Content="Trở về"  FontSize="12"/>-->
-
-        </Grid>
-        <Grid x:Name="gridSanpham">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="10"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="40"/>
                 <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -54,20 +34,49 @@
             <Label Grid.Column="3"  Grid.Row="1" Content="Tên sản phẩm" FontSize="12" />
             <Label Grid.Column="5"  Grid.Row="1" Content="Đơn vị tính" FontSize="12" />
             <Label Grid.Column="7"  Grid.Row="1" Content="Đơn giá" FontSize="12"  />
-            <Label Grid.Column="9"  Grid.Row="1" Content="Loại sản phẩm" FontSize="12" Margin="0,10,0.4,9.4" Grid.RowSpan="3"/>
-            <TextBox Grid.Row="2" Grid.Column="1" FontSize="12" Name="txtMasanpham"  Grid.ColumnSpan="2" Margin="0.4,9.2,20.6,9.4" Grid.RowSpan="3" IsEnabled="False"></TextBox>
-            <TextBox Grid.Row="2" Grid.Column="3" FontSize="12" Name="txtTensanpham"  Grid.ColumnSpan="2" Margin="0.4,9.2,19.8,9.4" Grid.RowSpan="3"></TextBox>
-            <ComboBox Grid.Row="2" Grid.Column="5" FontSize="12" Name="txtDonvitinh"  Grid.ColumnSpan="2" Margin="0.2,9.2,20.8,9.4" Grid.RowSpan="3">
+            <Label Grid.Column="9"  Grid.Row="1" Content="Loại sản phẩm" FontSize="12" Margin="0,0,0,10" Grid.RowSpan="3"/>
+            <TextBox Grid.Row="2" Grid.Column="1" FontSize="12" Name="txtMasanpham"  Grid.ColumnSpan="2" Margin="0,0,10,10" Grid.RowSpan="3" IsEnabled="False"></TextBox>
+            <TextBox Grid.Row="2" Grid.Column="3" FontSize="12" Name="txtTensanpham"  Grid.ColumnSpan="2" Margin="0,0,10,10" Grid.RowSpan="3"></TextBox>
+            <ComboBox Grid.Row="2" Grid.Column="5" FontSize="12" Name="txtDonvitinh"  Grid.ColumnSpan="2" Margin="0,0,10,10" Grid.RowSpan="3">
                 <ComboBoxItem>Ly</ComboBoxItem>
                 <ComboBoxItem>Chai</ComboBoxItem>
                 <ComboBoxItem>Lon</ComboBoxItem>
             </ComboBox>
-            <TextBox Grid.Row="2" Grid.Column="7" FontSize="12" Name="txtDongia"  Grid.ColumnSpan="2" Margin="0.2,9.2,20,9.4" Grid.RowSpan="3"></TextBox>
-            <ComboBox Grid.Row="2" Grid.Column="9" FontSize="12"  Loaded="cboLoaisanpham_Loaded" Name="cboLoaisanpham"  Grid.ColumnSpan="3" Margin="0,9.2,0.4,9.4" Grid.RowSpan="3">
-
+            <TextBox Grid.Row="2" Grid.Column="7" FontSize="12" Name="txtDongia"  Grid.ColumnSpan="2" Margin="0,0,10,10" Grid.RowSpan="3"></TextBox>
+            <ComboBox Grid.Row="2" Grid.Column="9" FontSize="12"  Loaded="cboLoaisanpham_Loaded" Name="cboLoaisanpham"  Grid.ColumnSpan="3" Margin="0,0,10,10" Grid.RowSpan="3">
             </ComboBox>
         </Grid>
 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="Chọn thành phần trong sản phẩm" Margin="10,0"/>
+            <DataGrid Grid.Row="1" Grid.Column="0" x:Name="lstThanhPhan" Margin="10,10,5,10" Height="130"
+                      MouseDoubleClick="lstThanhPhan_MouseDoubleClick"
+                      AutoGenerateColumns="False" IsReadOnly="True" SelectedValuePath="tenNguyenLieu"
+                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Tên nguyên liệu" Binding="{Binding tenNguyenLieu}" Width="1*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            
+            <Label Grid.Row="0" Grid.Column="1" Content="Thành phần được chọn" Margin="0,0,10,0"/>
+            <DataGrid Grid.Row="1" Grid.Column="1" x:Name="lstThanhPhanDuocChon" Margin="5,10,10,10"
+                      MouseDoubleClick="lstThanhPhanDuocChon_MouseDoubleClick"
+                      AutoGenerateColumns="False" IsReadOnly="True" SelectedValuePath="tenNguyenLieu"
+                      VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Tên nguyên liệu" Binding="{Binding tenNguyenLieu}" Width="1*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
 
         <Grid>
             <Grid.RowDefinitions>
@@ -86,8 +95,8 @@
                 <ColumnDefinition Width="381*"/>
                 <ColumnDefinition  Width="10"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="1" Grid.Column="1" Content="Thêm" FontSize="12" x:Name="btnThem" Click="btnThem_Click" Grid.ColumnSpan="3" Margin="0.6,0.4,0.4,0"/>
-            <Button Grid.Row="1" Grid.Column="5" Content="Đổi trạng thái" FontSize="12" x:Name="btnXoa" Click="btnXoa_Click" Margin="0.4,0.4,0.4,0"/>
+            <Button Grid.Row="1" Grid.Column="1" Content="Thêm" FontSize="12" x:Name="btnThem" Click="btnThem_Click" Grid.ColumnSpan="3"/>
+            <Button Grid.Row="1" Grid.Column="5" Content="Đổi trạng thái" FontSize="12" x:Name="btnXoa" Click="btnXoa_Click"/>
             <Button Grid.Row="1" Grid.Column="7" Content="Sửa" FontSize="12" x:Name="btnSua" Click="btnSua_Click" Margin="0.4,0.4,0.4,0"/>
         </Grid>
         <Grid>
@@ -97,41 +106,32 @@
                 <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="0.1*"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtTK" FontSize="12" KeyUp="TextBox_KeyUp"></TextBox>
-            <Button Grid.Row="0" Grid.Column="3" Content="Bỏ chọn" Name="btnBochon" Click="btnBochon_Click" FontSize="12"/>
+            <TextBox Grid.Row="0" Grid.Column="0" x:Name="txtTK" FontSize="12" KeyUp="TextBox_KeyUp" Margin="10,0,10,0"></TextBox>
+            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cmbTimKiem"
+                      VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Center"
+                      Margin="10,0,10,0">
+                <ComboBoxItem Content="Mã sản phẩm" IsSelected="True"/>
+                <ComboBoxItem Content="Tên sản phẩm"/>
+                <ComboBoxItem Content="Đơn giá"/>
+            </ComboBox>
+            <Button Grid.Row="0" Grid.Column="3" Content="Bỏ chọn" Name="btnBochon" Click="btnBochon_Click" FontSize="12" Margin="10,0,10,0"/>
         </Grid>
-
-        <StackPanel  VerticalAlignment="Center">
-            <Grid Height="435">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"></RowDefinition>
-                    <RowDefinition Height="405"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition Width="10"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="Danh sách sản phẩm" FontSize="12" Height="30" FontFamily="Arial"/>
-                <Grid Grid.Row="1" Grid.Column="1" Height="405">
-                    <DataGrid  Name="dgQlsanpham" AutoGenerateColumns="False" IsReadOnly="True" SelectedValuePath="maSanPham" SelectionChanged="dgQlsanpham_SelectionChanged"  FontSize="20" ColumnWidth="0.2*">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã sản phẩm" Binding="{Binding maSanPham}"/>
-                            <DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding tenSanPham}"/>
-                            <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding donViTinh}"/>
-                            <DataGridTextColumn Header="Đơn giá" Binding="{Binding donGia}"/>
-                            <DataGridTextColumn Header="Tên loại sản phẩm" Binding="{Binding tenLoaiSanPham}"/>
-                            <DataGridTextColumn Header="Trạng thái" Binding="{Binding trangThai}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-            </Grid>
-        </StackPanel>
+        <Label Content="Danh sách sản phẩm" Height="30" Margin="10,0"/>
+        <DataGrid Name="dgQlsanpham" AutoGenerateColumns="False" IsReadOnly="True" Height="250" Margin="10,0"
+                  SelectedValuePath="maSanPham" SelectionChanged="dgQlsanpham_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mã sản phẩm" Binding="{Binding maSanPham}" Width="1*"/>
+                <DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding tenSanPham}" Width="1*"/>
+                <DataGridTextColumn Header="Đơn vị tính" Binding="{Binding donViTinh}" Width="1*"/>
+                <DataGridTextColumn Header="Đơn giá" Binding="{Binding donGia}" Width="1*"/>
+                <DataGridTextColumn Header="Tên loại sản phẩm" Binding="{Binding tenLoaiSanPham}" Width="1*"/>
+                <DataGridTextColumn Header="Trạng thái" Binding="{Binding trangThai}" Width="1*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </StackPanel>
 </Page>

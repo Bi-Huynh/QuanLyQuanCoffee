@@ -84,10 +84,10 @@ namespace QuanLyQuanCoffee.Views
             }
         }
 
-        private void txtBoxNv_Loaded(object sender, RoutedEventArgs e)
-        {
-            txtBoxNv.Text = nhanVienSelected.hoNhanVien + " " + nhanVienSelected.tenNhanVien;
-        }
+        //private void txtBoxNv_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    txtBoxNv.Text = nhanVienSelected.hoNhanVien + " " + nhanVienSelected.tenNhanVien;
+        //}
         public void hienthitheoListBOX(string maloai)
         {
             List<ChiTietNguyenLieu> listNguyenLieu = CNguyenLieu_BUS.hienthiTheoNL(maloai);

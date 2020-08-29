@@ -42,19 +42,19 @@
             </ComboBox>
         </Grid>
         
-        <DataGrid x:Name="dgDSKetCa" MinHeight="565" Margin="10,10" AutoGenerateColumns="False" 
+        <DataGrid x:Name="dgDSKetCa" Height="628" MaxHeight="628" Margin="10,10" AutoGenerateColumns="False" 
                   SelectedValuePath="maKetCa" HorizontalContentAlignment="Center"
                   Background="White" FontFamily="Arial" IsReadOnly="True" FontSize="13"
                   VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
                   SelectionChanged="dgDSKetCa_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã kết ca" Binding="{Binding maKetCa}" Width="1*"/>
-                <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}" Width="1.5*"/>
-                <DataGridTextColumn Header="Tên" Binding="{Binding tenNhanVien}" Width="1*"/>
+                <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}" Width="1*"/>
+                <DataGridTextColumn Header="Tên" Binding="{Binding tenNhanVien}" Width="1.5*"/>
                 <DataGridTextColumn Header="Giờ bắt đầu" Binding="{Binding gioBatDau}" Width="1*"/>
                 <DataGridTextColumn Header="Giờ kết thúc" Binding="{Binding gioKetThuc}" Width="1*"/>
                 <DataGridTextColumn Header="Ngày lập" Binding="{Binding ngayLap}" Width="1*"/>
-                <DataGridTextColumn Header="Số lượng" Binding="{Binding soLuong}" Width="1*"/>
+                <DataGridTextColumn Header="Số lượng" Binding="{Binding soLuong}" Width=".6*"/>
                 <DataGridTextColumn Header="Tiền đầu ca" Binding="{Binding tienDauCa}" Width="1*"/>
                 <DataGridTextColumn Header="Tổng tiền bán" Binding="{Binding tongTienBan}" Width="1*"/>
                 <DataGridTextColumn Header="Tổng doanh thu" Binding="{Binding tongDoanhThu}" Width="1*"/>

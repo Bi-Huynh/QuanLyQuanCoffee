@@ -22,11 +22,11 @@ namespace QuanLyQuanCoffee
     
         public string maLoaiNhanvien { get; set; }
         public string tenLoai { get; set; }
-        public double luongCoBan { get; set; }
         public Nullable<int> trangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NhanVien> NhanViens { get; set; }
+
         public override string ToString()
         {
             return maLoaiNhanvien;

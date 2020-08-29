@@ -32,15 +32,22 @@ namespace QuanLyQuanCoffee.Views
         {
             txtMahoadon.Text = hoaDonSelected.maHoaDon;
             txtNguoilaphoadon.Text = hoaDonSelected.NhanVien.hoNhanVien + " " + hoaDonSelected.NhanVien.tenNhanVien;
-            txtNgaylap.Text = hoaDonSelected.ngayLap.ToString();
-            txtTongthanhtien.Text = hoaDonSelected.tongThanhTien.ToString();
+            txtNgaylap.Text = hoaDonSelected.ngayLap.ToString("dd/MM/yyyy");
+            txtTongthanhtien.Text = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", hoaDonSelected.tongThanhTien);
         }
         public void hienthiChiTietHD(HoaDon hoadon)
         {
             List<ChiTietHoaDon> list = CChiTietHoaDon_BUS.toList(hoadon.maHoaDon);
             if (list.Count() > 0)
             {
-                dgQlchitiethoadon.ItemsSource = list;
+                dgQlchitiethoadon.ItemsSource = list.Select(x => new { 
+                    maHoaDon = x.maHoaDon,
+                    maSanPham = x.maSanPham,
+                    tenSanPham = x.SanPham.tenSanPham,
+                    soLuong = x.soLuong,
+                    donGia = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.SanPham.donGia),
+                    thanhTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.thanhTien)
+                });
             }
             else
             {

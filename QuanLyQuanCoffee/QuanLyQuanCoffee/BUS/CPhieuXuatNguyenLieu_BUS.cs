@@ -17,11 +17,39 @@ namespace QuanLyQuanCoffee.BUS
             List<PhieuXuatNguyenLieu> list = quanLyQuanCoffee.PhieuXuatNguyenLieux.ToList();
             return list == null ? new List<PhieuXuatNguyenLieu>() : list;
         }
+
+        public static List<PhieuXuatNguyenLieu> toList(DateTime ngayXuat)
+        {
+            List<PhieuXuatNguyenLieu> phieuXuatNguyenLieus = new List<PhieuXuatNguyenLieu>();
+            foreach (PhieuXuatNguyenLieu phieuXuatNguyenLieu in quanLyQuanCoffee.PhieuXuatNguyenLieux.ToList())
+            {
+                if (phieuXuatNguyenLieu.ngayXuat.Value.Date == ngayXuat.Date)
+                {
+                    phieuXuatNguyenLieus.Add(phieuXuatNguyenLieu);
+                }
+            }
+            return phieuXuatNguyenLieus;
+        }
+
+        public static List<PhieuXuatNguyenLieu> toListInMonth(int month)
+        {
+            List<PhieuXuatNguyenLieu> phieuXuatNguyenLieus = new List<PhieuXuatNguyenLieu>();
+            foreach (PhieuXuatNguyenLieu phieuNhap in quanLyQuanCoffee.PhieuXuatNguyenLieux.ToList())
+            {
+                if (phieuNhap.ngayXuat.Value.Month == month &&
+                    phieuNhap.ngayXuat.Value.Year == DateTime.Now.Year)
+                {
+                    phieuXuatNguyenLieus.Add(phieuNhap);
+                }
+            }
+            return phieuXuatNguyenLieus;
+        }
+
         public static PhieuXuatNguyenLieu find(string maPhieuXuat)
         {
-            PhieuXuatNguyenLieu PhieuXuatNguyenLieu = quanLyQuanCoffee.PhieuXuatNguyenLieux.Where(x=>x.maPhieuXuat==maPhieuXuat).FirstOrDefault();
-            return PhieuXuatNguyenLieu;/*==null?new PhieuXuatNguyenLieu():PhieuXuatNguyenLieu;*/
-         
+            PhieuXuatNguyenLieu PhieuXuatNguyenLieu = quanLyQuanCoffee.PhieuXuatNguyenLieux.Where(x => x.maPhieuXuat == maPhieuXuat).FirstOrDefault();
+            return PhieuXuatNguyenLieu;
+
         }
         public static List<PhieuXuatNguyenLieu> toListTongThanhTien(double tongThanhTien)
         {

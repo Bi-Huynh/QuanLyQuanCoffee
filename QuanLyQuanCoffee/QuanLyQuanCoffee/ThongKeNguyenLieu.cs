@@ -12,27 +12,24 @@ namespace QuanLyQuanCoffee
     using System;
     using System.Collections.Generic;
     
-    public partial class PhieuNhapNguyenLieu
+    public partial class ThongKeNguyenLieu
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PhieuNhapNguyenLieu()
+        public ThongKeNguyenLieu()
         {
-            this.ChiTietPhieuNhaps = new HashSet<ChiTietPhieuNhap>();
+            this.ChiTietThongKeNguyenLieux = new HashSet<ChiTietThongKeNguyenLieu>();
         }
     
-        public string maPhieuNhap { get; set; }
-        public Nullable<System.DateTime> ngayNhap { get; set; }
+        public string maThongKeNguyenLieu { get; set; }
+        public Nullable<System.DateTime> ngaylap { get; set; }
         public Nullable<double> tongThanhTien { get; set; }
-        public string maNhanVien { get; set; }
-        public Nullable<int> trangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; }
-        public virtual NhanVien NhanVien { get; set; }
+        public virtual ICollection<ChiTietThongKeNguyenLieu> ChiTietThongKeNguyenLieux { get; set; }
 
         public override string ToString()
         {
-            return maPhieuNhap;
+            return maThongKeNguyenLieu;
         }
     }
 }

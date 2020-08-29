@@ -11,12 +11,10 @@
               Name="Menu" VerticalAlignment="Top">
             <MenuItem x:Name="order" Header="Order" Click="order_Click"/>
 
-            <MenuItem x:Name="gd_QuanLyHoaDon" Header="Hóa Đơn" Click="gd_QuanLyHoaDon_Click"></MenuItem>
+            <MenuItem x:Name="gd_QuanLyHoaDon" Header="Xem hóa đơn trong ca" Click="gd_QuanLyHoaDon_Click"></MenuItem>
             
             <MenuItem x:Name="doiTaiKhoan" Header="Đổi mật khẩu" Click="doiTaiKhoan_Click"></MenuItem>
 
-            <MenuItem x:Name="taoCa" Header="Tạo Ca" Click="taoCa_Click"></MenuItem>
-            
             <MenuItem x:Name="ketCa" Header="Kết Ca" Click="ketCa_Click"></MenuItem>
 
             <MenuItem x:Name="dangXuat" Header="Đăng xuất" Click="dangXuat_Click"></MenuItem>

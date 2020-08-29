@@ -68,6 +68,52 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<PhieuNhapNguyenLieu>() : list;
         }
 
+        public static List<PhieuNhapNguyenLieu> toListInMonth(int month)
+        {
+            List<PhieuNhapNguyenLieu> phieuNhapNguyenLieus = new List<PhieuNhapNguyenLieu>();
+            foreach (PhieuNhapNguyenLieu phieuNhap in quanLyQuanCoffee.PhieuNhapNguyenLieux.ToList())
+            {
+                if (phieuNhap.ngayNhap.Value.Month == month && 
+                    phieuNhap.ngayNhap.Value.Year == DateTime.Now.Year)
+                {
+                    phieuNhapNguyenLieus.Add(phieuNhap);
+                }
+            }
+            return phieuNhapNguyenLieus;
+        }
+
+        public static int demSoLuongNguyenLieu(string maNguyenLieu, int month)
+        {
+            int dem = 0;
+            foreach (PhieuNhapNguyenLieu phieuNhap in toListInMonth(month))
+            {
+                foreach (ChiTietPhieuNhap chiTiet in phieuNhap.ChiTietPhieuNhaps.ToList())
+                {
+                    if (chiTiet.ChiTietNguyenLieu.maNguyenLieu == maNguyenLieu)
+                    {
+                        dem += chiTiet.soLuong.Value;
+                    }
+                }
+            }
+            return dem;
+        }
+
+        public static double toListTongThanhTienNL(string maNguyenLieu, int month)
+        {
+            double tongTien = 0;
+            foreach (PhieuNhapNguyenLieu phieuNhap in toListInMonth(month))
+            {
+                foreach (ChiTietPhieuNhap chiTiet in phieuNhap.ChiTietPhieuNhaps.ToList())
+                {
+                    if (chiTiet.ChiTietNguyenLieu.maNguyenLieu == maNguyenLieu)
+                    {
+                        tongTien += chiTiet.soLuong.Value * chiTiet.donGia.Value;
+                    }
+                }
+            }
+            return tongTien;
+        }
+
         public static bool add(PhieuNhapNguyenLieu PhieuNhapNguyenLieu)
         {
             try

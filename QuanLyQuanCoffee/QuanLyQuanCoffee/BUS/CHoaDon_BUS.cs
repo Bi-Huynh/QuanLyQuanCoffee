@@ -22,6 +22,19 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<HoaDon>() : list;
         }
 
+        public static List<HoaDon> toListMaNhanVien(string maNhanVien)
+        {
+            List<HoaDon> hoaDons = new List<HoaDon>();
+            foreach (HoaDon hoaDon in quanLyQuanCoffee.HoaDons.ToList())
+            {
+                if (hoaDon.maNhanVien.Contains(maNhanVien) && hoaDon.trangThai == 0)
+                {
+                    hoaDons.Add(hoaDon);
+                }
+            }
+            return hoaDons;
+        }
+
         public static List<HoaDon> toList(DateTime ngayBatDau, DateTime ngayKetThuc)
         {
             List<HoaDon> hoaDons = new List<HoaDon>();
@@ -35,37 +48,50 @@ namespace QuanLyQuanCoffee.BUS
             return hoaDons;
         }
 
-        public static List<HoaDon> toListTK(string maHoaDon)
+        public static List<HoaDon> toListMaHoaDon(string maHoaDon)
         {
-            List<HoaDon> list = quanLyQuanCoffee.HoaDons.Where(x => x.trangThai == 0 && x.maHoaDon.Contains(maHoaDon) == true).ToList();
-            return list == null ? new List<HoaDon>() : list;
+            List<HoaDon> hoaDons = new List<HoaDon>();
+            foreach (HoaDon hoaDon in quanLyQuanCoffee.HoaDons.ToList())
+            {
+                if (hoaDon.maHoaDon.Contains(maHoaDon) && hoaDon.trangThai == 0)
+                {
+                    hoaDons.Add(hoaDon);
+                }
+            }
+            return hoaDons;
         }
 
+        public static List<HoaDon> toListTongThanhTien(string tongThanhTien)
+        {
+            List<HoaDon> hoaDons = new List<HoaDon>();
+            foreach (HoaDon hoaDon in quanLyQuanCoffee.HoaDons.ToList())
+            {
+                if (hoaDon.tongThanhTien.ToString().Contains(tongThanhTien) && hoaDon.trangThai == 0)
+                {
+                    hoaDons.Add(hoaDon);
+                }
+            }
+            return hoaDons;
+        }
+
+        public static List<HoaDon> toListNgayLap(DateTime ngayLap)
+        {
+            List<HoaDon> hoaDons = new List<HoaDon>();
+            foreach (HoaDon hoaDon in quanLyQuanCoffee.HoaDons.ToList())
+            {
+                if (hoaDon.ngayLap.Date == ngayLap.Date && hoaDon.trangThai == 0)
+                {
+                    hoaDons.Add(hoaDon);
+                }
+            }
+            return hoaDons;
+        }
 
         public static List<HoaDon> toList(CCa_DTO caLam)
         {
             List<HoaDon> hoaDons = new List<HoaDon>();
             foreach (var hoaDon in quanLyQuanCoffee.HoaDons.ToList())
             {
-                //if (caLam.GioBatDau.Hour == 8)
-                //{
-                //    if (caLam.GioBatDau.Date == hoaDon.ngayLap.Date
-                //        && hoaDon.ngayLap.Hour >= caLam.GioBatDau.Hour
-                //        && hoaDon.ngayLap.Hour <= 15)
-                //    {
-                //        hoaDons.Add(hoaDon);
-                //    }
-                //}
-                //else
-                //{
-                //    if (caLam.GioBatDau.Date == hoaDon.ngayLap.Date
-                //        && hoaDon.ngayLap.Hour >= caLam.GioBatDau.Hour
-                //        && hoaDon.ngayLap.Hour <= 21)
-                //    {
-                //        hoaDons.Add(hoaDon);
-                //    }
-                //}
-
                 if (caLam.GioBatDau.Date == hoaDon.ngayLap.Date
                         && hoaDon.ngayLap.TimeOfDay >= caLam.GioBatDau.TimeOfDay)
                 {
@@ -209,7 +235,6 @@ namespace QuanLyQuanCoffee.BUS
                 {
                     quanLyQuanCoffee.HoaDons.Add(hoaDon);
                     quanLyQuanCoffee.SaveChanges();
-
                 }
                 catch (DbUpdateException)
                 {
@@ -233,6 +258,13 @@ namespace QuanLyQuanCoffee.BUS
         {
             double result = 0;
             DsHoaDon(gioBatDau, gioKetThuc).ForEach(x => result += x.tongThanhTien);
+            return result;
+        }
+
+        public static double tongTienBan(List<HoaDon> hoaDons)
+        {
+            double result = 0;
+            hoaDons.ForEach(x => result += x.tongThanhTien);
             return result;
         }
 

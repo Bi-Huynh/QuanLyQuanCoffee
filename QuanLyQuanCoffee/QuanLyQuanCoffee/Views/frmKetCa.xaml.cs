@@ -24,20 +24,14 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmKetCa : Window
     {
-        private CCa_DTO ca;
         private NhanVien nhanVien;
         private KetCa ketCa;
         public frmKetCa(NhanVien nv = null)
         {
             InitializeComponent();
 
-            ca = CCa_BUS.CaLamViec;
             nhanVien = nv;
-            if (ca == null)
-            {
-                ca = new CCa_DTO();
-            }
-            if (nv == null)
+            if (nhanVien == null)
             {
                 nhanVien = new NhanVien();
             }
@@ -46,14 +40,24 @@ namespace QuanLyQuanCoffee.Views
             DateTime gioKetThuc = DateTime.Now;
             ketCa.maKetCa = CServices.taoMa<KetCa>(CCa_BUS.toList());
             ketCa.maNhanVien = nhanVien.maNhanVien;
-            ketCa.gioBatDau = ca.GioBatDau;
+            ketCa.gioBatDau = CCa_BUS.CaLamViec.GioBatDau;
             ketCa.gioKetThuc = gioKetThuc;
             ketCa.ngayLap = gioKetThuc;
-            ketCa.soLuong = CHoaDon_BUS.DsHoaDon(ca.GioBatDau, gioKetThuc).Count();
-            double tongTienBan = CHoaDon_BUS.tongTienBan(ca.GioBatDau, gioKetThuc);
+            CCa_BUS.CaLamViec.GioKetThuc = DateTime.Now;
+
+            List<HoaDon> hoaDons = new List<HoaDon>();
+            hoaDons = CHoaDon_BUS.toList(CCa_BUS.CaLamViec);
+            foreach (HoaDon hoaDon in hoaDons)
+            {
+                hoaDon.maKetCa = ketCa.maKetCa;
+            }
+
+            ketCa.soLuong = hoaDons.Count();
+            double tongTienBan = CHoaDon_BUS.tongTienBan(hoaDons);
             ketCa.tongTienBan = tongTienBan;
             ketCa.tienDauCa = 0;
             ketCa.tongDoanhThu = tongTienBan;
+            ketCa.HoaDons = hoaDons;
 
             hienThiThongTin(ketCa);
         }

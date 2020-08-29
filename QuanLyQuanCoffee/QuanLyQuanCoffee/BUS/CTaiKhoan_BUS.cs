@@ -22,21 +22,34 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<TaiKhoan>() : list;
         }
 
+        public static List<TaiKhoan> toListNotAdmin()
+        {
+            List<TaiKhoan> taiKhoans = new List<TaiKhoan>();
+            foreach (TaiKhoan taiKhoan in quanLyQuanCoffee.TaiKhoans)
+            {
+                if (taiKhoan.maNhanVien != "0000000000")
+                {
+                    taiKhoans.Add(taiKhoan);
+                }
+            }
+            return taiKhoans;
+        }
+
         public static bool findTK(string tenTaiKhoan)
         {
-            foreach(TaiKhoan taiKhoan in quanLyQuanCoffee.TaiKhoans)
+            foreach (TaiKhoan taiKhoan in quanLyQuanCoffee.TaiKhoans)
             {
-                if (taiKhoan.taiKhoan1 == tenTaiKhoan)
+                if (taiKhoan.tenTaiKhoan == tenTaiKhoan)
                 {
                     return true;
                 }
-            }    
+            }
             return false; // chưa tồn tại
         }
 
-        public static TaiKhoan find(string maNhanVien)
+        public static TaiKhoan find(string maTaiKhoan)
         {
-            TaiKhoan taiKhoan = quanLyQuanCoffee.TaiKhoans.Find(maNhanVien);
+            TaiKhoan taiKhoan = quanLyQuanCoffee.TaiKhoans.Find(maTaiKhoan);
             return taiKhoan;
         }
 
@@ -55,13 +68,6 @@ namespace QuanLyQuanCoffee.BUS
             string a = MessageBox.Show("Nhân viên này đã có tài khoản nhưng đã được xóa, bạn có muốn phục hồi không", "Thông báo", MessageBoxButton.YesNo).ToString();
             return a;
         }
-
-        public static List<string> toListByMaLoaiTK()
-        {
-            List<string> list = quanLyQuanCoffee.LoaiTaiKhoans.Select(x => x.maLoaiTaiKhoan).ToList();
-            return list == null ? new List<string>() : list;
-        }
-
         public static List<string> toListByMaLoaiNV()
         {
             List<string> list = quanLyQuanCoffee.NhanViens.Select(x => x.maNhanVien).ToList();
@@ -125,7 +131,7 @@ namespace QuanLyQuanCoffee.BUS
         {
             try
             {
-                TaiKhoan temp = find(taiKhoan.maNhanVien);
+                TaiKhoan temp = find(taiKhoan.maTaiKhoan);
                 if (temp != null)
                 {
                     if (temp.trangThai == 0)
@@ -160,9 +166,8 @@ namespace QuanLyQuanCoffee.BUS
             {
                 try
                 {
-                    temp.taiKhoan1 = taiKhoan.taiKhoan1;
+                    temp.tenTaiKhoan = taiKhoan.tenTaiKhoan;
                     temp.matKhau = taiKhoan.matKhau;
-                    temp.maLoaiTaiKhoan = taiKhoan.maLoaiTaiKhoan;
                     temp.trangThai = taiKhoan.trangThai;
                     quanLyQuanCoffee.SaveChanges();
                 }
@@ -187,9 +192,9 @@ namespace QuanLyQuanCoffee.BUS
             {
                 try
                 {
-                    temp.taiKhoan1 = taiKhoan.taiKhoan1;
+                    temp.tenTaiKhoan = taiKhoan.tenTaiKhoan;
                     temp.matKhau = taiKhoan.matKhau;
-                    temp.LoaiTaiKhoan = taiKhoan.LoaiTaiKhoan;
+                    //temp.LoaiTaiKhoan = taiKhoan.LoaiTaiKhoan;
                     temp.trangThai = 0;
                     quanLyQuanCoffee.SaveChanges();
                 }
@@ -209,17 +214,11 @@ namespace QuanLyQuanCoffee.BUS
 
         public static bool KTRong(TaiKhoan taiKhoan)
         {
-
-
-            if (taiKhoan.maNhanVien.Length > 10)
+            if (taiKhoan.maNhanVien == null)
             {
                 return false;
             }
-            if (taiKhoan.taiKhoan1 == "" || taiKhoan.matKhau == "" || taiKhoan.maLoaiTaiKhoan == "")
-            {
-                return false;
-            }
-            if (taiKhoan.maLoaiTaiKhoan == null)
+            if (taiKhoan.tenTaiKhoan == "" || taiKhoan.matKhau == "")
             {
                 return false;
             }
@@ -231,7 +230,7 @@ namespace QuanLyQuanCoffee.BUS
         {
             try
             {
-                TaiKhoan taiKhoan = quanLyQuanCoffee.TaiKhoans.Find(tk.maNhanVien);
+                TaiKhoan taiKhoan = quanLyQuanCoffee.TaiKhoans.Find(tk.maTaiKhoan);
                 if (taiKhoan == null)
                 {
                     MessageBox.Show("Lỗi! Không tìm được tài khoản");
@@ -259,12 +258,12 @@ namespace QuanLyQuanCoffee.BUS
             return false;
         }
 
-        public static bool khoaTaiKhoan(string maNhanVien)
+        public static bool khoaTaiKhoan(string maTaiKhoan)
         {
             try
             {
-                TaiKhoan taiKhoan = find(maNhanVien);
-                if (taiKhoan.LoaiTaiKhoan.maLoaiTaiKhoan == "00001")
+                TaiKhoan taiKhoan = find(maTaiKhoan);
+                if (taiKhoan.maTaiKhoan == "0000000001")
                 {
                     MessageBox.Show("Không thể khóa tài khoản này");
                 }
@@ -283,13 +282,49 @@ namespace QuanLyQuanCoffee.BUS
             return true;
         }
 
-        public static bool moKhoaTaiKhoan(string maNhanVien)
+        public static bool khoaTaiKhoanNV(string maNhanVien)
+        {
+            TaiKhoan taiKhoan = new TaiKhoan();
+            foreach (TaiKhoan tk in quanLyQuanCoffee.TaiKhoans.ToList())
+            {
+                if (tk.maNhanVien == maNhanVien)
+                {
+                    taiKhoan = tk;
+                    break;
+                }
+            }
+            if (taiKhoan != null)
+            {
+                return khoaTaiKhoan(taiKhoan.maTaiKhoan);
+            }
+            MessageBox.Show("Không tìm thấy tài khoản của nhân viên này");
+            return false;
+        }
+
+        public static bool moKhoaTaiKhoan(string maTaiKhoan)
         {
             try
             {
-                TaiKhoan taiKhoan = find(maNhanVien);
-                taiKhoan.trangThai = 0;
-                quanLyQuanCoffee.SaveChanges();
+                TaiKhoan taiKhoan = find(maTaiKhoan);
+                if (taiKhoan != null)
+                {
+                    //NhanVien nhanVien = CNhanVien_BUS.find(taiKhoan.maNhanVien);
+                    if (taiKhoan.NhanVien.trangThai == 2)
+                    {
+                        MessageBox.Show("Nhân viên này đã nghỉ việc, không thể mở tài khoản này");
+                        return false;
+                    }
+                    else
+                    {
+                        taiKhoan.trangThai = 0;
+                        quanLyQuanCoffee.SaveChanges();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thầy tài khoản");
+                    return false;
+                }
             }
             catch (DbUpdateException)
             {

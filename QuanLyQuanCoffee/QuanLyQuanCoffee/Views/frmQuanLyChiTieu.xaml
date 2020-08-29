@@ -44,7 +44,7 @@
                     <DataGridTextColumn Header="Tổng Thành Tiền" Binding="{Binding tongThanhTien}" Width="1*"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Grid.Column="0" Grid.Row="3" x:Name="btnRefect" Content="Refect" Height="30" Click="btnRefect_Click"/>
+            <Button Grid.Column="0" Grid.Row="3" x:Name="btnRefect" Content="Refresh" Height="30" Click="btnRefect_Click"/>
             <Button Grid.Column="3" Grid.Row="3" x:Name="btnTaoPhieuThongKe" Content="Tạo Phiếu Thống Kê" Height="30" Click="btnTaoPhieuThongKe_Click"/>
             <Button Grid.Column="4" Grid.Row="3" x:Name="btnXemChiTiet" Content="Xem Chi Tiết" Height="30" Click="btnXemChiTiet_Click"/>
         </Grid>

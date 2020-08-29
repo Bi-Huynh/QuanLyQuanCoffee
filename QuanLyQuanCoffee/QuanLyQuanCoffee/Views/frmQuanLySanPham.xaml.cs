@@ -23,30 +23,50 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmQuanLySanPham : Page
     {
         private SanPham sanPhamSelect;
-        LoaiSanPham loaisanpham;
+        private LoaiSanPham loaisanpham;
+        private List<NguyenLieu> nguyenLieuThanhPhans;
 
         public frmQuanLySanPham()
         {
             InitializeComponent();
             hienthiSP();
+            hienThiDSNguyenLieu();
             txtMasanpham.Text = CServices.taoMa<SanPham>(CSanPham_BUS.DsSanPham());
+            nguyenLieuThanhPhans = new List<NguyenLieu>();
         }
+
+        public void hienThiDSNguyenLieu()
+        {
+            lstThanhPhan.ItemsSource = CNguyenLieu_BUS.to_List().Select(x => new
+            {
+                tenNguyenLieu = x.tenNguyenLieu
+            });
+        }
+
+        public void hienThiDSNguyenLieuDuocChon()
+        {
+            lstThanhPhanDuocChon.ItemsSource = nguyenLieuThanhPhans.Select(x => new {
+                tenNguyenLieu = x.tenNguyenLieu
+            });
+        }
+
         public void hienthiSP()
         {
             try
             {
                 List<SanPham> list = CSanPham_BUS.toList();
-                if(list.Count>0)
+                if (list.Count > 0)
                 {
-                    dgQlsanpham.ItemsSource = list.Select(x => new {
-                        maSanPham =x.maSanPham,
-                        tenSanPham=x.tenSanPham,
-                        donViTinh=x.donViTinh,
-                        donGia=x.donGia,
-                        tenLoaiSanPham=x.LoaiSanPham.tenLoai,
-                        trangThai=x.trangThai==0?"Mở":"Khóa"
-                    }) ;
-                }    
+                    dgQlsanpham.ItemsSource = list.Select(x => new
+                    {
+                        maSanPham = x.maSanPham,
+                        tenSanPham = x.tenSanPham,
+                        donViTinh = x.donViTinh,
+                        donGia = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.donGia),
+                        tenLoaiSanPham = x.LoaiSanPham.tenLoai,
+                        trangThai = x.trangThai == 0 ? "Mở" : "Khóa"
+                    });
+                }
             }
             catch (Exception ex)
             {
@@ -90,6 +110,7 @@ namespace QuanLyQuanCoffee.Views
             {
                 if (dgQlsanpham.SelectedItem != null)
                 {
+                    nguyenLieuThanhPhans = new List<NguyenLieu>();
                     sanPhamSelect = CSanPham_BUS.find(dgQlsanpham.SelectedValue.ToString());
                     if (sanPhamSelect != null)
                     {
@@ -98,6 +119,15 @@ namespace QuanLyQuanCoffee.Views
                         txtDonvitinh.Text = sanPhamSelect.donViTinh;
                         txtDongia.Text = sanPhamSelect.donGia.ToString();
                         cboLoaisanpham.Text = sanPhamSelect.LoaiSanPham.tenLoai;
+
+                        foreach (ThanhPhan thanhPhan in sanPhamSelect.ThanhPhans)
+                        {
+                            NguyenLieu nguyenLieu = new NguyenLieu();
+                            nguyenLieu = CNguyenLieu_BUS.find(thanhPhan.maNguyenLieu);
+                            nguyenLieuThanhPhans.Add(nguyenLieu);
+                        }
+
+                        hienThiDSNguyenLieuDuocChon();
                     }
                 }
                 else
@@ -107,6 +137,8 @@ namespace QuanLyQuanCoffee.Views
                     txtDonvitinh.Text = "";
                     txtDongia.Text = "";
                     cboLoaisanpham.Text = "";
+                    nguyenLieuThanhPhans = new List<NguyenLieu>();
+                    hienThiDSNguyenLieuDuocChon();
                 }
             }
             catch (Exception ex)
@@ -123,19 +155,38 @@ namespace QuanLyQuanCoffee.Views
                 sp1.maSanPham = txtMasanpham.Text;
                 sp1.tenSanPham = txtTensanpham.Text;
                 sp1.donViTinh = txtDonvitinh.Text;
-                //sp1.maLoaiSanPham = cboLoaisanpham.SelectedItem.ToString();
-                if ((cboLoaisanpham.SelectedItem != null))
+                if (cboLoaisanpham.SelectedItem != null)
                 {
-                    //sp1.maLoaiSanPham = cboLoaisanpham.SelectedItem.ToString();
                     loaisanpham = CSanPham_BUS.findTen(cboLoaisanpham.SelectedItem.ToString());
                     sp1.maLoaiSanPham = loaisanpham.maLoaiSanPham;
                 }
                 else
                 {
                     MessageBox.Show("Loại sản phẩm không được để trống");
+                    return;
                 }
+
                 sp1.donGia = int.Parse(txtDongia.Text);
                 sp1.trangThai = 0;
+
+                if (nguyenLieuThanhPhans.Count() > 0)
+                {
+                    List<ThanhPhan> thanhPhans = new List<ThanhPhan>();
+                    foreach (NguyenLieu nguyenLieu in nguyenLieuThanhPhans)
+                    {
+                        ThanhPhan thanhPhan = new ThanhPhan();
+                        thanhPhan.maNguyenLieu = nguyenLieu.maNguyenLieu;
+                        thanhPhan.maSanPham = sp1.maSanPham;
+                        thanhPhan.trangThai = 0;
+                    }
+                    sp1.ThanhPhans = thanhPhans;
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn thành phần nguyên liệu có trong sản phẩm");
+                    return;
+                }
+
                 if (CSanPham_BUS.KTRong(sp1))
                 {
                     if (CServices.kiemTraThongTin(sp1))
@@ -148,8 +199,9 @@ namespace QuanLyQuanCoffee.Views
                                 txtMasanpham.Text = CServices.taoMa<SanPham>(CSanPham_BUS.DsSanPham());
                                 hienthiSP();
                                 load();
+                                nguyenLieuThanhPhans = new List<NguyenLieu>();
+                                hienThiDSNguyenLieuDuocChon();
                             }
-
                         }
                         else
                         {
@@ -158,9 +210,7 @@ namespace QuanLyQuanCoffee.Views
                     }
                     else
                     {
-
                         MessageBox.Show("Xem lại đơn giá");
-
                     }
                 }
                 else
@@ -195,6 +245,8 @@ namespace QuanLyQuanCoffee.Views
                     MessageBox.Show("Thay đổi trạng thái thành công");
                     hienthiSP();
                     load();
+                    nguyenLieuThanhPhans = new List<NguyenLieu>();
+                    hienThiDSNguyenLieuDuocChon();
                 }
                 else
                 {
@@ -222,16 +274,38 @@ namespace QuanLyQuanCoffee.Views
                     a.maSanPham = txtMasanpham.Text;
                     a.tenSanPham = txtTensanpham.Text;
                     a.donViTinh = txtDonvitinh.Text;
-                    //a.maLoaiSanPham = cboLoaisanpham.Text;
                     a.maLoaiSanPham = loaisanpham.maLoaiSanPham;
                     a.donGia = int.Parse(txtDongia.Text);
                     a.trangThai = 0;
+
+                    if (nguyenLieuThanhPhans.Count() > 0)
+                    {
+                        List<ThanhPhan> thanhPhans = new List<ThanhPhan>();
+                        foreach (NguyenLieu nguyenLieu in nguyenLieuThanhPhans)
+                        {
+                            ThanhPhan thanhPhan = new ThanhPhan();
+                            thanhPhan.maNguyenLieu = nguyenLieu.maNguyenLieu;
+                            thanhPhan.maSanPham = a.maSanPham;
+                            thanhPhan.trangThai = 0;
+                            thanhPhans.Add(thanhPhan);
+                        }
+                        a.ThanhPhans = thanhPhans;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vui lòng chọn thành phần nguyên liệu có trong sản phẩm");
+                        return;
+                    }
+
                     if (CSanPham_BUS.KTRong(a))
                     {
                         if (CSanPham_BUS.edit(a))
                         {
                             MessageBox.Show("Sửa thành công");
                             hienthiSP();
+                            load();
+                            nguyenLieuThanhPhans = new List<NguyenLieu>();
+                            hienThiDSNguyenLieuDuocChon();
                         }
                     }
                     else
@@ -266,12 +340,10 @@ namespace QuanLyQuanCoffee.Views
             txtTensanpham.Text = "";
             txtDongia.Text = "";
             sanPhamSelect = null;
+            nguyenLieuThanhPhans = new List<NguyenLieu>();
+            hienThiDSNguyenLieuDuocChon();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
         public void load()
         {
             txtMasanpham.Text = CServices.taoMa<SanPham>(CSanPham_BUS.DsSanPham());
@@ -280,6 +352,8 @@ namespace QuanLyQuanCoffee.Views
             txtTensanpham.Text = "";
             txtDongia.Text = "";
             sanPhamSelect = null;
+            nguyenLieuThanhPhans = new List<NguyenLieu>();
+            hienThiDSNguyenLieuDuocChon();
         }
 
         private void TextBox_KeyUp(object sender, KeyEventArgs e)
@@ -291,10 +365,30 @@ namespace QuanLyQuanCoffee.Views
             }
 
             // nếu combox tìm kiếm là 0 tức là tìm theo mã phiếu nhập
-           
+
             HienTHiTK(txtTK.Text);
-           
-            
+
+
+        }
+
+        private void lstThanhPhan_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (lstThanhPhan.SelectedItem != null)
+            {
+                NguyenLieu nguyenLieu = CNguyenLieu_BUS.findNguyenLieuByTen(lstThanhPhan.SelectedValue.ToString());
+                nguyenLieuThanhPhans.Add(nguyenLieu);
+                hienThiDSNguyenLieuDuocChon();
+            }
+        }
+
+        private void lstThanhPhanDuocChon_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (lstThanhPhanDuocChon.SelectedItem != null && nguyenLieuThanhPhans.Count() > 0)
+            {
+                NguyenLieu nguyenLieu = CNguyenLieu_BUS.findNguyenLieuByTen(lstThanhPhanDuocChon.SelectedValue.ToString());
+                nguyenLieuThanhPhans.Remove(nguyenLieu);
+                hienThiDSNguyenLieuDuocChon();
+            }
         }
     }
 }

@@ -28,8 +28,8 @@ namespace QuanLyQuanCoffee.Views
         {
             InitializeComponent();
             labThang.Content = DateTime.Now.Month;
-            showBangXepHang();
-            showBangXepHangSanPham();
+            //showBangXepHang();
+            //showBangXepHangSanPham();
             hienThi(CThongKe.toList());
         }
 
@@ -74,69 +74,69 @@ namespace QuanLyQuanCoffee.Views
             }
         }
 
-        private void showBangXepHang()
-        {
-            List<NhanVien> nhanViens = CNhanVien_BUS.toList();
-            List<CBangXepHang> bangXepHangs = new List<CBangXepHang>();
-            if (nhanViens.Count() > 0)
-            {
-                int stt = 0;
-                foreach (var nhanVien in nhanViens)
-                {
-                    int soLuongHoaDon = CHoaDon_BUS.demSoLuongHoaDon(nhanVien.maNhanVien, DateTime.Now.Month);
-                    //int soLuongBan = CHoaDon_BUS.demSoLuongLyBanDuoc(nhanVien.maNhanVien, DateTime.Now.Month);
-                    double tongThanhTien = CHoaDon_BUS.tongTienBan(nhanVien.maNhanVien, DateTime.Now.Month);
-                    stt++;
-                    bangXepHangs.Add(new CBangXepHang(
-                        stt,
-                        nhanVien.hoNhanVien + " " + nhanVien.tenNhanVien,
-                        nhanVien.LoaiNhanVien.tenLoai,
-                        soLuongHoaDon,
-                        //soLuongBan,
-                        tongThanhTien));
-                }
-                dgBangXepHang.ItemsSource = bangXepHangs.Select(x => new
-                {
-                    stt = x.Stt,
-                    hoTen = x.HoTen,
-                    chucVu = x.ChuVu,
-                    soLuongHoaDon = x.SoLuongHoaDon,
-                    soLuongBan = x.SoLuongBan,
-                    tongTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.TongTien)
-                });
-            }
-        }
+        //private void showBangXepHang()
+        //{
+        //    List<NhanVien> nhanViens = CNhanVien_BUS.toList();
+        //    List<CBangXepHang> bangXepHangs = new List<CBangXepHang>();
+        //    if (nhanViens.Count() > 0)
+        //    {
+        //        int stt = 0;
+        //        foreach (var nhanVien in nhanViens)
+        //        {
+        //            int soLuongHoaDon = CHoaDon_BUS.demSoLuongHoaDon(nhanVien.maNhanVien, DateTime.Now.Month);
+        //            //int soLuongBan = CHoaDon_BUS.demSoLuongLyBanDuoc(nhanVien.maNhanVien, DateTime.Now.Month);
+        //            double tongThanhTien = CHoaDon_BUS.tongTienBan(nhanVien.maNhanVien, DateTime.Now.Month);
+        //            stt++;
+        //            bangXepHangs.Add(new CBangXepHang(
+        //                stt,
+        //                nhanVien.hoNhanVien + " " + nhanVien.tenNhanVien,
+        //                nhanVien.LoaiNhanVien.tenLoai,
+        //                soLuongHoaDon,
+        //                //soLuongBan,
+        //                tongThanhTien));
+        //        }
+        //        dgBangXepHang.ItemsSource = bangXepHangs.Select(x => new
+        //        {
+        //            stt = x.Stt,
+        //            hoTen = x.HoTen,
+        //            chucVu = x.ChuVu,
+        //            soLuongHoaDon = x.SoLuongHoaDon,
+        //            soLuongBan = x.SoLuongBan,
+        //            tongTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.TongTien)
+        //        });
+        //    }
+        //}
 
-        private void showBangXepHangSanPham()
-        {
-            List<SanPham> sanPhams = CSanPham_BUS.toList();
-            List<CBangXepHangSanPham> bangXepHangs = new List<CBangXepHangSanPham>();
-            if (sanPhams.Count() > 0)
-            {
-                int stt = 0;
+        //private void showBangXepHangSanPham()
+        //{
+        //    List<SanPham> sanPhams = CSanPham_BUS.toList();
+        //    List<CBangXepHangSanPham> bangXepHangs = new List<CBangXepHangSanPham>();
+        //    if (sanPhams.Count() > 0)
+        //    {
+        //        int stt = 0;
 
-                foreach (var sanPham in sanPhams)
-                {
-                    //int soLuongHoaDon = CHoaDon_BUS.demSoLuongHoaDon(nhanVien.maNhanVien, DateTime.Now.Month);
-                    int soLuongBan = CHoaDon_BUS.demSoLuongSanPham(sanPham.maSanPham, DateTime.Now.Month);
-                    double tongThanhTien = CHoaDon_BUS.tongTienBanSanPham_(sanPham.maSanPham, soLuongBan);
-                    stt++;
-                    bangXepHangs.Add(new CBangXepHangSanPham(
-                        stt,
-                        sanPham.tenSanPham,
-                        //soLuongHoaDon,
-                        soLuongBan,
-                        tongThanhTien));
-                }
-                dgBangXepHangSanPham.ItemsSource = bangXepHangs.Select(x => new
-                {
-                    stt = x.Stt,
-                    tenSanPham = x.TenSanPham,
-                    soLuongBan = x.SoLuongBan,
-                    tongTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.TongTien)
-                });
-            }
-        }
+        //        foreach (var sanPham in sanPhams)
+        //        {
+        //            //int soLuongHoaDon = CHoaDon_BUS.demSoLuongHoaDon(nhanVien.maNhanVien, DateTime.Now.Month);
+        //            int soLuongBan = CHoaDon_BUS.demSoLuongSanPham(sanPham.maSanPham, DateTime.Now.Month);
+        //            double tongThanhTien = CHoaDon_BUS.tongTienBanSanPham_(sanPham.maSanPham, soLuongBan);
+        //            stt++;
+        //            bangXepHangs.Add(new CBangXepHangSanPham(
+        //                stt,
+        //                sanPham.tenSanPham,
+        //                //soLuongHoaDon,
+        //                soLuongBan,
+        //                tongThanhTien));
+        //        }
+        //        dgBangXepHangSanPham.ItemsSource = bangXepHangs.Select(x => new
+        //        {
+        //            stt = x.Stt,
+        //            tenSanPham = x.TenSanPham,
+        //            soLuongBan = x.SoLuongBan,
+        //            tongTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.TongTien)
+        //        });
+        //    }
+        //}
 
         private void btnRefect_Click(object sender, RoutedEventArgs e)
         {

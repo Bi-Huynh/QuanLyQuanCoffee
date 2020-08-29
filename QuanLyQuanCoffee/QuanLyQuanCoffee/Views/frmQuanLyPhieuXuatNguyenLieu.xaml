@@ -27,9 +27,10 @@
             </Grid.RowDefinitions>
             <Label Grid.Row="1" Grid.Column="1" Content="Danh Sách Phiếu Xuất" FontSize="18" VerticalContentAlignment="Center" FontWeight="Bold" FontFamily="Arial"/>
             <TextBox x:Name="txtTimKiem" Grid.Row="1" Grid.Column="2" FontFamily="Arial" FontSize="15" VerticalContentAlignment="Center" KeyUp="txtTimKiem_KeyUp"/>
+            <DatePicker Grid.Row="1" Grid.Column="2" x:Name="dateTimKiem" SelectedDateChanged="dateTimKiem_SelectedDateChanged"/>
             <ComboBox x:Name="cmbTimKiem" Grid.Row="1" Grid.Column="4" FontFamily="Arial" FontSize="13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectionChanged="cmbTimKiem_SelectionChanged">
                 <ComboBoxItem Content="Mã phiếu xuất" IsSelected="True"/>
-                <!--<ComboBoxItem Content="ngày xuất"/>-->
+                <ComboBoxItem Content="ngày xuất"/>
                 <ComboBoxItem Content="tổng thành tiền"/>
             </ComboBox>
             <Button x:Name="btnXemThongTinChiTiet" Grid.Row="1" Grid.Column="6" Content="Xem thông tin chi tiết" FontFamily="Arial" FontSize="13" Click="btnXemThongTinChiTiet_Click"/>
@@ -64,7 +65,7 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="15"/>
             </Grid.RowDefinitions>
-            <Button x:Name="btnRefesh" Grid.Row="1" Grid.Column="5" Content="Refect" FontFamily="Arial" Click="btnRefesh_Click"/>
+            <Button x:Name="btnRefesh" Grid.Row="1" Grid.Column="5" Content="Refresh" FontFamily="Arial" Click="btnRefesh_Click"/>
             <!--<Button x:Name="btnSua" Grid.Row="1" Grid.Column="5" Content="Sửa" FontFamily="Arial" Click="btnSua_Click"/>-->
             <Button x:Name="btnXoa" Grid.Row="1" Grid.Column="7" Content="Xóa" FontFamily="Arial" Click="btnXoa_Click"/>
             <Button x:Name="btnThem" Grid.Row="1" Grid.Column="9" Content="Thêm" FontFamily="Arial" Height="30" VerticalAlignment="Top" Click="btnThem_Click" Margin="0,0.8,0.4,0" Grid.RowSpan="2"/>

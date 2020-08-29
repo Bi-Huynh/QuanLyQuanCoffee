@@ -59,11 +59,11 @@
             <Label Grid.Row="1" Grid.Column="1" Content="Mã phiếu xuất" FontSize="12"></Label>
             <Label Grid.Row="1" Grid.Column="3" Content="Ngày xuất" FontSize="12"></Label>
             <Label Grid.Row="1" Grid.Column="5" Content="Tổng thành tiền" FontSize="12" ></Label>
-            <Label Grid.Row="1" Grid.Column="7" Content="Người lâp Phiếu xuất" FontSize="12" ></Label>
+            <!--<Label Grid.Row="1" Grid.Column="7" Content="Người lâp Phiếu xuất" FontSize="12" ></Label>-->
             <TextBlock Grid.Row="2" Grid.Column="1" FontSize="12" Name="txtMaPhieuXuat" ></TextBlock>
             <TextBlock Grid.Row="2" Grid.Column="3" FontSize="12" Name="txtNgayxuat" ></TextBlock>
             <TextBlock Grid.Row="2" Grid.Column="5" FontSize="12" Name="txtTongthanhtien" ></TextBlock>
-            <TextBlock Grid.Row="2" Grid.Column="7" FontSize="12" Name="txtNguoilapPhieuXuat" ></TextBlock>
+            <!--<TextBlock Grid.Row="2" Grid.Column="7" FontSize="12" Name="txtNguoilapPhieuXuat" ></TextBlock>-->
         </Grid>
         <Grid>
             <Grid.RowDefinitions>

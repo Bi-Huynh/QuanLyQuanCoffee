@@ -119,11 +119,11 @@
                             <RowDefinition></RowDefinition>
                             <RowDefinition Height="5"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Label Content="Nhân Viên" Grid.Row="0" Grid.Column="0" FontSize="14"></Label>
-                        <Label Content="Mã phiếu xuất" Grid.Row="0" Grid.Column="2" FontSize="14"></Label>
-                        <TextBlock Grid.Row="1" Grid.Column="0" Background="#FF71E6E8" FontSize="12" Name="txtBoxNv" Height="27" Margin="0,0,0,0.2" VerticalAlignment="Bottom" Loaded="txtBoxNv_Loaded"></TextBlock>
+                        <!--<Label Content="Nhân Viên" Grid.Row="0" Grid.Column="0" FontSize="14"></Label>-->
+                        <Label Content="Mã phiếu xuất" Grid.Row="0" Grid.Column="0" FontSize="14"></Label>
+                        <!--<TextBlock Grid.Row="1" Grid.Column="0" Background="#FF71E6E8" FontSize="12" Name="txtBoxNv" Height="27" Margin="0,0,0,0.2" VerticalAlignment="Bottom" Loaded="txtBoxNv_Loaded"></TextBlock>-->
 
-                        <TextBox Grid.Row="1" Grid.Column="2" Name="txtMaPhieuXuat" FontSize="15" IsEnabled="False"></TextBox>
+                        <TextBox Grid.Row="1" Grid.Column="0" Name="txtMaPhieuXuat" FontSize="15" IsEnabled="False"></TextBox>
                         <!--<Button Grid.Column="4" Grid.Row="1" Content="Bỏ Chọn" Name="btnBochon"  ></Button>-->
                     </Grid>
                     <Button Content="Tạo phiếu xuất" Grid.Column="0" Grid.Row="3" Name="btnXuatNguyenLieu"  Background="#FF0056FF" FontFamily="Arial" FontSize="24" Click="btnXuatNguyenLieu_Click" ></Button>

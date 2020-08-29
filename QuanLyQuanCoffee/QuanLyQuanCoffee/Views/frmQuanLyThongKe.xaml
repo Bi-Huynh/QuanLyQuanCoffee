@@ -55,7 +55,7 @@
                       Background="White" FontFamily="Arial" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="STT" Binding="{Binding stt}" Width=".3*"/>
-                        <DataGridTextColumn Header="Tên nguyên liệu" Binding="{Binding tenSanPham}" Width="1*"/>
+                        <DataGridTextColumn Header="Tên Sản Phẩm" Binding="{Binding tenSanPham}" Width="1*"/>
                         <!--<DataGridTextColumn Header="Số Lượng Hóa Đơn" Binding="{Binding soLuongHoaDon}" Width="1*"/>-->
                         <DataGridTextColumn Header="Số Lượng Bán" Binding="{Binding soLuongBan}" Width="1*"/>
                         <DataGridTextColumn Header="Tổng Tiền" Binding="{Binding tongTien}" Width="1*"/>
@@ -81,7 +81,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Margin="10">
-            <Button x:Name="btnRefect" Height="40" Width="383" Content="Refect" Click="btnRefect_Click"></Button>
+            <Button x:Name="btnRefect" Height="40" Width="383" Content="Refresh" Click="btnRefect_Click"></Button>
             <Button x:Name="btnThemPhieuTK" Height="40" Width="383" Content="Tạo Phiếu Thống Kê" Margin="20,0,0,0" Click="btnThemPhieuTK_Click"></Button>
             <Button x:Name="btnXemChiTiet" Height="40" Width="383" Content="Xem Chi Tiết" Margin="10,0,0,0" Click="btnXemChiTiet_Click"></Button>
         </StackPanel>

@@ -5,45 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLyQuanCoffee.Views"
         mc:Ignorable="d"
-        Title="frmXemHoaDonKetCa" d:DesignHeight="685" d:DesignWidth="1200">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.5*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+        Title="frmXemHoaDonKetCa" d:DesignHeight="685" d:DesignWidth="1200" WindowState="Maximized">
+    <StackPanel>
 
-        <GroupBox Grid.Column="0" Grid.Row="0"
-                  Header="Danh Sách Hóa Đơn Kết Ca" Margin="0,0,5,0">
-            <DataGrid x:Name="dgHoaDonTrongNgay" VerticalScrollBarVisibility="Auto"
-                      Height="630" MaxHeight="660" IsReadOnly="True" SelectedValuePath="maHoaDon"
-                      AutoGenerateColumns="False" HorizontalScrollBarVisibility="Auto"
-                      SelectionChanged="dgHoaDonTrongNgay_SelectionChanged"
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <!--<RowDefinition Height=".1*"/>-->
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <GroupBox Grid.Column="0" Grid.Row="0"
+                  Header="Danh Sách Hóa Đơn Kết Ca" Margin="0,10,5,0">
+                <DataGrid x:Name="dgHoaDonTrongNgay" VerticalScrollBarVisibility="Auto"
+                      IsReadOnly="True" SelectedValuePath="maHoaDon" Height="560" MaxHeight="560"
+                      AutoGenerateColumns="False" HorizontalScrollBarVisibility="Auto" Margin="0,10,0,0"
                       MouseDoubleClick="dgHoaDonTrongNgay_MouseDoubleClick">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding maHoaDon}" Width="1*"/>
-                    <DataGridTextColumn Header="Tên nhân viên" Binding="{Binding tenNhanVien}" Width="1.5*"/>
-                    <DataGridTextColumn Header="Ngày lập" Binding="{Binding ngayLap}" Width="1*"/>
-                    <DataGridTextColumn Header="Thời gian" Binding="{Binding thoiGian}" Width="1*"/>
-                    <DataGridTextColumn Header="Tổng thành tiền" Binding="{Binding tongThanhTien}" Width="1*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </GroupBox>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding maHoaDon}" Width="1*"/>
+                        <DataGridTextColumn Header="Tên nhân viên" Binding="{Binding tenNhanVien}" Width="1.5*"/>
+                        <DataGridTextColumn Header="Ngày lập" Binding="{Binding ngayLap}" Width="1*"/>
+                        <DataGridTextColumn Header="Thời gian" Binding="{Binding thoiGian}" Width="1*"/>
+                        <DataGridTextColumn Header="Tiền khách đưa" Binding="{Binding tienKhachDua}" Width="1*"/>
+                        <DataGridTextColumn Header="Tiền thừa" Binding="{Binding tienThua}" Width="1*"/>
+                        <DataGridTextColumn Header="Tổng thành tiền" Binding="{Binding tongThanhTien}" Width="1*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
 
-        <GroupBox Grid.Column="1" Grid.Row="0"
-                  Header="Chi Tiết Hóa Đơn" Margin="5,0,0,0">
-            <DataGrid x:Name="dgChiTietHoaDonTrongNgay" VerticalScrollBarVisibility="Auto" 
-                      SelectedValue="maHoaDon" HorizontalScrollBarVisibility="Auto"
-                      IsReadOnly="True" Height="630" MaxHeight="660" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding maHoaDon}" Width="1*" Visibility="Hidden"/>
-                    <DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding tenSanPham}" Width="1.5*"/>
-                    <DataGridTextColumn Header="Số lượng" Binding="{Binding soLuong}" Width="1*"/>
-                    <DataGridTextColumn Header="Thành tiền" Binding="{Binding thanhTien}" Width="1*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </GroupBox>
-    </Grid>
+            <GroupBox Grid.Column="1" Grid.Row="0"
+                  Header="Chi Tiết Hóa Đơn" Margin="5,10,0,0">
+                <DataGrid x:Name="dgChiTietHoaDonTrongNgay" VerticalScrollBarVisibility="Auto" 
+                      SelectedValue="maHoaDon" HorizontalScrollBarVisibility="Auto" Height="560" MaxHeight="560"
+                      IsReadOnly="True" AutoGenerateColumns="False" Margin="0,10,0,0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã hóa đơn" Binding="{Binding maHoaDon}" Width="1*" Visibility="Hidden"/>
+                        <DataGridTextColumn Header="Tên sản phẩm" Binding="{Binding tenSanPham}" Width="1.4*"/>
+                        <DataGridTextColumn Header="Số lượng" Binding="{Binding soLuong}" Width=".7*"/>
+                        <DataGridTextColumn Header="Đơn giá" Binding="{Binding donGia}" Width=".8*"/>
+                        <DataGridTextColumn Header="Thành tiền" Binding="{Binding thanhTien}" Width=".8*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width=".2*"/>
+                <ColumnDefinition Width=".3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="1" Content="Tổng doanh thu: " HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" x:Name="txtTongDoanhThu" 
+                       FontSize="20" Height="35" FontWeight="Bold" HorizontalAlignment="Center"/>
+        </Grid>
+    </StackPanel>
 </Window>

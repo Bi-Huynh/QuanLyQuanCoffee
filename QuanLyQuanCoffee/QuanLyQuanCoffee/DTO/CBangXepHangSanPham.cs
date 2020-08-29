@@ -8,28 +8,31 @@ namespace QuanLyQuanCoffee.DTO
 {
     class CBangXepHangSanPham
     {
-        public int Stt { get; set; }
+        public string MaSanPham { get; set; }
         public string TenSanPham { get; set; }
-        //public int SoLuongHoaDon { get; set; }
         public int SoLuongBan { get; set; }
-        public double TongTien { get; set; }
+        public int DonGia { get; set; }
+        public double TongTien {
+            get
+            {
+                return DonGia * SoLuongBan;
+            }
+        }
 
         public CBangXepHangSanPham()
         {
-            Stt = 0;
+            MaSanPham = "";
             TenSanPham = "";
             SoLuongBan = 0;
-            //SoLuongBan = 0;
-            TongTien = 0;
+            DonGia = 0;
         }
 
-        public CBangXepHangSanPham(int stt, string tenSanPham, int soLuongBan, double tongTien)
+        public CBangXepHangSanPham(string maSanPham, string tenSanPham, int soLuongBan, int donGia)
         {
-            this.Stt = stt;
+            this.MaSanPham = maSanPham;
             this.TenSanPham = tenSanPham;
             this.SoLuongBan = soLuongBan;
-            //this.SoLuongBan = soLuongBan;
-            this.TongTien = tongTien;
+            this.DonGia = donGia;
         }
     }
 }

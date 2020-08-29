@@ -22,7 +22,6 @@ namespace QuanLyQuanCoffee.Views
     public partial class frmAdmin : Window
     {
         private TaiKhoan taiKhoanSelect;
-        private NhanVien nhanVienSelect;
 
         public frmAdmin(TaiKhoan taiKhoan = null)
         {
@@ -60,11 +59,6 @@ namespace QuanLyQuanCoffee.Views
             Main.Content = new frmQuanLyTaiKhoan();
         }
 
-        private void gd_quanlyLoaiTaiKhoan_Click(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new frmQuanLyLoaiTaiKhoan();
-        }
-
         public void dangXuat_Click(object sender, RoutedEventArgs e)
         {
             frmDangNhap f = new frmDangNhap();
@@ -86,7 +80,7 @@ namespace QuanLyQuanCoffee.Views
         private void gd_QuanLyXuatNguyenLieu_Click(object sender, RoutedEventArgs e)
         {
             NhanVien nhanVien = CNhanVien_BUS.find(taiKhoanSelect.maNhanVien);
-            Main.Content = new frmQuanLyPhieuXuatNguyenLieu(nhanVien);
+            Main.Content = new frmQuanLyPhieuXuatNguyenLieu();
         }
 
         private void quanLyKetCa_Click(object sender, RoutedEventArgs e)
@@ -96,12 +90,17 @@ namespace QuanLyQuanCoffee.Views
 
         private void gd_QuanLyThongKe_Click(object sender, RoutedEventArgs e)
         {
-           Main.Content=new frmQuanLyThongKe();
+            Main.Content = new frmQuanLyThongKe();
         }
 
         private void gd_doiMatKhau_Click(object sender, RoutedEventArgs e)
         {
             new frmDoiTaiKhoan(taiKhoanSelect).Show();
+        }
+
+        private void dg_XemThongKe_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new frmXemThongKe();
         }
     }
 }

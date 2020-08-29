@@ -30,24 +30,24 @@
             <Label Grid.Row="0" Grid.Column="1" Content="Tài khoản" FontSize="18" Margin="5,0,5,0"/>
             <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtTaiKhoan" Margin="10,0,5,0" FontSize="18" Height="30" VerticalContentAlignment="Center"/>
             <Label Grid.Row="0" Grid.Column="2" Content="Mật khẩu" FontSize="18"/>
-            <TextBox Grid.Row="1" Grid.Column="2" x:Name="txtMatKhau" Text="1" FontSize="18" VerticalContentAlignment="Center" Margin="5,0,5,0"/>
-            <Label Grid.Row="0" Grid.Column="3" Content="Loại tài khoản" FontSize="18"/>
-            <ComboBox Grid.Row="1" Grid.Column="3" x:Name="cmbLoaiTaiKhoan" Margin="5,0,10,0" FontSize="18" Loaded="cmbLoaiTaiKhoan_Loaded"></ComboBox>
+            <TextBox Grid.Row="1" Grid.Column="2" x:Name="txtMatKhau" Text="1" FontSize="18" Height="30" VerticalContentAlignment="Center" Margin="5,0,5,0"/>
+            <!--<Label Grid.Row="0" Grid.Column="3" Content="Loại tài khoản" FontSize="18"/>
+            <ComboBox Grid.Row="1" Grid.Column="3" x:Name="cmbLoaiTaiKhoan" Margin="5,0,10,0" FontSize="18" Loaded="cmbLoaiTaiKhoan_Loaded"></ComboBox>-->
 
-            <Button Grid.Row="2" Grid.Column="0" Content="Thêm" x:Name="btnThemTK" Click="btnThemTK_Click"  FontSize="18" Margin="10,10,5,0" Height="35"/>
+            <Button Grid.Row="1" Grid.Column="4" Content="Thêm" x:Name="btnThemTK" Click="btnThemTK_Click"  FontSize="18" Margin="10,5,10,5" Height="30"/>
             <!--<Button Grid.Row="2" Grid.Column="1" Content="Refect" x:Name="btnRefect" FontSize="18" Margin="5,10,5,0" Click="btnRefect_Click"/>-->
             <Button Grid.Row="2" Grid.Column="2" Content="Khóa tài khoản" x:Name="btnKhoaTaiKhoan" Click="btnKhoaTaiKhoan_Click" FontSize="18" Margin="5,10,5,0"/>
-            <Button Grid.Row="2" Grid.Column="3" Content="Mở tài khoản" x:Name="btnMoTaiKhoan" Click="btnMoTaiKhoan_Click" FontSize="18" Margin="5,10,10,0"/>
+            <Button Grid.Row="2" Grid.Column="3" Content="Mở tài khoản" x:Name="btnMoTaiKhoan" Click="btnMoTaiKhoan_Click" FontSize="18" Margin="10,10,10,0"/>
 
-            <GroupBox Header="Danh Sách tài khoản" Grid.Row="3" Grid.ColumnSpan="4" Height="570" Margin="10">
+            <GroupBox Header="Danh Sách tài khoản" Grid.Row="3" Grid.ColumnSpan="4" Height="550" Margin="10">
                 <DataGrid  Name="dgQltaikhoan" 
                            AutoGenerateColumns="False" IsReadOnly="True"
-                           SelectedValuePath="maNhanVien"  FontSize="18">
+                           SelectedValuePath="maTaiKhoan" FontSize="18">
                     <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã tài khoản" Binding="{Binding maTaiKhoan}" Width="1*" Visibility="Hidden"/>
                         <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}" Width="1*"/>
                         <DataGridTextColumn Header="Tên nhân viên" Binding="{Binding tenNhanVien}" Width="1*"/>
                         <DataGridTextColumn Header="Tên tài khoản" Binding="{Binding taiKhoan}" Width="1*"/>
-                        <DataGridTextColumn Header="Loại Tài Khoản" Binding="{Binding tenLoaiTaiKhoan}" Width="1*"/>
                         <DataGridTextColumn Header="Trạng thái" Binding="{Binding trangThai}" Width="1*"/>
                     </DataGrid.Columns>
                 </DataGrid>

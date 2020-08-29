@@ -52,6 +52,20 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<NguyenLieu>() : list;
         }
 
+        //public static NguyenLieu findNguyenLieuByTen(string tenNguyenLieu)
+        //{
+        //    NguyenLieu nguyenLieu = new NguyenLieu();
+        //    foreach (NguyenLieu item in quanLyQuanCoffee.NguyenLieux.ToList())
+        //    {
+        //        if (item.tenNguyenLieu.Trim() == tenNguyenLieu.Trim())
+        //        {
+        //            nguyenLieu = item;
+        //            break;
+        //        }
+        //    }
+        //    return nguyenLieu;
+        //}
+
         public static string findTenNguyenLieu(string maNguyenLieu)
         {
             string tenNguyenLieu = quanLyQuanCoffee.NguyenLieux

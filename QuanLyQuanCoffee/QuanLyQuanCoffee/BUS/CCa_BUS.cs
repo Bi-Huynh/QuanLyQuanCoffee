@@ -26,6 +26,12 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<KetCa>() : list;
         }
 
+        public static KetCa find(string maKetCa)
+        {
+            KetCa ketCa = quanLyQuanCoffee.KetCas.Find(maKetCa);
+            return ketCa == null ? new KetCa() : ketCa;
+        }
+
         public static List<KetCa> toListMaNV(string maNhanVien)
         {
             List<KetCa> ketCas = new List<KetCa>();

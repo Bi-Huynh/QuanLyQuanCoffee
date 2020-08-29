@@ -1,4 +1,5 @@
 ﻿using QuanLyQuanCoffee.BUS;
+using QuanLyQuanCoffee.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,8 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmDangNhap : Window
     {
-        private TaiKhoan taiKhoan;
-        private QuanLyQuanCoffeeEntities1 dc = new QuanLyQuanCoffeeEntities1();
+        private TaiKhoan taiKhoanSelect;
+        private QuanLyQuanCoffeeEntities1 dc = LoadDatabase.Instance();
 
         public frmDangNhap()
         {
@@ -32,34 +33,34 @@ namespace QuanLyQuanCoffee.Views
         {
             string matKhau = CTaiKhoan_BUS.Encrypt(txtMatkhau.Password);
 
-            taiKhoan = dc.TaiKhoans.Where(x => x.taiKhoan1.Trim() == txtTaikhoan.Text &&
-                                                x.matKhau.Trim() == matKhau).FirstOrDefault();
-
-            if (taiKhoan == null)
+            foreach (TaiKhoan taiKhoan in dc.TaiKhoans.ToList())
             {
-                taiKhoan = dc.TaiKhoans.Where(x => x.taiKhoan1.Trim() == txtTaikhoan.Text &&
-                                                x.matKhau.Trim() == txtMatkhau.Password &&
-                                                x.trangThai == 3).FirstOrDefault();
+                if (taiKhoan.tenTaiKhoan.Trim() == txtTaikhoan.Text.Trim() &&
+                    taiKhoan.matKhau.Trim() == matKhau.Trim())
+                {
+                    taiKhoanSelect = taiKhoan;
+                    break;
+                }
             }
 
-            if (taiKhoan != null)
+            if (taiKhoanSelect != null)
             {
-                if (taiKhoan.maLoaiTaiKhoan == "00001")
+                if (taiKhoanSelect.maTaiKhoan == "0000000001")
                 {
-                    new frmAdmin(taiKhoan).Show();
+                    new frmAdmin(taiKhoanSelect).Show();
                     this.Close();
                 }
                 else
                 {
-                    if (taiKhoan.trangThai == 3)
+                    if (taiKhoanSelect.matKhau == "IZC83pakndc=" && taiKhoanSelect.trangThai == 0)   // mật khẩu mặc định là 1
                     {
-                        NhanVien nhanVien = CNhanVien_BUS.find(taiKhoan.maNhanVien);
+                        NhanVien nhanVien = CNhanVien_BUS.find(taiKhoanSelect.maNhanVien);
                         if (nhanVien != null)
                         {
-                            new frmNhanVien(nhanVien, taiKhoan).Show();
+                            new frmNhanVien(nhanVien, taiKhoanSelect).Show();
 
                             MessageBox.Show("Vui lòng đổi mật khẩu");
-                            frmDoiTaiKhoan frmDoiTaiKhoan = new frmDoiTaiKhoan(taiKhoan);
+                            frmDoiTaiKhoan frmDoiTaiKhoan = new frmDoiTaiKhoan(taiKhoanSelect);
                             frmDoiTaiKhoan.Show();
 
                             this.Close();
@@ -69,16 +70,13 @@ namespace QuanLyQuanCoffee.Views
                             MessageBox.Show("Không tìm thấy nhân viên sở hữu tài khoản này");
                         }
                     }
-                    else if (taiKhoan.trangThai == 0)
+                    else if (taiKhoanSelect.trangThai == 0)
                     {
-                        NhanVien nhanVien = CNhanVien_BUS.find(taiKhoan.maNhanVien);
+                        NhanVien nhanVien = CNhanVien_BUS.find(taiKhoanSelect.maNhanVien);
                         if (nhanVien != null)
                         {
-                            new frmNhanVien(nhanVien, taiKhoan).Show();
+                            new frmNhanVien(nhanVien, taiKhoanSelect).Show();
                             this.Close();
-
-                            frmTaoCa frmTaoCa = new frmTaoCa(nhanVien);
-                            frmTaoCa.Show();
                         }
                         else
                         {
@@ -100,6 +98,14 @@ namespace QuanLyQuanCoffee.Views
         private void btnDangNhap_Click(object sender, RoutedEventArgs e)
         {
             kiemTraTaiKhoan();
+        }
+
+        private void txtMatkhau_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                btnDangNhap_Click(sender, e);
+            }
         }
     }
 }

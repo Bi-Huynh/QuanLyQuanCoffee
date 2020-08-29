@@ -21,25 +21,32 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmQuanLyHoaDon : Page
     {
-        HoaDon hoaDonSelected;
+        private HoaDon hoaDonSelected;
+        private int chosse = 0;
+
         public frmQuanLyHoaDon()
         {
             InitializeComponent();
-            hienthiHoaDon();
+            hienthiHoaDon(CHoaDon_BUS.toList()) ;
         }
-        public void hienthiHoaDon()
+
+        public void hienthiHoaDon(List<HoaDon> hoaDons)
         {
-            if (CHoaDon_BUS.toList().Count()>=0)
+            if (hoaDons.Count()>=0)
             {
-                dgQlhoadon.ItemsSource = CHoaDon_BUS.toList();
+                dgQlhoadon.ItemsSource = CHoaDon_BUS.toList().Select(x => new
+                {
+                    maHoaDon = x.maHoaDon,
+                    maNhanVien = x.maNhanVien,
+                    tenNhanVien = x.NhanVien.hoNhanVien + " " + x.NhanVien.tenNhanVien,
+                    ngayLap = x.ngayLap.ToString("dd/MM/yyyy"),
+                    tienKhachDua = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.tienKhachDua),
+                    tienThua = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.tienThua),
+                    tongThanhTien = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.tongThanhTien)
+                });
             }
-            else
-            {
-
-                MessageBox.Show("Hiện tại chưa có hóa đơn nào");
-            }
-
         }
+
         private void gdQuanLyChitietHoaDon_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -59,16 +66,12 @@ namespace QuanLyQuanCoffee.Views
                 MessageBox.Show("Bạn Chưa chọn hóa đơn");
             }
         }
+
         private void dgQlhoadon_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dgQlhoadon.SelectedItem == null)
+            if (dgQlhoadon.SelectedItem != null)
             {
-                MessageBox.Show("Hiện tại chưa có hóa đơn nào");
-            }
-            else
-            {
-                hoaDonSelected = CHoaDon_BUS.find(dgQlhoadon.SelectedItem.ToString());
-
+                hoaDonSelected = CHoaDon_BUS.find(dgQlhoadon.SelectedValue.ToString());
             }
         }
 
@@ -76,23 +79,61 @@ namespace QuanLyQuanCoffee.Views
         {
             if (txtTK.Text == "")
             {
-                hienthiHoaDon();
+                hienthiHoaDon(CHoaDon_BUS.toList());
                 return;
             }
 
-            // nếu combox tìm kiếm là 0 tức là tìm theo mã phiếu nhập
+            switch (chosse)
+            {
+                case 0:
+                    hienthiHoaDon(CHoaDon_BUS.toListMaNhanVien(txtTK.Text));
+                    break;
 
-            HienThiTK(txtTK.Text);
-        }
-        public void HienThiTK(string maHoadon)
-        {
-            try
-            {
-                dgQlhoadon.ItemsSource = CHoaDon_BUS.toListTK(maHoadon);
+                case 1:
+                    hienthiHoaDon(CHoaDon_BUS.toListMaHoaDon(txtTK.Text));
+                    break;
+
+                case 2:
+                    hienthiHoaDon(CHoaDon_BUS.toListNgayLap(dateTimKiem.SelectedDate.Value));
+                    break;
+
+                case 3:
+                    hienthiHoaDon(CHoaDon_BUS.toListTongThanhTien(txtTK.Text));
+                    break;
+
+                default:
+                    break;
             }
-            catch (Exception ex)
+        }
+
+        private void cmbTimKiem_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbTimKiem.SelectedIndex == 0)
             {
-                MessageBox.Show("Có lỗi: " + ex.Message);
+                dateTimKiem.IsEnabled = false;
+                txtTK.IsEnabled = true;
+                chosse = 0;
+            }
+
+            if (cmbTimKiem.SelectedIndex == 1)
+            {
+                dateTimKiem.IsEnabled = true;
+                txtTK.IsEnabled = false;
+                chosse = 1;
+            }
+
+            if (cmbTimKiem.SelectedIndex == 2)
+            {
+                dateTimKiem.IsEnabled = false;
+                txtTK.IsEnabled = true;
+                chosse = 2;
+            }
+
+            if (cmbTimKiem.SelectedIndex == 3)
+            {
+                dateTimKiem.IsEnabled = false;
+                txtTK.IsEnabled = true;
+                chosse = 3;
             }
         }
     }

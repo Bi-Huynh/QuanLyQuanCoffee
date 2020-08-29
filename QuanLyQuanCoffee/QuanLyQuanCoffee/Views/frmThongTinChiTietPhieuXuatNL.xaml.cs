@@ -36,9 +36,9 @@ namespace QuanLyQuanCoffee.Views
                 Load();
             }
         }
+
         public void hienThiChitietPX()
         {
-
             List<ChiTietPhieuXuat> list = CChiTietPhieuXuatNguyenLieu.toList(phieuXuatSelected.maPhieuXuat);
             if (list.Count() > 0)
             {
@@ -67,7 +67,7 @@ namespace QuanLyQuanCoffee.Views
                 txtMaPhieuXuat.Text = phieuXuatSelected.maPhieuXuat;
                 txtNgayxuat.Text = phieuXuatSelected.ngayXuat.Value.ToString("dd/MM/yyyy");
                 txtTongthanhtien.Text = phieuXuatSelected.tongThanhTien.ToString();
-                txtNguoilapPhieuXuat.Text = phieuXuatSelected.NhanVien.hoNhanVien + phieuXuatSelected.NhanVien.tenNhanVien;
+                //txtNguoilapPhieuXuat.Text = phieuXuatSelected.NhanVien.hoNhanVien + phieuXuatSelected.NhanVien.tenNhanVien;
             }
         }
 

@@ -18,6 +18,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace QuanLyQuanCoffee.Views
 {
@@ -76,7 +77,6 @@ namespace QuanLyQuanCoffee.Views
             txtTamTru.Text = nhanVien.tamTru;
             txtCMND.Text = nhanVien.cMND;
             txtTuoi.Text = CNhanVien_BUS.tinhTuoi(nhanVien).ToString();
-            txtLuong.Text = nhanVien.LoaiNhanVien.luongCoBan.ToString();
             cmbTrangThai.SelectedIndex = nhanVien.trangThai.Value;
             urlAnh = nhanVien.urlAnh;
             hienThiHinh(nhanVien.urlAnh);
@@ -102,7 +102,6 @@ namespace QuanLyQuanCoffee.Views
             {
                 try
                 {
-                    //Uri uri = new Uri(url, UriKind.Relative);
                     Uri uri = new Uri(url);
                     imgAnh.Source = new BitmapImage(uri);
                 }
@@ -180,7 +179,6 @@ namespace QuanLyQuanCoffee.Views
 
             if (result == MessageBoxResult.Yes)
             {
-                //string phai = cmbPhai.SelectedValue.ToString();
                 NhanVien nhanVien = new NhanVien();
                 nhanVien.maNhanVien = txtMaNhanVien.Text;
                 nhanVien.hoNhanVien = txtHoNhanVien.Text;
@@ -195,6 +193,13 @@ namespace QuanLyQuanCoffee.Views
                 nhanVien.maLoaiNhanVien = CLoaiNhanVien_BUS.findMaLoaiByTenLoai(cmbLoaiNhanVien.SelectedItem.ToString());
                 nhanVien.urlAnh = urlAnh;
                 nhanVien.trangThai = cmbTrangThai.SelectedIndex;
+                if (nhanVien.trangThai == 2)
+                {
+                    if (CTaiKhoan_BUS.khoaTaiKhoanNV(nhanVien.maNhanVien) == false)
+                    {
+                        return;
+                    }
+                }
 
                 if (CNhanVien_BUS.edit(nhanVien))
                 {
@@ -208,55 +213,19 @@ namespace QuanLyQuanCoffee.Views
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Chọn ảnh";
             openFileDialog.Filter = "Image files (*.png;*.jpg)|*.png;*.jpg";
-            //openFileDialog.InitialDirectory = @"QuanLyQuanCoffee\Hinh\";
             openFileDialog.RestoreDirectory = true;
             if (openFileDialog.ShowDialog() == true)
             {
-                //string url = "";
                 urlAnh = openFileDialog.FileName;
 
                 hienThiHinh(urlAnh);
-
-                //string sourceDir = openFileDialog.FileName;
-
-                //string exeFile = (new System.Uri(Assembly.GetEntryAssembly().CodeBase)).AbsolutePath;
-                //string exeDir = System.IO.Path.GetDirectoryName(exeFile);
-                //string fullPath = System.IO.Path.Combine(exeDir);
-
-                //try
-                //{
-                //    string[] picList = Directory.GetFiles(sourceDir, "*.jpg");
-
-                //    // Copy picture files.
-                //    foreach (string f in picList)
-                //    {
-                //        // Remove path from the file name.
-                //        string fName = f.Substring(sourceDir.Length + 1);
-
-                //        // Use the Path.Combine method to safely append the file name to the path.
-                //        // Will overwrite if the destination file already exists.
-                //        File.Copy(System.IO.Path.Combine(sourceDir, fName), System.IO.Path.Combine(fullPath, fName), true);
-                //    }
-
-                //    foreach (string f in picList)
-                //    {
-                //        File.Delete(f);
-                //    }
-
-                //    MessageBox.Show("xong");
-                //}
-
-                //catch (DirectoryNotFoundException dirNotFound)
-                //{
-                //    Console.WriteLine(dirNotFound.Message);
-                //}
             }
         }
 
         private void cmbLoaiNhanVien_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var index = cmbLoaiNhanVien.SelectedIndex;
-            txtLuong.Text = CLoaiNhanVien_BUS.toList()[index].luongCoBan.ToString();
+            //txtLuong.Text = CLoaiNhanVien_BUS.toList()[index].luongCoBan.ToString();
         }
 
         private void dateNgaySinh_KeyDown(object sender, KeyEventArgs e)

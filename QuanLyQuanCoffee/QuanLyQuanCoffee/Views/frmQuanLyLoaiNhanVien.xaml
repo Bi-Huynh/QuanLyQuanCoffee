@@ -24,9 +24,7 @@
             <Label Grid.Column="0" Grid.Row="1" Content="Mã Loại nhân viên:" FontFamily="Arial" FontSize="12" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
             <TextBox x:Name="txtMaLoaiNhanVien" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" Height="30" Margin="0,0,0,10" IsEnabled="False"/>
             <Label Grid.Column="2" Grid.Row="1" Content="Tên Loại:" FontFamily="Arial" FontSize="12" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
-            <TextBox x:Name="txtTenLoai" Grid.Column="3" Grid.Row="1" VerticalContentAlignment="Center" Height="30" Margin="0,0,0,10" TabIndex="1"/>
-            <Label Grid.Column="4" Grid.Row="1" Content="Lương:" FontFamily="Arial" FontSize="12" Height="30" VerticalContentAlignment="Center" Margin="10,0,0,10"/>
-            <TextBox x:Name="txtLuong" Grid.Column="5" Grid.Row="1" VerticalContentAlignment="Center" Height="30" Margin="0,0,10,10" TabIndex="2" KeyUp="txtLuong_KeyUp"/>
+            <TextBox x:Name="txtTenLoai" Grid.Column="3" Grid.Row="1" VerticalContentAlignment="Center" Height="30" Margin="0,0,10,10" TabIndex="1"/>
         </Grid>
         <DataGrid x:Name="dgDSLoaiNhanVien" MinHeight="200" Margin="10,0" AutoGenerateColumns="False" 
                   SelectedValuePath="maLoaiNhanvien" HorizontalContentAlignment="Center" 
@@ -35,7 +33,6 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã loại nhân viên" Binding="{Binding maLoaiNhanvien}" Width="1*"/>
                 <DataGridTextColumn Header="Tên loại" Binding="{Binding tenLoai}" Width="1.5*"/>
-                <DataGridTextColumn Header="Luong" Binding="{Binding luongCoBan}" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Grid>

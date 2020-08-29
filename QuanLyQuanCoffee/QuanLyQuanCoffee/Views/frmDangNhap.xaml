@@ -39,7 +39,7 @@
                 <Label Grid.Row="2" Grid.Column="0" Content="Tài khoản"  FontSize="12"></Label>
                 <Label Grid.Row="4" Grid.Column="0" Content="Mật khẩu" FontSize="12"></Label>
                 <TextBox Grid.Row="2" Grid.Column="2" Name="txtTaikhoan" BorderBrush="Blue"></TextBox>
-                <PasswordBox Grid.Row="4" Grid.Column="2" Name="txtMatkhau" BorderBrush="Blue"></PasswordBox>
+                <PasswordBox Grid.Row="4" Grid.Column="2" Name="txtMatkhau" BorderBrush="Blue" KeyUp="txtMatkhau_KeyUp"></PasswordBox>
                 <Button x:Name="btnDangNhap" Grid.Column="2" Grid.Row="6" Content="Đăng nhập" Click="btnDangNhap_Click" Background="#FF1ED5DF"></Button>
 
             </Grid>

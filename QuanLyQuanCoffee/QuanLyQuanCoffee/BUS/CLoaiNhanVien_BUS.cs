@@ -50,27 +50,25 @@ namespace QuanLyQuanCoffee.BUS
 
         public static bool add(LoaiNhanVien loaiNhanVien)
         {
-            if (CServices.kiemTraThongTin(loaiNhanVien))
+
+            loaiNhanVien.tenLoai = CServices.formatChuoi(loaiNhanVien.tenLoai);
+            try
             {
-                loaiNhanVien.tenLoai = CServices.formatChuoi(loaiNhanVien.tenLoai);
-                try
-                {
-                    quanLyQuanCoffee.LoaiNhanViens.Add(loaiNhanVien);
-                    quanLyQuanCoffee.SaveChanges();
-                }
-                catch (DbUpdateException)
-                {
-                    MessageBox.Show("Lỗi! Không thể thêm dữ liệu");
-                    return false;
-                }
+                quanLyQuanCoffee.LoaiNhanViens.Add(loaiNhanVien);
+                quanLyQuanCoffee.SaveChanges();
+                return true;
             }
-            return true;
+            catch (DbUpdateException)
+            {
+                MessageBox.Show("Lỗi! Không thể thêm dữ liệu");
+                return false;
+            }
         }
 
         public static bool edit(LoaiNhanVien loaiNhanVien)
         {
             LoaiNhanVien temp = find(loaiNhanVien.maLoaiNhanvien);
-            if (temp == null || !CServices.kiemTraThongTin(loaiNhanVien))
+            if (temp == null)
             {
                 return false;
             }
@@ -78,7 +76,6 @@ namespace QuanLyQuanCoffee.BUS
             {
                 temp.maLoaiNhanvien = loaiNhanVien.maLoaiNhanvien;
                 temp.tenLoai = CServices.formatChuoi(loaiNhanVien.tenLoai);
-                temp.luongCoBan = loaiNhanVien.luongCoBan;
                 quanLyQuanCoffee.SaveChanges();
             }
             catch (DbUpdateException)

@@ -22,6 +22,7 @@ namespace QuanLyQuanCoffee.Views
     {
         private NhanVien nhanVienSelect;
         private TaiKhoan taiKhoanSelect;
+        private List<HoaDon> hoaDons;
 
         public frmNhanVien(NhanVien nhanVien = null, TaiKhoan taiKhoan = null)
         {
@@ -39,6 +40,14 @@ namespace QuanLyQuanCoffee.Views
             {
                 taiKhoanSelect = new TaiKhoan();
             }
+
+            taoCa();
+            hoaDons = new List<HoaDon>();
+        }
+
+        private void taoCa()
+        {
+            CCa_BUS.CaLamViec = new DTO.CCa_DTO(nhanVienSelect.maNhanVien, DateTime.Now);
         }
 
         private void order_Click(object sender, RoutedEventArgs e)
@@ -86,18 +95,27 @@ namespace QuanLyQuanCoffee.Views
             }
             else
             {
-                if (CCa_BUS.isDaKetCa)
-                // đã kết ca rồi thì mới có thể đăng xuất
+                hoaDons = CHoaDon_BUS.DsHoaDon(CCa_BUS.CaLamViec.GioBatDau, DateTime.Now);
+                if (hoaDons.Count > 0)
                 {
-                    frmDangNhap f = new frmDangNhap();
-                    f.Show();
-                    CCa_BUS.isDaKetCa = false;
-                    CCa_BUS.CaLamViec = null;
-                    this.Close();
+                    if (CCa_BUS.isDaKetCa)
+                    // đã kết ca rồi thì mới có thể đăng xuất
+                    {
+                        frmDangNhap f = new frmDangNhap();
+                        f.Show();
+                        CCa_BUS.isDaKetCa = false;
+                        CCa_BUS.CaLamViec = null;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Phải kết ca mới có thể đăng xuất");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Phải kết ca mới có thể đăng xuất");
+                    new frmDangNhap().Show();
+                    this.Close();
                 }
             }
         }
@@ -107,22 +125,9 @@ namespace QuanLyQuanCoffee.Views
             new frmDoiTaiKhoan(taiKhoanSelect).Show();
         }
 
-        private void taoCa_Click(object sender, RoutedEventArgs e)
-        {
-            if (CCa_BUS.CaLamViec == null)
-            {
-                frmTaoCa frmTaoCa = new frmTaoCa(nhanVienSelect);
-                frmTaoCa.Show();
-            }
-            else
-            {
-                MessageBox.Show("Bạn đã tạo ca làm việc, không thể tạo ca nữa");
-            }
-        }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (CCa_BUS.CaLamViec != null && CCa_BUS.isDaKetCa == false)
+            if (CCa_BUS.CaLamViec != null && CCa_BUS.isDaKetCa == false && hoaDons.Count > 0)
             {
                 e.Cancel = true;
                 // không thể tắt ứng dụng khi chưa kết ca

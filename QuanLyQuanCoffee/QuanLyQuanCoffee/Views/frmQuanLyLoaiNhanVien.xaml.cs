@@ -41,7 +41,6 @@ namespace QuanLyQuanCoffee.Views
         {
             txtMaLoaiNhanVien.Text = loaiNhanVien.maLoaiNhanvien;
             txtTenLoai.Text = loaiNhanVien.tenLoai;
-            txtLuong.Text = loaiNhanVien.luongCoBan.ToString();
         }
 
         private void isEnabledThongTin(bool value)
@@ -53,14 +52,14 @@ namespace QuanLyQuanCoffee.Views
 
         private void dgDSLoaiNhanVien_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dgDSLoaiNhanVien.SelectedValue == null)
+            if (dgDSLoaiNhanVien.SelectedItem != null)
             {
-                return;
+                string maLoaiNhanVien = dgDSLoaiNhanVien.SelectedValue.ToString();
+                loaiNhanVienSelect = CLoaiNhanVien_BUS.find(maLoaiNhanVien);
+                hienThiThongTin(loaiNhanVienSelect);
+                isEnabledThongTin(true);
             }
-            string maLoaiNhanVien = dgDSLoaiNhanVien.SelectedValue.ToString();
-            loaiNhanVienSelect = CLoaiNhanVien_BUS.find(maLoaiNhanVien);
-            hienThiThongTin(loaiNhanVienSelect);
-            isEnabledThongTin(true);
+
         }
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
@@ -70,7 +69,6 @@ namespace QuanLyQuanCoffee.Views
                 LoaiNhanVien loaiNhanVien = new LoaiNhanVien();
                 loaiNhanVien.maLoaiNhanvien = txtMaLoaiNhanVien.Text;
                 loaiNhanVien.tenLoai = txtTenLoai.Text;
-                loaiNhanVien.luongCoBan = double.Parse(txtLuong.Text);
 
                 if (CLoaiNhanVien_BUS.add(loaiNhanVien))
                 {
@@ -79,7 +77,6 @@ namespace QuanLyQuanCoffee.Views
 
                     txtMaLoaiNhanVien.Text = CServices.taoMa<LoaiNhanVien>(CLoaiNhanVien_BUS.toList());
                     txtTenLoai.Text = "";
-                    txtLuong.Text = "";
                 }
             }
             catch (ArgumentNullException)
@@ -107,7 +104,6 @@ namespace QuanLyQuanCoffee.Views
                     loaiNhanVienSelect = null;
 
                     txtTenLoai.Text = "";
-                    txtLuong.Text = "";
                     txtMaLoaiNhanVien.Text = CServices.taoMa<LoaiNhanVien>(CLoaiNhanVien_BUS.toList());
                 }
             }
@@ -119,16 +115,15 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if (result == MessageBoxResult.Yes)
+            if (loaiNhanVienSelect != null)
             {
-                try
+                var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
                 {
                     LoaiNhanVien loaiNhanVien = new LoaiNhanVien();
                     loaiNhanVien.maLoaiNhanvien = txtMaLoaiNhanVien.Text;
                     loaiNhanVien.tenLoai = txtTenLoai.Text;
-                    loaiNhanVien.luongCoBan = double.Parse(txtLuong.Text);
 
                     if (CLoaiNhanVien_BUS.edit(loaiNhanVien))
                     {
@@ -136,21 +131,8 @@ namespace QuanLyQuanCoffee.Views
                         hienThiDSLoaiNhanVien(CLoaiNhanVien_BUS.toList());
 
                         txtTenLoai.Text = "";
-                        txtLuong.Text = "";
                         txtMaLoaiNhanVien.Text = CServices.taoMa<LoaiNhanVien>(CLoaiNhanVien_BUS.toList());
                     }
-                }
-                catch (ArgumentNullException)
-                {
-                    MessageBox.Show("Lỗi! Dữ liệu rống");
-                }
-                catch (FormatException)
-                {
-                    MessageBox.Show("Lỗi! Dữ liệu không hợp lệ, Lương cơ bản phải là số");
-                }
-                catch (OverflowException)
-                {
-                    MessageBox.Show("Lỗi! Độ dài quá giới hạn cho phép");
                 }
             }
         }
@@ -159,14 +141,8 @@ namespace QuanLyQuanCoffee.Views
         {
             hienThiThongTin(new LoaiNhanVien());
             isEnabledThongTin(false);
-        }
-
-        private void txtLuong_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter && txtLuong.Text != "")
-            {
-                btnThem_Click(sender, e);
-            }
+            loaiNhanVienSelect = null;
+            txtMaLoaiNhanVien.Text = CServices.taoMa<LoaiNhanVien>(CLoaiNhanVien_BUS.toList());
         }
     }
 }

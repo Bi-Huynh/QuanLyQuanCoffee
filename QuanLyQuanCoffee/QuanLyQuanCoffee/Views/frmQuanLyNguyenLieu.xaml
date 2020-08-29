@@ -40,6 +40,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã nguyên liệu" Binding="{Binding maNguyenLieu}" Width="1*"/>
                 <DataGridTextColumn Header="Tên nguyên liệu" Binding="{Binding tenNguyenLieu}" Width="1*"/>
+                <!--<DataGridTextColumn Header="Đơn vị tính" Binding="{Binding donViTinh}" Width="1*"/>-->
                 <DataGridTextColumn Header="Tổng số lượng" Binding="{Binding tongSoLuong}" Width="1*"/>
                 <DataGridTextColumn Header="Thành tiền" Binding="{Binding tongThanhTien}" Width="1*"/>
                 <DataGridTextColumn Header="Loại nguyên liệu" Binding="{Binding tenLoaiNguyenLieu}" Width="1*"/>
@@ -65,7 +66,7 @@
                 <RowDefinition Height="15"/>
             </Grid.RowDefinitions>
             <Button x:Name="btnQuanLyLoaiNguyenLieu" Grid.Row="1" Grid.Column="1" Content="Quản Lý Loại Nguyên Liệu" FontFamily="Arial" Click="btnQuanLyLoaiNguyenLieu_Click"/>
-            <Button x:Name="btnRefesh" Grid.Row="1" Grid.Column="3" Content="Refect" FontFamily="Arial" Click="btnRefesh_Click"/>
+            <Button x:Name="btnRefesh" Grid.Row="1" Grid.Column="3" Content="Refresh" FontFamily="Arial" Click="btnRefesh_Click"/>
             <Button x:Name="btnSua" Grid.Row="1" Grid.Column="5" Content="Sửa" FontFamily="Arial" Click="btnSua_Click"/>
             <Button x:Name="btnXoa" Grid.Row="1" Grid.Column="7" Content="Xóa" FontFamily="Arial" Click="btnXoa_Click"/>
             <Button x:Name="btnThem" Grid.Row="1" Grid.Column="9" Content="Thêm" FontFamily="Arial" Height="30" VerticalAlignment="Bottom" Click="btnThem_Click"/>

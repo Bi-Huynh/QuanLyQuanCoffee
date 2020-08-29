@@ -31,8 +31,6 @@ namespace QuanLyQuanCoffee.Views
 
         public void hienThiDS(List<NguyenLieu> list)
         {
-            //int s = CChiTietPhieuNhapNguyenLieu_BUS.tongSoLuong("0000000004");
-
             if (list.Count() > 0)
             {
                 dgDSNguyenLieu.ItemsSource = list.Select(x => new

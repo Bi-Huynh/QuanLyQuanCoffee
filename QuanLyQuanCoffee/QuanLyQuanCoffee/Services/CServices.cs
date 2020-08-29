@@ -75,42 +75,42 @@ namespace QuanLyQuanCoffee.Services
 
         //public static List<T> sort()
 
-        public static string taoMaLoaiTaiKhoan(List<LoaiTaiKhoan> list)
-        {
-            string ma = "";
-            if (list.Count() == 0)
-            {
-                ma = "00001";
-            }
-            else
-            {
-                try
-                {
-                    LoaiTaiKhoan temp = list[list.Count() - 1];
-                    double thuTu = int.Parse(temp.ToString());
-                    ++thuTu;
-                    if (thuTu == 99999)
-                    {
-                        MessageBox.Show("Mã đã tới giới hạn, không thể tăng nữa");
-                        return "";
-                    }
-                    ma = String.Format("{0:00000}", thuTu);
-                }
-                catch (ArgumentNullException)
-                {
-                    MessageBox.Show("Lỗi, tạo mã tự động 1");
-                }
-                catch (FormatException)
-                {
-                    MessageBox.Show("Lỗi, tạo mã tự động 2");
-                }
-                catch (OverflowException)
-                {
-                    MessageBox.Show("Lỗi, tạo mã tự động 3");
-                }
-            }
-            return ma;
-        }
+        //public static string taoMaLoaiTaiKhoan(List<LoaiTaiKhoan> list)
+        //{
+        //    string ma = "";
+        //    if (list.Count() == 0)
+        //    {
+        //        ma = "00001";
+        //    }
+        //    else
+        //    {
+        //        try
+        //        {
+        //            LoaiTaiKhoan temp = list[list.Count() - 1];
+        //            double thuTu = int.Parse(temp.ToString());
+        //            ++thuTu;
+        //            if (thuTu == 99999)
+        //            {
+        //                MessageBox.Show("Mã đã tới giới hạn, không thể tăng nữa");
+        //                return "";
+        //            }
+        //            ma = String.Format("{0:00000}", thuTu);
+        //        }
+        //        catch (ArgumentNullException)
+        //        {
+        //            MessageBox.Show("Lỗi, tạo mã tự động 1");
+        //        }
+        //        catch (FormatException)
+        //        {
+        //            MessageBox.Show("Lỗi, tạo mã tự động 2");
+        //        }
+        //        catch (OverflowException)
+        //        {
+        //            MessageBox.Show("Lỗi, tạo mã tự động 3");
+        //        }
+        //    }
+        //    return ma;
+        //}
 
         // định dạng lại chuỗi được truyền vào thành chuỗi chuẩn
         public static string formatChuoi(string strInput)
@@ -216,15 +216,16 @@ namespace QuanLyQuanCoffee.Services
             return true;
         }
 
-        public static bool kiemTraThongTin(LoaiNhanVien loaiNhanVien)
-        {
-            if (loaiNhanVien.luongCoBan < 0)
-            {
-                MessageBox.Show("Lương cơ bản phải là số nguyên dương");
-                return false;
-            }
-            return true;
-        }
+        //public static bool kiemTraThongTin(LoaiNhanVien loaiNhanVien)
+        //{
+        //    if (loaiNhanVien.luongCoBan < 0)
+        //    {
+        //        MessageBox.Show("Lương cơ bản phải là số nguyên dương");
+        //        return false;
+        //    }
+        //    return true;
+        //}
+
         public static bool kiemTraThongTin(ChiTietHoaDon chiTietHoaDon)
         {
             if (chiTietHoaDon.thanhTien < 0)
@@ -237,7 +238,7 @@ namespace QuanLyQuanCoffee.Services
 
         public static bool kiemTraThongTin(TaiKhoan taiKhoan)
         {
-            if (kiemTraTonTaiKhoangTrang(taiKhoan.taiKhoan1) == false)
+            if (kiemTraTonTaiKhoangTrang(taiKhoan.tenTaiKhoan) == false)
             {
                 MessageBox.Show("Tài khoản hoặc mật khẩu không được dùng Khoảng Trắng(Space)");
                 return false;
@@ -247,7 +248,7 @@ namespace QuanLyQuanCoffee.Services
                 MessageBox.Show("Tài khoản hoặc mật khẩu không được dùng Khoảng Trắng(Space)");
                 return false;
             }
-            if (taiKhoan.taiKhoan1 == "")
+            if (taiKhoan.tenTaiKhoan == "")
             {
                 MessageBox.Show("Bạn chưa nhập tài khoản");
                 return false;
@@ -257,7 +258,7 @@ namespace QuanLyQuanCoffee.Services
                 MessageBox.Show("Bạn chưa nhập mật khẩu");
                 return false;
             }
-            foreach (char item in taiKhoan.taiKhoan1)
+            foreach (char item in taiKhoan.tenTaiKhoan)
             {
                 if ((item >= 0 && item <= 47) || 
                     (item >= 58 && item <= 64) || 
@@ -298,6 +299,7 @@ namespace QuanLyQuanCoffee.Services
             //}
             return true;
         }
+
         public static bool kiemTraThongTin(HoaDon hoaDon)
         {
             if (hoaDon.tongThanhTien < 0)
@@ -310,6 +312,7 @@ namespace QuanLyQuanCoffee.Services
             //}    
             return true;
         }
+
         public static bool kiemTraThongTin(LoaiNguyenLieu loaiNguyenLieu)
         {
             return true;

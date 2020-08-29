@@ -39,6 +39,7 @@ namespace QuanLyQuanCoffee.Views
             }
             chiTietHoaDons = new List<ChiTietHoaDon>();
             txtTenNhanVien.Content = nhanVienSelect.hoNhanVien + " " + nhanVienSelect.tenNhanVien;
+            btnHoanTac.IsEnabled = false;
         }
 
         public void hienthitheoListBOX(string maloai)
@@ -204,6 +205,32 @@ namespace QuanLyQuanCoffee.Views
                     hoaDon.ngayLap = DateTime.Now;
                     hoaDon.tongThanhTien = tongThanhTien;
 
+                    if (txtTienKhachDua.Text == "" || txtTienKhachDua.Text == null)
+                    {
+                        hoaDon.tienKhachDua = 0;
+                    }
+                    else
+                    {
+                        hoaDon.tienKhachDua = double.Parse(txtTienKhachDua.Text);
+                    }
+
+                    if (txtTienThoiLai.Text == "" || txtTienThoiLai.Text == null)
+                    {
+                        hoaDon.tienThua = 0;
+                    }
+                    else
+                    {
+                        double tienThua = hoaDon.tienKhachDua.Value - hoaDon.tongThanhTien;
+                        if (tienThua < 0)
+                        {
+                            MessageBox.Show("Tiền khách đưa không thể nhỏ hơn tổng thành tiền");
+                        }
+                        else
+                        {
+                            hoaDon.tienThua = tienThua;
+                        }
+                    }
+
                     hoaDon.trangThai = 0;
 
                     foreach (var item in chiTietHoaDons)
@@ -220,6 +247,10 @@ namespace QuanLyQuanCoffee.Views
                     {
                         MessageBox.Show("Xuất hóa đơn thành công");
                     }
+                    else
+                    {
+                        return;
+                    }
 
                     chiTietHoaDons.Clear();
                     hienThiDSChiTietHD(chiTietHoaDons);
@@ -229,32 +260,23 @@ namespace QuanLyQuanCoffee.Views
                     txtTienKhachDua.Text = "";
                     txtTienThoiLai.Text = "";
                 }
-                catch (DbEntityValidationException)
-                {
-                    MessageBox.Show("loi kieu du lieu");
-                }
-                catch (DbUpdateException)
-                {
-                    MessageBox.Show("data k update");
-                }
                 catch (ArgumentNullException)
                 {
-                    MessageBox.Show("Không được để rỗng đơn giá");
+                    MessageBox.Show("Không được để rỗng đơn giá, tiền khách đưa, tiền thừa");
                 }
                 catch (FormatException)
                 {
-                    MessageBox.Show("Đơn giá phải là số");
+                    MessageBox.Show("Đơn giá, tiền khách đưa, tiền thừa, phải là số");
                 }
                 catch (OverflowException)
                 {
-                    MessageBox.Show("Đơn giá vượt quá giới hạn lưu trữ");
+                    MessageBox.Show("Đơn giá, tiền khách đưa, tiền thừa, vượt quá giới hạn lưu trữ");
                 }
             }
             else
             {
-                MessageBox.Show("Ma hoa don da ton tai");
+                MessageBox.Show("Mã hóa đơn đã tồn tại");
             }
-
         }
 
         public void themChiTietHoaDon()
@@ -294,7 +316,7 @@ namespace QuanLyQuanCoffee.Views
                     }
                     else
                     {
-                        txtTienThoiLai.Text = "";
+                        MessageBox.Show("Tiền khách đưa nhỏ hơn tổng giá trị hóa đơn");
                     }
                 }
             }
@@ -342,6 +364,8 @@ namespace QuanLyQuanCoffee.Views
                     }
                     chiTietHoaDons.Clear();
                     hienThiDSChiTietHD(chiTietHoaDons);
+                    btnHoanTac.IsEnabled = true;
+                    btnTreoHoaDon.IsEnabled = false;
                 }
                 catch (ArgumentNullException)
                 {
@@ -376,6 +400,8 @@ namespace QuanLyQuanCoffee.Views
                     }
                     hienThiDSChiTietHD(chiTietHoaDons);
                     CHoaDon_BUS.hoaDonTreo = null;
+                    btnTreoHoaDon.IsEnabled = true;
+                    btnHoanTac.IsEnabled = false;
                 }
             }
             else

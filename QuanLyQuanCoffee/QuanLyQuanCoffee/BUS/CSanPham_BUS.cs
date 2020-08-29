@@ -30,6 +30,17 @@ namespace QuanLyQuanCoffee.BUS
             List<SanPham> list = quanLyQuanCoffee.SanPhams.ToList();
             return list == null ? new List<SanPham>() : list;
         }
+
+        public static List<string> toListTenSanPham()
+        {
+            List<string> sanPhams = new List<string>();
+            foreach (SanPham sanPham in quanLyQuanCoffee.SanPhams.ToList())
+            {
+                sanPhams.Add(sanPham.tenSanPham.Trim());
+            }
+            return sanPhams;
+        }
+
         public static List<SanPham> toListTK(string maSP)
         {
             List<SanPham> list = quanLyQuanCoffee.SanPhams.Where(x => x.trangThai == 0&&x.maSanPham.Contains(maSP)==true).ToList();
@@ -167,6 +178,7 @@ namespace QuanLyQuanCoffee.BUS
                     temp.donGia = sanPham.donGia;
                     temp.maLoaiSanPham = sanPham.maLoaiSanPham;
                     temp.trangThai = sanPham.trangThai;
+                    temp.ThanhPhans = sanPham.ThanhPhans;
                     quanLyQuanCoffee.SaveChanges();
                 }
                 catch (DbUpdateException)
