@@ -20,39 +20,35 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<ChiTietPhieuXuat>() : list;
         }
 
-        public static bool CapNhapSoLuong_CTNguyenLieu(List<ChiTietPhieuXuat> list)
+        public static void CapNhapSoLuong_CTNguyenLieu(List<ChiTietPhieuXuat> list)
         {
             if (list.Count > 0)
             {
                 foreach (var temp in list)
                 {
-                    ChiTietNguyenLieu chiTietNL = CChiTietNguyenLieu_BUS.findChiTietNguyenLieu(temp.maChitietNguyenLieu);
-                    chiTietNL.soLuong = 0;
-                    try
-                    {
-                        quanLyQuanCoffee.SaveChanges();
-                    }
-                    catch (DbUpdateException)
-                    {
+                    temp.ChiTietNguyenLieu.soLuong = 0;
+                }
+                try
+                {
+                    quanLyQuanCoffee.SaveChanges();
+                }
+                catch (DbUpdateException)
+                {
 
-                        MessageBox.Show("Lỗi không Lưu được dữ liệu");
-                    }
-                    catch (DbEntityValidationException)
-                    {
+                    MessageBox.Show("Lỗi không Lưu được dữ liệu");
+                }
+                catch (DbEntityValidationException)
+                {
 
-                        MessageBox.Show("Lỗi không Lưu được dữ liệu");
-                    }
+                    MessageBox.Show("Lỗi không Lưu được dữ liệu");
                 }
 
 
             }
-
-
-            return true;
         }
 
-        
-        
+
+
         public static string findNgayXuat(string maChiTietNguyenLieu)
         {
             string ngayXuat = "NULL";

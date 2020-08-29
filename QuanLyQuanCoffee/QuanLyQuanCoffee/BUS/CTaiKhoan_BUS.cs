@@ -49,7 +49,16 @@ namespace QuanLyQuanCoffee.BUS
 
         public static TaiKhoan find(string maTaiKhoan)
         {
-            TaiKhoan taiKhoan = quanLyQuanCoffee.TaiKhoans.Find(maTaiKhoan);
+            TaiKhoan taiKhoan = new TaiKhoan();
+            foreach (TaiKhoan tk in quanLyQuanCoffee.TaiKhoans.ToList())
+            {
+                if (tk.maTaiKhoan == maTaiKhoan)
+                {
+                    taiKhoan = tk;
+                    break;
+                }
+            }
+
             return taiKhoan;
         }
 
@@ -161,14 +170,12 @@ namespace QuanLyQuanCoffee.BUS
 
         public static bool edit(TaiKhoan taiKhoan)
         {
-            TaiKhoan temp = find(taiKhoan.maNhanVien);
+            TaiKhoan temp = find(taiKhoan.maTaiKhoan);
             if (temp != null)
             {
                 try
                 {
                     temp.tenTaiKhoan = taiKhoan.tenTaiKhoan;
-                    temp.matKhau = taiKhoan.matKhau;
-                    temp.trangThai = taiKhoan.trangThai;
                     quanLyQuanCoffee.SaveChanges();
                 }
                 catch (DbUpdateException)

@@ -25,6 +25,7 @@ namespace QuanLyQuanCoffee.Views
         private SanPham sanPhamSelect;
         private LoaiSanPham loaisanpham;
         private List<NguyenLieu> nguyenLieuThanhPhans;
+        private int chosseTimKiem = 0;
 
         public frmQuanLySanPham()
         {
@@ -45,7 +46,8 @@ namespace QuanLyQuanCoffee.Views
 
         public void hienThiDSNguyenLieuDuocChon()
         {
-            lstThanhPhanDuocChon.ItemsSource = nguyenLieuThanhPhans.Select(x => new {
+            lstThanhPhanDuocChon.ItemsSource = nguyenLieuThanhPhans.Select(x => new
+            {
                 tenNguyenLieu = x.tenNguyenLieu
             });
         }
@@ -74,6 +76,7 @@ namespace QuanLyQuanCoffee.Views
             }
 
         }
+
         public void HienTHiTK(string maSP)
         {
             try
@@ -85,6 +88,7 @@ namespace QuanLyQuanCoffee.Views
                 MessageBox.Show("Có lỗi: " + ex.Message);
             }
         }
+
         private void cboLoaisanpham_Loaded(object sender, RoutedEventArgs e)
         {
             try
@@ -358,17 +362,60 @@ namespace QuanLyQuanCoffee.Views
 
         private void TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            if (txtTK.Text == "")
+            if (txtTK.Text == "" || txtTK.Text == null)
             {
                 hienthiSP();
                 return;
             }
 
-            // nếu combox tìm kiếm là 0 tức là tìm theo mã phiếu nhập
+            switch (chosseTimKiem)
+            {
+                case 0:
+                    HienTHiTK(txtTK.Text);
+                    break;
+                case 1:
+                    dgQlsanpham.ItemsSource = CSanPham_BUS.toListTenSanPham(txtTK.Text).Select(x => new
+                    {
+                        maSanPham = x.maSanPham,
+                        tenSanPham = x.tenSanPham,
+                        donViTinh = x.donViTinh,
+                        donGia = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.donGia),
+                        tenLoaiSanPham = x.LoaiSanPham.tenLoai,
+                        trangThai = x.trangThai == 0 ? "Mở" : "Khóa"
+                    });
+                    break;
+                case 2:
+                    try
+                    {
+                        int donGia = int.Parse(txtTK.Text);
+                        dgQlsanpham.ItemsSource = CSanPham_BUS.toListDonGia(donGia).Select(x => new
+                        {
+                            maSanPham = x.maSanPham,
+                            tenSanPham = x.tenSanPham,
+                            donViTinh = x.donViTinh,
+                            donGia = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.donGia),
+                            tenLoaiSanPham = x.LoaiSanPham.tenLoai,
+                            trangThai = x.trangThai == 0 ? "Mở" : "Khóa"
+                        }); 
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        MessageBox.Show("Đơn giá không được để null");
+                    }
+                    catch (FormatException)
+                    {
+                        MessageBox.Show("Đơn giá chỉ được nhập số");
+                        txtTK.Text = "";
+                    }
+                    catch (OverflowException)
+                    {
+                        MessageBox.Show("Đơn giá có độ dài vượt giá mức cho phép");
+                    }
 
-            HienTHiTK(txtTK.Text);
-
-
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void lstThanhPhan_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -388,6 +435,14 @@ namespace QuanLyQuanCoffee.Views
                 NguyenLieu nguyenLieu = CNguyenLieu_BUS.findNguyenLieuByTen(lstThanhPhanDuocChon.SelectedValue.ToString());
                 nguyenLieuThanhPhans.Remove(nguyenLieu);
                 hienThiDSNguyenLieuDuocChon();
+            }
+        }
+
+        private void cmbTimKiem_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbTimKiem.SelectedItem != null)
+            {
+                chosseTimKiem = cmbTimKiem.SelectedIndex;
             }
         }
     }

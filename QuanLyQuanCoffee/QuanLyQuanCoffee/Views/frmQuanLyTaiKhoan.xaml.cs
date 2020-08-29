@@ -23,10 +23,14 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmQuanLyTaiKhoan : Page
     {
+        private TaiKhoan taiKhoanSelect;
+
         public frmQuanLyTaiKhoan()
         {
             InitializeComponent();
+
             hienthiDStaikhoan();
+
         }
 
         public void hienthiDStaikhoan()
@@ -46,7 +50,7 @@ namespace QuanLyQuanCoffee.Views
         {
             try
             {
-                if (txtTaiKhoan.Text == "" || txtTaiKhoan.Text == null||
+                if (txtTaiKhoan.Text == "" || txtTaiKhoan.Text == null ||
                     txtMatKhau.Text == "" || txtMatKhau.Text == null)
                 {
                     MessageBox.Show("Yêu cầu điền thông tin tài khoản");
@@ -55,6 +59,11 @@ namespace QuanLyQuanCoffee.Views
 
                 TaiKhoan taiKhoan = new TaiKhoan();
                 string maNhanVien = CNhanVien_BUS.findTenbyMa(cmbTenNhanVien.SelectedItem.ToString());
+                if (maNhanVien == "")
+                {
+                    MessageBox.Show("Vui lòng chọn nhân viên");
+                    return;
+                }
                 taiKhoan.maNhanVien = maNhanVien;
 
                 if (taiKhoan.maNhanVien == null || taiKhoan.maNhanVien == "")
@@ -62,7 +71,7 @@ namespace QuanLyQuanCoffee.Views
                     MessageBox.Show("Không lấy được mã nhân viên");
                     return;
                 }
-                if ((txtTaiKhoan.Text == null || txtTaiKhoan.Text == "") && 
+                if ((txtTaiKhoan.Text == null || txtTaiKhoan.Text == "") &&
                     (txtMatKhau.Text == null || txtMatKhau.Text == ""))
                 {
                     MessageBox.Show("Điền đầy đủ thông tin tài khoản");
@@ -72,6 +81,15 @@ namespace QuanLyQuanCoffee.Views
                 {
                     MessageBox.Show("Tên tài khoản đã tồn tại");
                     return;
+                }
+
+                foreach (char item in txtTaiKhoan.Text)
+                {
+                    if ((item < 65 || item > 90) && (item < 97 || item > 122) && (item < 0 || item > 57))
+                    {
+                        MessageBox.Show("Tên tài khoản chỉ có các chữ cái in hoa hoặc thường và số");
+                        return;
+                    }
                 }
 
                 taiKhoan.tenTaiKhoan = txtTaiKhoan.Text;
@@ -93,6 +111,7 @@ namespace QuanLyQuanCoffee.Views
 
             hienthiDStaikhoan();
             load();
+            cmbTenNhanVien_Loaded(sender, e);
         }
 
         public void load()
@@ -127,6 +146,56 @@ namespace QuanLyQuanCoffee.Views
         {
             List<NhanVien> nhanViens = CNhanVien_BUS.toListNotAccount();
             cmbTenNhanVien.ItemsSource = nhanViens.Select(x => x.hoNhanVien + " " + x.tenNhanVien).ToList();
+        }
+
+        private void btnSua_Click(object sender, RoutedEventArgs e)
+        {
+            if (taiKhoanSelect != null)
+            {
+                foreach (char item in txtTaiKhoan.Text)
+                {
+                    if ((item < 65 || item > 90) && (item < 97 || item > 122) && (item < 0 || item > 57))
+                    {
+                        MessageBox.Show("Tên tài khoản chỉ có các chữ cái in hoa hoặc thường và số");
+                        return;
+                    }
+                }
+
+                taiKhoanSelect.tenTaiKhoan = txtTaiKhoan.Text;
+                if (CTaiKhoan_BUS.edit(taiKhoanSelect))
+                {
+                    MessageBox.Show("Sửa thành công");
+                    txtMatKhau.IsEnabled = true;
+                    load();
+                    hienthiDStaikhoan();
+                }
+            }
+        }
+
+        private void dgQltaikhoan_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgQltaikhoan.SelectedItem != null)
+            {
+                taiKhoanSelect = new TaiKhoan();
+                taiKhoanSelect = CTaiKhoan_BUS.find(dgQltaikhoan.SelectedValue.ToString());
+
+                if (taiKhoanSelect != null)
+                {
+                    txtTaiKhoan.Text = taiKhoanSelect.tenTaiKhoan;
+                    txtMatKhau.Text = "";
+                    txtMatKhau.IsEnabled = false;
+                }
+            }
+        }
+
+        private void btnBoChon_Click(object sender, RoutedEventArgs e)
+        {
+            if (taiKhoanSelect != null)
+            {
+                load();
+                taiKhoanSelect = null;
+                txtMatKhau.IsEnabled = true;
+            }
         }
     }
 }

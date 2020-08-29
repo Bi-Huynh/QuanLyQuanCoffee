@@ -16,15 +16,19 @@ namespace QuanLyQuanCoffee.BUS
 
         public static List<ChiTietPhieuNhap> toList()
         {
-            List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
-                .Where(x => x.soLuong > 0).ToList();
-            return list == null ? new List<ChiTietPhieuNhap>() : list;
-            //using (QuanLyQuanCoffeeEntities1 temp = new QuanLyQuanCoffeeEntities1())
-            //{
-            //    List<ChiTietPhieuNhap> list;
-            //    list = temp.ChiTietPhieuNhaps.Where(x => x.soLuong > 0).ToList();
-            //    return list == null ? new List<ChiTietPhieuNhap>() : list;
-            //}
+            //List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
+            //    .Where(x => x.soLuong > 0).ToList();
+            //return list == null ? new List<ChiTietPhieuNhap>() : list;
+
+            List<ChiTietPhieuNhap> chiTietPhieuNhaps = new List<ChiTietPhieuNhap>();
+            foreach (ChiTietPhieuNhap item in quanLyQuanCoffee.ChiTietPhieuNhaps.ToList())
+            {
+                if (item.ChiTietNguyenLieu.soLuong > 0)
+                {
+                    chiTietPhieuNhaps.Add(item);
+                }
+            }
+            return chiTietPhieuNhaps;
         }
 
         public static List<ChiTietPhieuNhap> toList(string maPhieuNhap)
@@ -90,9 +94,20 @@ namespace QuanLyQuanCoffee.BUS
 
         public static List<ChiTietPhieuNhap> toListTenNguyenLieu(string tenNguyenLieu)
         {
-            List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
-                .Where(x => x.ChiTietNguyenLieu.NguyenLieu.tenNguyenLieu == tenNguyenLieu).ToList();
-            return list == null ? new List<ChiTietPhieuNhap>() : list;
+            //List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
+            //    .Where(x => x.ChiTietNguyenLieu.NguyenLieu.tenNguyenLieu == tenNguyenLieu).ToList();
+            //return list == null ? new List<ChiTietPhieuNhap>() : list;
+
+            List<ChiTietPhieuNhap> chiTietPhieuNhaps = new List<ChiTietPhieuNhap>();
+            foreach (ChiTietPhieuNhap item in quanLyQuanCoffee.ChiTietPhieuNhaps.ToList())
+            {
+                if (item.ChiTietNguyenLieu.soLuong > 0 && 
+                    item.ChiTietNguyenLieu.NguyenLieu.tenNguyenLieu == tenNguyenLieu)
+                {
+                    chiTietPhieuNhaps.Add(item);
+                }
+            }
+            return chiTietPhieuNhaps;
         }
 
         public static ChiTietPhieuNhap find(string maChiTietPhieuNhap)

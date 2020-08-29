@@ -32,7 +32,7 @@
         </Grid>
 
         <StackPanel Orientation="Horizontal" Margin="10,0">
-            <StackPanel Width="600" Margin="0,0,10,0">
+            <!--<StackPanel Width="600" Margin="0,0,10,0">
                 <Label Grid.Row="4" Grid.Column="1" Content="Bảng xếp hạng nhân viên" Margin="0,0,0,10"></Label>
                 <DataGrid x:Name="dgBangXepHang" Margin="0,0,0,10" MinHeight="150" MaxHeight="250"
                       AutoGenerateColumns="False" VerticalContentAlignment="Center"
@@ -43,7 +43,7 @@
                         <DataGridTextColumn Header="Họ Tên" Binding="{Binding hoTen}" Width="2*"/>
                         <DataGridTextColumn Header="Chức vụ" Binding="{Binding chucVu}" Width="1*"/>
                         <DataGridTextColumn Header="SL Hóa Đơn" Binding="{Binding soLuongHoaDon}" Width="1*"/>
-                        <!--<DataGridTextColumn Header="Số Lượng Bán" Binding="{Binding soLuongBan}" Width="1*"/>-->
+                        --><!--<DataGridTextColumn Header="Số Lượng Bán" Binding="{Binding soLuongBan}" Width="1*"/>--><!--
                         <DataGridTextColumn Header="Tổng Tiền" Binding="{Binding tongTien}" Width="1*"/>
                     </DataGrid.Columns>
                 </DataGrid>
@@ -56,16 +56,16 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="STT" Binding="{Binding stt}" Width=".3*"/>
                         <DataGridTextColumn Header="Tên Sản Phẩm" Binding="{Binding tenSanPham}" Width="1*"/>
-                        <!--<DataGridTextColumn Header="Số Lượng Hóa Đơn" Binding="{Binding soLuongHoaDon}" Width="1*"/>-->
+                        --><!--<DataGridTextColumn Header="Số Lượng Hóa Đơn" Binding="{Binding soLuongHoaDon}" Width="1*"/>--><!--
                         <DataGridTextColumn Header="Số Lượng Bán" Binding="{Binding soLuongBan}" Width="1*"/>
                         <DataGridTextColumn Header="Tổng Tiền" Binding="{Binding tongTien}" Width="1*"/>
                     </DataGrid.Columns>
                 </DataGrid>
-            </StackPanel>
+            </StackPanel>-->
 
             <StackPanel>
                 <Label Grid.Row="4" Grid.Column="3" Content="Danh sách Phiếu Thống Kê" Margin="0,0,0,10"></Label>
-                <DataGrid x:Name="dgPhieuThongKe" Width="570" MaxHeight="550" MinHeight="346"
+                <DataGrid x:Name="dgPhieuThongKe" Width="1200" MaxHeight="550" MinHeight="346"
                       AutoGenerateColumns="False" SelectedValuePath="maThongKe"
                       HorizontalContentAlignment="Center" HorizontalScrollBarVisibility="Auto"
                       Background="White" FontFamily="Arial" IsReadOnly="True"

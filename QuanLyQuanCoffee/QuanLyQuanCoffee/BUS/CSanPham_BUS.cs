@@ -27,7 +27,7 @@ namespace QuanLyQuanCoffee.BUS
 
         public static List<SanPham> toList()
         {
-            List<SanPham> list = quanLyQuanCoffee.SanPhams.ToList();
+            List<SanPham> list = quanLyQuanCoffee.SanPhams.Where(x => x.trangThai == 0).ToList();
             return list == null ? new List<SanPham>() : list;
         }
 
@@ -37,6 +37,32 @@ namespace QuanLyQuanCoffee.BUS
             foreach (SanPham sanPham in quanLyQuanCoffee.SanPhams.ToList())
             {
                 sanPhams.Add(sanPham.tenSanPham.Trim());
+            }
+            return sanPhams;
+        }
+
+        public static List<SanPham> toListTenSanPham(string tenSanPham)
+        {
+            List<SanPham> sanPhams = new List<SanPham>();
+            foreach (SanPham sanPham in quanLyQuanCoffee.SanPhams.ToList())
+            {
+                if (sanPham.tenSanPham.Contains(tenSanPham))
+                {
+                    sanPhams.Add(sanPham);
+                }
+            }
+            return sanPhams;
+        }
+
+        public static List<SanPham> toListDonGia(int donGia)
+        {
+            List<SanPham> sanPhams = new List<SanPham>();
+            foreach (SanPham sanPham in quanLyQuanCoffee.SanPhams.ToList())
+            {
+                if (sanPham.donGia.Value >= donGia)
+                {
+                    sanPhams.Add(sanPham);
+                }
             }
             return sanPhams;
         }

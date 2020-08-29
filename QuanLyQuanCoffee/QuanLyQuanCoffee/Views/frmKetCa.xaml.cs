@@ -26,6 +26,7 @@ namespace QuanLyQuanCoffee.Views
     {
         private NhanVien nhanVien;
         private KetCa ketCa;
+
         public frmKetCa(NhanVien nv = null)
         {
             InitializeComponent();
@@ -88,7 +89,13 @@ namespace QuanLyQuanCoffee.Views
                     txtTongDoanhThu.Text = String.Format("{0:#,###,0VND;(#,###,0 VND);0 VND}", tongDoanhThu);
                     ketCa.tienDauCa = tienDauCa;
                     ketCa.tongDoanhThu = tongDoanhThu;
+                    if (e.Key == Key.Enter)
+                    {
+                        btnKetCa_Click(sender, e);
+                    }
+
                 }
+
             }
             catch (ArgumentNullException)
             {
@@ -112,6 +119,11 @@ namespace QuanLyQuanCoffee.Views
         {
             if (ketCa != null)
             {
+                if (ketCa.tienDauCa == 0)
+                {
+                    MessageBox.Show("Vui lòng nhập tiền đầu ca");
+                    return;
+                }
                 if (CCa_BUS.add(ketCa))
                 {
                     MessageBox.Show("Kết ca thành công");

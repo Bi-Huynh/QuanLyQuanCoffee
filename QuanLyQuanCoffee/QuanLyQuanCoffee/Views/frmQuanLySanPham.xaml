@@ -114,7 +114,8 @@
             <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cmbTimKiem"
                       VerticalContentAlignment="Center"
                       HorizontalContentAlignment="Center"
-                      Margin="10,0,10,0">
+                      Margin="10,0,10,0"
+                      SelectionChanged="cmbTimKiem_SelectionChanged">
                 <ComboBoxItem Content="Mã sản phẩm" IsSelected="True"/>
                 <ComboBoxItem Content="Tên sản phẩm"/>
                 <ComboBoxItem Content="Đơn giá"/>

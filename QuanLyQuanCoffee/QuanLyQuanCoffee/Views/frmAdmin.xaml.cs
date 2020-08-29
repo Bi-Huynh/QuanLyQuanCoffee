@@ -88,10 +88,10 @@ namespace QuanLyQuanCoffee.Views
             Main.Content = new frmQuanLyKetCa();
         }
 
-        private void gd_QuanLyThongKe_Click(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new frmQuanLyThongKe();
-        }
+        //private void gd_QuanLyThongKe_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Main.Content = new frmQuanLyThongKe();
+        //}
 
         private void gd_doiMatKhau_Click(object sender, RoutedEventArgs e)
         {

@@ -35,14 +35,16 @@
             <ComboBox Grid.Row="1" Grid.Column="3" x:Name="cmbLoaiTaiKhoan" Margin="5,0,10,0" FontSize="18" Loaded="cmbLoaiTaiKhoan_Loaded"></ComboBox>-->
 
             <Button Grid.Row="1" Grid.Column="4" Content="Thêm" x:Name="btnThemTK" Click="btnThemTK_Click"  FontSize="18" Margin="10,5,10,5" Height="30"/>
-            <!--<Button Grid.Row="2" Grid.Column="1" Content="Refect" x:Name="btnRefect" FontSize="18" Margin="5,10,5,0" Click="btnRefect_Click"/>-->
+            <Button Grid.Row="2" Grid.Column="0" Content="Sửa" x:Name="btnSua" FontSize="18" Margin="5,10,5,0" Click="btnSua_Click"/>
+            <Button Grid.Row="2" Grid.Column="1" Content="Bỏ chọn" x:Name="btnBoChon" FontSize="18" Margin="5,10,5,0" Click="btnBoChon_Click"/>
             <Button Grid.Row="2" Grid.Column="2" Content="Khóa tài khoản" x:Name="btnKhoaTaiKhoan" Click="btnKhoaTaiKhoan_Click" FontSize="18" Margin="5,10,5,0"/>
             <Button Grid.Row="2" Grid.Column="3" Content="Mở tài khoản" x:Name="btnMoTaiKhoan" Click="btnMoTaiKhoan_Click" FontSize="18" Margin="10,10,10,0"/>
 
             <GroupBox Header="Danh Sách tài khoản" Grid.Row="3" Grid.ColumnSpan="4" Height="550" Margin="10">
                 <DataGrid  Name="dgQltaikhoan" 
                            AutoGenerateColumns="False" IsReadOnly="True"
-                           SelectedValuePath="maTaiKhoan" FontSize="18">
+                           SelectedValuePath="maTaiKhoan" FontSize="18"
+                           SelectionChanged="dgQltaikhoan_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Mã tài khoản" Binding="{Binding maTaiKhoan}" Width="1*" Visibility="Hidden"/>
                         <DataGridTextColumn Header="Mã nhân viên" Binding="{Binding maNhanVien}" Width="1*"/>

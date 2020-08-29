@@ -101,12 +101,15 @@ namespace QuanLyQuanCoffee.BUS
         // tìm kiếm nhân viên theo tên nhân viên
         public static string findTenbyMa(string tenNhanVien)
         {
-            foreach (NhanVien nhanVien in toList())
+            if (tenNhanVien != null && tenNhanVien != "")
             {
-                string hoTen = nhanVien.hoNhanVien + " " + nhanVien.tenNhanVien;
-                if (hoTen == tenNhanVien)
+                foreach (NhanVien nhanVien in toList())
                 {
-                    return nhanVien.maNhanVien;
+                    string hoTen = nhanVien.hoNhanVien + " " + nhanVien.tenNhanVien;
+                    if (hoTen == tenNhanVien)
+                    {
+                        return nhanVien.maNhanVien;
+                    }
                 }
             }
             return "";

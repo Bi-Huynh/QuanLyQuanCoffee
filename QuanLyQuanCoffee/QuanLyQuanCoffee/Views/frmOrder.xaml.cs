@@ -26,12 +26,13 @@ namespace QuanLyQuanCoffee.Views
     {
         NhanVien nhanVienSelect;
         private List<ChiTietHoaDon> chiTietHoaDons;
-        //private HoaDon hoaDonTreo;
+        private int tinhTien = 0;
         private double tongThanhTien;
 
         public frmOrder(NhanVien nhanVien = null)
         {
             InitializeComponent();
+
             nhanVienSelect = nhanVien;
             if (nhanVienSelect == null)
             {
@@ -39,7 +40,15 @@ namespace QuanLyQuanCoffee.Views
             }
             chiTietHoaDons = new List<ChiTietHoaDon>();
             txtTenNhanVien.Content = nhanVienSelect.hoNhanVien + " " + nhanVienSelect.tenNhanVien;
-            btnHoanTac.IsEnabled = false;
+            if (CHoaDon_BUS.hoaDonTreo != null)
+            {
+                btnTreoHoaDon.IsEnabled = false;
+                btnHoanTac.IsEnabled = true;
+            }
+            else
+            {
+                btnHoanTac.IsEnabled = false;
+            }
         }
 
         public void hienthitheoListBOX(string maloai)
@@ -100,7 +109,10 @@ namespace QuanLyQuanCoffee.Views
 
         private void txtTenNhanVien_Loaded(object sender, RoutedEventArgs e)
         {
-            txtTenNhanVien.Content = nhanVienSelect.hoNhanVien + " " + nhanVienSelect.tenNhanVien;
+            if (nhanVienSelect != null)
+            {
+                txtTenNhanVien.Content = nhanVienSelect.hoNhanVien + " " + nhanVienSelect.tenNhanVien;
+            }
         }
 
         private void btnChonsanpham_Click(object sender, RoutedEventArgs e)
@@ -207,7 +219,8 @@ namespace QuanLyQuanCoffee.Views
 
                     if (txtTienKhachDua.Text == "" || txtTienKhachDua.Text == null)
                     {
-                        hoaDon.tienKhachDua = 0;
+                        MessageBox.Show("Vui lòng nhập tiền khách đưa");
+                        return;
                     }
                     else
                     {
@@ -216,7 +229,8 @@ namespace QuanLyQuanCoffee.Views
 
                     if (txtTienThoiLai.Text == "" || txtTienThoiLai.Text == null)
                     {
-                        hoaDon.tienThua = 0;
+                        MessageBox.Show("Vui lòng nhập tiền khách đưa để tính tiền thối lại");
+                        return;
                     }
                     else
                     {
@@ -224,6 +238,7 @@ namespace QuanLyQuanCoffee.Views
                         if (tienThua < 0)
                         {
                             MessageBox.Show("Tiền khách đưa không thể nhỏ hơn tổng thành tiền");
+                            return;
                         }
                         else
                         {
@@ -306,19 +321,32 @@ namespace QuanLyQuanCoffee.Views
         {
             try
             {
-                if (e.Key == Key.Enter)
+                if (tinhTien == 0)
                 {
-                    double tienKhachDua = int.Parse(txtTienKhachDua.Text);
-                    double tienThoiLai = tienKhachDua - tongThanhTien;
-                    if (tienThoiLai > 0)
+                    if (e.Key == Key.Enter)
                     {
-                        txtTienThoiLai.Text = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", tienThoiLai);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Tiền khách đưa nhỏ hơn tổng giá trị hóa đơn");
+                        double tienKhachDua = int.Parse(txtTienKhachDua.Text);
+                        double tienThoiLai = tienKhachDua - tongThanhTien;
+                        if (tienThoiLai > 0)
+                        {
+                            txtTienThoiLai.Text = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", tienThoiLai);
+                            tinhTien++;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Tiền khách đưa nhỏ hơn tổng giá trị hóa đơn");
+                        }
                     }
                 }
+                else
+                {
+                    if (e.Key == Key.Enter)
+                    {
+                        btnTinhtien_Click(sender, e);
+                        tinhTien = 0;
+                    }
+                }
+
             }
             catch (ArgumentNullException)
             {

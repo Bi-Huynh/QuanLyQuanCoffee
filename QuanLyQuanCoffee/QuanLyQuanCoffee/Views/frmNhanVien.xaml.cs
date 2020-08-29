@@ -52,13 +52,14 @@ namespace QuanLyQuanCoffee.Views
 
         private void order_Click(object sender, RoutedEventArgs e)
         {
+            if (CCa_BUS.isDaKetCa)
+            {
+                MessageBox.Show("Bạn đã kết ca. Vui lòng đăng xuất");
+                return;
+            }
             if (CCa_BUS.CaLamViec != null)
             {
                 MainNhanVien.Content = new frmOrder(nhanVienSelect);
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng tạo ca làm việc");
             }
         }
 
@@ -69,6 +70,7 @@ namespace QuanLyQuanCoffee.Views
 
         private void ketCa_Click(object sender, RoutedEventArgs e)
         {
+            MainNhanVien.Content = null;
             if (CCa_BUS.isDaKetCa == false && CCa_BUS.CaLamViec != null)
             {
                 new frmKetCa(nhanVienSelect).Show();
@@ -90,6 +92,8 @@ namespace QuanLyQuanCoffee.Views
             if (CCa_BUS.CaLamViec == null)
             // chưa tạo ca thì có thể đăng xuất
             {
+                CCa_BUS.isDaKetCa = false;
+                CCa_BUS.CaLamViec = null;
                 new frmDangNhap().Show();
                 this.Close();
             }
@@ -101,19 +105,22 @@ namespace QuanLyQuanCoffee.Views
                     if (CCa_BUS.isDaKetCa)
                     // đã kết ca rồi thì mới có thể đăng xuất
                     {
-                        frmDangNhap f = new frmDangNhap();
-                        f.Show();
                         CCa_BUS.isDaKetCa = false;
                         CCa_BUS.CaLamViec = null;
+                        frmDangNhap f = new frmDangNhap();
+                        f.Show();
                         this.Close();
                     }
                     else
                     {
                         MessageBox.Show("Phải kết ca mới có thể đăng xuất");
+                        return;
                     }
                 }
                 else
                 {
+                    CCa_BUS.isDaKetCa = false;
+                    CCa_BUS.CaLamViec = null;
                     new frmDangNhap().Show();
                     this.Close();
                 }
