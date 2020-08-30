@@ -124,6 +124,16 @@ namespace QuanLyQuanCoffee.Views
                     MessageBox.Show("Vui lòng nhập tiền đầu ca");
                     return;
                 }
+                if (ketCa.tienDauCa <1000)
+                {
+                    MessageBox.Show("Xem lại tiền đầu ca");
+                    return;
+                }
+                if (ketCa.tienDauCa > 1000000)
+                {
+                    MessageBox.Show("Tiền đầu ca quá lớn");
+                    return;
+                }
                 if (CCa_BUS.add(ketCa))
                 {
                     MessageBox.Show("Kết ca thành công");

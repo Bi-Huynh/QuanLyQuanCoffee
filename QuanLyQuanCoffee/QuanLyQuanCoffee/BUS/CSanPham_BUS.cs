@@ -25,9 +25,14 @@ namespace QuanLyQuanCoffee.BUS
             return loaisanPham;
         }
 
+        public static List<SanPham> toListall()
+        {
+            List<SanPham> list = quanLyQuanCoffee.SanPhams.ToList();
+            return list == null ? new List<SanPham>() : list;
+        }
         public static List<SanPham> toList()
         {
-            List<SanPham> list = quanLyQuanCoffee.SanPhams.Where(x => x.trangThai == 0).ToList();
+            List<SanPham> list = quanLyQuanCoffee.SanPhams.Where(x=>x.trangThai==0).ToList();
             return list == null ? new List<SanPham>() : list;
         }
 
