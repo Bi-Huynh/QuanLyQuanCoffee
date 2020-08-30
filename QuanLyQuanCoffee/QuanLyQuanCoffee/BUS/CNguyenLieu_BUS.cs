@@ -52,6 +52,20 @@ namespace QuanLyQuanCoffee.BUS
             return list == null ? new List<NguyenLieu>() : list;
         }
 
+        public static NguyenLieu findNLbyTen (string TenNguyenLieu)
+        {
+            NguyenLieu nguyenLieu = new NguyenLieu();
+            foreach (NguyenLieu item in quanLyQuanCoffee.NguyenLieux.ToList())
+            {
+                if (item.tenNguyenLieu.ToLower().Trim() == TenNguyenLieu.ToLower().Trim())
+                {
+                    nguyenLieu = item;
+                    break;
+                }
+            }
+            return nguyenLieu;
+        }
+
         //public static NguyenLieu findNguyenLieuByTen(string tenNguyenLieu)
         //{
         //    NguyenLieu nguyenLieu = new NguyenLieu();
@@ -106,10 +120,21 @@ namespace QuanLyQuanCoffee.BUS
         public static NguyenLieu findNguyenLieuByTen(string tenNguyenLieu)
         {
             tenNguyenLieu = CServices.formatChuoi(tenNguyenLieu);
-            NguyenLieu nguyenLieu = quanLyQuanCoffee.NguyenLieux
-                .Where(x => x.tenNguyenLieu.Contains(tenNguyenLieu) && x.trangThai == 0)
-                .FirstOrDefault();
-            return nguyenLieu == null ? new NguyenLieu() : nguyenLieu;
+            //NguyenLieu nguyenLieu = quanLyQuanCoffee.NguyenLieux
+            //    .Where(x => x.tenNguyenLieu.Contains(tenNguyenLieu) && x.trangThai == 0)
+            //    .FirstOrDefault();
+            NguyenLieu nguyenLieu = new NguyenLieu();
+            foreach (NguyenLieu item in quanLyQuanCoffee.NguyenLieux.ToList())
+            {
+                if (item.tenNguyenLieu.ToLower().Trim() == tenNguyenLieu.ToLower().Trim() &&
+                    item.trangThai == 0)
+                {
+                    nguyenLieu = item;
+                    break;
+                }
+            }
+
+            return nguyenLieu;
         }
 
         public static bool add(NguyenLieu nguyenLieu)

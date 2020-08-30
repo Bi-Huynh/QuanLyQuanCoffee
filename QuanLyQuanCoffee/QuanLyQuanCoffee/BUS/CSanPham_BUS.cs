@@ -25,6 +25,20 @@ namespace QuanLyQuanCoffee.BUS
             return loaisanPham;
         }
 
+        public static SanPham findSPbyTen(string tenSanPham)
+        {
+            SanPham sanPham = new SanPham();
+            foreach (SanPham item in quanLyQuanCoffee.SanPhams.ToList())
+            {
+                if (item.tenSanPham.ToLower().Trim() == tenSanPham.ToLower().Trim())
+                {
+                    sanPham = item;
+                    break;
+                }
+            }
+            return sanPham;
+        }
+
         public static List<SanPham> toList()
         {
             List<SanPham> list = quanLyQuanCoffee.SanPhams.Where(x => x.trangThai == 0).ToList();

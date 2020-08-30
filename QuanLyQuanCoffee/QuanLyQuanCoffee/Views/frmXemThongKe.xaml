@@ -43,7 +43,8 @@
             </ComboBox>
 
             <Label Grid.Row="0" Grid.Column="0" Content="Lọc theo sản phẩm" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cmbLocSanPham" Loaded="cmbLocSanPham_Loaded"></ComboBox>
+            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cmbLocSanPham" Loaded="cmbLocSanPham_Loaded" SelectionChanged="cmbLocSanPham_SelectionChanged"
+                      VerticalContentAlignment="Center"></ComboBox>
 
             <GroupBox Header="Bảng thống kê sản phẩm"
                       Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">

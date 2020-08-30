@@ -146,7 +146,6 @@ namespace QuanLyQuanCoffee.BUS
             foreach (ChiTietNguyenLieu item in list)
             {
                 tongThanhTien += item.ChiTietPhieuNhaps.FirstOrDefault().donGia.Value * item.soLuong.Value;
-
             }
 
             return tongThanhTien;
