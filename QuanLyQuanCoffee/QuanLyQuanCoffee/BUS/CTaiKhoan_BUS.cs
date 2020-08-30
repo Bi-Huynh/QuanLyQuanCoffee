@@ -62,6 +62,21 @@ namespace QuanLyQuanCoffee.BUS
             return taiKhoan;
         }
 
+        public static TaiKhoan findMaNhanVien(string maNhanVien)
+        {
+            TaiKhoan taiKhoan = new TaiKhoan();
+            foreach (TaiKhoan tk in quanLyQuanCoffee.TaiKhoans.ToList())
+            {
+                if (tk.maNhanVien == maNhanVien)
+                {
+                    taiKhoan = tk;
+                    break;
+                }
+            }
+
+            return taiKhoan;
+        }
+
         public static Boolean findTrangThai(string maTaiKhoan)
         {
             TaiKhoan taiKhoan = quanLyQuanCoffee.TaiKhoans.Find(maTaiKhoan);
@@ -313,12 +328,16 @@ namespace QuanLyQuanCoffee.BUS
             try
             {
                 TaiKhoan taiKhoan = find(maTaiKhoan);
-                if (taiKhoan != null)
+                if (taiKhoan != null && taiKhoan.NhanVien != null)
                 {
-                    //NhanVien nhanVien = CNhanVien_BUS.find(taiKhoan.maNhanVien);
                     if (taiKhoan.NhanVien.trangThai == 2)
                     {
                         MessageBox.Show("Nhân viên này đã nghỉ việc, không thể mở tài khoản này");
+                        return false;
+                    }
+                    else if (taiKhoan.NhanVien.trangThai == 1)
+                    {
+                        MessageBox.Show("Nhân viên này đang tạm nghỉ, không thể mở tài khoản này");
                         return false;
                     }
                     else

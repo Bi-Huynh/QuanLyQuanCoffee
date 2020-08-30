@@ -193,7 +193,7 @@ namespace QuanLyQuanCoffee.Views
                 nhanVien.maLoaiNhanVien = CLoaiNhanVien_BUS.findMaLoaiByTenLoai(cmbLoaiNhanVien.SelectedItem.ToString());
                 nhanVien.urlAnh = urlAnh;
                 nhanVien.trangThai = cmbTrangThai.SelectedIndex;
-                if (nhanVien.trangThai == 2)
+                if (nhanVien.trangThai == 2 || nhanVien.trangThai == 1)
                 {
                     if (CTaiKhoan_BUS.khoaTaiKhoanNV(nhanVien.maNhanVien) == false)
                     {

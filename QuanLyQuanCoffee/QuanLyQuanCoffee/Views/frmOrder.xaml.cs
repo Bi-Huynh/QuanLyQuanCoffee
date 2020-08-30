@@ -26,7 +26,6 @@ namespace QuanLyQuanCoffee.Views
     {
         NhanVien nhanVienSelect;
         private List<ChiTietHoaDon> chiTietHoaDons;
-        private int tinhTien = 0;
         private double tongThanhTien;
 
         public frmOrder(NhanVien nhanVien = null)
@@ -240,6 +239,13 @@ namespace QuanLyQuanCoffee.Views
                             MessageBox.Show("Tiền khách đưa không thể nhỏ hơn tổng thành tiền");
                             return;
                         }
+                        else if (tienThua >= 500000)
+                        {
+                            txtTienThoiLai.Text = "";
+                            MessageBox.Show("Xem lại tiền khách đưa");
+                            return;
+                        }
+
                         else
                         {
                             hoaDon.tienThua = tienThua;
@@ -321,32 +327,19 @@ namespace QuanLyQuanCoffee.Views
         {
             try
             {
-                if (tinhTien == 0)
+                if (e.Key == Key.Enter)
                 {
-                    if (e.Key == Key.Enter)
+                    double tienKhachDua = int.Parse(txtTienKhachDua.Text);
+                    double tienThoiLai = tienKhachDua - tongThanhTien;
+                    if (tienThoiLai > 0)
                     {
-                        double tienKhachDua = int.Parse(txtTienKhachDua.Text);
-                        double tienThoiLai = tienKhachDua - tongThanhTien;
-                        if (tienThoiLai > 0)
-                        {
-                            txtTienThoiLai.Text = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", tienThoiLai);
-                            tinhTien++;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Tiền khách đưa nhỏ hơn tổng giá trị hóa đơn");
-                        }
+                        txtTienThoiLai.Text = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", tienThoiLai);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tiền khách đưa nhỏ hơn tổng giá trị hóa đơn");
                     }
                 }
-                else
-                {
-                    if (e.Key == Key.Enter)
-                    {
-                        btnTinhtien_Click(sender, e);
-                        tinhTien = 0;
-                    }
-                }
-
             }
             catch (ArgumentNullException)
             {

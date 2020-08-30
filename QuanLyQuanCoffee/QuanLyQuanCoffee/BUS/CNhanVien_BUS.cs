@@ -17,7 +17,9 @@ namespace QuanLyQuanCoffee.BUS
         // Trả về toàn bộ danh sách nhân viên
         public static List<NhanVien> toList()
         {
-            List<NhanVien> list = quanLyQuanCoffee.NhanViens.Where(x => x.trangThai == 0 && x.maNhanVien != "0000000000").ToList();
+            List<NhanVien> list = quanLyQuanCoffee.NhanViens.Where(x => x.trangThai == 0 &&
+                x.maNhanVien != "0000000000" ||
+                x.trangThai == 1).ToList();
             return list == null ? new List<NhanVien>() : list;
         }
 
@@ -62,7 +64,7 @@ namespace QuanLyQuanCoffee.BUS
         {
             //maNhanVien = maNhanVien.ToUpper();
             NhanVien nhanVien = quanLyQuanCoffee.NhanViens
-                .Where(x => x.maNhanVien == maNhanVien && x.trangThai == 0).FirstOrDefault();
+                .Where(x => x.maNhanVien == maNhanVien && x.trangThai == 0 || x.trangThai == 1).FirstOrDefault();
             return nhanVien == null ? new NhanVien() : nhanVien;
         }
 
@@ -243,6 +245,12 @@ namespace QuanLyQuanCoffee.BUS
                 temp.maLoaiNhanVien = nhanVien.maLoaiNhanVien;
                 temp.urlAnh = nhanVien.urlAnh;
                 temp.trangThai = nhanVien.trangThai;
+
+                if (temp.trangThai == 0)
+                {
+                    temp.TaiKhoans.FirstOrDefault().trangThai = 0;
+                }
+
                 quanLyQuanCoffee.SaveChanges();
             }
             catch (DbUpdateException)
@@ -268,7 +276,9 @@ namespace QuanLyQuanCoffee.BUS
                     temp.TaiKhoans != null ||
                     temp.HoaDons.Count > 0)
                 {
-                    temp.trangThai = 1;
+                    temp.trangThai = 2;
+                    temp.TaiKhoans.FirstOrDefault().trangThai = 1;
+
                     quanLyQuanCoffee.SaveChanges();
                 }
                 else

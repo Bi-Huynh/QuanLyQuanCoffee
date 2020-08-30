@@ -56,7 +56,7 @@ namespace QuanLyQuanCoffee.Views
         {
             try
             {
-                List<SanPham> list = CSanPham_BUS.toList();
+                List<SanPham> list = CSanPham_BUS.toListall();
                 if (list.Count > 0)
                 {
                     dgQlsanpham.ItemsSource = list.Select(x => new
