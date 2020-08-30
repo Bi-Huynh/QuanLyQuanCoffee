@@ -55,7 +55,8 @@ namespace QuanLyQuanCoffee.Views
             donViTinhs.Add("Gam");
             donViTinhs.Add("Lon");
             donViTinhs.Add("Chai");
-            donViTinhs.Add("Lit");
+            donViTinhs.Add("Trái");
+            donViTinhs.Add("Lít");
             cmbDonViTinh.ItemsSource = donViTinhs;
 
 

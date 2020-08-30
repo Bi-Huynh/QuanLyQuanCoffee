@@ -20,30 +20,43 @@ namespace QuanLyQuanCoffee.Views
     /// </summary>
     public partial class frmThongTinChiTietNguyenLieu : Window
     {
-        public frmThongTinChiTietNguyenLieu(NguyenLieu nguyenLieu)
+        public frmThongTinChiTietNguyenLieu(NguyenLieu nguyenLieu = null)
         {
             InitializeComponent();
-            List<ChiTietPhieuNhap> list = CChiTietPhieuNhapNguyenLieu_BUS.findList(nguyenLieu.maNguyenLieu);
+            //List<ChiTietPhieuNhap> list = CChiTietPhieuNhapNguyenLieu_BUS.findList(nguyenLieu.maNguyenLieu);
+
+            List<ChiTietNguyenLieu> chiTietNguyenLieus = new List<ChiTietNguyenLieu>();
+            if (nguyenLieu != null)
+            {
+                chiTietNguyenLieus = nguyenLieu.ChiTietNguyenLieux.ToList();
+            }
+
+            //foreach (ChiTietNguyenLieu chiTietNguyenLieu in chiTietNguyenLieus)
+            //{
+            //    chiTietNguyenLieu.ChiTietPhieuNhaps.ToList();
+            //}
+
             txtMaNguyenLieu.Text = nguyenLieu.maNguyenLieu;
             txtTenNguyenLieu.Text = nguyenLieu.tenNguyenLieu;
             txtTenLoai.Text = nguyenLieu.LoaiNguyenLieu.tenLoaiNguyenLieu;
-            if (list.Count() > 0)
+
+            if (chiTietNguyenLieus.Count() > 0)
             {
-                hienThi(list);
+                hienThi(chiTietNguyenLieus);
             }
         }
 
-        public void hienThi(List<ChiTietPhieuNhap> list)
+        public void hienThi(List<ChiTietNguyenLieu> list)
         {
             dgDSChiTietNguyenLieu.ItemsSource = list.Select(x => new
             {
                 soLuong = x.soLuong,
-                ngayHetHan = x.ChiTietNguyenLieu.ngayHetHan.Value.ToString("dd/MM/yyyy"),
-                soNgayConLai = CChiTietNguyenLieu_BUS.soNgayConLai(x.ChiTietNguyenLieu.ngayHetHan.Value),
-                donGia = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.donGia),
-                donViTinh = x.ChiTietNguyenLieu.donViTinh,
-                ngayNhap = x.PhieuNhapNguyenLieu.ngayNhap.Value.ToString("dd/MM/yyyy"),
-                ngayXuat = CChiTietPhieuXuat_BUS.findNgayXuat(x.maChitietNguyenLieu)
+                ngayHetHan = x.ngayHetHan.Value.ToString("dd/MM/yyyy"),
+                soNgayConLai = CChiTietNguyenLieu_BUS.soNgayConLai(x.ngayHetHan.Value),
+                donGia = String.Format("{0:#,###,0 VND;(#,###,0 VND);0 VND}", x.ChiTietPhieuNhaps.FirstOrDefault().donGia),
+                donViTinh = x.donViTinh,
+                ngayNhap = x.ChiTietPhieuNhaps.FirstOrDefault().PhieuNhapNguyenLieu.ngayNhap.Value.ToString("dd/MM/yyyy"),
+                ngayXuat = CChiTietPhieuXuat_BUS.findNgayXuat(x.maChiTietNguyenLieu)
             });
         }
     }

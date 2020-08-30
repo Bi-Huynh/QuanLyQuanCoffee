@@ -258,14 +258,11 @@ namespace QuanLyQuanCoffee.Views
                 {
                     MessageBox.Show("Đơn giá vượt quá giới hạn lưu trữ");
                 }
-
             }
             else
             {
                 MessageBox.Show("Mã Phiếu Xuất đã tồn tại");
             }
-           
-            
         }
 
         private void dgChiTietNguyenLieu_SelectionChanged(object sender, SelectionChangedEventArgs e)

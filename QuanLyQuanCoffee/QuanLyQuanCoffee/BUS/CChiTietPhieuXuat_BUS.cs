@@ -42,12 +42,8 @@ namespace QuanLyQuanCoffee.BUS
 
                     MessageBox.Show("Lỗi không Lưu được dữ liệu");
                 }
-
-
             }
         }
-
-
 
         public static string findNgayXuat(string maChiTietNguyenLieu)
         {

@@ -81,14 +81,24 @@ namespace QuanLyQuanCoffee.BUS
         public static int tongSoLuong(string maNguyenLieu)
         {
             int tong = 0;
-            List<ChiTietPhieuNhap> list = toListPhieuNhap(maNguyenLieu);
-            if (list.Count() > 0)
+            //List<ChiTietPhieuNhap> list = toListPhieuNhap(maNguyenLieu);
+            //if (list.Count() > 0)
+            //{
+            //    list.ForEach(item =>
+            //    {
+            //        tong += item.soLuong.Value;
+            //    });
+            //}
+
+            if (maNguyenLieu != null && maNguyenLieu != "")
             {
-                list.ForEach(item =>
+                NguyenLieu nguyenLieu = quanLyQuanCoffee.NguyenLieux.Find(maNguyenLieu);
+                foreach (ChiTietNguyenLieu chiTietNguyenLieu in nguyenLieu.ChiTietNguyenLieux.ToList())
                 {
-                    tong += item.soLuong.Value;
-                });
+                    tong += chiTietNguyenLieu.soLuong.Value;
+                }
             }
+
             return tong;
         }
 
@@ -122,20 +132,21 @@ namespace QuanLyQuanCoffee.BUS
             return chiTietPhieuNhapNguyenLieu == null ? new ChiTietPhieuNhap() : chiTietPhieuNhapNguyenLieu;
         }
 
-        public static List<ChiTietPhieuNhap> findList(string maNguyenLieu)
+        public static List<ChiTietNguyenLieu> findList(string maNguyenLieu)
         {
-            List<ChiTietPhieuNhap> list = quanLyQuanCoffee.ChiTietPhieuNhaps
-                .Where(x => x.ChiTietNguyenLieu.maNguyenLieu == maNguyenLieu && x.soLuong > 0).ToList();
-            return list == null ? new List<ChiTietPhieuNhap>() : list;
+            List<ChiTietNguyenLieu> list = quanLyQuanCoffee.ChiTietNguyenLieux
+                .Where(x => x.maNguyenLieu == maNguyenLieu && x.soLuong > 0).ToList();
+            return list == null ? new List<ChiTietNguyenLieu>() : list;
         }
 
         public static double tongThanhTien(string maNguyenLieu)
         {
             double tongThanhTien = 0;
-            List<ChiTietPhieuNhap> list = findList(maNguyenLieu);
-            foreach (var item in list)
+            List<ChiTietNguyenLieu> list = findList(maNguyenLieu);
+            foreach (ChiTietNguyenLieu item in list)
             {
-                tongThanhTien += item.donGia.Value * item.soLuong.Value;
+                tongThanhTien += item.ChiTietPhieuNhaps.FirstOrDefault().donGia.Value * item.soLuong.Value;
+
             }
 
             return tongThanhTien;
