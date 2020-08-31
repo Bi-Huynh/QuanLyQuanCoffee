@@ -87,7 +87,17 @@ namespace QuanLyQuanCoffee.Views
                 //string maLoaiNguyenLieu = CLoaiNguyenLieu_BUS.findMaLoaibyTenLoai(cmbLoaiNguyenLieu.SelectedItem.ToString());
                 NguyenLieu nguyenLieu = new NguyenLieu();
                 nguyenLieu.maNguyenLieu = txtMaNguyenLieu.Text;
+                if (txtTenNguyenLieu.Text == null || txtTenNguyenLieu.Text == "")
+                {
+                    MessageBox.Show("Vui lòng nhập tên nguyên liệu");
+                    return;
+                }
                 nguyenLieu.tenNguyenLieu = txtTenNguyenLieu.Text;
+                if (txtMaLoai.Text == null || txtMaLoai.Text == "")
+                {
+                    MessageBox.Show("Vui lòng chọn loại nguyên liệu");
+                    return;
+                }
                 nguyenLieu.maLoaiNguyenLieu = txtMaLoai.Text;
                 nguyenLieu.trangThai = 0;
 

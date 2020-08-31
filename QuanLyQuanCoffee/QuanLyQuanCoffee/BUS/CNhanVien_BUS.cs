@@ -62,10 +62,20 @@ namespace QuanLyQuanCoffee.BUS
         // tìm kiếm nhân viên theo mã nhân viên
         public static NhanVien find(string maNhanVien)
         {
-            //maNhanVien = maNhanVien.ToUpper();
-            NhanVien nhanVien = quanLyQuanCoffee.NhanViens
-                .Where(x => x.maNhanVien == maNhanVien && x.trangThai == 0 || x.trangThai == 1).FirstOrDefault();
-            return nhanVien == null ? new NhanVien() : nhanVien;
+            //NhanVien nhanVien = quanLyQuanCoffee.NhanViens
+            //    .Where(x => x.maNhanVien == maNhanVien && x.trangThai == 0 || x.trangThai == 1).FirstOrDefault();
+
+            NhanVien nhanVien = new NhanVien();
+            foreach (NhanVien item in quanLyQuanCoffee.NhanViens.ToList())
+            {
+                if (item.maNhanVien == maNhanVien && (item.trangThai == 0 || item.trangThai == 1))
+                {
+                    nhanVien = item;
+                    break;
+                }
+            }
+
+            return nhanVien;
         }
 
         // tìm kiếm nhân viên theo mã nhân viên
