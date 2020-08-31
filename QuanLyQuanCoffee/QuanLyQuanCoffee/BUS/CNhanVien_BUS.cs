@@ -166,7 +166,7 @@ namespace QuanLyQuanCoffee.BUS
                 tuoi = (now - ns) / 10000;
                 if (tuoi < 18 || tuoi > 65)
                 {
-                    return -1;
+                    return 0;
                 }
             }
             catch (ArgumentNullException)
