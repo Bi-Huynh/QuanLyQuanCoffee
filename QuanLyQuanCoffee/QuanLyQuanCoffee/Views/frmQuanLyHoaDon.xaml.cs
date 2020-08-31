@@ -27,14 +27,14 @@ namespace QuanLyQuanCoffee.Views
         public frmQuanLyHoaDon()
         {
             InitializeComponent();
-            hienthiHoaDon(CHoaDon_BUS.toList()) ;
+            hienthiHoaDon(CHoaDon_BUS.toList());
         }
 
         public void hienthiHoaDon(List<HoaDon> hoaDons)
         {
-            if (hoaDons.Count()>=0)
+            if (hoaDons.Count() >= 0)
             {
-                dgQlhoadon.ItemsSource = CHoaDon_BUS.toList().Select(x => new
+                dgQlhoadon.ItemsSource = hoaDons.Select(x => new
                 {
                     maHoaDon = x.maHoaDon,
                     maNhanVien = x.maNhanVien,
@@ -89,16 +89,28 @@ namespace QuanLyQuanCoffee.Views
                     hienthiHoaDon(CHoaDon_BUS.toListMaNhanVien(txtTK.Text));
                     break;
 
-                case 1:
+                case 2:
                     hienthiHoaDon(CHoaDon_BUS.toListMaHoaDon(txtTK.Text));
                     break;
 
-                case 2:
-                    hienthiHoaDon(CHoaDon_BUS.toListNgayLap(dateTimKiem.SelectedDate.Value));
-                    break;
-
                 case 3:
-                    hienthiHoaDon(CHoaDon_BUS.toListTongThanhTien(txtTK.Text));
+                    try
+                    {
+                        double tongThanhTien = double.Parse(txtTK.Text);
+                        hienthiHoaDon(CHoaDon_BUS.toListTongThanhTien(tongThanhTien));
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        MessageBox.Show("Số tiền nhập tìm kiếm rỗng");
+                    }
+                    catch (FormatException)
+                    {
+                        MessageBox.Show("Số tiền nhập tìm kiếm phải là số");
+                    }
+                    catch (OverflowException)
+                    {
+                        MessageBox.Show("Số tiền nhập tìm kiếm có dộ dài vượt mức");
+                    }
                     break;
 
                 default:
@@ -110,30 +122,42 @@ namespace QuanLyQuanCoffee.Views
         {
             if (cmbTimKiem.SelectedIndex == 0)
             {
-                dateTimKiem.IsEnabled = false;
-                txtTK.IsEnabled = true;
+                dateTimKiem.Visibility = Visibility.Hidden;
+                txtTK.Visibility = Visibility.Visible;
                 chosse = 0;
             }
 
             if (cmbTimKiem.SelectedIndex == 1)
             {
-                dateTimKiem.IsEnabled = true;
-                txtTK.IsEnabled = false;
+                dateTimKiem.Visibility = Visibility.Visible;
+                txtTK.Visibility = Visibility.Hidden;
                 chosse = 1;
             }
 
             if (cmbTimKiem.SelectedIndex == 2)
             {
-                dateTimKiem.IsEnabled = false;
-                txtTK.IsEnabled = true;
+                dateTimKiem.Visibility = Visibility.Hidden;
+                txtTK.Visibility = Visibility.Visible;
                 chosse = 2;
             }
 
             if (cmbTimKiem.SelectedIndex == 3)
             {
-                dateTimKiem.IsEnabled = false;
-                txtTK.IsEnabled = true;
+                dateTimKiem.Visibility = Visibility.Hidden;
+                txtTK.Visibility = Visibility.Visible;
                 chosse = 3;
+            }
+        }
+
+        private void dateTimKiem_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dateTimKiem.SelectedDate == null)
+            {
+                hienthiHoaDon(CHoaDon_BUS.toList());
+            }
+            else
+            {
+                hienthiHoaDon(CHoaDon_BUS.toListNgayLap(dateTimKiem.SelectedDate.Value));
             }
         }
     }

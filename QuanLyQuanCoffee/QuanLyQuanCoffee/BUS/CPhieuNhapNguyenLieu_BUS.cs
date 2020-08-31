@@ -71,7 +71,7 @@ namespace QuanLyQuanCoffee.BUS
         public static List<PhieuNhapNguyenLieu> toListInMonth(int month)
         {
             List<PhieuNhapNguyenLieu> phieuNhapNguyenLieus = new List<PhieuNhapNguyenLieu>();
-            foreach (PhieuNhapNguyenLieu phieuNhap in quanLyQuanCoffee.PhieuNhapNguyenLieux.ToList())
+            foreach (PhieuNhapNguyenLieu phieuNhap in quanLyQuanCoffee.PhieuNhapNguyenLieux.Where(x => x.trangThai == 0).ToList())
             {
                 if (phieuNhap.ngayNhap.Value.Month == month && 
                     phieuNhap.ngayNhap.Value.Year == DateTime.Now.Year)

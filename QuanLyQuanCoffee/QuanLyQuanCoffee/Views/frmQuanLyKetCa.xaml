@@ -54,7 +54,7 @@
                 <DataGridTextColumn Header="Giờ bắt đầu" Binding="{Binding gioBatDau}" Width="1*"/>
                 <DataGridTextColumn Header="Giờ kết thúc" Binding="{Binding gioKetThuc}" Width="1*"/>
                 <DataGridTextColumn Header="Ngày lập" Binding="{Binding ngayLap}" Width="1*"/>
-                <DataGridTextColumn Header="Số lượng" Binding="{Binding soLuong}" Width=".6*"/>
+                <DataGridTextColumn Header="Số lượng hóa đơn" Binding="{Binding soLuong}" Width="1.1*"/>
                 <DataGridTextColumn Header="Tiền đầu ca" Binding="{Binding tienDauCa}" Width="1*"/>
                 <DataGridTextColumn Header="Tổng tiền bán" Binding="{Binding tongTienBan}" Width="1*"/>
                 <DataGridTextColumn Header="Tổng doanh thu" Binding="{Binding tongDoanhThu}" Width="1*"/>

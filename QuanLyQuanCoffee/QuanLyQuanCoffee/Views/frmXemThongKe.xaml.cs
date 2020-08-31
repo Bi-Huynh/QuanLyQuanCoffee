@@ -283,7 +283,7 @@ namespace QuanLyQuanCoffee.Views
                     phieuNhapNguyenLieus = CPhieuNhapNguyenLieu_BUS.toListInMonth(monthSelect);
                     if (phieuNhapNguyenLieus.Count() > 0)
                     {
-                        foreach (ThanhPhan thanhPhan in sanPham.ThanhPhans.ToList())
+                        foreach (ThanhPhan thanhPhan in sanPham.ThanhPhans.Where(x => x.trangThai == 0).ToList())
                         {
                             foreach (PhieuNhapNguyenLieu phieuNhap in phieuNhapNguyenLieus)
                             {
@@ -312,7 +312,7 @@ namespace QuanLyQuanCoffee.Views
                     phieuXuatNguyenLieus = CPhieuXuatNguyenLieu_BUS.toListInMonth(monthSelect);
                     if (phieuXuatNguyenLieus.Count() > 0)
                     {
-                        foreach (ThanhPhan thanhPhan in sanPham.ThanhPhans.ToList())
+                        foreach (ThanhPhan thanhPhan in sanPham.ThanhPhans.Where(x => x.trangThai == 0).ToList())
                         {
                             foreach (PhieuXuatNguyenLieu phieuXuat in phieuXuatNguyenLieus)
                             {

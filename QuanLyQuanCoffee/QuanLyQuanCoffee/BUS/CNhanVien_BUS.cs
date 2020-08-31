@@ -246,7 +246,7 @@ namespace QuanLyQuanCoffee.BUS
                 temp.urlAnh = nhanVien.urlAnh;
                 temp.trangThai = nhanVien.trangThai;
 
-                if (temp.trangThai == 0)
+                if (temp.trangThai == 0 && temp.TaiKhoans.Count() > 0)
                 {
                     temp.TaiKhoans.FirstOrDefault().trangThai = 0;
                 }
@@ -277,7 +277,10 @@ namespace QuanLyQuanCoffee.BUS
                     temp.HoaDons.Count > 0)
                 {
                     temp.trangThai = 2;
-                    temp.TaiKhoans.FirstOrDefault().trangThai = 1;
+                    if (temp.TaiKhoans.Count > 0)
+                    {
+                        temp.TaiKhoans.FirstOrDefault().trangThai = 1;
+                    }
 
                     quanLyQuanCoffee.SaveChanges();
                 }

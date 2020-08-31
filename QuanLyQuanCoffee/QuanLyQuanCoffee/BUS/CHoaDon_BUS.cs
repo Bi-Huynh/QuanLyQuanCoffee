@@ -61,12 +61,12 @@ namespace QuanLyQuanCoffee.BUS
             return hoaDons;
         }
 
-        public static List<HoaDon> toListTongThanhTien(string tongThanhTien)
+        public static List<HoaDon> toListTongThanhTien(double tongThanhTien)
         {
             List<HoaDon> hoaDons = new List<HoaDon>();
             foreach (HoaDon hoaDon in quanLyQuanCoffee.HoaDons.ToList())
             {
-                if (hoaDon.tongThanhTien.ToString().Contains(tongThanhTien) && hoaDon.trangThai == 0)
+                if (hoaDon.tongThanhTien >= tongThanhTien && hoaDon.trangThai == 0)
                 {
                     hoaDons.Add(hoaDon);
                 }
@@ -204,7 +204,7 @@ namespace QuanLyQuanCoffee.BUS
             int soLuongSanPham = 0;
             try
             {
-                List<HoaDon> hoaDons = toList().Where(x => x.ngayLap.Month == thang && x.ngayLap.Year == DateTime.Now.Year).ToList();
+                List<HoaDon> hoaDons = toList().Where(x => x.ngayLap.Month == thang && x.ngayLap.Year == DateTime.Now.Year && x.trangThai == 0).ToList();
                 foreach (var hoaDon in hoaDons)
                 {
                     foreach (var chiTietHoaDon in hoaDon.ChiTietHoaDons)

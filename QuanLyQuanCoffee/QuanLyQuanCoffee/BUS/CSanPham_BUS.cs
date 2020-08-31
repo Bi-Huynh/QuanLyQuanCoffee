@@ -28,7 +28,7 @@ namespace QuanLyQuanCoffee.BUS
         public static SanPham findSPbyTen(string tenSanPham)
         {
             SanPham sanPham = new SanPham();
-            foreach (SanPham item in quanLyQuanCoffee.SanPhams.ToList())
+            foreach (SanPham item in quanLyQuanCoffee.SanPhams.Where(x => x.trangThai == 0).ToList())
             {
                 if (item.tenSanPham.ToLower().Trim() == tenSanPham.ToLower().Trim())
                 {

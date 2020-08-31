@@ -14,7 +14,7 @@ namespace QuanLyQuanCoffee.BUS
         private static QuanLyQuanCoffeeEntities1 quanLyQuanCoffee = LoadDatabase.Instance();
         public static List<PhieuXuatNguyenLieu> toList()
         {
-            List<PhieuXuatNguyenLieu> list = quanLyQuanCoffee.PhieuXuatNguyenLieux.ToList();
+            List<PhieuXuatNguyenLieu> list = quanLyQuanCoffee.PhieuXuatNguyenLieux.Where(x => x.trangThai == 0).ToList();
             return list == null ? new List<PhieuXuatNguyenLieu>() : list;
         }
 
@@ -34,7 +34,7 @@ namespace QuanLyQuanCoffee.BUS
         public static List<PhieuXuatNguyenLieu> toListInMonth(int month)
         {
             List<PhieuXuatNguyenLieu> phieuXuatNguyenLieus = new List<PhieuXuatNguyenLieu>();
-            foreach (PhieuXuatNguyenLieu phieuNhap in quanLyQuanCoffee.PhieuXuatNguyenLieux.ToList())
+            foreach (PhieuXuatNguyenLieu phieuNhap in quanLyQuanCoffee.PhieuXuatNguyenLieux.Where(x => x.trangThai == 0).ToList())
             {
                 if (phieuNhap.ngayXuat.Value.Month == month &&
                     phieuNhap.ngayXuat.Value.Year == DateTime.Now.Year)
