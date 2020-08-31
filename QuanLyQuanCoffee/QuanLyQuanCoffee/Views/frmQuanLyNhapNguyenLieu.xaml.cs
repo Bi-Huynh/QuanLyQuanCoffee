@@ -145,25 +145,25 @@ namespace QuanLyQuanCoffee.Views
             hienThiDSPhieuNhap(CPhieuNhapNguyenLieu_BUS.toList());
         }
 
-        private void btnXoa_Click(object sender, RoutedEventArgs e)
-        {
-            if (PhieuNhapNguyenLieuSelect != null)
-            {
-                var result = MessageBox.Show("Do you want to delete changes?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+        //private void btnXoa_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (PhieuNhapNguyenLieuSelect != null)
+        //    {
+        //        var result = MessageBox.Show("Do you want to delete changes?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                if (result == MessageBoxResult.Yes)
-                {
-                    if (CPhieuNhapNguyenLieu_BUS.remove(PhieuNhapNguyenLieuSelect))
-                    {
-                        hienThiDSPhieuNhap(CPhieuNhapNguyenLieu_BUS.toList());
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn phiếu nhập");
-            }
-        }
+        //        if (result == MessageBoxResult.Yes)
+        //        {
+        //            if (CPhieuNhapNguyenLieu_BUS.remove(PhieuNhapNguyenLieuSelect))
+        //            {
+        //                hienThiDSPhieuNhap(CPhieuNhapNguyenLieu_BUS.toList());
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Vui lòng chọn phiếu nhập");
+        //    }
+        //}
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
