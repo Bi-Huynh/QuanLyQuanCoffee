@@ -46,7 +46,7 @@ namespace QuanLyQuanCoffee.Views
                 {
 
                     maChiTietPhieuXuat = x.maChiTietPhieuXuat,
-                    maNguyenLieu = x.maChitietNguyenLieu.Substring(0, 13),
+                    maNguyenLieu = x.maChitietNguyenLieu.Substring(0, 9),
                     tenNguyenLieu = x.ChiTietNguyenLieu.NguyenLieu.tenNguyenLieu,
                     soLuong = x.soLuong,
                     donGia = x.donGia,

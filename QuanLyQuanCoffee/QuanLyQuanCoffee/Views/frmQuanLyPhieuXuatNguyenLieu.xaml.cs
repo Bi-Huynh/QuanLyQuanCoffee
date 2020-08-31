@@ -88,14 +88,29 @@ namespace QuanLyQuanCoffee.Views
 
         private void btnXemThongTinChiTiet_Click(object sender, RoutedEventArgs e)
         {
-            frmThongTinChiTietPhieuXuatNL f = new frmThongTinChiTietPhieuXuatNL(phieuXuatnguyenlieuSelect);
-            f.Show();
-
+            if (phieuXuatnguyenlieuSelect != null)
+            {
+                frmThongTinChiTietPhieuXuatNL f = new frmThongTinChiTietPhieuXuatNL(phieuXuatnguyenlieuSelect);
+                f.Show();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn phiếu xuất");
+            }
         }
 
         private void dgDSPhieuXuat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            phieuXuatnguyenlieuSelect = CPhieuXuatNguyenLieu_BUS.find(dgDSPhieuXuat.SelectedValue.ToString());
+            if (dgDSPhieuXuat.SelectedItem != null)
+            {
+                string maPhieuXuat = dgDSPhieuXuat.SelectedValue.ToString();
+                if (maPhieuXuat == null || maPhieuXuat == "")
+                {
+                    MessageBox.Show("Không lấy được phiếu xuất đã chọn");
+                    return;
+                }
+                phieuXuatnguyenlieuSelect = CPhieuXuatNguyenLieu_BUS.find(dgDSPhieuXuat.SelectedValue.ToString());
+            }
         }
 
         private void btnRefesh_Click(object sender, RoutedEventArgs e)
